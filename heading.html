@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="header_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Calendar</title>
+</head>
+<script>
+    var county = location.search.substring(1);
+    county = county.split("=")
+    //console.log(county[0]=='school_id')
+    if (isNaN(Number(county[1]))) {
+        document.getElementById("headingPhoto").src = '/images/BLHS-logo-good.png'
+        document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
+    }
+    else if (county[0] !== 'school_id') {
+        document.getElementById("headingPhoto").src = '/images/BLHS-logo-good.png'
+        document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
+    }
+    else {
+        fetch("http://localhost:8080/api/schools/" + Number(county[1]))
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (schools) {
+                //console.log(schools[0].name)
+                document.getElementById("headingPhoto").src = "/images/" + schools[0].photo;
+                document.getElementById("headerName").innerHTML = schools[0].name + " Swim Team";
+            })
+            .catch(function (error) {
+                //location.reload();
+                console.log("Error: " + error);
+            });
+    }
+
+    // function check_empty(email, password) {
+    //     if (email.value == '' || password.value == '') {
+    //         alert("All fields Required");
+    //     } 
+    //     else {
+    //         //console.log(email.value);
+    //         fetch("http://localhost:8080/api/coachLogIn/"+email.value)
+    //             .then(function (response) {
+    //                 return response.json();
+    //             })
+    //             .then(function (myJson) {
+
+    //                 if(myJson.length == 0 || password.value !== myJson[0].password || typeof myJson[0]===undefined){
+    //                     alert("Username/password is not correct");
+    //                 }
+    //                 else{
+    //                     console.log(myJson);
+
+    //                 //document.getElementById('form').action = "./coachesDashboard.html?coachid="+myJson[0].coach_id;
+    //                 //location.reload();
+    //                 document.getElementById('form').submit();
+    //                 window.location.replace("./coachesDashboard.html?coachid="+myJson[0].coach_id);
+    //                 //alert("Form Submitted Successfully...");
+    //                 }
+    //             })
+    //             .catch(function (error) {
+    //                 console.log("Error: " + error);
+    //             });
+    //     }
+    // }
+
+    //Function To Display Popup
+    // function div_show() {
+    //     document.getElementById('abc').style.display = "block";
+    // }
+
+    // //Function to Hide Popup
+    // function div_hide() {
+    //     document.getElementById('abc').style.display = "none";
+    // }
+
+</script>
+
+<body>
+    <div class="header-container">
+        <header id="header">
+            <a href="index.html" id="headerPhoto"><img id="headingPhoto"></a>
+            <!-- <h1>Utah Swim Coaches Association</h1> -->
+            <h1 id="headerName">Ben Lomond Swim Team</h1>
+            <!--<button class="coachBtn" id="coachBtn" onclick="div_show()">Coach Log-in</button>-->
+
+            <nav>
+                <div class="navbar">
+                    <a href="index.html">Home</a>
+                    <div class="dropdown">
+                        <button class="dropbtn">BL Swimmers
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="swim.html?school=6">Swimmers</a>
+                            <a href="records.html?school=6">Records</a>
+                            <a href="compare.html?school=6">Compare</a>
+                            <a href="what_if.html">What-If</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">SJ Swimmers
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="swim.html?school=78">Swimmers</a>
+                            <a href="records.html?school=78">Records</a>
+                            <a href="compare.html?school=78">Compare</a>
+                            <a href="what_if.html">What-If</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">More
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="video.html">Live Feed</a>
+                            <a href="about_ben_lomond.html">Ben Lomond's Program</a>
+                            <a href="about_saint_joseph.html">St Joseph's Program</a>
+                            <a href="about_coaches.html">About the Coaches</a>
+                            <a href="contact.html">Contact</a>
+                        </div>
+                    </div>
+                    <a href="calendar.html">Calendar</a>
+                </div>
+
+                <!-- 
+                <a class="people" id="people" href="swim.html">Swimmer Info</a>
+                <a class="updates" id="updates" href="updates.html">Updates</a>
+                
+                <a href="contact.html">Contact</a> -->
+            </nav>
+            <!-- <span class="dropdown">
+                <i class="fa fa-bars"></i>
+                <a href="index.html">Home</a>
+                <a href="swim.html">Swimmer Info</a>
+                <a href="updates.html">Updates</a>
+                <a href="calendar.html">Calendar</a>
+                <a href="contact.html">Contact</a>
+            </span> -->
+        </header>
+    </div>
+    <div id="abc">
+        <!-- Popup Div Starts Here -->
+        <div id="popupContact">
+            <!-- Contact Us Form -->
+            <!-- <form id="form" method="post" name="form">
+                <h2>Coach Sign-In</h2>
+                <hr>
+                <input class="text" id="email" name="email" placeholder="Email" type="text" required>
+                <br>
+                <br>
+                <input class="text" id="password" name="password" placeholder="Password" type="password" required>
+                <br>
+                <br>
+                <div class="btns">
+                    <a href="javascript:%20check_empty(document.getElementById('email'), document.getElementById('password'))"
+                        id="submit">Send</a>
+                    <a href="javascript:%20div_hide()" id="cancel">Cancel</a>
+                </div>
+            </form> -->
+        </div>
+        <!-- Popup Div Ends Here -->
+    </div>
+</body>
+
+</html>

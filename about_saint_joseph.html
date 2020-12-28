@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Swim Coach - Calendar</title>
+    <link rel="stylesheet" href="swim.css">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+</script>
+<script> 
+    $(function(){
+      $("#header").load("heading.html"); 
+      $("footer").load("footing.html");
+    });
+</script> 
+<style>
+    .container{
+        display:grid;
+    }
+    .swim_style{
+        padding-top: 125px;
+    }
+    .school{
+        grid-row: 1 / 3;
+        grid-column: 1;
+        width: 270px;
+        height: 300px;
+    }
+    .about{
+        grid-row: 1;
+        grid-column: 2;
+        padding-left: 45px;
+        padding-right: 50px;
+        padding-bottom: 20px;
+        grid-column: 2;
+        color:white;
+    }
+    h3{
+        color:white;
+    }
+    .team_pic{
+        object-fit: contain;
+        width: 600px;
+        height: 395px;
+    }
+    p{
+        padding-top: 30px;
+        color:white;
+    }
+</style>
+</head>
+<body>
+    <header id="header"></header>
+    <main class="swim_style">
+        <div class="container">
+            <div class="school">
+                <img class="school" src="ST._Joseph_Catholic_High_School_Logo_Jayhawk.png"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum adipisci nesciunt tempora? Magnam quod quaerat sunt officia inventore recusandae dolores, voluptas sequi nihil facilis, tempora ut vel labore odio veniam!</p>
+            </div>
+            <div class="about"><h3>Saint Joseph's Swim Team </h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero dolorum doloribus doloremque! Sed, aliquam quisquam! Itaque temporibus odio deleniti id. Possimus, at provident libero quaerat tempora tempore quod esse?</div>
+            <div style="padding-left: 45px;"><img class="team_pic" src="st_joseph_team.jpeg"></div>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+</body>
+</html>

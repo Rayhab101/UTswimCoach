@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Swim Coach - Home</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Float four columns side by side */
+        .column {
+            float: left;
+            width: 150px;
+            padding: 0 5px;
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {
+            margin: 0 -5px;
+            margin-top: 20px
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            text-align: center;
+            background-color: #f1f1f1;
+            border-radius: 10%;
+            width: 140px;
+            height: 120px;
+        }
+
+        .swim_info {
+            padding-top: 150px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("footer").load("footing.html");
+        });
+
+        function card(dataArray) {
+            //console.table(dataArray);
+            var body = document.getElementById("schools");
+            var i = 0;
+            var sizeData = dataArray.length;
+            for (var i = 0; i < sizeData; i++) {
+                //console.log(dataArray[i].name);
+                var name = dataArray[i].name;
+                var location = dataArray[i].classifications;
+                //var division = dataArray[i].division;
+                if (i % 4 == 0) {
+                    var row = document.createElement("div");
+                    row.setAttribute("class", "row");
+                    row.setAttribute("display","show");
+                }
+                var col = document.createElement("div");
+                col.setAttribute("class", "column");
+
+                var a = document.createElement("a");
+                a.setAttribute("href", "./swim.html?school_id=" + dataArray[i].school_id);
+                a.setAttribute("style", "text-decoration: none; color: black;");
+                var carred = document.createElement("div");
+                carred.setAttribute("class", "card");
+                var cardName = document.createElement("h3");
+                cardName.innerHTML = name;
+                cardName.setAttribute("font-weight", "bold");
+                var cardGrade = document.createElement("p");
+                cardGrade.innerHTML = location;
+                var fastestFifty = document.createElement("p");
+                //console.log(minValue);
+                // var fitty = "Division: " + division;
+                // fastestFifty.innerHTML = fitty;
+                carred.appendChild(cardName);
+                carred.appendChild(cardGrade);
+                //carred.appendChild(fastestFifty);
+                a.appendChild(carred);
+                col.appendChild(a);
+                row.appendChild(col);
+                body.appendChild(row);
+            }
+        }
+
+        function countyClick() {
+            //location.reload();
+            //console.log("Hello");
+            var county = location.search.substring(1);
+            //console.log(location.search.substring());
+            county = county.split("=");
+            county = county[1];
+            console.log(county);
+            fetch("http://localhost:8080/api/county/" + county)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (schools) {
+                    console.log(schools)
+                    card(schools)
+                })
+                .catch(function (error) {
+                    countyClick(county)
+                    //location.reload();
+                    console.log("Error: " + error);
+                });
+        }
+
+        window.onload = function(){
+            var reloading = sessionStorage.getItem("reloading");
+            if (!reloading) {
+                //console.log("Hit hit hit")
+                sessionStorage.removeItem("reloading");
+                countyClick();
+    }
+        };
+    </script>
+</head>
+
+<body>
+    <header id="header"></header>
+    <main class="swimmers">
+        <div class="state">
+            <svg class="map" viewbox="100 -10 730 1000">
+                <a xlink:title="Uintah" xlink:href="./index.html?county=Uintah">
+                    <path class="leaflet-clickable"
+                        d="M622 148L622 152L626 152L626 165L629 165L629 168L636 168L636 306L634 306L631 309L547 310L548 305L545 302L547 301L547 294L551 287L551 285L549 284L550 281L552 281L550 278L553 277L554 280L557 273L556 271L561 271L559 270L560 269L553 269L552 264L552 149L562 155L570 153L575 150L580 151L585 148L586 149L592 147L594 149L594 155L597 158L598 156L601 155L601 153L605 152L605 144L622 144z">
+                    </path>
+                </a>
+                <a xlink:title="Beaver" xlink:href="./index.html?county=Beaver">
+                    <path class="leaflet-clickable"
+                        d="M294 414L321 414L320 425L328 434L330 432L331 436L334 437L334 439L337 441L336 447L333 451L335 455L327 463L181 463L181 414L284 414z">
+                    </path>
+                </a>
+                <a xlink:title="Box Elder" xlink:href="./index.html?county=Box%20Elder">
+                    <path class="leaflet-clickable"
+                        d="M350 5L353 6L356 11L356 14L363 21L364 27L367 30L364 34L363 43L365 44L367 50L368 60L369 62L373 60L379 68L375 70L378 73L377 76L375 77L371 74L370 83L367 85L346 86L323 117L295 127L182 127L182 6L197 7L258 5L347 5z">
+                    </path>
+                </a>
+                <a xlink:title="Sanpete" xlink:href="./index.html?county=Sanpete">
+                    <path class="leaflet-clickable"
+                        d="M431 268L436 268L436 309L431 309L431 359L366 359L366 325L370 325L371 322L375 321L375 319L390 319L390 310L394 310L393 282L400 279L400 277L405 277L405 272L402 272L400 268L421 269z">
+                    </path>
+                </a>
+                <a xlink:title="Sevier" xlink:href="./index.html?county=Sevier">
+                    <path class="leaflet-clickable"
+                        d="M391 360L431 360L431 421L320 421L320 415L323 411L323 406L325 402L339 402L342 401L342 399L344 399L347 396L347 380L350 380L350 378L352 378L355 369L362 369L361 366L366 365L366 359L381 360z">
+                    </path>
+                </a>
+                <a xlink:title="Utah" xlink:href="./index.html?county=Utah">
+                    <path class="leaflet-clickable"
+                        d="M406 179L406 188L402 193L403 195L405 195L408 203L415 204L419 208L417 210L418 212L430 212L430 214L434 216L435 223L438 227L438 234L436 236L436 240L439 242L440 240L443 247L448 251L447 252L451 253L451 258L471 258L471 268L390 269L389 267L392 263L384 253L374 261L370 269L363 273L360 272L362 266L360 262L363 259L358 254L359 252L357 249L355 249L351 244L351 237L354 234L352 231L354 221L350 215L350 208L352 206L349 201L350 196L348 192L354 190L357 192L357 194L364 191L369 197L375 194L375 192L379 189L381 191L381 189L382 190L389 183L393 184L400 179L405 178z">
+                    </path>
+                </a>
+                <a xlink:title="Iron" xlink:href="./index.html?county=Iron">
+                    <path class="leaflet-clickable"
+                        d="M288 463L324 464L325 493L314 493L315 503L305 504L305 533L285 533L285 538L273 538L273 541L263 541L253 540L253 535L233 535L233 525L181 526L181 463L287 463z">
+                    </path>
+                </a>
+                <a xlink:title="Washington" xlink:href="./index.html?county=Washington">
+                    <path class="leaflet-clickable"
+                        d="M233 533L233 535L253 535L253 540L273 541L273 538L285 538L286 595L181 595L181 526L233 525z">
+                    </path>
+                </a>
+                <a xlink:title="Piute" xlink:href="./index.html?county=Piute">
+                    <path class="leaflet-clickable"
+                        d="M362 421L389 422L381 431L382 463L328 463L329 459L335 455L333 451L336 448L337 442L334 437L331 436L331 432L328 434L326 430L320 425L320 421L349 421z">
+                    </path>
+                </a>
+                <a xlink:title="Daggett" xlink:href="./index.html?county=Daggett">
+                    <path class="leaflet-clickable"
+                        d="M636 126L636 168L629 168L629 165L626 165L626 152L622 152L622 144L605 144L605 152L601 153L601 156L597 158L594 156L594 149L592 147L589 149L585 148L581 151L572 150L570 153L562 155L549 148L549 127L619 126z">
+                    </path>
+                </a>
+                <a xlink:title="Cache" xlink:href="./index.html?county=Cache">
+                    <path class="leaflet-clickable"
+                        d="M415 9L416 14L412 16L414 20L412 22L417 27L416 28L418 37L421 40L420 45L422 47L419 52L419 60L415 65L415 69L412 73L413 74L409 78L407 75L402 75L400 77L397 75L393 75L394 79L392 80L393 81L390 82L386 79L382 80L375 71L376 69L377 70L379 68L376 66L375 61L374 62L374 60L372 60L370 62L368 60L367 51L363 43L364 35L367 30L352 6L412 5L412 7L414 8z">
+                    </path>
+                </a>
+                <a xlink:title="Carbon" xlink:href="./index.html?county=Carbon">
+                    <path class="leaflet-clickable"
+                        d="M451 268L560 269L559 270L561 271L558 272L557 270L554 279L551 277L550 278L552 281L550 281L549 284L551 284L549 289L550 291L547 293L547 301L545 302L548 305L548 309L451 309L451 303L448 299L447 292L445 294L442 292L436 279L436 268L451 269z">
+                    </path>
+                </a>
+                <a xlink:title="Davis" xlink:href="./index.html?county=Davis">
+                    <path class="leaflet-clickable"
+                        d="M370 108L372 110L380 110L382 112L381 119L383 122L382 123L388 131L386 131L385 134L387 135L386 136L389 142L391 142L390 144L380 148L373 148L370 142L371 136L367 136L344 154L323 117L350 108L368 108z">
+                    </path>
+                </a>
+                <a xlink:title="Duchesne" xlink:href="./index.html?county=Duchesne">
+                    <path class="leaflet-clickable"
+                        d="M527 147L540 150L545 148L551 150L552 149L553 269L471 268L471 258L468 258L468 160L470 159L474 161L485 156L489 158L493 154L495 156L500 154L504 155L511 152L515 152L518 150L518 148L526 146L527 147z">
+                    </path>
+                </a>
+                <a xlink:title="Emery" xlink:href="./index.html?county=Emery">
+                    <path class="leaflet-clickable"
+                        d="M444 294L446 292L448 299L451 303L451 309L547 309L547 315L549 315L547 320L548 322L544 326L545 329L543 330L545 337L542 338L543 340L540 343L541 345L539 345L539 353L535 360L537 362L537 364L535 364L537 373L533 373L533 375L535 376L535 380L537 380L536 383L539 384L538 385L540 386L540 388L538 389L542 392L539 396L539 398L542 399L541 403L543 402L543 404L545 406L545 404L546 405L546 408L543 409L550 409L550 412L547 411L544 413L551 415L549 417L550 419L546 421L547 423L431 423L431 310L436 309L436 281L439 284L438 285L443 293z">
+                    </path>
+                </a>
+                <a xlink:title="Garfield" xlink:href="./index.html?county=Garfield">
+                    <path class="leaflet-clickable"
+                        d="M421 463L556 463L556 465L550 469L547 469L543 480L537 480L531 487L530 493L526 492L523 496L522 493L513 494L513 498L510 500L509 503L508 502L506 504L508 507L510 506L509 511L505 515L505 519L501 523L498 522L498 524L495 526L494 531L491 533L305 533L305 504L315 503L314 493L325 493L325 463L421 463z">
+                    </path>
+                </a>
+                <a xlink:title="Grand" xlink:href="./index.html?county=Grand">
+                    <path class="leaflet-clickable"
+                        d="M636 306L635 423L547 423L545 421L548 421L551 415L544 413L547 410L548 412L550 412L550 410L548 408L547 410L543 409L546 408L546 405L545 404L545 406L543 402L541 402L541 398L538 398L542 393L539 389L540 386L536 383L537 381L533 374L537 372L535 364L537 364L537 362L535 360L537 357L536 355L539 353L539 350L541 348L539 347L539 345L541 345L540 343L543 341L543 337L545 337L543 330L545 329L544 326L548 322L547 321L549 316L547 310L631 310L633 306L636 306z">
+                    </path>
+                </a>
+                <a xlink:title="Juab" xlink:href="./index.html?county=Juab">
+                    <path class="leaflet-clickable"
+                        d="M352 245L359 251L358 255L360 255L360 257L363 259L360 263L360 273L366 272L370 269L376 259L384 253L392 263L389 269L400 268L400 270L404 272L405 277L400 277L400 279L393 282L394 309L390 310L391 319L375 319L375 321L371 321L371 325L366 325L366 327L350 326L349 311L351 307L349 307L348 303L350 301L348 299L181 300L181 257L336 258L337 253L343 254L351 245z">
+                    </path>
+                </a>
+                <a xlink:title="Kane" xlink:href="./index.html?county=Kane">
+                    <path class="leaflet-clickable"
+                        d="M285 533L491 533L489 535L489 538L491 539L489 541L484 540L482 544L486 546L484 550L481 550L484 553L483 556L481 555L481 557L477 559L471 555L470 556L473 559L473 561L470 563L471 565L469 566L469 572L465 576L465 578L463 578L463 580L460 581L460 583L447 583L446 585L443 583L439 589L437 587L437 593L434 589L431 588L431 590L433 590L431 594L429 593L425 595L286 595L285 538z">
+                    </path>
+                </a>
+                <a xlink:title="Millard" xlink:href="./index.html?county=Millard">
+                    <path class="leaflet-clickable"
+                        d="M348 299L350 301L348 303L350 307L350 325L366 327L366 365L363 365L362 369L355 369L352 378L348 380L348 396L346 396L346 398L344 398L341 401L325 402L322 414L181 414L181 300L348 299z">
+                    </path>
+                </a>
+                <a xlink:title="Morgan" xlink:href="./index.html?county=Morgan">
+                    <path class="leaflet-clickable"
+                        d="M425 82L435 91L433 93L433 99L435 99L438 102L438 104L434 109L430 111L425 111L424 115L421 118L418 117L408 122L407 126L404 128L405 131L411 133L412 139L415 143L412 150L409 153L403 149L400 151L398 145L389 142L386 136L387 135L384 132L388 131L382 123L382 112L379 105L380 103L386 100L391 101L393 104L397 105L402 102L405 97L412 99L414 98L416 94L419 92L418 89L420 83L424 81z">
+                    </path>
+                </a>
+                <a xlink:title="Rich" xlink:href="./index.html?county=Rich">
+                    <path class="leaflet-clickable"
+                        d="M454 5L454 96L449 101L446 102L447 103L445 105L435 110L434 109L438 103L438 101L435 100L436 99L433 99L433 93L435 91L428 83L425 83L424 81L420 83L415 80L414 77L412 77L412 73L420 57L419 52L422 47L420 45L421 40L418 37L416 28L417 27L412 23L412 21L414 20L412 16L416 14L415 9L412 5z">
+                    </path>
+                </a>
+                <a xlink:title="Salt Lake" xlink:href="./index.html?county=Salt%20Lake">
+                    <path class="leaflet-clickable"
+                        d="M370 141L373 147L379 148L389 145L391 143L398 144L400 148L399 154L402 156L402 160L405 163L404 168L406 169L408 176L403 179L400 179L397 183L389 183L386 186L387 187L382 190L381 189L381 191L379 189L375 194L369 197L364 191L357 194L357 192L351 189L350 185L352 174L349 168L349 161L347 160L344 154L367 136L370 136L370 141z">
+                    </path>
+                </a>
+                <a xlink:title="San Juan" xlink:href="./index.html?county=San%20Juan">
+                    <path class="leaflet-clickable"
+                        d="M635 423L635 449L637 462L636 595L421 595L425 595L428 593L430 594L433 590L431 590L431 588L434 589L437 593L438 591L436 589L438 589L443 583L445 585L447 583L460 583L460 581L462 581L463 578L465 578L465 576L469 573L468 571L470 569L469 567L471 566L470 564L471 562L473 562L470 556L471 555L477 559L484 554L481 550L484 550L486 546L482 544L486 540L491 540L489 539L489 535L495 530L495 526L498 525L499 522L501 523L503 520L504 521L506 516L505 515L509 511L509 508L511 506L507 507L506 504L508 502L509 503L510 500L513 498L513 494L522 493L523 496L525 492L530 493L532 486L537 480L542 481L547 469L553 467L556 464L556 462L560 460L558 458L560 457L557 456L558 454L560 454L559 452L557 452L558 449L556 450L553 443L555 440L554 439L554 441L552 441L552 437L551 436L549 438L547 435L549 433L549 431L546 428L547 427L548 429L549 426L549 424L547 423z">
+                    </path>
+                </a>
+                <a xlink:title="Wayne" xlink:href="./index.html?county=Wayne">
+                    <path class="leaflet-clickable"
+                        d="M431 421L431 423L547 423L549 425L549 429L547 427L546 428L549 431L547 435L549 437L548 438L551 436L552 441L554 441L554 439L555 440L553 444L556 448L555 450L558 449L557 452L559 452L560 454L557 455L559 457L560 456L558 458L560 460L556 462L382 463L381 431L391 421z">
+                    </path>
+                </a>
+                <a xlink:title="Summit" xlink:href="./index.html?county=Summit">
+                    <path class="leaflet-clickable"
+                        d="M454 96L454 127L549 127L549 148L540 150L530 147L529 148L526 146L519 148L516 152L511 152L507 154L505 153L504 155L501 154L495 156L493 154L490 158L485 156L474 161L468 159L468 165L464 166L461 176L453 177L449 175L445 181L429 172L426 172L422 164L420 164L419 167L415 170L414 175L410 173L408 174L408 172L403 166L405 163L402 159L402 155L400 154L400 152L403 149L409 153L412 150L411 148L415 144L412 137L410 136L411 132L406 132L404 128L407 127L410 120L418 117L421 118L424 115L424 113L428 110L430 111L432 109L438 109L446 104L446 102L450 101L453 96z">
+                    </path>
+                </a>
+                <a xlink:title="Tooele" xlink:href="./index.html?county=Tooele">
+                    <path class="leaflet-clickable"
+                        d="M352 190L348 192L348 195L350 196L349 201L352 206L349 210L351 212L350 215L351 219L354 220L354 226L351 231L354 234L351 237L351 245L343 253L340 254L337 252L336 257L181 257L182 127L295 127L323 117L349 162L349 168L352 174L350 185L352 187L352 190z">
+                    </path>
+                </a>
+                <a xlink:title="Wasatch" xlink:href="./index.html?county=Wasatch">
+                    <path class="leaflet-clickable"
+                        d="M423 165L424 170L426 172L444 181L449 175L456 178L460 176L462 174L464 166L467 165L468 258L451 258L451 254L447 253L448 251L440 242L440 240L439 242L436 241L438 228L434 221L434 217L429 212L417 211L419 208L415 204L409 204L406 197L402 194L402 192L406 188L407 183L404 177L406 177L409 173L414 175L415 170L419 167L419 164L423 165z">
+                    </path>
+                </a>
+                <a xlink:title="Weber" xlink:href="./index.html?county=Weber">
+                    <path class="leaflet-clickable" onclick="countyClick('Weber')"
+                        d="M373 76L374 77L377 75L379 76L380 79L386 79L389 82L391 82L394 78L394 75L398 75L400 78L400 76L408 75L409 77L412 75L412 77L414 77L416 81L419 83L420 82L418 89L419 92L413 99L405 97L403 101L399 104L395 105L387 100L382 102L379 104L381 110L372 110L370 108L350 108L323 117L346 86L365 86L371 82L370 77L372 75z">
+                    </path>
+                </a>
+            </svg>
+        </div>
+            <div class="district_table"><div class="container" id="schools"></div></div>
+    </main>
+    <footer id="footer"></footer>
+</body>
+
+</html>

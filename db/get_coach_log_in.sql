@@ -1,0 +1,1 @@
+SELECT * FROM coaches WHERE email=$1;

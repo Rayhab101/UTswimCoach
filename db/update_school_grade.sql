@@ -1,0 +1,1 @@
+UPDATE swimmers SET status_grade=$1, year=$3, is_active=$4 WHERE swimmer_id=$2;

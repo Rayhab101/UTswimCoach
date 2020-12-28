@@ -1,0 +1,1 @@
+SELECT * FROM coaches ORDER BY coach_id;

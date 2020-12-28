@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Swim Coach - Calendar</title>
+    <link rel="stylesheet" href="swim.css">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+</script>
+<script> 
+    $(function(){
+      $("#header").load("heading.html"); 
+      $("footer").load("footing.html");
+    });
+    </script> 
+        <style>
+            .pic {
+                padding-top:120px;
+                width: 700px;
+                height: 500px;
+                object-fit: contain;
+            }
+            input {
+                background-color: white;
+            }
+            iframe {
+                padding-top:120px;
+                width: 1265px;
+                height: 500px;
+                object-fit: contain;
+            }
+        </style>
+</head>
+<body>
+    <header id="header"></header>
+    <div>
+    <iframe src="https://calendar.google.com/calendar/embed?src=4ettsnsojhllmjb8fh9fhvl3t8%40group.calendar.google.com&ctz=America%2FDenver" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <!-- <img class="pic" src="Swim Schedule.png" alt="Team Calendar"> -->
+    </div>
+    <footer id="footer"></footer>
+</body>
+</html>

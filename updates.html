@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Swim Coach - Updates</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <style>
+        .swim_info {
+            padding-top: 250px;
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        td {
+            width: 7.7%;
+        }
+
+        input {
+            width: 60px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("footer").load("footing.html");
+        });
+        function buildPage() {
+            console.log("hitting Build page");
+            fetch("http://localhost:8080/api/swimmers")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    buildDropdown(myJson.swimmers);
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+
+        function buildDropdown(people) {
+            var ddlSwimmers = document.getElementById("ddlSwimmers");
+            document.getElementById("insert").setAttribute("hidden", true);
+            var head = document.createElement("OPTION");
+            head.innerHTML = "Select Swimmer";
+            ddlSwimmers.options.add(head);
+            for (var i = 0; i < people.length; i++) {
+                var option = document.createElement("OPTION");
+                option.setAttribute("id", i);
+                option.innerHTML = people[i].name;
+                ddlSwimmers.options.add(option);
+            }
+        }
+
+        function tableFill(id) {
+            fetch("http://localhost:8080/api/swimmers")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    console.log(id);
+                    var grade = myJson.swimmers[id].status_grade;
+                    var year = myJson.swimmers[id].year;
+                    document.getElementById("grade").innerHTML = grade;
+                    document.getElementById("year").innerHTML = year;
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+
+        function nameFill() {
+            //document.getElementsById("btn").disabled = false;
+            document.getElementById("insert").removeAttribute("hidden");
+            var checkOption = document.getElementById("ddlSwimmers");
+            var name = checkOption.value;
+            var number = document.getElementById("ddlSwimmers").options[checkOption.selectedIndex].id;
+            if (name != "Select Swimmer") {
+                document.getElementById("name").innerHTML = name;
+                tableFill(number);
+            }
+        }
+
+        const events = ["200fr", "200IM", "100IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
+
+        function submitTimes(id) {
+            fetch("http://localhost:8080/api/swimmers")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    console.log(id);
+                    if (id != "") {
+                        for (var i = 0; i < events.length; i++) {
+                            var time = document.getElementById(events[i]).value;
+                            console.log(myJson.swimmers[id][events[i]]);
+                            myJson.swimmers[id][events[i]].push(time);
+                        }
+                        fetch("http://localhost:8080/api/swimmers", {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                            body: JSON.stringify(myJson)
+                        })
+                        document.getElementById("insert").setAttribute("hidden", true);
+                    }
+                    document.getElementById("insert").setAttribute("hidden", true);
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+                buildPage();
+        }
+    </script>
+
+</head>
+
+<body onload="buildPage()">
+    <header id="header"></header>
+    <div class="swim_info">
+        <table>
+            <tr>
+                <td><select id="ddlSwimmers" onchange="nameFill()"></select></td>
+                <td>Grade</td>
+                <td>Year Swimming</td>
+                <td>200fr</td>
+                <td>200IM</td>
+                <td>100IM</td>
+                <td>50fr</td>
+                <td>100fl</td>
+                <td>100fr</td>
+                <td>500fr</td>
+                <td>100bk</td>
+                <td>100br</td>
+                <td rowspan="2"><button
+                        onclick="submitTimes(document.getElementById('ddlSwimmers').options[document.getElementById('ddlSwimmers').selectedIndex].id)">Submit
+                        Changes</button></td>
+            </tr>
+            <tr id="insert">
+                <td id="name"></td>
+                <td id="grade"></td>
+                <td id="year"></td>
+                <td><input id="200fr"></td>
+                <td><input id="200IM"></td>
+                <td><input id="100IM"></td>
+                <td><input id="50fr"></td>
+                <td><input id="100fl"></td>
+                <td><input id="100fr"></td>
+                <td><input id="500fr"></td>
+                <td><input id="100bk"></td>
+                <td><input id="100br"></td>
+            </tr>
+        </table>
+    </div>
+    <footer id="footer"></footer>
+</body>
+</html>

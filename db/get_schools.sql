@@ -1,0 +1,1 @@
+SELECT * FROM schools ORDER BY name;

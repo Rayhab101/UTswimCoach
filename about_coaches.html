@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Swim Coach - Calendar</title>
+    <link rel="stylesheet" href="swim.css">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+</script>
+<script> 
+    $(function(){
+      $("#header").load("heading.html"); 
+      $("footer").load("footing.html");
+    });
+</script> 
+<style>
+    .container{
+        display:grid;
+    }
+    .swim_style{
+        padding-top: 125px;
+    }
+    .coaches{
+        width: 220px;
+        height: 250px;
+        padding-bottom: 30px;
+    }
+    .head_coach{
+        grid-row: 1;
+        grid-column: 1;
+    }
+    .assistant_coach1{
+        grid-row: 2;
+        grid-column: 1;
+    }
+    .assistant_coach2{
+        grid-row: 3;
+        grid-column: 1;
+    }
+    .morning_coach{
+        grid-row: 4;
+        grid-column: 1;
+    }
+    .about{
+        padding-left: 25px;
+        padding-right: 50px;
+        grid-column: 2;
+        color:white;
+    }
+    h3{
+        color:white;
+    }
+</style>
+</head>
+<body>
+    <header id="header"></header>
+    <main class="swim_style">
+        <div class="container">
+            <div class="head_coach">
+                <img class="coaches" src="Tim.jpeg">
+            </div>
+            <div class="about"><h3>About Coach Boothe: </h3>&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ut dicta neque consequatur eos enim, eaque laborum cumque quo? Quos soluta ad modi tempore fugiat voluptate odit incidunt assumenda perspiciatis!</div>
+            <div class="assistant_coach1">
+                <img class="coaches" src="Nina.jpeg">
+            </div>
+            <div class="about"><h3>About Coach Allen: </h3>&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat itaque voluptate reiciendis harum? Temporibus, ut pariatur? Temporibus amet, neque praesentium ducimus enim delectus ullam dignissimos totam eos corporis autem pariatur.</div>
+            <div class="assistant_coach2">
+                <img class="coaches" src="Makel.jpeg">
+            </div>
+            <div class="about"><h3>About Coach Miller: </h3>&emsp;&emsp;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut, recusandae cum quas quasi dolorum vitae aliquid maxime non nisi commodi tempora ipsum repellendus aspernatur vero excepturi provident rerum reiciendis suscipit!</div>
+            <div class="morning_coach">
+                <img class="coaches" src="Ryan.jpg">
+            </div>
+            <div class="about"><h3>About Coach Lund: </h3>&emsp;&emsp;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero commodi explicabo tempora esse minima repudiandae dolores, qui amet aut voluptas iusto rem hic sint facere dicta aspernatur voluptatum aperiam. Eligendi?</div>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+</body>
+</html>

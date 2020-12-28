@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Swim Coach - Home</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+
+    </script>
+    <style>
+        .jayhawk {
+            padding-top: 20px;
+            width: 450px;
+            height: 460px;
+            grid-row: 2;
+            grid-column: 1;
+        }
+
+        .pic {
+            width: 650px;
+            height: 500px;
+            object-fit: contain;
+            grid-row: 2;
+            grid-column: 2;
+        }
+
+        .container1 {
+            display: grid;
+            padding-left: 50px;
+        }
+
+        .welcome {
+            padding-top: 100px;
+            color: white;
+            font-size: larger;
+            background-color: transparent;
+            text-align: center;
+        }
+
+        .team-picture {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .schedule {
+            background-color: transparent;
+            grid-row: 1;
+            grid-column: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header"></header>
+    <div class="welcome">
+        <h3>Welcome to the Ben Lomond and Saint Joseph Swim Team Web Page</h3>
+    </div>
+    <div class="container1">
+        <div class="schedule">
+            <img class="jayhawk" src="Swim Schedule.png" alt="Team Calendar">
+        </div>
+        <div class="team-picture">
+            <img class="pic" src="Full_team_picture.png" alt="Team Picture">
+        </div>
+    </div>
+    <footer id="footer"></footer>
+</body>
+
+</html>

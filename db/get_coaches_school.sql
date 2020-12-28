@@ -1,0 +1,1 @@
+SELECT * FROM schools_coaches WHERE school_id=$1;
