@@ -11,7 +11,7 @@ const userctrl = require('./controllers/usersController')
 var schedule = require('node-schedule');
 const { getSwimmers } = require('./controllers/usersController');
 const { query } = require('express');
-let port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 
 // const pdfparse=require('pdf-parse');
 // const { timeStamp } = require('console');
