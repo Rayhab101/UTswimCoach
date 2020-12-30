@@ -9,7 +9,7 @@ const massive = require('massive');
 const { CONNECTION_STRING } = process.env
 const userctrl = require('./controllers/usersController')
 var schedule = require('node-schedule');
-const { getSwimmers } = require('./controllers/usersController');
+const { getSwimmerhs } = require('./controllers/usersController');
 const { query } = require('express');
 var port = process.env.PORT || 8080;
 
@@ -71,7 +71,6 @@ var j = schedule.scheduleJob('0 0 15 8 *', function () {
 
 // app.set('view-engine','ejs')
 
-//app.use(express.json())
 app.use(cors())
 app.use(express.static(__dirname + "/public"));
 //console.log(swimmers)
