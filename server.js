@@ -11,6 +11,7 @@ const userctrl = require('./controllers/usersController')
 var schedule = require('node-schedule');
 const { getSwimmers } = require('./controllers/usersController');
 const { query } = require('express');
+const port = process.env.PORT || 8080;
 
 // const pdfparse=require('pdf-parse');
 // const { timeStamp } = require('console');
@@ -139,6 +140,6 @@ massive({
 }).then(db => {
     app.set('db', db)
     console.log('DB CONNECTED')
-    app.listen(8080, () => console.log(`We're running!`))
+    app.listen(port, () => console.log(`We're running!`))
 }).catch(err => console.log(err))
 
