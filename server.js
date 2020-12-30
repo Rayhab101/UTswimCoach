@@ -76,9 +76,9 @@ app.use(cors())
 app.use(express.static(__dirname + "/public"));
 //console.log(swimmers)
 
-// app.get('/',(req,res) => 
-//     res.status(200).send(swimmers)
-// )
+app.get('/',(req,res) => 
+    res.status(200).send(swimmers)
+)
 
 app.get('/api/swimmers', (req, res) => {
     //console.log("HIT HERE")
