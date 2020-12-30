@@ -5,7 +5,7 @@ const fs = require('fs');
 const app = express();
 const cors = require('cors');
 const fse = require('fs-extra');
-const massive = require('massive')
+const massive = require('massive');
 const { CONNECTION_STRING } = process.env
 const userctrl = require('./controllers/usersController')
 var schedule = require('node-schedule');
@@ -140,5 +140,5 @@ massive({
     app.set('db', db)
     console.log('DB CONNECTED')
     app.listen(8080, () => console.log(`We're running!`))
-})
+}).catch(err => console.log(err))
 
