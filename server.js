@@ -71,14 +71,14 @@ var j = schedule.scheduleJob('0 0 15 8 *', function () {
 
 // app.set('view-engine','ejs')
 
-app.use(express.json())
+//app.use(express.json())
 app.use(cors())
 app.use(express.static(__dirname + "/public"));
 //console.log(swimmers)
 
 app.get('/',(req,res) => 
-    res.render("index")
-    // res.status(200).send(swimmers)
+    //res.render("index")
+    res.status(200).send(swimmers)
 )
 
 app.get('/api/swimmers', (req, res) => {
