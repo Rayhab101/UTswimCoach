@@ -72,6 +72,7 @@ var j = schedule.scheduleJob('0 0 15 8 *', function () {
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static(__dirname + "/public"));
 //console.log(swimmers)
 
 app.get('/',(req,res) => 
