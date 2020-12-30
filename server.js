@@ -11,7 +11,7 @@ const userctrl = require('./controllers/usersController')
 var schedule = require('node-schedule');
 const { getSwimmers } = require('./controllers/usersController');
 const { query } = require('express');
-const port = process.env.PORT || 8080;
+let port = process.env.PORT || 8080;
 
 // const pdfparse=require('pdf-parse');
 // const { timeStamp } = require('console');
@@ -77,7 +77,8 @@ app.use(express.static(__dirname + "/public"));
 //console.log(swimmers)
 
 app.get('/',(req,res) => 
-    res.status(200).send(swimmers)
+    res.render("index")
+    // res.status(200).send(swimmers)
 )
 
 app.get('/api/swimmers', (req, res) => {
