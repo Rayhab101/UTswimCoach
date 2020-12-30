@@ -14,5 +14,8 @@
         "massive": "^6.6.2",
         "node-schedule": "^1.3.2"
     },
-    "author": "Ryan Lund"
+    "author": "Ryan Lund",
+    "engines": {
+        "node": "12.x"
+    }
 }
