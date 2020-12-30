@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express');
-const swimmers = require('./swimmers.json');
+const swimmers = require('./public/swimmers.json');
 const fs = require('fs');
 const app = express();
 const cors = require('cors');
@@ -70,7 +70,7 @@ var j = schedule.scheduleJob('0 0 15 8 *', function () {
 
 // app.set('view-engine','ejs')
 
-app.use(express.json())
+//app.use(express.json())
 app.use(cors())
 app.use(express.static(__dirname + "/public"));
 //console.log(swimmers)
@@ -87,7 +87,7 @@ app.post('/api/swimmers', (req, res) => {
     console.log("HIT HERE TOO")
     //console.log(req.body)
     res.status(200).send(swimmers)
-    fse.outputJsonSync('./swimmers.json', req.body)
+    fse.outputJsonSync('./public/swimmers.json', req.body)
 })
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
