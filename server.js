@@ -141,6 +141,6 @@ massive({
 }).then(db => {
     app.set('db', db)
     console.log('DB CONNECTED')
-    app.listen(port, () => console.log(`We're running!`))
+    app.listen(port, '0.0.0.0', () => console.log(`We're running!`))
 }).catch(err => console.log(err))
 
