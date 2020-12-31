@@ -134,6 +134,7 @@ app.get('/api/top100/:id', userctrl.getTop100)
 app.get('/api/stateQualified/:id', userctrl.getStateQualified)
 // Gets relay times
 app.get('/api/relayTimes/:id', userctrl.getRelayTimes)
+app.set('port', process.env.PORT || 8080)
 massive({
     connectionString: CONNECTION_STRING,
     ssl: { rejectUnauthorized: false }
