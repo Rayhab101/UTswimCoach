@@ -12,7 +12,7 @@ var schedule = require('node-schedule');
 const { getSwimmerhs } = require('./controllers/usersController');
 const { query } = require('express');
 var port = process.env.PORT || 8080;
-
+console.log(port);
 // const pdfparse=require('pdf-parse');
 // const { timeStamp } = require('console');
 // const pdffile=fs.readFileSync('meetResults.pdf')
