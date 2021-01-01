@@ -96,13 +96,13 @@
 
         function pullRelay(i, school) {
             //console.log(i, school);
-            fetch("http://../api/relayRecord/" + i + "&" + school)
+            fetch("/api/relayRecord/" + i + "&" + school)
                 .then(function (responseRelay) {
                     return responseRelay.json();
                 })
                 .then(function (relay) {
                     var body = document.getElementById("swimmer_data");
-                    fetch("http://../api/races/" + relay[0].race)
+                    fetch("/api/races/" + relay[0].race)
                         .then(function (responseRace) {
                             return responseRace.json();
                         })
