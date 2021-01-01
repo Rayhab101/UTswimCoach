@@ -47,7 +47,7 @@
     <script>
         function pullRecord(i, school) {
             var body = document.getElementById("swimmer_data");
-            fetch("http://evening-shore-15119.herokuapp.com/api/races/" + i)
+            fetch("http://../api/races/" + i)
                 .then(function (response) {
                     return response.json();
                 })
@@ -57,12 +57,12 @@
                     var cell = row.insertCell();
                     text = document.createTextNode(column.innerHTML = race[0].title);
                     cell.appendChild(text);
-                    fetch("http://evening-shore-15119.herokuapp.com/api/schoolRecord/" + i + "&" + school)
+                    fetch("http://../api/schoolRecord/" + i + "&" + school)
                         .then(function (responseSchool) {
                             return responseSchool.json();
                         })
                         .then(function (record) {
-                            fetch("http://evening-shore-15119.herokuapp.com/api/swimmers/" + record[0].swimmer_id)
+                            fetch("http://../api/swimmers/" + record[0].swimmer_id)
                                 .then(function (responseRelay) {
                                     return responseRelay.json();
                                 })
@@ -96,13 +96,13 @@
 
         function pullRelay(i, school) {
             //console.log(i, school);
-            fetch("evening-shore-15119.herokuapp.com/api/relayRecord/" + i + "&" + school)
+            fetch("http://../api/relayRecord/" + i + "&" + school)
                 .then(function (responseRelay) {
                     return responseRelay.json();
                 })
                 .then(function (relay) {
                     var body = document.getElementById("swimmer_data");
-                    fetch("http://evening-shore-15119.herokuapp.com/api/races/" + relay[0].race)
+                    fetch("http://../api/races/" + relay[0].race)
                         .then(function (responseRace) {
                             return responseRace.json();
                         })
