@@ -80,10 +80,10 @@ app.get('/',(req,res) =>
     res.status(200).send(swimmers)
 )
 
-app.get('/api/swimmers', (req, res) => {
-    console.log("HIT HERE")
+console.log(app.get('/api/swimmers', (req, res) => {
+    //console.log("HIT HERE")
     res.status(200).send(swimmers)
-})
+}))
 app.post('/api/swimmers', (req, res) => {
     console.log("HIT HERE TOO")
     //console.log(req.body)
