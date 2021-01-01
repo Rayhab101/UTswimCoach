@@ -135,12 +135,12 @@ app.get('/api/stateQualified/:id', userctrl.getStateQualified)
 // Gets relay times
 app.get('/api/relayTimes/:id', userctrl.getRelayTimes)
 app.set('port', process.env.PORT || 8080)
-// massive({
-//     connectionString: CONNECTION_STRING,
-//     ssl: { rejectUnauthorized: false }
-// }).then(db => {
-//     app.set('db', db)
-//     console.log('DB CONNECTED')
+massive({
+    connectionString: CONNECTION_STRING,
+    ssl: { rejectUnauthorized: false }
+}).then(db => {
+    app.set('db', db)
+    console.log('DB CONNECTED')
     app.listen(port, () => console.log(`We're running!`))
-// }).catch(err => console.log(err))
+}).catch(err => console.log(err))
 
