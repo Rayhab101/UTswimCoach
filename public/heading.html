@@ -11,11 +11,11 @@
     county = county.split("=")
     //console.log(county[0]=='school_id')
     if (isNaN(Number(county[1]))) {
-        document.getElementById("headingPhoto").src = '/public/images/BLHS-logo-good.png'
+        document.getElementById("headingPhoto").src = '/images/BLHS-logo-good.png'
         document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
     }
     else if (county[0] !== 'school_id') {
-        document.getElementById("headingPhoto").src = '/public/images/BLHS-logo-good.png'
+        document.getElementById("headingPhoto").src = '/images/BLHS-logo-good.png'
         document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
     }
     else {
@@ -25,7 +25,7 @@
             })
             .then(function (schools) {
                 //console.log(schools[0].name)
-                document.getElementById("headingPhoto").src = "/public/images/" + schools[0].photo;
+                document.getElementById("headingPhoto").src = "/images/" + schools[0].photo;
                 document.getElementById("headerName").innerHTML = schools[0].name + " Swim Team";
             })
             .catch(function (error) {
