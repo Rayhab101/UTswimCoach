@@ -11,7 +11,7 @@
         </script>
     <script>
         $(function () {
-            $("#header").load("heading.html");
+            $("#header").load("public/heading");
             $("footer").load("footing.html");
         });
     </script>
@@ -79,7 +79,7 @@
                     })
                     .then(function (race) {
                         //console.log(race[0].title)
-                        fetch("http://localhost:8080/api/top50/" + race[0].race_id)
+                        fetch("http://localhost:8080/api/public/top50/" + race[0].race_id)
                             .then(function (response) {
                                 return response.json();
                             })

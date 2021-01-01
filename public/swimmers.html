@@ -18,7 +18,7 @@
 
     <script>
         $(function () {
-            $("#header").load("heading.html");
+            $("#header").load("public/heading");
             $("footer").load("footing.html");
         });
     </script>
@@ -90,7 +90,7 @@
         //console.log(location.search.substring());
         pullperson = pullperson.split("=");
         pullperson = Number(pullperson[1]);
-        //fetch("http://localhost:8080/api/swim/"+pullperson)
+        //fetch("http://localhost:8080/api/public/swim/"+pullperson)
         fetch("http://localhost:8080/api/swimmers")
             .then(function (response) {
                 return response.json();

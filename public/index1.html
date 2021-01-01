@@ -55,7 +55,7 @@
     </style>
     <script>
         $(function () {
-            $("#header").load("heading.html");
+            $("#header").load("public/heading");
             $("footer").load("footing.html");
         });
 
@@ -78,7 +78,7 @@
                 col.setAttribute("class", "column");
 
                 var a = document.createElement("a");
-                a.setAttribute("href", "./swim.html?school_id=" + dataArray[i].school_id);
+                a.setAttribute("href", "./public/swim.html?school_id=" + dataArray[i].school_id);
                 a.setAttribute("style", "text-decoration: none; color: black;");
                 var carred = document.createElement("div");
                 carred.setAttribute("class", "card");
