@@ -81,7 +81,7 @@ app.get('/',(req,res) =>
 )
 
 app.get('/api/swimmers', (req, res) => {
-    //console.log("HIT HERE")
+    console.log("HIT HERE")
     res.status(200).send(swimmers)
 })
 app.post('/api/swimmers', (req, res) => {
