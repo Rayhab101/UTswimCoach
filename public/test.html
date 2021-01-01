@@ -47,7 +47,7 @@
     <script>
         function pullRecord(i, school) {
             var body = document.getElementById("swimmer_data");
-            fetch("http://../api/races/" + i)
+            fetch("/api/races/" + i)
                 .then(function (response) {
                     return response.json();
                 })
@@ -57,12 +57,12 @@
                     var cell = row.insertCell();
                     text = document.createTextNode(column.innerHTML = race[0].title);
                     cell.appendChild(text);
-                    fetch("http://../api/schoolRecord/" + i + "&" + school)
+                    fetch("/api/schoolRecord/" + i + "&" + school)
                         .then(function (responseSchool) {
                             return responseSchool.json();
                         })
                         .then(function (record) {
-                            fetch("http://../api/swimmers/" + record[0].swimmer_id)
+                            fetch("/api/swimmers/" + record[0].swimmer_id)
                                 .then(function (responseRelay) {
                                     return responseRelay.json();
                                 })
