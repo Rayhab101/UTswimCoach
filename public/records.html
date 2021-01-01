@@ -144,10 +144,14 @@
             school = Number(school[1]);
             var relays = [1, 8, 11, 12, 19, 22]
             for (var j = 1; j <= 22; j++) {
+                console.log(j)
                 if (relays.includes(j)) {
+                    console.log(j)
                     pullRelay(j, school);
+                    
                 }
                 else {
+                    console.log(j)
                     pullRecord(j, school);
                 }
             }
