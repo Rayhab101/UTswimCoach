@@ -17,7 +17,7 @@
     </script>
     <script>
         function pullSwimmer(name,column,cell){
-            fetch("http://localhost:8080/api/public/swim/" + name)
+            fetch("/api/public/swim/" + name)
                     .then(function (responseRelay) {
                         return responseRelay.json();
                     })
@@ -31,7 +31,7 @@
                     });
         }
         function pullSchool(school,column,cell){
-            fetch("http://localhost:8080/api/schools/" + school)
+            fetch("/api/schools/" + school)
                     .then(function (responseRelay) {
                         return responseRelay.json();
                     })
@@ -48,14 +48,14 @@
             var r = [1, 8, 11, 12, 19, 22]
             var status = 1;
             if (r.includes(i)) {
-                fetch("http://localhost:8080/api/races/" + i)
+                fetch("/api/races/" + i)
                     .then(function (responseRelay) {
                         return responseRelay.json();
                     })
                     .then(function (relay) {
                         //console.log(i)
                         var body = document.getElementById(relay[0].title);
-                        fetch("http://localhost:8080/api/relayTimes/" + i)
+                        fetch("/api/relayTimes/" + i)
                             .then(function (responseRace) {
                                 return responseRace.json();
                             })
@@ -92,13 +92,13 @@
                     });
             }
             else {
-                fetch("http://localhost:8080/api/races/" + i)
+                fetch("/api/races/" + i)
                     .then(function (responseRaces) {
                         return responseRaces.json();
                     })
                     .then(function (race) {
                         var body = document.getElementById(race[0].title);
-                        fetch("http://localhost:8080/api/public/top50/" + i)
+                        fetch("/api/top50/" + i)
                             .then(function (responseChart) {
                                 return responseChart.json();
                             })
