@@ -141,6 +141,6 @@ app.set('port', process.env.PORT || 8080)
 // }).then(db => {
 //     app.set('db', db)
 //     console.log('DB CONNECTED')
-//     app.listen(port, () => console.log(`We're running!`))
+    app.listen(port, () => console.log(`We're running!`))
 // }).catch(err => console.log(err))
 
