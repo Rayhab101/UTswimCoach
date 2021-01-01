@@ -98,7 +98,7 @@
                     })
                     .then(function (race) {
                         var body = document.getElementById(race[0].title);
-                        fetch("/api/top50/" + i)
+                        fetch("/api/public/top50/" + i)
                             .then(function (responseChart) {
                                 return responseChart.json();
                             })
