@@ -225,7 +225,7 @@
         
         pullSwimmers = Number(pullSwimmers[1]);
         console.log(pullSwimmers)
-      fetch("http://localhost:8080/api/swimmers")
+      fetch("/api/swimmers")
       //fetch("http://localhost:8080/api/swims/"+pullSwimmers)
         .then(function (response) {
           return response.json();
@@ -245,7 +245,7 @@
 
     function setNewCard(name, grade, gender, year) {
       //Sending and receiving data in JSON format using POST method
-      fetch("http://localhost:8080/api/swimmers")
+      fetch("/api/swimmers")
         .then(function (response) {
           return response.json();
         })
@@ -270,7 +270,7 @@
 
           myJson.swimmers[myJson.swimmers.length] = newSwimmer;
           console.log(myJson);
-          fetch("http://localhost:8080/api/swimmers", {
+          fetch("/api/swimmers", {
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
             body: JSON.stringify(myJson)
