@@ -40,6 +40,7 @@ function buildPage() {
             return response.json();
         })
         .then(function (myJson) {
+            console.log(myJson)
             buildDropdown(myJson.swimmers);
         })
         .catch(function (error) {
@@ -65,13 +66,19 @@ function buildDropdown(people) {
     <header id="header"></header>
     <main class="swim_style">
         <div class="container">
-            <table id="compare">
+            <table>
                     <tr>
-                        <td>Name:</td>
+                        <td><select id="compare" onchange="nameFill()"></select></td>
                         <td>Compare To Other Swimmer:</td>
                         <td>Compare To School Record</td>
                         <td>Compare To State Record</td>
                     </tr>
+                    <!-- <tr>
+                        <td><select id="compare" onchange="nameFill()"></select></td>
+                        <td>Compare To Other Swimmer:</td>
+                        <td>Compare To School Record</td>
+                        <td>Compare To State Record</td>
+                    </tr> -->
             </table>
         </div>
     </main>
