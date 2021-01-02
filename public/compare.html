@@ -110,10 +110,11 @@
                 })
                 .then(function (myJson) {
                     console.log(id);
-                    var grade = myJson.swimmers[id].status_grade;
-                    var year = myJson.swimmers[id].year;
-                    document.getElementById("grade").innerHTML = grade;
-                    document.getElementById("year").innerHTML = year;
+                    console.log(myJson);
+                    // var grade = myJson.swimmers[id].status_grade;
+                    // var year = myJson.swimmers[id].year;
+                    // document.getElementById("grade").innerHTML = grade;
+                    // document.getElementById("year").innerHTML = year;
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
