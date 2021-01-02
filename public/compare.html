@@ -187,7 +187,7 @@
             if(relays.includes(i)) {
                 continue;
             }
-            else if (i < 12) {
+            else if (i < 13) {
                 continue;
             }
             else {
@@ -201,7 +201,7 @@
                         var column = document.createElement('td');
                         var cell = row.insertCell();
                         if(records[0].min === null){
-                            var text = "0";
+                            var text = "";
                             var displayText = document.createTextNode(text);
                         }
                         else{
