@@ -348,6 +348,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+            buildPage();
     }
 
     function otherTableFill(name) {
@@ -363,6 +364,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+            buildPage();
     }
 
     function nameFill() {
@@ -386,33 +388,6 @@
         }
     }
 
-    function submitTimes(id) {
-        fetch("api/swimmers")
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                console.log(id);
-                if (id != "") {
-                    for (var i = 0; i < events.length; i++) {
-                        var time = document.getElementById(events[i]).value;
-                        console.log(myJson.swimmers[id][events[i]]);
-                        myJson.swimmers[id][events[i]].push(time);
-                    }
-                    fetch("api/swimmers", {
-                        headers: { 'Content-Type': 'application/json' },
-                        method: "POST",
-                        body: JSON.stringify(myJson)
-                    })
-                    // document.getElementById("insert").setAttribute("hidden", true);
-                }
-                // document.getElementById("insert").setAttribute("hidden", true);
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
-        buildPage();
-    }
 
 </script>
 
