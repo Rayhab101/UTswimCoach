@@ -72,8 +72,8 @@
                 })
                 .then(function (myJson) {
                     console.log(myJson.length);
-                    //buildDropdown(myJson);
-                    //buildOtherDropdown(myJson.swimmers);
+                    buildDropdown(myJson);
+                    buildOtherDropdown(myJson);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
