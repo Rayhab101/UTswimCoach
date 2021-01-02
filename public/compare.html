@@ -31,7 +31,7 @@
 
         td {
             text-align: center;
-            height:22px;
+            height: 22px;
         }
 
         .t0 {
@@ -64,13 +64,13 @@
             var school = location.search.substring(1);
             school = school.split("=");
             school = Number(school[1]);
-            fetch("/api/swims/"+school)
+            fetch("/api/swims/" + school)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    buildDropdown(myJson,school);
-                    buildOtherDropdown(myJson,school);
+                    buildDropdown(myJson, school);
+                    buildOtherDropdown(myJson, school);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -105,19 +105,21 @@
             }
         }
 
-        function recordPull(id){
-            fetch('/api/records/'+id)
-            .then(function(response){
-                return response.json();
-            }).then(function (records){
-                console.log(records)
-            }).catch(function (error){
-                console.log("Error: " + error);
-            });
+        function recordPull(id) {
+            for (var i = 1; i < 22; i++) {
+                fetch('/api/individualRecords/' + id + "&" + i)
+                    .then(function (response) {
+                        return response.json();
+                    }).then(function (records) {
+                        console.log(records)
+                    }).catch(function (error) {
+                        console.log("Error: " + error);
+                    });
+            }
         }
 
         function tableFill(name) {
-            fetch("/api/swimmerName/"+name)
+            fetch("/api/swimmerName/" + name)
                 .then(function (response) {
                     return response.json();
                 })
@@ -194,16 +196,36 @@
     <main class="swim_style">
         <div class="container">
             <table class="t0">
-                    <tr><th>Races:</th></tr>
-                    <tr><td></td></tr>
-                    <tr><td>200 Freestyle:</td></tr>
-                    <tr><td>200 IM:</td></tr>
-                    <tr><td>50 Freestyle:</td></tr>
-                    <tr><td>100 Butterfly:</td></tr>
-                    <tr><td>100 Freestyle:</td></tr>
-                    <tr><td>500 Freestyle:</td></tr>
-                    <tr><td>100 Backstroke:</td></tr>
-                    <tr><td>100 Breaststroke:</td></tr>
+                <tr>
+                    <th>Races:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>200 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>200 IM:</td>
+                </tr>
+                <tr>
+                    <td>50 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>100 Butterfly:</td>
+                </tr>
+                <tr>
+                    <td>100 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>500 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>100 Backstroke:</td>
+                </tr>
+                <tr>
+                    <td>100 Breaststroke:</td>
+                </tr>
             </table>
             <table class="t1">
                 <tr>

@@ -135,6 +135,8 @@ app.get('/api/stateQualified/:id', userctrl.getStateQualified)
 // Gets relay times
 app.get('/api/relayTimes/:id', userctrl.getRelayTimes)
 app.get('/api/swimmerName/:id', userctrl.getSwimmerName)
+app.get('/api/individualRecords/:id', userctrl.getIndividualRecord)
+
 app.set('port', process.env.PORT || 8080)
 massive({
     connectionString: CONNECTION_STRING,
