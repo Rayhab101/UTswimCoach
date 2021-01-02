@@ -42,7 +42,7 @@
         });
         function buildPage() {
             console.log("hitting Build page");
-            fetch("http://localhost:8080/api/swimmers")
+            fetch("/api/swimmers")
                 .then(function (response) {
                     return response.json();
                 })
@@ -100,7 +100,7 @@
         const events = ["200fr", "200IM", "100IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
 
         function submitTimes(id) {
-            fetch("http://localhost:8080/api/swimmers")
+            fetch("api/swimmers")
                 .then(function (response) {
                     return response.json();
                 })
@@ -112,7 +112,7 @@
                             console.log(myJson.swimmers[id][events[i]]);
                             myJson.swimmers[id][events[i]].push(time);
                         }
-                        fetch("http://localhost:8080/api/swimmers", {
+                        fetch("api/swimmers", {
                             headers: { 'Content-Type': 'application/json' },
                             method: "POST",
                             body: JSON.stringify(myJson)
