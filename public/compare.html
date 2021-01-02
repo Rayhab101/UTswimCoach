@@ -60,10 +60,6 @@
 
     </style>
     <script>
-        $(function () {
-            $("#header").load("heading.html");
-            $("footer").load("footing.html");
-        });
         function buildPage() {
             console.log("hitting Build page");
             fetch("/api/swimmers")
@@ -80,7 +76,7 @@
 
         function buildDropdown(people) {
             var ddlSwimmers = document.getElementById("compare");
-            document.getElementById("insert").setAttribute("hidden", true);
+            // document.getElementById("insert").setAttribute("hidden", true);
             var head = document.createElement("OPTION");
             head.innerHTML = "Select Swimmer";
             ddlSwimmers.options.add(head);
@@ -111,10 +107,10 @@
 
         function nameFill() {
             //document.getElementsById("btn").disabled = false;
-            document.getElementById("insert").removeAttribute("hidden");
-            var checkOption = document.getElementById("ddlSwimmers");
+            // document.getElementById("insert").removeAttribute("hidden");
+            var checkOption = document.getElementById("compare");
             var name = checkOption.value;
-            var number = document.getElementById("ddlSwimmers").options[checkOption.selectedIndex].id;
+            var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
             if (name != "Select Swimmer") {
                 document.getElementById("name").innerHTML = name;
                 tableFill(number);
