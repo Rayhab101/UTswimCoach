@@ -180,9 +180,9 @@
         }
     }
 
-    function recordPull(id) {
+    function recordPull(id,gender) {
         var relays = [1, 8, 11, 12, 19, 22];
-        if (id[0].gender == "M") {
+        if (gender == "M") {
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var body = document.getElementById('individual');
@@ -250,10 +250,10 @@
         // }
     }
 
-    function otherRecordPull(id) {
+    function otherRecordPull(id,gender) {
         var relays = [1, 8, 11, 12, 19, 22];
         console.log(id[0])
-        if (id[0].gender == "M") {
+        if (gender == "M") {
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var body = document.getElementById('compareOther');
@@ -343,7 +343,7 @@
             })
             .then(function (myJson) {
                 console.log(myJson[0].swimmer_id)
-                recordPull(myJson[0].swimmer_id)
+                recordPull(myJson[0].swimmer_id,myJson[0].gender)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -351,14 +351,14 @@
     }
 
     function otherTableFill(name) {
-        console.log(name)
+        //console.log(name)
         fetch("/api/swimmerName/" + name)
             .then(function (response) {
                 return response.json();
             })
             .then(function (myJson) {
                 console.log(myJson)
-                otherRecordPull(myJson[0].swimmer_id)
+                otherRecordPull(myJson[0].swimmer_id,myJson[0].gender)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -375,6 +375,7 @@
             tableFill(name);
         }
     }
+
     function otherNameFill() {
         //document.getElementsById("btn").disabled = false;
         var checkOption = document.getElementById("other");
