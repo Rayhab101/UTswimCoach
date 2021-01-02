@@ -109,11 +109,12 @@
             for (var i = 1; i < 22; i++) {
                 fetch('/api/individualRecords/' + id + "&" + i)
                     .then(function (response) {
-                        return response.json();
+                        console.log(response.json())
+                        //return response.json();
                     }).then(function (records) {
-                        console.log(records);
+                        //console.log(records);
                     }).catch(function (error) {
-                        console.log("Error: " + error);
+                        //console.log("Error: " + error);
                     });
             }
         }
