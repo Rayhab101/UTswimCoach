@@ -220,6 +220,46 @@
         }
     }
 
+    function otherRecordPull(id) {
+        var relays = [1, 8, 11, 12, 19, 22];
+        
+        for (var i = 1; i < 22; i++) {
+            if(relays.includes(i)) {
+                continue;
+            }
+            else if (i < 13) {
+                continue;
+            }
+            else {
+                fetch('/api/individualRecords/' + id + "&" + i)
+                    .then(function (response) {
+                        return response.json();
+                    }).then(function (records) {
+                        console.log(records)
+                        var body = document.getElementById('other');
+                        var row = document.createElement('tr');
+                        var column = document.createElement('td');
+                        var cell = row.insertCell();
+                        if(records[0].min === null){
+                            var text = "";
+                            var displayText = document.createTextNode(text);
+                        }
+                        else{
+                            text = records[0].min;
+                            var displayText = document.createTextNode(text);
+                        }
+                        console.log(displayText);
+                        //var displayText = document.createTextNode(text);
+                        cell.appendChild(displayText);
+                        row.appendChild(cell);
+                        body.appendChild(row);
+                    }).catch(function (error) {
+                        console.log("Error: " + error);
+                    });
+            }
+        }
+    }
+
     function tableFill(name) {
         fetch("/api/swimmerName/" + name)
             .then(function (response) {
@@ -228,13 +268,20 @@
             .then(function (myJson) {
                 console.log(myJson[0].swimmer_id)
                 recordPull(myJson[0].swimmer_id)
-                //var gender = myJson.swimmers[id].gender;
-                // var school = myJson.swimmers[id].school;
-                // console.log(gender);
-                // console.log(myJson.swimmers[id].name);
-                // var year = myJson.swimmers[id].year;
-                // document.getElementById("grade").innerHTML = grade;
-                // document.getElementById("year").innerHTML = year;
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function otherTableFill(name) {
+        fetch("/api/swimmerName/" + name)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson[0].swimmer_id)
+                otherRecordPull(myJson[0].swimmer_id)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -258,7 +305,7 @@
         var number = document.getElementById("other").options[checkOption.selectedIndex].id;
         if (name != "Select Swimmer") {
             document.getElementById("name").innerHTML = name;
-            tableFill(number);
+            otherTableFill(number);
         }
     }
 
