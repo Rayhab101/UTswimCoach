@@ -182,25 +182,50 @@
 
     function recordPull(id) {
         var relays = [1, 8, 11, 12, 19, 22];
-        for (var j = 1; j < 12; j++) {
-            if (!relays.includes(j)) {
-                var body = document.getElementById('individual');
-                var row = document.createElement('tr');
-                //var column = document.createElement('td');
-                var cell = row.insertCell();
-                cell.setAttribute('id', "u" + j)
-                // if(records[0].min === null){
-                //     var text = "";
-                //     var displayText = document.createTextNode(text);
-                // }
-                // else{
-                //     text = records[0].min;
-                //     var displayText = document.createTextNode(text);
-                // }
-                // console.log(displayText);
-                // cell.appendChild(displayText);
-                row.appendChild(cell);
-                body.appendChild(row);
+        if (id.gender == "M") {
+            for (var j = 12; j < 22; j++) {
+                if (!relays.includes(j)) {
+                    var body = document.getElementById('individual');
+                    var row = document.createElement('tr');
+                    //var column = document.createElement('td');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "u" + j)
+                    // if(records[0].min === null){
+                    //     var text = "";
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // else{
+                    //     text = records[0].min;
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // console.log(displayText);
+                    // cell.appendChild(displayText);
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                }
+            }
+        }
+        else{
+            for (var j = 1; j < 12; j++) {
+                if (!relays.includes(j)) {
+                    var body = document.getElementById('individual');
+                    var row = document.createElement('tr');
+                    //var column = document.createElement('td');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "u" + j)
+                    // if(records[0].min === null){
+                    //     var text = "";
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // else{
+                    //     text = records[0].min;
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // console.log(displayText);
+                    // cell.appendChild(displayText);
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                }
             }
         }
 
@@ -227,26 +252,51 @@
 
     function otherRecordPull(id) {
         var relays = [1, 8, 11, 12, 19, 22];
-        console.log(id)
-        for (var j = 1; j < 12; j++) {
-            if (!relays.includes(j)) {
-                var body = document.getElementById('other');
-                var row = document.createElement('tr');
-                //var column = document.createElement('td');
-                var cell = row.insertCell();
-                cell.setAttribute('id', "o" + j)
-                // if(records[0].min === null){
-                //     var text = "";
-                //     var displayText = document.createTextNode(text);
-                // }
-                // else{
-                //     text = records[0].min;
-                //     var displayText = document.createTextNode(text);
-                // }
-                // console.log(displayText);
-                // cell.appendChild(displayText);
-                row.appendChild(cell);
-                body.appendChild(row);
+        console.log(id.gender)
+        if (id.gender == "M") {
+            for (var j = 12; j < 22; j++) {
+                if (!relays.includes(j)) {
+                    var body = document.getElementById('compareOther');
+                    var row = document.createElement('tr');
+                    //var column = document.createElement('td');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "o" + j)
+                    // if(records[0].min === null){
+                    //     var text = "";
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // else{
+                    //     text = records[0].min;
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // console.log(displayText);
+                    // cell.appendChild(displayText);
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                }
+            }
+        }
+        else {
+            for (var j = 1; j < 12; j++) {
+                if (!relays.includes(j)) {
+                    var body = document.getElementById('compareOther');
+                    var row = document.createElement('tr');
+                    //var column = document.createElement('td');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "o" + j)
+                    // if(records[0].min === null){
+                    //     var text = "";
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // else{
+                    //     text = records[0].min;
+                    //     var displayText = document.createTextNode(text);
+                    // }
+                    // console.log(displayText);
+                    // cell.appendChild(displayText);
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                }
             }
         }
         // for (var i = 1; i < 22; i++) {
