@@ -254,7 +254,7 @@
 
     function otherRecordPull(id,gender) {
         var relays = [1, 8, 11, 12, 19, 22];
-        //console.log(id[0])
+        console.log(Array(8));
         var body = document.getElementById('compareOther');
         if (gender == "M") {
             for (var j = 12; j < 22; j++) {
@@ -368,9 +368,6 @@
                 console.log("Error: " + error);
             });
     }
-
-    $( "#individual" ).table( "refresh" );  
-    $('#otherCompare' ).table( "refresh" );  
 
     function nameFill() {
         //document.getElementsById("btn").disabled = false;
