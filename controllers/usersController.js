@@ -222,10 +222,10 @@ module.exports = {
         const {id}=req.params;
         var idSplit = id.split("&");
         id=idSplit[0];
-        var person=idSplit[1];
+        var race=idSplit[1];
         const db = req.app.get("db");
-        console.log(id,person);
-        db.get_individual_records(id,person).then(school_relays => {
+        console.log(id,race);
+        db.get_individual_records(id,race).then(school_relays => {
             //console.log(school_relays);
             return res.status(200).send(school_relays)
         })
