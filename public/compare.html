@@ -110,8 +110,10 @@
                 })
                 .then(function (myJson) {
                     console.log(id);
-                    console.log(myJson);
-                    // var grade = myJson.swimmers[id].status_grade;
+                    var gender = myJson.swimmers[id].gender;
+                    var school = myJson.swimmers[id].school;
+                    console.log(gender);
+                    console.log(school);
                     // var year = myJson.swimmers[id].year;
                     // document.getElementById("grade").innerHTML = grade;
                     // document.getElementById("year").innerHTML = year;
