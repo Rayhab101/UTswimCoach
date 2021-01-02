@@ -105,17 +105,21 @@
             }
         }
 
+        function recordPull(id){
+            fetch('/api/schoolRecord/'+id)
+        }
+
         function tableFill(name) {
-            for(var i=1;i<22;i++){
-                console.log(i)
-            }
+            // for(var i=1;i<22;i++){
+            //     console.log(i)
+            // }
 
             fetch("/api/swimmerName/"+name)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    console.log(myJson)
+                    console.log(myJson.swimmer_id)
                     //var gender = myJson.swimmers[id].gender;
                     // var school = myJson.swimmers[id].school;
                     // console.log(gender);
