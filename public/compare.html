@@ -157,21 +157,21 @@
                     <tr>
                         <th>Races:</th>
                     </tr>
-                    <tr>200 Freestyle:</tr>
-                    <!-- <tr>200 IM:</tr>
-                    <tr>50 Freestyle:</tr>
-                    <tr>100 Butterfly:</tr>
-                    <tr>100 Freestyle:</tr>
-                    <tr>500 Freestyle:</tr>
-                    <tr>100 Backstroke:</tr>
-                    <tr>100 Breaststroke:</tr> -->
+                    <tr><td>200 Freestyle:</td></tr>
+                    <tr><td>200 IM:</td></tr>
+                    <tr><td>50 Freestyle:</td></tr>
+                    <tr><td>100 Butterfly:</td></tr>
+                    <tr><td>100 Freestyle:</td></tr>
+                    <tr><td>500 Freestyle:</td></tr>
+                    <tr><td>100 Backstroke</td>:</tr>
+                    <tr><td>100 Breaststroke:</td></tr>
             </table>
             <table class="t1">
                 <tr>
                     <th>Name:</th>
                 </tr>
                 <tr>
-                    <td id="thisOne"><select id="compare" onchange="nameFill()"></select></td>
+                    <td><select id="compare" onchange="nameFill()"></select></td>
                 </tr>
             </table>
             <table class="t2">
@@ -179,7 +179,7 @@
                     <th>Compare To Other Swimmer:</th>
                 </tr>
                 <tr>
-                    <td id="toOther"></td>
+                    <td><select id="other" onchange="nameFill()"></select></td>
                 </tr>
             </table>
             <table class="t3">
@@ -201,11 +201,6 @@
         </div>
     </main>
     <footer id="footer"></footer>
-    <script>
-                $(document).ready(function(){
-    $("#toOther").html($("#thisOne").html());
-});
-    </script>
 </body>
 
 </html>
