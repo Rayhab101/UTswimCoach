@@ -106,7 +106,8 @@
         }
 
         function recordPull(id) {
-            var relays = [1, 8, 11, 12, 19, 22]
+            var relays = [1, 8, 11, 12, 19, 22];
+            var body = document.getElementById('individual');
             for (var i = 1; i < 22; i++) {
                 if(relays.includes(i)) {
                     continue;
@@ -119,9 +120,12 @@
                         .then(function (response) {
                             return response.json();
                         }).then(function (records) {
-                            if(records[0].min != null){
-                                console.log(records);
-                            }
+                            console.log(records);
+                            var row = document.createElement('tr');
+                            var column = document.createElement('td');
+                            var cell = row.insertCell();
+                            var text = document.createTextNode(records[0].min);
+                            console.log(text);
                         }).catch(function (error) {
                             //console.log("Error: " + error);
                         });
@@ -238,7 +242,7 @@
                     <td>100 Breaststroke:</td>
                 </tr>
             </table>
-            <table class="t1">
+            <table class="t1" id="indvidual">
                 <tr>
                     <th>Name:</th>
                 </tr>
