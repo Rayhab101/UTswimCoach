@@ -108,34 +108,33 @@
             }
         }
 
-        function tableFill(id) {
-            fetch("/api/swimmers")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    console.log(id,myJson);
-                    var gender = myJson.swimmers[id].gender;
-                    // var school = myJson.swimmers[id].school;
-                    console.log(gender);
-                    console.log(myJson.swimmers[id].name);
-                    // var year = myJson.swimmers[id].year;
-                    // document.getElementById("grade").innerHTML = grade;
-                    // document.getElementById("year").innerHTML = year;
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+        function tableFill(name) {
+            // fetch("/api/swimmers")
+            //     .then(function (response) {
+            //         return response.json();
+            //     })
+            //     .then(function (myJson) {
+            //         var gender = myJson.swimmers[id].gender;
+            //         // var school = myJson.swimmers[id].school;
+            //         console.log(gender);
+            //         console.log(myJson.swimmers[id].name);
+            //         // var year = myJson.swimmers[id].year;
+            //         // document.getElementById("grade").innerHTML = grade;
+            //         // document.getElementById("year").innerHTML = year;
+            //     })
+            //     .catch(function (error) {
+            //         console.log("Error: " + error);
+            //     });
         }
 
         function nameFill() {
             //document.getElementsById("btn").disabled = false;
             var checkOption = document.getElementById("compare");
             var name = checkOption.value;
-            console.log(name)
             var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
             if (name != "Select Swimmer") {
-                tableFill(number);
+                console.log(name)
+                tableFill(name);
             }
         }
         function otherNameFill() {
