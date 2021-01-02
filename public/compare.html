@@ -120,6 +120,7 @@
                         .then(function (response) {
                             return response.json();
                         }).then(function (records) {
+                            console.log(records)
                             var row = document.createElement('tr');
                             var column = document.createElement('td');
                             var cell = row.insertCell();
@@ -128,10 +129,10 @@
                                 text = ""
                             }
                             else{text = records[0].min}
-                            text = document.createTextNode(text);
-                            cell.appendChild(text);
-                            body.appendChild(row);
                             console.log(text);
+                            text = document.createTextNode(text);
+                            //cell.appendChild(text);
+                            //body.appendChild(row);
                         }).catch(function (error) {
                             console.log("Error: " + error);
                         });
