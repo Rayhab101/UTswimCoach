@@ -64,14 +64,11 @@
             var school = location.search.substring(1);
             school = school.split("=");
             school = Number(school[1]);
-            console.log(school);
-            console.log("hitting Build page");
             fetch("/api/swims/"+school)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    console.log(myJson.length);
                     buildDropdown(myJson,school);
                     buildOtherDropdown(myJson,school);
                 })
@@ -80,7 +77,7 @@
                 });
         }
 
-        function buildDropdown(people,school) {
+        function buildDropdown(people) {
             var ddlSwimmers = document.getElementById("compare");
             // document.getElementById("insert").setAttribute("hidden", true);
             var head = document.createElement("OPTION");
@@ -94,7 +91,7 @@
             }
         }
 
-        function buildOtherDropdown(people,school) {
+        function buildOtherDropdown(people) {
             var ddlSwimmers = document.getElementById("other");
             // document.getElementById("insert").setAttribute("hidden", true);
             var head = document.createElement("OPTION");
@@ -109,22 +106,26 @@
         }
 
         function tableFill(name) {
-            // fetch("/api/swimmers")
-            //     .then(function (response) {
-            //         return response.json();
-            //     })
-            //     .then(function (myJson) {
-            //         var gender = myJson.swimmers[id].gender;
-            //         // var school = myJson.swimmers[id].school;
-            //         console.log(gender);
-            //         console.log(myJson.swimmers[id].name);
-            //         // var year = myJson.swimmers[id].year;
-            //         // document.getElementById("grade").innerHTML = grade;
-            //         // document.getElementById("year").innerHTML = year;
-            //     })
-            //     .catch(function (error) {
-            //         console.log("Error: " + error);
-            //     });
+            for(var i=1;i<22;i++){
+                console.log(i)
+            }
+            fetch("/api/swimmerName"+name)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    console.log(myJson)
+                    //var gender = myJson.swimmers[id].gender;
+                    // var school = myJson.swimmers[id].school;
+                    // console.log(gender);
+                    // console.log(myJson.swimmers[id].name);
+                    // var year = myJson.swimmers[id].year;
+                    // document.getElementById("grade").innerHTML = grade;
+                    // document.getElementById("year").innerHTML = year;
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
         }
 
         function nameFill() {
