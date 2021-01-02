@@ -254,8 +254,9 @@
 
     function otherRecordPull(id,gender) {
         var relays = [1, 8, 11, 12, 19, 22];
+        console.log($('#compareOther').children().length);
         for(var d = 2; d<9;d++){
-            console.log(document.getElementById("compareOther").children().length)
+            console.log(document.getElementById("compareOther").children.length)
             document.getElementById("compareOther").deleteRow(d);
         }
         var body = document.getElementById('compareOther');
