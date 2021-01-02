@@ -366,8 +366,10 @@
             });
     }
 
+    $( "#individual" ).table( "refresh" );  
+    $('#otherCompare' ).table( "refresh" );  
+    
     function nameFill() {
-        $( "#individual" ).table( "refresh" );  
         //document.getElementsById("btn").disabled = false;
         var checkOption = document.getElementById("compare");
         var name = checkOption.value;
@@ -379,7 +381,6 @@
     }
 
     function otherNameFill() {
-        $('#otherCompare' ).table( "refresh" );  
         //document.getElementsById("btn").disabled = false;
         var checkOption = document.getElementById("other");
         var name = checkOption.value;
