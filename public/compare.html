@@ -125,9 +125,9 @@
             //document.getElementsById("btn").disabled = false;
             var checkOption = document.getElementById("compare");
             var name = checkOption.value;
+            console.log(name)
             var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
             if (name != "Select Swimmer") {
-                document.getElementById("name").innerHTML = name;
                 tableFill(number);
             }
         }
