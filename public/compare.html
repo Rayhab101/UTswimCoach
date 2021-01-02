@@ -119,7 +119,9 @@
                         .then(function (response) {
                             return response.json();
                         }).then(function (records) {
-                            console.log(records);
+                            if(records[0].min != null){
+                                console.log(records);
+                            }
                         }).catch(function (error) {
                             //console.log("Error: " + error);
                         });
