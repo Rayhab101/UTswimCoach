@@ -92,7 +92,7 @@ app.post('/api/swimmers', (req, res) => {
 })
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
-app.get('/api/public/swim/:id', userctrl.getSwimmer)
+app.get('/api/swim/:id', userctrl.getSwimmer)
 
 // Gets Coaches
 app.get('/api/coaches', userctrl.getCoaches)
@@ -127,7 +127,7 @@ app.get('/api/schoolMeets/:id', userctrl.getSchoolMeet)
 app.get('/api/schoolRecords/:id', userctrl.getRecordsSchool)
 app.get('/api/schoolRecord/:id', userctrl.getRecordSchool)
 // Gets Top 50 of Utah
-app.get('/api/public/top50/:id', userctrl.getTop50)
+app.get('/api/top50/:id', userctrl.getTop50)
 // Gets Top 100 of Utah
 app.get('/api/top100/:id', userctrl.getTop100)
 // Gets State Qualified of Utah

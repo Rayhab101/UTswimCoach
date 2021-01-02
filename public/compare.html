@@ -61,14 +61,18 @@
     </style>
     <script>
         function buildPage() {
+            var school = location.search.substring(1);
+            school = school.split("=");
+            school = Number(school[1]);
             console.log("hitting Build page");
-            fetch("/api/swimmers")
+            fetch("/api/swims"+school)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    buildDropdown(myJson.swimmers);
-                    buildOtherDropdown(myJson.swimmers);
+                    console.log(myJson)
+                    // buildDropdown(myJson.swimmers);
+                    // buildOtherDropdown(myJson.swimmers);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
