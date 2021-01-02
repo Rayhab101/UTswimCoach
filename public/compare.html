@@ -146,7 +146,7 @@
             buildPage();
         }
         $(document).ready(function(){
-    $("#toOther").html($("#compare").html());
+    $("#toOther").html($("#thisOne").html());
 });
     </script>
 </head>
@@ -173,7 +173,7 @@
                     <td>Name:</td>
                 </tr>
                 <tr>
-                    <td><select id="compare" onchange="nameFill()"></select></td>
+                    <td id="thisOne"><select id="compare" onchange="nameFill()"></select></td>
                 </tr>
             </table>
             <table class="t2">
