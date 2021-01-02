@@ -106,14 +106,17 @@
         }
 
         function recordPull(id){
-            fetch('/api/schoolRecord/'+id)
+            fetch('/api/records/'+id)
+            .then(function(response){
+                return response.json();
+            }).then(function (records){
+                console.log(records)
+            }).catch(function (error){
+                console.log("Error: " + error);
+            });
         }
 
         function tableFill(name) {
-            // for(var i=1;i<22;i++){
-            //     console.log(i)
-            // }
-
             fetch("/api/swimmerName/"+name)
                 .then(function (response) {
                     return response.json();
