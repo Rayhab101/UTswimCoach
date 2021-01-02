@@ -109,7 +109,7 @@
         }
 
         function tableFill(id) {
-            fetch("/api/swim/"+id)
+            fetch("/api/swimmers/"+id)
                 .then(function (response) {
                     return response.json();
                 })
