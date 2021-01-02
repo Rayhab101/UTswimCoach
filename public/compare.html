@@ -59,162 +59,7 @@
             grid-column: 5;
         }
     </style>
-    <script>
-        function buildPage() {
-            var school = location.search.substring(1);
-            school = school.split("=");
-            school = Number(school[1]);
-            fetch("/api/swims/" + school)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    buildDropdown(myJson, school);
-                    buildOtherDropdown(myJson, school);
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
-        }
 
-        function buildDropdown(people) {
-            var ddlSwimmers = document.getElementById("compare");
-            // document.getElementById("insert").setAttribute("hidden", true);
-            var head = document.createElement("OPTION");
-            head.innerHTML = "Select Swimmer";
-            ddlSwimmers.options.add(head);
-            for (var i = 0; i < people.length; i++) {
-                var option = document.createElement("OPTION");
-                option.setAttribute("id", i);
-                option.innerHTML = people[i].name;
-                ddlSwimmers.options.add(option);
-            }
-        }
-
-        function buildOtherDropdown(people) {
-            var ddlSwimmers = document.getElementById("other");
-            // document.getElementById("insert").setAttribute("hidden", true);
-            var head = document.createElement("OPTION");
-            head.innerHTML = "Select Swimmer";
-            ddlSwimmers.options.add(head);
-            for (var i = 0; i < people.length; i++) {
-                var option = document.createElement("OPTION");
-                option.setAttribute("id", i);
-                option.innerHTML = people[i].name;
-                ddlSwimmers.options.add(option);
-            }
-        }
-
-        function recordPull(id) {
-            var relays = [1, 8, 11, 12, 19, 22];
-            var body = document.getElementById('individual');
-            for (var i = 1; i < 22; i++) {
-                if(relays.includes(i)) {
-                    continue;
-                }
-                else if (i < 12) {
-                    continue;
-                }
-                else {
-                    fetch('/api/individualRecords/' + id + "&" + i)
-                        .then(function (response) {
-                            return response.json();
-                        }).then(function (records) {
-                            console.log(records)
-                            var row = document.createElement('tr');
-                            var column = document.createElement('td');
-                            var cell = row.insertCell();
-                            var text;
-                            if(records[0].min === null){
-                                text = "0";
-                                var displayText = document.createTextNode(text);
-                            }
-                            else{
-                                text = records[0].min;
-                                var displayText = document.createTextNode(text);
-                            }
-                            console.log(text);
-                            //var displayText = document.createTextNode(text);
-                            cell.appendChild(displayText);
-                            body.appendChild(row);
-                        }).catch(function (error) {
-                            console.log("Error: " + error);
-                        });
-                }
-            }
-        }
-
-        function tableFill(name) {
-            fetch("/api/swimmerName/" + name)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    console.log(myJson[0].swimmer_id)
-                    recordPull(myJson[0].swimmer_id)
-                    //var gender = myJson.swimmers[id].gender;
-                    // var school = myJson.swimmers[id].school;
-                    // console.log(gender);
-                    // console.log(myJson.swimmers[id].name);
-                    // var year = myJson.swimmers[id].year;
-                    // document.getElementById("grade").innerHTML = grade;
-                    // document.getElementById("year").innerHTML = year;
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
-        }
-
-        function nameFill() {
-            //document.getElementsById("btn").disabled = false;
-            var checkOption = document.getElementById("compare");
-            var name = checkOption.value;
-            var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
-            if (name != "Select Swimmer") {
-                console.log(name)
-                tableFill(name);
-            }
-        }
-        function otherNameFill() {
-            //document.getElementsById("btn").disabled = false;
-            var checkOption = document.getElementById("other");
-            var name = checkOption.value;
-            var number = document.getElementById("other").options[checkOption.selectedIndex].id;
-            if (name != "Select Swimmer") {
-                document.getElementById("name").innerHTML = name;
-                tableFill(number);
-            }
-        }
-
-        function submitTimes(id) {
-            fetch("api/swimmers")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    console.log(id);
-                    if (id != "") {
-                        for (var i = 0; i < events.length; i++) {
-                            var time = document.getElementById(events[i]).value;
-                            console.log(myJson.swimmers[id][events[i]]);
-                            myJson.swimmers[id][events[i]].push(time);
-                        }
-                        fetch("api/swimmers", {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                            body: JSON.stringify(myJson)
-                        })
-                        // document.getElementById("insert").setAttribute("hidden", true);
-                    }
-                    // document.getElementById("insert").setAttribute("hidden", true);
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
-            buildPage();
-        }
-
-    </script>
 </head>
 
 <body onload="buildPage()">
@@ -289,5 +134,161 @@
     </main>
     <footer id="footer"></footer>
 </body>
+<script>
+    function buildPage() {
+        var school = location.search.substring(1);
+        school = school.split("=");
+        school = Number(school[1]);
+        fetch("/api/swims/" + school)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                buildDropdown(myJson, school);
+                buildOtherDropdown(myJson, school);
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
 
+    function buildDropdown(people) {
+        var ddlSwimmers = document.getElementById("compare");
+        // document.getElementById("insert").setAttribute("hidden", true);
+        var head = document.createElement("OPTION");
+        head.innerHTML = "Select Swimmer";
+        ddlSwimmers.options.add(head);
+        for (var i = 0; i < people.length; i++) {
+            var option = document.createElement("OPTION");
+            option.setAttribute("id", i);
+            option.innerHTML = people[i].name;
+            ddlSwimmers.options.add(option);
+        }
+    }
+
+    function buildOtherDropdown(people) {
+        var ddlSwimmers = document.getElementById("other");
+        // document.getElementById("insert").setAttribute("hidden", true);
+        var head = document.createElement("OPTION");
+        head.innerHTML = "Select Swimmer";
+        ddlSwimmers.options.add(head);
+        for (var i = 0; i < people.length; i++) {
+            var option = document.createElement("OPTION");
+            option.setAttribute("id", i);
+            option.innerHTML = people[i].name;
+            ddlSwimmers.options.add(option);
+        }
+    }
+
+    function recordPull(id) {
+        var relays = [1, 8, 11, 12, 19, 22];
+        
+        for (var i = 1; i < 22; i++) {
+            if(relays.includes(i)) {
+                continue;
+            }
+            else if (i < 12) {
+                continue;
+            }
+            else {
+                fetch('/api/individualRecords/' + id + "&" + i)
+                    .then(function (response) {
+                        return response.json();
+                    }).then(function (records) {
+                        console.log(records)
+                        var body = document.getElementById('individual');
+                        var row = document.createElement('tr');
+                        var column = document.createElement('td');
+                        var cell = row.insertCell();
+                        var text;
+                        if(records[0].min === null){
+                            text = "0";
+                            var displayText = document.createTextNode(text);
+                        }
+                        else{
+                            text = records[0].min;
+                            var displayText = document.createTextNode(text);
+                        }
+                        console.log(text);
+                        //var displayText = document.createTextNode(text);
+                        cell.appendChild(displayText);
+                        body.appendChild(row);
+                    }).catch(function (error) {
+                        console.log("Error: " + error);
+                    });
+            }
+        }
+    }
+
+    function tableFill(name) {
+        fetch("/api/swimmerName/" + name)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson[0].swimmer_id)
+                recordPull(myJson[0].swimmer_id)
+                //var gender = myJson.swimmers[id].gender;
+                // var school = myJson.swimmers[id].school;
+                // console.log(gender);
+                // console.log(myJson.swimmers[id].name);
+                // var year = myJson.swimmers[id].year;
+                // document.getElementById("grade").innerHTML = grade;
+                // document.getElementById("year").innerHTML = year;
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function nameFill() {
+        //document.getElementsById("btn").disabled = false;
+        var checkOption = document.getElementById("compare");
+        var name = checkOption.value;
+        var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
+        if (name != "Select Swimmer") {
+            console.log(name)
+            tableFill(name);
+        }
+    }
+    function otherNameFill() {
+        //document.getElementsById("btn").disabled = false;
+        var checkOption = document.getElementById("other");
+        var name = checkOption.value;
+        var number = document.getElementById("other").options[checkOption.selectedIndex].id;
+        if (name != "Select Swimmer") {
+            document.getElementById("name").innerHTML = name;
+            tableFill(number);
+        }
+    }
+
+    function submitTimes(id) {
+        fetch("api/swimmers")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(id);
+                if (id != "") {
+                    for (var i = 0; i < events.length; i++) {
+                        var time = document.getElementById(events[i]).value;
+                        console.log(myJson.swimmers[id][events[i]]);
+                        myJson.swimmers[id][events[i]].push(time);
+                    }
+                    fetch("api/swimmers", {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        body: JSON.stringify(myJson)
+                    })
+                    // document.getElementById("insert").setAttribute("hidden", true);
+                }
+                // document.getElementById("insert").setAttribute("hidden", true);
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+        buildPage();
+    }
+
+</script>
 </html>
