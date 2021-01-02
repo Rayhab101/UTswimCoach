@@ -71,9 +71,9 @@
                     return response.json();
                 })
                 .then(function (myJson) {
-                    console.log(myJson);
-                    buildDropdown(myJson.swimmers);
-                    buildOtherDropdown(myJson.swimmers);
+                    console.log(myJson.swimmers);
+                    //buildDropdown(myJson);
+                    //buildOtherDropdown(myJson.swimmers);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
