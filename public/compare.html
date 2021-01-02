@@ -200,20 +200,18 @@
                         var row = document.createElement('tr');
                         var column = document.createElement('td');
                         var cell = row.insertCell();
-                        var text;
-                        console.log(records[0].min === null)
-                        // if(records[0].min === null){
-                        //     text = "0";
-                        //     var displayText = document.createTextNode(text);
-                        // }
-                        // else{
-                        //     text = records[0].min;
-                        //     var displayText = document.createTextNode(text);
-                        // }
-                        // console.log(text);
-                        // //var displayText = document.createTextNode(text);
-                        // cell.appendChild(displayText);
-                        // body.appendChild(row);
+                        if(records[0].min === null){
+                            var text = "0";
+                            var displayText = document.createTextNode(text);
+                        }
+                        else{
+                            text = records[0].min;
+                            var displayText = document.createTextNode(text);
+                        }
+                        console.log(displayText);
+                        //var displayText = document.createTextNode(text);
+                        cell.appendChild(displayText);
+                        body.appendChild(row);
                     }).catch(function (error) {
                         console.log("Error: " + error);
                     });
