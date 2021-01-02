@@ -64,15 +64,15 @@
             var school = location.search.substring(1);
             school = school.split("=");
             school = Number(school[1]);
+            console.log(school);
             console.log("hitting Build page");
-            fetch("/api/swims"+school)
+            fetch("/api/swimmers")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    console.log(myJson)
-                    // buildDropdown(myJson.swimmers);
-                    // buildOtherDropdown(myJson.swimmers);
+                    buildDropdown(myJson.swimmers);
+                    buildOtherDropdown(myJson.swimmers);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
