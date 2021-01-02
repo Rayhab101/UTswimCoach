@@ -145,9 +145,7 @@
                 });
             buildPage();
         }
-        $(document).ready(function(){
-    $("#toOther").html($("#thisOne").html());
-});
+
     </script>
 </head>
 
@@ -203,6 +201,11 @@
         </div>
     </main>
     <footer id="footer"></footer>
+    <script>
+                $(document).ready(function(){
+    $("#toOther").html($("#thisOne").html());
+});
+    </script>
 </body>
 
 </html>
