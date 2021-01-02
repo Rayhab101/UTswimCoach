@@ -109,16 +109,16 @@
         }
 
         function tableFill(id) {
-            fetch("/api/swimmers/"+id)
+            fetch("/api/swimmers")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
                     console.log(id,myJson);
-                    //var gender = myJson.swimmers[id].gender;
+                    var gender = myJson.swimmers[id].gender;
                     // var school = myJson.swimmers[id].school;
-                    // console.log(gender);
-                    // console.log(myJson.swimmers[id]);
+                    console.log(gender);
+                    console.log(myJson.swimmers[id].name);
                     // var year = myJson.swimmers[id].year;
                     // document.getElementById("grade").innerHTML = grade;
                     // document.getElementById("year").innerHTML = year;
