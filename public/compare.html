@@ -182,7 +182,7 @@
 
     function recordPull(id) {
         var relays = [1, 8, 11, 12, 19, 22];
-        if (id.gender == "M") {
+        if (id[0].gender == "M") {
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var body = document.getElementById('individual');
@@ -252,8 +252,8 @@
 
     function otherRecordPull(id) {
         var relays = [1, 8, 11, 12, 19, 22];
-        console.log(id.gender)
-        if (id.gender == "M") {
+        console.log(id[0].gender)
+        if (id[0].gender == "M") {
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var body = document.getElementById('compareOther');
