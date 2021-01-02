@@ -135,6 +135,7 @@
     <footer id="footer"></footer>
 </body>
 <script>
+    $("#individual").trigger("refresh");
     function buildPage() {
         var school = location.search.substring(1);
         school = school.split("=");
@@ -348,7 +349,6 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-            buildPage();
     }
 
     function otherTableFill(name) {
@@ -364,7 +364,6 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-            buildPage();
     }
 
     function nameFill() {
