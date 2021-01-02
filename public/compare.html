@@ -280,8 +280,8 @@
                 return response.json();
             })
             .then(function (myJson) {
-                console.log(myJson[0].swimmer_id)
-                otherRecordPull(myJson[0].swimmer_id)
+                console.log(myJson)
+                //otherRecordPull(myJson[0].swimmer_id)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
