@@ -135,7 +135,7 @@
     <footer id="footer"></footer>
 </body>
 <script>
-    $("#individual").trigger("refresh");
+    
     function buildPage() {
         var school = location.search.substring(1);
         school = school.split("=");
@@ -367,6 +367,7 @@
     }
 
     function nameFill() {
+        $( "#individual" ).table( "refresh" );  
         //document.getElementsById("btn").disabled = false;
         var checkOption = document.getElementById("compare");
         var name = checkOption.value;
@@ -378,6 +379,7 @@
     }
 
     function otherNameFill() {
+        $('#otherCompare' ).table( "refresh" );  
         //document.getElementsById("btn").disabled = false;
         var checkOption = document.getElementById("other");
         var name = checkOption.value;
