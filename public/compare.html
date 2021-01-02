@@ -127,13 +127,15 @@
                             var text;
                             if(records[0].min === null){
                                 text = "0";
+                                var displayText = document.createTextNode(text);
                             }
                             else{
-                                text = records[0].min
+                                text = records[0].min;
+                                var displayText = document.createTextNode(text);
                             }
                             console.log(text);
                             //var displayText = document.createTextNode(text);
-                            cell.appendChild(text);
+                            cell.appendChild(displayText);
                             body.appendChild(row);
                         }).catch(function (error) {
                             console.log("Error: " + error);
