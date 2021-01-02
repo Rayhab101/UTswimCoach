@@ -254,11 +254,11 @@
 
     function otherRecordPull(id,gender) {
         var relays = [1, 8, 11, 12, 19, 22];
-        console.log($('#compareOther').children().length);
+        if($('#compareOther').children().length > 1){
         for(var d = 2; d<9;d++){
-            console.log(document.getElementById("compareOther").children.length)
             document.getElementById("compareOther").deleteRow(d);
         }
+    }
         var body = document.getElementById('compareOther');
         if (gender == "M") {
             for (var j = 12; j < 22; j++) {
