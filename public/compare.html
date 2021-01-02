@@ -116,7 +116,7 @@
             }
         }
 
-        const events = ["200fr", "200IM", "100IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
+        const events = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
 
         function submitTimes(id) {
             fetch("api/swimmers")
@@ -136,9 +136,9 @@
                             method: "POST",
                             body: JSON.stringify(myJson)
                         })
-                        document.getElementById("insert").setAttribute("hidden", true);
+                        // document.getElementById("insert").setAttribute("hidden", true);
                     }
-                    document.getElementById("insert").setAttribute("hidden", true);
+                    // document.getElementById("insert").setAttribute("hidden", true);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
