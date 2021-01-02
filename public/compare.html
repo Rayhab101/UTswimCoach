@@ -275,13 +275,14 @@
     }
 
     function otherTableFill(name) {
+        console.log(name)
         fetch("/api/swimmerName/" + name)
             .then(function (response) {
                 return response.json();
             })
             .then(function (myJson) {
                 console.log(myJson)
-                //otherRecordPull(myJson[0].swimmer_id)
+                otherRecordPull(myJson[0].swimmer_id)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -304,7 +305,7 @@
         var name = checkOption.value;
         var number = document.getElementById("other").options[checkOption.selectedIndex].id;
         if (name != "Select Swimmer") {
-            otherTableFill(number);
+            otherTableFill(name);
         }
     }
 
