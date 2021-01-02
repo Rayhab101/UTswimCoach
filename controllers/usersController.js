@@ -219,7 +219,7 @@ module.exports = {
         })
     },
     getIndividualRecord: (req,res) => {
-        const {id}=req.params;
+        var {id}=req.params;
         var idSplit = id.split("&");
         id=idSplit[0];
         var race=idSplit[1];
@@ -228,6 +228,6 @@ module.exports = {
         db.get_individual_records(id,race).then(school_relays => {
             //console.log(school_relays);
             return res.status(200).send(school_relays)
-        })
+        }).catch(err => (res.sendStatus(500)))
     }
 }
