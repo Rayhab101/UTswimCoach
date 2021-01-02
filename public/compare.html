@@ -131,8 +131,8 @@
                             else{text = records[0].min}
                             console.log(text);
                             text = document.createTextNode(text);
-                            //cell.appendChild(text);
-                            //body.appendChild(row);
+                            cell.appendChild(text);
+                            body.appendChild(row);
                         }).catch(function (error) {
                             console.log("Error: " + error);
                         });
