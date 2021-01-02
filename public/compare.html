@@ -128,9 +128,11 @@
                             if(records[0].min === null){
                                 text = "0";
                             }
-                            else{text = records[0].min}
+                            else{
+                                text = records[0].min
+                            }
                             console.log(text);
-                            text = document.createTextNode(text);
+                            //var displayText = document.createTextNode(text);
                             cell.appendChild(text);
                             body.appendChild(row);
                         }).catch(function (error) {
