@@ -108,7 +108,7 @@
             </table>
             <table class="t2" id="compareOther">
                 <tr>
-                    <th>Compare To Other Swimmer:</th>
+                    <th>Other Swimmer:</th>
                 </tr>
                 <tr>
                     <td><select id="other" onchange="otherNameFill()"></select></td>
@@ -183,6 +183,11 @@
 
     function recordPull(id,gender) {
         var relays = [1, 8, 11, 12, 19, 22];
+        if($('#individual').children().length  > 1){
+        for(var d = 9; d>1;d--){
+            document.getElementById("individual").deleteRow(d);
+        }
+    }
         var body = document.getElementById('individual');
         if (gender == "M") {
             for (var j = 12; j < 22; j++) {
