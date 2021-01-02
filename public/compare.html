@@ -68,6 +68,7 @@
                 })
                 .then(function (myJson) {
                     buildDropdown(myJson.swimmers);
+                    buildOtherDropdown(myJson.swimmers);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -76,6 +77,20 @@
 
         function buildDropdown(people) {
             var ddlSwimmers = document.getElementById("compare");
+            // document.getElementById("insert").setAttribute("hidden", true);
+            var head = document.createElement("OPTION");
+            head.innerHTML = "Select Swimmer";
+            ddlSwimmers.options.add(head);
+            for (var i = 0; i < people.length; i++) {
+                var option = document.createElement("OPTION");
+                option.setAttribute("id", i);
+                option.innerHTML = people[i].name;
+                ddlSwimmers.options.add(option);
+            }
+        }
+
+        function buildOtherDropdown(people) {
+            var ddlSwimmers = document.getElementById("other");
             // document.getElementById("insert").setAttribute("hidden", true);
             var head = document.createElement("OPTION");
             head.innerHTML = "Select Swimmer";
@@ -107,7 +122,6 @@
 
         function nameFill() {
             //document.getElementsById("btn").disabled = false;
-            // document.getElementById("insert").removeAttribute("hidden");
             var checkOption = document.getElementById("compare");
             var name = checkOption.value;
             var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
@@ -116,8 +130,16 @@
                 tableFill(number);
             }
         }
-
-        const events = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
+        function otherNameFill() {
+            //document.getElementsById("btn").disabled = false;
+            var checkOption = document.getElementById("other");
+            var name = checkOption.value;
+            var number = document.getElementById("other").options[checkOption.selectedIndex].id;
+            if (name != "Select Swimmer") {
+                document.getElementById("name").innerHTML = name;
+                tableFill(number);
+            }
+        }
 
         function submitTimes(id) {
             fetch("api/swimmers")
@@ -155,9 +177,7 @@
     <main class="swim_style">
         <div class="container">
             <table class="t0">
-                    <tr>
-                        <th>Races:</th>
-                    </tr>
+                    <tr><th>Races:</th></tr>
                     <tr><td></td></tr>
                     <tr><td>200 Freestyle:</td></tr>
                     <tr><td>200 IM:</td></tr>
@@ -181,7 +201,7 @@
                     <th>Compare To Other Swimmer:</th>
                 </tr>
                 <tr>
-                    <td><select id="other" onchange="nameFill()"></select></td>
+                    <td><select id="other" onchange="otherNameFill()"></select></td>
                 </tr>
             </table>
             <table class="t3">
