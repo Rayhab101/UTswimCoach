@@ -106,7 +106,7 @@
                     <td><select id="compare" onchange="nameFill()"></select></td>
                 </tr>
             </table>
-            <table class="t2">
+            <table class="t2" id="compareOther">
                 <tr>
                     <th>Compare To Other Swimmer:</th>
                 </tr>
@@ -236,7 +236,7 @@
                         return response.json();
                     }).then(function (records) {
                         console.log(records)
-                        var body = document.getElementById('other');
+                        var body = document.getElementById('compareOther');
                         var row = document.createElement('tr');
                         var column = document.createElement('td');
                         var cell = row.insertCell();
