@@ -191,12 +191,13 @@
                 continue;
             }
             else {
+                var body = document.getElementById('individual');
+
                 fetch('/api/individualRecords/' + id + "&" + i)
                     .then(function (response) {
                         return response.json();
                     }).then(function (records) {
                         console.log(records)
-                        var body = document.getElementById('individual');
                         var row = document.createElement('tr');
                         var column = document.createElement('td');
                         var cell = row.insertCell();
@@ -211,10 +212,11 @@
                         console.log(displayText);
                         //var displayText = document.createTextNode(text);
                         cell.appendChild(displayText);
-                        body.appendChild(row);
                     }).catch(function (error) {
                         console.log("Error: " + error);
                     });
+                    body.appendChild(row);
+
             }
         }
     }
