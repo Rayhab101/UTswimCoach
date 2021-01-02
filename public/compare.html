@@ -108,8 +108,8 @@
             }
         }
 
-        function tableFill(id,school) {
-            fetch("/api/swims/"+school)
+        function tableFill(id) {
+            fetch("/api/swim/"+id)
                 .then(function (response) {
                     return response.json();
                 })
