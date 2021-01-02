@@ -72,15 +72,15 @@
                 })
                 .then(function (myJson) {
                     console.log(myJson.length);
-                    buildDropdown(myJson);
-                    buildOtherDropdown(myJson);
+                    buildDropdown(myJson,school);
+                    buildOtherDropdown(myJson,school);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
         }
 
-        function buildDropdown(people) {
+        function buildDropdown(people,school) {
             var ddlSwimmers = document.getElementById("compare");
             // document.getElementById("insert").setAttribute("hidden", true);
             var head = document.createElement("OPTION");
@@ -94,7 +94,7 @@
             }
         }
 
-        function buildOtherDropdown(people) {
+        function buildOtherDropdown(people,school) {
             var ddlSwimmers = document.getElementById("other");
             // document.getElementById("insert").setAttribute("hidden", true);
             var head = document.createElement("OPTION");
@@ -108,17 +108,17 @@
             }
         }
 
-        function tableFill(id) {
-            fetch("/api/swimmers")
+        function tableFill(id,school) {
+            fetch("/api/swims/"+school)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
                     console.log(id);
                     var gender = myJson.swimmers[id].gender;
-                    var school = myJson.swimmers[id].school;
+                    // var school = myJson.swimmers[id].school;
                     console.log(gender);
-                    console.log(school);
+                    console.log(myJson.swimmers[id]);
                     // var year = myJson.swimmers[id].year;
                     // document.getElementById("grade").innerHTML = grade;
                     // document.getElementById("year").innerHTML = year;
