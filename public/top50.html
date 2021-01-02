@@ -17,7 +17,7 @@
     </script>
     <script>
         function pullSwimmer(name,column,cell){
-            fetch("/api/public/swim/" + name)
+            fetch("/api/swim/" + name)
                     .then(function (responseRelay) {
                         return responseRelay.json();
                     })
