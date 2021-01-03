@@ -140,6 +140,8 @@
         }
 
         function recordPull(race,cell,school){
+            var relays = [1, 8, 11, 12, 19, 22]
+            if(!relays.includes(race)){
             fetch('/api/schoolRecord/'+race+"&"+school)
             .then( function(response){
                 return response.json();
@@ -149,6 +151,19 @@
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
+        }
+        else{
+            fetch("/api/relayRecord/" + race + "&" + school)
+                .then(function (responseRelay) {
+                    return responseRelay.json();
+                })
+                .then(function (relay) {
+                    console.log(relay)
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
         }
 
         function pullSchool() {
