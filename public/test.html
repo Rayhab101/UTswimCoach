@@ -36,7 +36,9 @@
             margin-right: auto;
 
         }
-
+        td {
+            height: 25px;
+        }
         th {
             text-align: center;
             font-size: 24px;
@@ -216,6 +218,37 @@
             }
         }
 
+        function yearPull(race,cell,school){
+            var relays = [1, 8, 11, 12, 19, 22]
+            console.log(cell.id[1])
+            race = cell.id[1] == "g" ? race : race+11;
+            if (!relays.includes(race)) {
+                fetch('/api/schoolRecord/' + race + "&" + school)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (record) {
+                        //console.log(record)
+                        document.getElementById(cell.id).innerHTML = record[0].year;
+                    }).catch(function (error) {
+                        console.log("Error: " + error);
+                    });
+            }
+            else {
+                fetch("/api/relayRecord/" + race + "&" + school)
+                    .then(function (responseRelay) {
+                        return responseRelay.json();
+                    })
+                    .then(function (relay) {
+                        //console.log(relay)
+                        document.getElementById(cell.id).innerHTML = relay[0].year;
+                    })
+                    .catch(function (error) {
+                        console.log("Error: " + error);
+                    });
+            }
+        }
+
         function pullSchool() {
             var school = location.search.substring(1);
             school = school.split("=");
@@ -239,7 +272,7 @@
                 cell.setAttribute('id', 'rgy' + i);
                 //cell.appendChild(text);
                 body.appendChild(row);
-                //yearPull(i, cell, school);
+                yearPull(i, cell, school);
             }
             var races = ["","200 Medley Relay","200 Freestyle","200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
             for (var i = 1; i < 13; i++) {
@@ -247,7 +280,6 @@
                 var row = document.createElement('tr');
                 var column = document.createElement("td");
                 var cell = row.insertCell();
-                //console.log(races[i]);
                 var text = document.createTextNode(column.innerHTML = races[i]);
                 cell.appendChild(text);
                 row.appendChild(cell);
@@ -273,7 +305,7 @@
                 cell.setAttribute('id', 'rby' + i);
                 cell.appendChild(text);
                 body.appendChild(row);
-                //yearPull(i, cell, school);
+                yearPull(i, cell, school);
             }
 
             // var relays = [1, 8, 11, 12, 19, 22]
