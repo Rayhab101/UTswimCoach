@@ -116,12 +116,6 @@
     function cardLoad() {
       var pullSwimmers = location.search.substring(1);
         pullSwimmers = pullSwimmers.split("=");
-        if(pullSwimmers[0]=='coachid'){
-          document.getElementById('addButton').style.display = 'block';
-        }
-        else{
-          document.getElementById('addButton').style.display = 'none';
-        }
         
         pullSwimmers = Number(pullSwimmers[1]);
       fetch("/api/swims/"+pullSwimmers)
