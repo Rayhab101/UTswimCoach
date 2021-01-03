@@ -236,7 +236,7 @@
     }
 
     function pullPerson(id,race, body,row,cell){
-        console.log(cell);
+        console.log(cell.id);
         fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
                 return response.json();
