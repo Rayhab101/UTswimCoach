@@ -236,12 +236,12 @@
     }
 
     function pullPerson(id,race){
-        console.log(id+"-"+race);
+        //console.log(id+"-"+race);
         fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
                 return response.json();
             }).then(function (records) {
-                console.log(records)
+                //console.log(records)
                 if(records[0].min === null){
                     var text = "";
                     console.log("1:"+text);
