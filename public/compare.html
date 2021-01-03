@@ -240,15 +240,15 @@
             .then(function (response) {
                 return response.json();
             }).then(function (records) {
-                console.log(records)
+                //console.log(records)
                 if(records[0].min === null){
                     var text = "";
-                    console.log(text);
+                    console.log("1:"+text);
                     return text;
                 }
                 else{
                     text = records[0].min;
-                    console.log(text);
+                    console.log("2:"+text);
                     return text;
                 }
             }).catch(function (error) {
@@ -270,10 +270,9 @@
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var row = document.createElement('tr');
-                    var column = document.createElement('td');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
-                    var text = document.createTextNode(column.innerHTML = pullPerson(id, j));
+                    var text = document.createTextNode(cell.innerHTML = pullPerson(id, j));
                     console.log("--"+pullPerson(id, j));
                     cell.appendChild(text);
                     row.appendChild(cell);
