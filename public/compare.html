@@ -182,10 +182,8 @@
     }
 
     function pullPerson(id,race, body,row,cell){
-        console.log(cell.id);
         fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
-                console.log(response.status)
                 if(response.status == 200){
                 return response.json();
             }
@@ -281,7 +279,7 @@
                 return response.json();
             })
             .then(function (myJson) {
-                console.log(myJson[0].swimmer_id)
+                //console.log(myJson[0].swimmer_id)
                 recordPull(myJson[0].swimmer_id, myJson[0].gender)
             })
             .catch(function (error) {
@@ -310,7 +308,7 @@
         var name = checkOption.value;
         var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
         if (name != "Select Swimmer") {
-            console.log(name)
+            //console.log(name)
             tableFill(name);
         }
     }
