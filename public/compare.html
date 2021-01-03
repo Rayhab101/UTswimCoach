@@ -325,7 +325,6 @@
                 return response.json();
             })
             .then(function (state) {
-                console.log(state[0].sr_time)
                 document.getElementById(cell.id).innerHTML = state[0].sr_time;
             })
             .catch(function (error) {
