@@ -226,7 +226,7 @@
         pullSwimmers = Number(pullSwimmers[1]);
         console.log(pullSwimmers)
       //fetch("/api/swimmers")
-      fetch("http://localhost:8080/api/swims/"+pullSwimmers)
+      fetch("/api/swims/"+pullSwimmers)
         .then(function (response) {
           return response.json();
         })
