@@ -142,36 +142,42 @@
         function pullSchool() {
             for(var i =1; i<23;i++){
                 var body = document.getElementById("swimmer_data");
-                var row = document.createElement('tr')
+                var row = document.createElement('tr');
                 var column = document.createElement("td");
-                var text = document.createTextNode(column.innerHTML = "")
+                var text = document.createTextNode(column.innerHTML = "");
                 var cell = row.insertCell();
-                //cell.setAttribute('id','rg'+i)
+                cell.setAttribute('id','rg'+i);
                 //text = document.createTextNode(column.innerHTML = relay[0].swimmers);
                 cell.appendChild(text);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
-
+                cell.setAttribute('id','rgt'+i);
                 //text = document.createTextNode(column.innerHTML = relay[0].time);
                 cell.appendChild(text);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
+                cell.setAttribute('id','rgy'+i);
                 //text = document.createTextNode(column.innerHTML = relay[0].year);
                 cell.appendChild(text);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
+                cell.setAttribute('id','r'+i);
                 //text = document.createTextNode(column.innerHTML = race[0].title);
                 cell.appendChild(text);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
+                cell.setAttribute('id','rb'+i);
                 //text = document.createTextNode(column.innerHTML = race[0].title);
                 cell.appendChild(text);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
+                cell.setAttribute('id','rbt'+i);
                 //text = document.createTextNode(column.innerHTML = race[0].title);
                 cell.appendChild(text);
+                
                 var column = document.createElement("td");
                 var cell = row.insertCell();
+                cell.setAttribute('id','rby'+i);
                 //text = document.createTextNode(column.innerHTML = race[0].title);
                 cell.appendChild(text);
                 body.appendChild(row);
