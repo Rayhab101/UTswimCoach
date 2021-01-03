@@ -306,7 +306,7 @@
         }
     }
 
-    function statePull(race){
+    function statePull(race,cell){
         fetch('/api/races/'+race)
         .then(function (response) {
                 return response.json();
