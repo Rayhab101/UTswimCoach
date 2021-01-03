@@ -217,7 +217,8 @@
                 var cell = row.insertCell();
                 console.log(races[i]);
                 var text = document.createTextNode(column.innerHTML = races[i]);
-                cell.appendChild(text)
+                cell.appendChild(text);
+                row.appendChild(cell);
                 body.appendChild(row);
                 //yearPull(i, cell, school);
             }
