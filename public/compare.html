@@ -135,7 +135,7 @@
     <footer id="footer"></footer>
 </body>
 <script>
-    
+
     function buildPage() {
         var school = location.search.substring(1);
         school = school.split("=");
@@ -181,13 +181,13 @@
         }
     }
 
-    function recordPull(id,gender) {
+    function recordPull(id, gender) {
         var relays = [1, 8, 11, 12, 19, 22];
-        if($('#individual').children().length  > 1){
-        for(var d = 9; d>1;d--){
-            document.getElementById("individual").deleteRow(d);
+        if ($('#individual').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("individual").deleteRow(d);
+            }
         }
-    }
         var body = document.getElementById('individual');
         if (gender == "M") {
             for (var j = 12; j < 22; j++) {
@@ -198,10 +198,10 @@
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
-                
+
             }
         }
-        else{
+        else {
             for (var j = 1; j < 12; j++) {
                 if (!relays.includes(j)) {
                     var row = document.createElement('tr');
@@ -210,7 +210,7 @@
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
-                
+
             }
         }
 
@@ -235,61 +235,46 @@
         // }
     }
 
-    function otherRecordPull(id,gender) {
+    function otherRecordPull(id, gender) {
         var relays = [1, 8, 11, 12, 19, 22];
-        
-            console.log($('#compareOther').children().length)
-        if($('#compareOther').children().length  > 1){
-        for(var d = 9; d>1;d--){
-            document.getElementById("compareOther").deleteRow(d);
+
+        console.log($('#compareOther').children().length)
+        if ($('#compareOther').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("compareOther").deleteRow(d);
+            }
         }
-    }
         var body = document.getElementById('compareOther');
         if (gender == "M") {
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var row = document.createElement('tr');
-                    //var column = document.createElement('td');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
-                    // if(records[0].min === null){
-                    //     var text = "";
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // else{
-                    //     text = records[0].min;
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // console.log(displayText);
-                    // cell.appendChild(displayText);
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
-                
+            }
+            for (var i = 12; i < 22; j++) {
+                if (!relays.includes(i)) {
+                    document.getElementById("o"+i).innerText = "HI"
+                    // var row = document.createElement('tr');
+                    // var cell = row.insertCell();
+                    // cell.setAttribute('id', "o" + j)
+                    // row.appendChild(cell);
+                    // body.appendChild(row);
+                }
             }
         }
         else {
             for (var j = 1; j < 12; j++) {
                 if (!relays.includes(j)) {
                     var row = document.createElement('tr');
-                    //var column = document.createElement('td');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
-                    // if(records[0].min === null){
-                    //     var text = "";
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // else{
-                    //     text = records[0].min;
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // console.log(displayText);
-                    // cell.appendChild(displayText);
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
-                
-
             }
         }
         // for (var i = 1; i < 22; i++) {
@@ -336,7 +321,7 @@
             })
             .then(function (myJson) {
                 console.log(myJson[0].swimmer_id)
-                recordPull(myJson[0].swimmer_id,myJson[0].gender)
+                recordPull(myJson[0].swimmer_id, myJson[0].gender)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -351,7 +336,7 @@
             })
             .then(function (myJson) {
                 console.log(myJson)
-                otherRecordPull(myJson[0].swimmer_id,myJson[0].gender)
+                otherRecordPull(myJson[0].swimmer_id, myJson[0].gender)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
