@@ -274,28 +274,66 @@
     }
 
     function schoolRecord(school, gender) {
-        console.log(school,gender)
+        console.log(school, gender)
+        var relays = [1, 8, 11, 12, 19, 22];
+        var body = document.getElementById('schoolRecord');
+        if (gender == "M") {
+            for (var i = 12; i < 22; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "sr" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                }
+            }
+        }
+        else {
+            for (var i = 1; i < 12; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "sr" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                }
+            }
+        }
+    }
+
+    function statePull(race){
+        fetch('/api/races/'+race)
+        .then(function (response) {
+                return response.json();
+            })
+            .then(function (state) {
+                console.log(state)
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
     }
 
     function stateRecord(gender) {
         console.log(gender)
         var relays = [1, 8, 11, 12, 19, 22];
         var body = document.getElementById('stateRecord');
-        if(gender=="M"){
-            for(var i = 12; i<22;i++){
-                if(!relays.includes(i)){
-                var row = document.createElement('tr');
+        if (gender == "M") {
+            for (var i = 12; i < 22; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "st" + i)
                     row.appendChild(cell);
                     body.appendChild(row);
-            }
+                    statePull(i)
+                }
             }
         }
-        else{
-            for(var i = 1; i<12;i++){
-                if(!relays.includes(i)){
-                var row = document.createElement('tr');
+        else {
+            for (var i = 1; i < 12; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "st" + i)
                     row.appendChild(cell);

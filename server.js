@@ -134,7 +134,9 @@ app.get('/api/top100/:id', userctrl.getTop100)
 app.get('/api/stateQualified/:id', userctrl.getStateQualified)
 // Gets relay times
 app.get('/api/relayTimes/:id', userctrl.getRelayTimes)
+//Get Individual Name
 app.get('/api/swimmerName/:id', userctrl.getSwimmerName)
+//Get Individual Times
 app.get('/api/individualRecords/:id', userctrl.getIndividualRecord)
 
 app.set('port', process.env.PORT || 8080)
