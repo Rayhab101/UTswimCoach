@@ -209,13 +209,13 @@
                 body.appendChild(row);
                 //yearPull(i, cell, school);
             }
-            var races = ["200 Medley Relay","200 Freestyle","200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
-            for (var i = 1; i <= 12; i++) {
+            var races = ["","200 Medley Relay","200 Freestyle","200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
+            for (var i = 1; i < 12; i++) {
                 var body = document.getElementById("races");
                 var row = document.createElement('tr');
                 var column = document.createElement("td");
                 var cell = row.insertCell();
-                var text = document.createTextNode(column.innerHTML = races[i-1]);
+                var text = document.createTextNode(column.innerHTML = races[i]);
                 cell.appendChild(text)
                 body.appendChild(row);
                 //yearPull(i, cell, school);
