@@ -240,7 +240,9 @@
         fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
                 console.log(response.status)
-                //return response.json();
+                if(response.status == 200){
+                return response.json();
+            }
             }).then(function (records) {
                 //console.log(records)
                 
