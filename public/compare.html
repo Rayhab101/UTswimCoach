@@ -279,23 +279,28 @@
 
     function stateRecord(gender) {
         console.log(gender)
-        var body = document.getElementById('schoolRecord');
+        var relays = [1, 8, 11, 12, 19, 22];
+        var body = document.getElementById('stateRecord');
         if(gender=="M"){
             for(var i = 12; i<22;i++){
+                if(!relays.includes(i)){
                 var row = document.createElement('tr');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "st" + i)
                     row.appendChild(cell);
                     body.appendChild(row);
             }
+            }
         }
         else{
             for(var i = 1; i<12;i++){
+                if(!relays.includes(i)){
                 var row = document.createElement('tr');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "st" + i)
                     row.appendChild(cell);
                     body.appendChild(row);
+                }
             }
         }
     }
