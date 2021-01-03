@@ -235,6 +235,34 @@
         // }
     }
 
+    function pullPerson(id,race){
+        fetch('/api/individualRecords/' + id + "&" + race)
+            .then(function (response) {
+                return response.json();
+            }).then(function (records) {
+                console.log(records)
+                // var body = document.getElementById('compareOther');
+                // var row = document.createElement('tr');
+                // var column = document.createElement('td');
+                // var cell = row.insertCell();
+                // if(records[0].min === null){
+                //     var text = "";
+                //     var displayText = document.createTextNode(text);
+                // }
+                // else{
+                //     text = records[0].min;
+                //     var displayText = document.createTextNode(text);
+                // }
+                // console.log(displayText);
+                // //var displayText = document.createTextNode(text);
+                // cell.appendChild(displayText);
+                // row.appendChild(cell);
+                // body.appendChild(row);
+            }).catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
     function otherRecordPull(id, gender) {
         var relays = [1, 8, 11, 12, 19, 22];
 
@@ -251,6 +279,7 @@
                     var row = document.createElement('tr');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
+                    cell.appendChild(pullPerson(id, j))
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
