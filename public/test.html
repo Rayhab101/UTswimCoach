@@ -139,9 +139,9 @@
                 });
         }
 
-        function recordPull(race, cell, school) {
+        function recordPull(race, cell, school,column) {
             var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.index)
+            console.log(column.cellIndex)
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
                     .then(function (response) {
@@ -173,7 +173,7 @@
             var school = location.search.substring(1);
             school = school.split("=");
             school = Number(school[1]);
-            for (var i = 1; i < 23; i++) {
+            for (var i = 1; i < 12; i++) {
                 var body = document.getElementById("swimmer_data");
                 var row = document.createElement('tr');
                 var column = document.createElement("td");
@@ -181,7 +181,7 @@
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rg' + i);
                 cell.appendChild(text);
-                recordPull(i, cell, school);
+                recordPull(i, cell, school,column);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rgt' + i);
@@ -201,7 +201,7 @@
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rb' + i);
                 cell.appendChild(text);
-                recordPull(i, cell, school);
+                recordPull(i, cell, school,column);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rbt' + i);
