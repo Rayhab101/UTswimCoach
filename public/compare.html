@@ -279,6 +279,24 @@
 
     function stateRecord(gender) {
         console.log(gender)
+        if(gender=="M"){
+            for(var i = 12; i<22;i++){
+                var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "st" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+            }
+        }
+        else{
+            for(var i = 1; i<12;i++){
+                var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "st" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+            }
+        }
     }
 
     function tableFill(name) {
