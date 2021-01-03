@@ -139,6 +139,18 @@
                 });
         }
 
+        function recordPull(race,cell){
+            fetch('/api/schoolRecord/'+race)
+            .then( function(response){
+                return response.json();
+            })
+            .then(function (record) {
+                console.log(record)
+            }).catch(function (error) {
+                console.log("Error: " + error);
+            });
+        }
+
         function pullSchool() {
             for(var i =1; i<23;i++){
                 var body = document.getElementById("swimmer_data");
@@ -181,6 +193,7 @@
                 //text = document.createTextNode(column.innerHTML = race[0].title);
                 cell.appendChild(text);
                 body.appendChild(row);
+                recordPull(i,cell);
             }
             var school = location.search.substring(1);
             school = school.split("=");
