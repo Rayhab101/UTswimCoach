@@ -181,7 +181,7 @@
                         })
                         .then(function (swimmer){
                             console.log(swimmer)
-                            //document.getElementById(cell.id).innerHTML = record[0].swimmer_id;
+                            document.getElementById(cell.id).innerHTML = swimmer[0].name;
                         })
                     }).catch(function (error) {
                         console.log("Error: " + error);
