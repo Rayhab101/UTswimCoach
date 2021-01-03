@@ -174,8 +174,14 @@
                         return response.json();
                     })
                     .then(function (record) {
-                        //console.log(record)
-                        document.getElementById(cell.id).innerHTML = record[0].swimmer_id;
+                        fetch('/api/swimmerName/'+record[0].swimmer_id)
+                        .then(function (response){
+                            return response.json();
+                        })
+                        .then(function (swimmer){
+                            console.log(swimmer)
+                            //document.getElementById(cell.id).innerHTML = record[0].swimmer_id;
+                        })
                     }).catch(function (error) {
                         console.log("Error: " + error);
                     });
