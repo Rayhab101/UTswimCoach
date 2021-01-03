@@ -140,20 +140,55 @@
         }
 
         function pullSchool() {
+            var body = document.getElementById("swimmer_data");
+            for(var i =1; i<23;i++){
+                var text = ""
+                var row = document.createElement('tr')
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                //cell.setAttribute('id','rg'+i)
+                //text = document.createTextNode(column.innerHTML = relay[0].swimmers);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+
+                //text = document.createTextNode(column.innerHTML = relay[0].time);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                //text = document.createTextNode(column.innerHTML = relay[0].year);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                //text = document.createTextNode(column.innerHTML = race[0].title);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                //text = document.createTextNode(column.innerHTML = race[0].title);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                //text = document.createTextNode(column.innerHTML = race[0].title);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                //text = document.createTextNode(column.innerHTML = race[0].title);
+                cell.appendChild(text);
+                body.appendChild(row);
+            }
             var school = location.search.substring(1);
             school = school.split("=");
-            
             school = Number(school[1]);
-            var relays = [1, 8, 11, 12, 19, 22]
-            for (var j = 1; j <= 22; j++) {
-                //console.log(j);
-                if (relays.includes(j)) {
-                    pullRelay(j, school);
-                }
-                else {
-                    pullRecord(j, school);
-                }
-            }
+            // var relays = [1, 8, 11, 12, 19, 22]
+            // for (var j = 1; j <= 22; j++) {
+            //     //console.log(j);
+            //     if (relays.includes(j)) {
+            //         pullRelay(j, school);
+            //     }
+            //     else {
+            //         pullRecord(j, school);
+            //     }
+            // }
         }
 
     </script>
