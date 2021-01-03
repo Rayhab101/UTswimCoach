@@ -274,7 +274,7 @@
                     var row = document.createElement('tr');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
-                    console.log(pullPerson(id, j).then(response => console.log(response)));
+                    pullPerson(id, j).then(response => console.log(response));
                     //cell.innerHTML = pullPerson(id, j);
                     row.appendChild(cell);
                     body.appendChild(row);
