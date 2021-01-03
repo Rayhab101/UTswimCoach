@@ -244,12 +244,12 @@
                 if(records[0].min === null){
                     var text = "";
                     console.log(text);
-                    return document.createTextNode(text);
+                    return text;
                 }
                 else{
                     text = records[0].min;
                     console.log(text);
-                    return document.createTextNode(text);
+                    return text;
                 }
             }).catch(function (error) {
                 console.log("Error: " + error);
