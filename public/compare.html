@@ -244,16 +244,17 @@
                 if(records[0].min === null){
                     var text = "";
                     console.log("1:"+text);
-                    return text;
+                    //return text;
                 }
                 else{
                     text = records[0].min;
                     console.log("2:"+text);
-                    return text;
+                    //return text;
                 }
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
+            return text;
     }
 
     function otherRecordPull(id, gender) {
