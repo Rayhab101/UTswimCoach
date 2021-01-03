@@ -157,6 +157,7 @@
         function recordPull(race, cell, school) {
             var relays = [1, 8, 11, 12, 19, 22]
             console.log(cell.id[1])
+            race = cell.id[1] == "g" ? race : race+11;
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
                     .then(function (response) {
@@ -182,7 +183,7 @@
                         console.log("Error: " + error);
                     });
             }
-        }
+    }
 
         function pullSchool() {
             var school = location.search.substring(1);
