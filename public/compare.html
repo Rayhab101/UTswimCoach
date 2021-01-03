@@ -240,7 +240,6 @@
     function otherRecordPull(id, gender) {
         var relays = [1, 8, 11, 12, 19, 22];
 
-        //console.log($('#compareOther').children().length)
         if ($('#compareOther').children().length > 1) {
             for (var d = 9; d > 1; d--) {
                 document.getElementById("compareOther").deleteRow(d);
@@ -279,8 +278,7 @@
                 return response.json();
             })
             .then(function (record) {
-                console.log(record)
-                //document.getElementById(cell.id).innerHTML = state[0].sr_time;
+                document.getElementById(cell.id).innerHTML = record[0].time;
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -293,7 +291,6 @@
                 document.getElementById("schoolRecord").deleteRow(d);
             }
         }
-        console.log(school, gender)
         var relays = [1, 8, 11, 12, 19, 22];
         var body = document.getElementById('schoolRecord');
         if (gender == "M") {
@@ -342,7 +339,6 @@
                 document.getElementById("stateRecord").deleteRow(d);
             }
         }
-        console.log(gender)
         var relays = [1, 8, 11, 12, 19, 22];
         var body = document.getElementById('stateRecord');
         if (gender == "M") {
