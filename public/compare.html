@@ -193,20 +193,8 @@
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var row = document.createElement('tr');
-                    //var column = document.createElement('td');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "u" + j)
-                    document.getElementById("u"+j).innerHTML = "HI"
-                    // if(records[0].min === null){
-                    //     var text = "";
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // else{
-                    //     text = records[0].min;
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // console.log(displayText);
-                    // cell.appendChild(displayText);
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
@@ -217,19 +205,8 @@
             for (var j = 1; j < 12; j++) {
                 if (!relays.includes(j)) {
                     var row = document.createElement('tr');
-                    //var column = document.createElement('td');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "u" + j)
-                    // if(records[0].min === null){
-                    //     var text = "";
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // else{
-                    //     text = records[0].min;
-                    //     var displayText = document.createTextNode(text);
-                    // }
-                    // console.log(displayText);
-                    // cell.appendChild(displayText);
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
