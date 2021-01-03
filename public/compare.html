@@ -244,23 +244,15 @@
                 return response.json();
             }
             }).then(function (records) {
-                //console.log(records)
-                
                 if(records[0].min === null){
                     var text = "";
-                    console.log("1:"+text);
-                    //return text;
                 }
                 else{
                     text = records[0].min;
-                    console.log("2:"+text);
-                    //return text;
                 }
-                //document.createTextNode(text)
                 cell.appendChild(document.createTextNode(text))
                 row.appendChild(cell);
                 body.appendChild(row);
-                //return text;
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
