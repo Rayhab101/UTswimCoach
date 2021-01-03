@@ -237,10 +237,10 @@
 
     function pullPerson(id,race, body,row,cell){
         console.log(cell.id);
-        await fetch('/api/individualRecords/' + id + "&" + race)
+        fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
                 //console.log(response.json())
-                return response.json();
+                return await response.json();
             }).then(function (records) {
                 //console.log(records)
                 
