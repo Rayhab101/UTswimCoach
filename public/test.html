@@ -191,26 +191,6 @@
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rgy' + i);
                 cell.appendChild(text);
-                //yearPull(i, cell, school);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'r' + i);
-                cell.appendChild(text);
-                //racePull(i, cell, school);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rb' + i);
-                cell.appendChild(text);
-                recordPull(i, cell, school,column);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rbt' + i);
-                cell.appendChild(text);
-                //timePull(i, cell, school);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rby' + i);
-                cell.appendChild(text);
                 body.appendChild(row);
                 //yearPull(i, cell, school);
             }
@@ -234,12 +214,20 @@
     <header id="header"></header>
     <main class="swim_info">
         <div class="container1" id="container1">
-            <table class="swimmer_data" id="swimmer_data">
+            <table class="swimmer_data" id="girlRecords">
                 <tr>
                     <td>RECORD HOLDER(S): WOMEN</td>
                     <td>TIME</td>
                     <td>YEAR</td>
+                </tr>
+            </table>
+            <table class="swimmer_data" id="races">
+                <tr>
                     <td>RACE</td>
+                </tr>
+            </table>
+            <table class="swimmer_data" id="boyRecords">
+                <tr>
                     <td>RECORD HOLDER(S): MEN</td>
                     <td>TIME</td>
                     <td>YEAR</td>
