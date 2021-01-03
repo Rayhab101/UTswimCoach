@@ -156,7 +156,7 @@
 
         function recordPull(race, cell, school) {
             var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.id)
+            console.log(cell.id[1])
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
                     .then(function (response) {
