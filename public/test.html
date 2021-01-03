@@ -148,6 +148,7 @@
             })
             .then(function (record) {
                 console.log(record)
+                document.getElementById(cell.id).innerHTML = record[0].swimmer_id;
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
@@ -159,6 +160,7 @@
                 })
                 .then(function (relay) {
                     console.log(relay)
+                    document.getElementById(cell.id).innerHTML = relay[0].swimmers;
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
