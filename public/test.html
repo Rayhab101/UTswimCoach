@@ -215,6 +215,7 @@
                 var row = document.createElement('tr');
                 var column = document.createElement("td");
                 var cell = row.insertCell();
+                console.log(races[i]);
                 var text = document.createTextNode(column.innerHTML = races[i]);
                 cell.appendChild(text)
                 body.appendChild(row);
