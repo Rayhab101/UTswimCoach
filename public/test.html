@@ -70,100 +70,6 @@
         }
     </style>
     <script>
-        // function pullGirlRecord(i, school) {
-        //     var body = document.getElementById("swimmer_data");
-        //     fetch("/api/races/" + i)
-        //         .then(function (response) {
-        //             return response.json();
-        //         })
-        //         .then(function (race) {
-        //             var row = document.createElement("tr");
-        //             var column = document.createElement("td");
-        //             var cell = row.insertCell();
-        //             text = document.createTextNode(column.innerHTML = race[0].title);
-        //             cell.appendChild(text);
-        //             fetch("/api/schoolRecord/" + i + "&" + school)
-        //                 .then(function (responseSchool) {
-        //                     return responseSchool.json();
-        //                 })
-        //                 .then(function (record) {
-        //                     fetch("/api/swimmers/" + record[0].swimmer_id)
-        //                         .then(function (responseRelay) {
-        //                             return responseRelay.json();
-        //                         })
-        //                         .then(function (swimmer) {
-        //                             var column = document.createElement("td");
-        //                             var cell = row.insertCell();
-        //                             text = document.createTextNode(column.innerHTML = swimmer[0].name);
-        //                             cell.appendChild(text);
-        //                             var column = document.createElement("td");
-        //                             var cell = row.insertCell();
-        //                             text = document.createTextNode(column.innerHTML = record[0].time);
-        //                             cell.appendChild(text);
-        //                             var column = document.createElement("td");
-        //                             var cell = row.insertCell();
-        //                             text = document.createTextNode(column.innerHTML = record[0].year);
-        //                             cell.appendChild(text);
-        //                             body.appendChild(row);
-        //                         })
-        //                         .catch(function (error) {
-        //                             console.log("Error: " + error);
-        //                         });
-        //                 })
-        //                 .catch(function (error) {
-        //                     console.log("Error: " + error);
-        //                 });
-        //         })
-        //         .catch(function (error) {
-        //             console.log("Error: " + error);
-        //         });
-        // }
-
-        // function pullRelay(i, school) {
-        //     //console.log(i, school);
-        //     fetch("/api/relayRecord/" + i + "&" + school)
-        //         .then(function (responseRelay) {
-        //             return responseRelay.json();
-        //         })
-        //         .then(function (relay) {
-        //             var body = document.getElementById("swimmer_data");
-        //             fetch("/api/races/" + relay[0].race)
-        //                 .then(function (responseRace) {
-        //                     return responseRace.json();
-        //                 })
-        //                 .then(function (race) {
-        //                     console.log(race);
-        //                     if (race[0].race_id < 12) {
-        //                         console.log("HI")
-        //                     }
-        //                     var row = document.createElement("tr");
-        //                     var column = document.createElement("td");
-        //                     var cell = row.insertCell();
-        //                     text = document.createTextNode(column.innerHTML = relay[0].swimmers);
-        //                     cell.appendChild(text);
-        //                     var column = document.createElement("td");
-        //                     var cell = row.insertCell();
-        //                     text = document.createTextNode(column.innerHTML = relay[0].time);
-        //                     cell.appendChild(text);
-        //                     var column = document.createElement("td");
-        //                     var cell = row.insertCell();
-        //                     text = document.createTextNode(column.innerHTML = relay[0].year);
-        //                     cell.appendChild(text);
-        //                     var column = document.createElement("td");
-        //                     var cell = row.insertCell();
-        //                     text = document.createTextNode(column.innerHTML = race[0].title);
-        //                     cell.appendChild(text);
-        //                     body.appendChild(row);
-        //                 })
-        //                 .catch(function (error) {
-        //                     console.log("Error: " + error);
-        //                 });
-        //         })
-        //         .catch(function (error) {
-        //             console.log("Error: " + error);
-        //         });
-        // }
-
         function recordPull(race, cell, school) {
             var relays = [1, 8, 11, 12, 19, 22]
             console.log(cell.id[1])
@@ -334,7 +240,6 @@
             //     }
             // }
         }
-
     </script>
 </head>
 
