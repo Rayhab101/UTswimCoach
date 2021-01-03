@@ -114,17 +114,17 @@
                     <td><select id="other" onchange="otherNameFill()"></select></td>
                 </tr>
             </table>
-            <table class="t3">
+            <table class="t3" id="schoolRecord">
                 <tr>
-                    <th>Compare To School Record:</th>
+                    <th>School Record:</th>
                 </tr>
                 <tr>
                     <td>School Record</td>
                 </tr>
             </table>
-            <table class="t4">
+            <table class="t4" id="stateRecord">
                 <tr>
-                    <th>Compare To State Record</th>
+                    <th>State Record</th>
                 </tr>
                 <tr>
                     <td>State Record</td>
@@ -181,24 +181,24 @@
         }
     }
 
-    function pullPerson(id,race, body,row,cell){
+    function pullPerson(id, race, body, row, cell) {
         fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
-                if(response.status == 200){
-                return response.json();
-            }
+                if (response.status == 200) {
+                    return response.json();
+                }
             }).then(function (records) {
-                if(records[0].min === null){
+                if (records[0].min === null) {
                     var text = "";
                 }
-                else{
+                else {
                     text = records[0].min;
                 }
-                document.getElementById(cell.id).innerHTML=text;
+                document.getElementById(cell.id).innerHTML = text;
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
-            
+
     }
 
     function recordPull(id, gender) {
@@ -273,6 +273,14 @@
         }
     }
 
+    function schoolRecord(school, gender) {
+        console.log(school,gender)
+    }
+
+    function stateRecord(gender) {
+        console.log(gender)
+    }
+
     function tableFill(name) {
         fetch("/api/swimmerName/" + name)
             .then(function (response) {
@@ -281,6 +289,8 @@
             .then(function (myJson) {
                 //console.log(myJson[0].swimmer_id)
                 recordPull(myJson[0].swimmer_id, myJson[0].gender)
+                schoolRecord(myJson[0].school, myJson[0].gender)
+                stateRecord(myJson[0].gender)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -322,6 +332,7 @@
             otherTableFill(name);
         }
     }
+
 
 
 </script>
