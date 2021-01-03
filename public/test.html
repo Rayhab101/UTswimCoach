@@ -174,7 +174,8 @@
                         return response.json();
                     })
                     .then(function (record) {
-                        fetch('/api/swimmerName/'+record[0].swimmer_id)
+
+                        fetch('/api/swim/'+record[0].swimmer_id)
                         .then(function (response){
                             return response.json();
                         })
