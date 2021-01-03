@@ -274,7 +274,7 @@
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
                     var text = document.createTextNode(column.innerHTML = pullPerson(id, j));
-                    console.log("--"+text);
+                    console.log("--"+pullPerson(id, j));
                     cell.appendChild(text);
                     row.appendChild(cell);
                     body.appendChild(row);
