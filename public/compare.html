@@ -238,10 +238,10 @@
     function pullPerson(id,race){
         fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
-                console.log(response.json())
-                //return response.json();
+                console.log(response.json());
+                return response.json();
             }).then(function (records) {
-                //console.log(records)
+                console.log(records)
                 if(records[0].min === null){
                     var text = "";
                     console.log("1:"+text);
