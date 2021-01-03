@@ -139,8 +139,8 @@
                 });
         }
 
-        function recordPull(race,cell){
-            fetch('/api/schoolRecord/'+race)
+        function recordPull(race,cell,school){
+            fetch('/api/schoolRecord/'+race+"&"+school)
             .then( function(response){
                 return response.json();
             })
@@ -152,6 +152,9 @@
         }
 
         function pullSchool() {
+            var school = location.search.substring(1);
+            school = school.split("=");
+            school = Number(school[1]);
             for(var i =1; i<23;i++){
                 var body = document.getElementById("swimmer_data");
                 var row = document.createElement('tr');
@@ -193,11 +196,9 @@
                 //text = document.createTextNode(column.innerHTML = race[0].title);
                 cell.appendChild(text);
                 body.appendChild(row);
-                recordPull(i,cell);
+                recordPull(i,cell,school);
             }
-            var school = location.search.substring(1);
-            school = school.split("=");
-            school = Number(school[1]);
+
             // var relays = [1, 8, 11, 12, 19, 22]
             // for (var j = 1; j <= 22; j++) {
             //     //console.log(j);
