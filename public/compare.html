@@ -270,9 +270,11 @@
             for (var j = 12; j < 22; j++) {
                 if (!relays.includes(j)) {
                     var row = document.createElement('tr');
+                    var column = document.createElement('td');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
-                    cell.appendChild(pullPerson(id, j))
+                    var text = document.createTextNode(column.innerHTML = pullPerson(id, j));
+                    cell.appendChild(text);
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
