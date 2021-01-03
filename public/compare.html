@@ -241,23 +241,16 @@
                 return response.json();
             }).then(function (records) {
                 console.log(records)
-                // var body = document.getElementById('compareOther');
-                // var row = document.createElement('tr');
-                // var column = document.createElement('td');
-                // var cell = row.insertCell();
-                // if(records[0].min === null){
-                //     var text = "";
-                //     var displayText = document.createTextNode(text);
-                // }
-                // else{
-                //     text = records[0].min;
-                //     var displayText = document.createTextNode(text);
-                // }
-                // console.log(displayText);
-                // //var displayText = document.createTextNode(text);
-                // cell.appendChild(displayText);
-                // row.appendChild(cell);
-                // body.appendChild(row);
+                if(records[0].min === null){
+                    var text = "";
+                    //return document.createTextNode(text);
+                    return text;
+                }
+                else{
+                    text = records[0].min;
+                    //var displayText = document.createTextNode(text);
+                    return text;
+                }
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
