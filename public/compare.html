@@ -273,6 +273,20 @@
         }
     }
 
+    function schoolPull(school, cell, race){
+        fetch('/api/schoolRecord/'+race+"&"+school)
+        .then(function (response) {
+                return response.json();
+            })
+            .then(function (record) {
+                console.log(record)
+                //document.getElementById(cell.id).innerHTML = state[0].sr_time;
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
     function schoolRecord(school, gender) {
         if ($('#schoolRecord').children().length > 1) {
             for (var d = 9; d > 1; d--) {
@@ -290,6 +304,7 @@
                     cell.setAttribute('id', "sr" + i)
                     row.appendChild(cell);
                     body.appendChild(row);
+                    schoolPull(school, cell, i)
                 }
             }
         }
@@ -301,6 +316,7 @@
                     cell.setAttribute('id', "sr" + i)
                     row.appendChild(cell);
                     body.appendChild(row);
+                    schoolPull(school, cell, i)
                 }
             }
         }
