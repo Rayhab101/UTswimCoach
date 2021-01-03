@@ -274,6 +274,11 @@
     }
 
     function schoolRecord(school, gender) {
+        if ($('#schoolRecord').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("schoolRecord").deleteRow(d);
+            }
+        }
         console.log(school, gender)
         var relays = [1, 8, 11, 12, 19, 22];
         var body = document.getElementById('schoolRecord');
@@ -307,7 +312,8 @@
                 return response.json();
             })
             .then(function (state) {
-                console.log(state)
+                console.log(state[0].sr_time)
+                document.getElementById(cell.id).innerHTML = state[0].sr_time;
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -315,6 +321,11 @@
     }
 
     function stateRecord(gender) {
+        if ($('#stateRecord').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("stateRecord").deleteRow(d);
+            }
+        }
         console.log(gender)
         var relays = [1, 8, 11, 12, 19, 22];
         var body = document.getElementById('stateRecord');
@@ -326,7 +337,7 @@
                     cell.setAttribute('id', "st" + i)
                     row.appendChild(cell);
                     body.appendChild(row);
-                    statePull(i)
+                    statePull(i,cell);
                 }
             }
         }
@@ -338,6 +349,7 @@
                     cell.setAttribute('id', "st" + i)
                     row.appendChild(cell);
                     body.appendChild(row);
+                    statePull(i,cell);
                 }
             }
         }
