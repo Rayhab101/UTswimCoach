@@ -251,10 +251,11 @@
                     console.log("2:"+text);
                     //return text;
                 }
+                return toString(text);
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
-            return text;
+            
     }
 
     function otherRecordPull(id, gender) {
