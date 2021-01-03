@@ -243,13 +243,11 @@
                 console.log(records)
                 if(records[0].min === null){
                     var text = "";
-                    //return document.createTextNode(text);
-                    return text;
+                    return document.createTextNode(text);
                 }
                 else{
                     text = records[0].min;
-                    //var displayText = document.createTextNode(text);
-                    return text;
+                    return document.createTextNode(text);
                 }
             }).catch(function (error) {
                 console.log("Error: " + error);
