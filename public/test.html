@@ -154,8 +154,9 @@
         //         });
         // }
 
-        function girlRecordPull(race, cell, school,column) {
+        function recordPull(race, cell, school) {
             var relays = [1, 8, 11, 12, 19, 22]
+            console.log(cell.id)
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
                     .then(function (response) {
@@ -195,7 +196,7 @@
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rg' + i);
                 //cell.appendChild(text);
-                girlRecordPull(i, cell, school,column);
+                recordPull(i, cell, school);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rgt' + i);
@@ -229,7 +230,7 @@
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rb' + i);
                 cell.appendChild(text);
-                girlRecordPull(i, cell, school,column);
+                recordPull(i, cell, school);
                 var column = document.createElement("td");
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rbt' + i);
