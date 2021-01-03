@@ -156,7 +156,7 @@
         col.setAttribute("class", "column");
 
         var a = document.createElement("a");
-        console.log(dataArray[i].swimmerid)
+        //console.log(dataArray[i].swimmerid)
         a.setAttribute("href", "./swimmers.html?swimmerid="+dataArray[i].swimmerid);
         a.setAttribute("style", "text-decoration: none; color: black;");
         var carred = document.createElement("div");
@@ -215,7 +215,7 @@
       var pullSwimmers = location.search.substring(1);
         //console.log(location.search.substring());
         pullSwimmers = pullSwimmers.split("=");
-        console.log(pullSwimmers[0]=='school_id')
+        //console.log(pullSwimmers[0]=='school_id')
         if(pullSwimmers[0]=='coachid'){
           document.getElementById('addButton').style.display = 'block';
         }
@@ -224,7 +224,7 @@
         }
         
         pullSwimmers = Number(pullSwimmers[1]);
-        console.log(pullSwimmers)
+        //console.log(pullSwimmers)
       //fetch("/api/swimmers")
       fetch("/api/swims/"+pullSwimmers)
         .then(function (response) {
