@@ -140,11 +140,11 @@
         }
 
         function pullSchool() {
-            var body = document.getElementById("swimmer_data");
             for(var i =1; i<23;i++){
-                var text = ""
+                var body = document.getElementById("swimmer_data");
                 var row = document.createElement('tr')
                 var column = document.createElement("td");
+                var text = document.createTextNode(column.innerHTML = "")
                 var cell = row.insertCell();
                 //cell.setAttribute('id','rg'+i)
                 //text = document.createTextNode(column.innerHTML = relay[0].swimmers);
