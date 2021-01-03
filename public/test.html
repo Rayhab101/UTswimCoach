@@ -192,7 +192,7 @@
                 var body = document.getElementById("girlRecords");
                 var row = document.createElement('tr');
                 var column = document.createElement("td");
-                var text = document.createTextNode(column.innerHTML = "A");
+                //var text = document.createTextNode(column.innerHTML = "A");
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rg' + i);
                 cell.appendChild(text);
@@ -205,6 +205,37 @@
                 var column = document.createElement("td");
                 var cell = row.insertCell();
                 cell.setAttribute('id', 'rgy' + i);
+                cell.appendChild(text);
+                body.appendChild(row);
+                //yearPull(i, cell, school);
+            }
+            var races = ["200 Medley Relay","200 Freestyle","200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
+            for (var i = 1; i < 12; i++) {
+                var body = document.getElementById("races");
+                var row = document.createElement('tr');
+                var column = document.createElement("td");
+                var text = document.createTextNode(column.innerHTML = races[i-1]);
+                var cell = row.insertCell();
+                body.appendChild(row);
+                //yearPull(i, cell, school);
+            }
+            for (var i = 1; i < 12; i++) {
+                var body = document.getElementById("boyRecords");
+                var row = document.createElement('tr');
+                var column = document.createElement("td");
+                //var text = document.createTextNode(column.innerHTML = "A");
+                var cell = row.insertCell();
+                cell.setAttribute('id', 'rb' + i);
+                cell.appendChild(text);
+                girlRecordPull(i, cell, school,column);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                cell.setAttribute('id', 'rbt' + i);
+                cell.appendChild(text);
+                //timePull(i, cell, school);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                cell.setAttribute('id', 'rby' + i);
                 cell.appendChild(text);
                 body.appendChild(row);
                 //yearPull(i, cell, school);
