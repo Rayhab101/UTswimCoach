@@ -250,7 +250,7 @@
                 else{
                     text = records[0].min;
                 }
-                return text;
+                document.getElementById(cell.id).innerHTML=text;
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
@@ -273,11 +273,10 @@
                     var row = document.createElement('tr');
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
-                    //pullPerson(id, j).then(response => console.log(response));
-                    var text = pullPerson(id, j, body, row, cell);
                     cell.appendChild(document.createTextNode(text))
                     row.appendChild(cell);
                     body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
                 }
             }
             // for (var i = 12; i < 22; j++) {
