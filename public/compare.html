@@ -262,7 +262,7 @@
     function otherRecordPull(id, gender) {
         var relays = [1, 8, 11, 12, 19, 22];
 
-        console.log($('#compareOther').children().length)
+        //console.log($('#compareOther').children().length)
         if ($('#compareOther').children().length > 1) {
             for (var d = 9; d > 1; d--) {
                 document.getElementById("compareOther").deleteRow(d);
@@ -276,7 +276,7 @@
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
                     //pullPerson(id, j).then(response => console.log(response));
-                    //cell.innerHTML = pullPerson(id, j);
+                    cell.innerHTML = pullPerson(id, j);
                     row.appendChild(cell);
                     body.appendChild(row);
                 }
@@ -361,7 +361,7 @@
                 return response.json();
             })
             .then(function (myJson) {
-                console.log(myJson)
+                //console.log(myJson)
                 otherRecordPull(myJson[0].swimmer_id, myJson[0].gender)
             })
             .catch(function (error) {
