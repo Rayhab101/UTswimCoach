@@ -181,60 +181,6 @@
         }
     }
 
-    function recordPull(id, gender) {
-        var relays = [1, 8, 11, 12, 19, 22];
-        if ($('#individual').children().length > 1) {
-            for (var d = 9; d > 1; d--) {
-                document.getElementById("individual").deleteRow(d);
-            }
-        }
-        var body = document.getElementById('individual');
-        if (gender == "M") {
-            for (var j = 12; j < 22; j++) {
-                if (!relays.includes(j)) {
-                    var row = document.createElement('tr');
-                    var cell = row.insertCell();
-                    cell.setAttribute('id', "u" + j)
-                    row.appendChild(cell);
-                    body.appendChild(row);
-                }
-
-            }
-        }
-        else {
-            for (var j = 1; j < 12; j++) {
-                if (!relays.includes(j)) {
-                    var row = document.createElement('tr');
-                    var cell = row.insertCell();
-                    cell.setAttribute('id', "u" + j)
-                    row.appendChild(cell);
-                    body.appendChild(row);
-                }
-
-            }
-        }
-
-        // for (var i = 1; i < 22; i++) {
-        //     if(relays.includes(i)) {
-        //         continue;
-        //     }
-        //     else if (i < 13) {
-        //         continue;
-        //     }
-        //     else {
-        //         fetch('/api/individualRecords/' + id + "&" + i)
-        //             .then(function (response) {
-        //                 return response.json();
-        //             }).then(function (records) {
-        //                 console.log(records)
-
-        //             }).catch(function (error) {
-        //                 console.log("Error: " + error);
-        //             });
-        //     }
-        // }
-    }
-
     function pullPerson(id,race, body,row,cell){
         console.log(cell.id);
         fetch('/api/individualRecords/' + id + "&" + race)
@@ -255,6 +201,42 @@
                 console.log("Error: " + error);
             });
             
+    }
+
+    function recordPull(id, gender) {
+        var relays = [1, 8, 11, 12, 19, 22];
+        if ($('#individual').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("individual").deleteRow(d);
+            }
+        }
+        var body = document.getElementById('individual');
+        if (gender == "M") {
+            for (var j = 12; j < 22; j++) {
+                if (!relays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "u" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
+                }
+
+            }
+        }
+        else {
+            for (var j = 1; j < 12; j++) {
+                if (!relays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "u" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
+                }
+
+            }
+        }
     }
 
     function otherRecordPull(id, gender) {
@@ -278,16 +260,6 @@
                     pullPerson(id, j, body, row, cell);
                 }
             }
-            // for (var i = 12; i < 22; j++) {
-            //     if (!relays.includes(i)) {
-            //         document.getElementById("o"+i).innerText = "HI"
-            //         // var row = document.createElement('tr');
-            //         // var cell = row.insertCell();
-            //         // cell.setAttribute('id', "o" + j)
-            //         // row.appendChild(cell);
-            //         // body.appendChild(row);
-            //     }
-            // }
         }
         else {
             for (var j = 1; j < 12; j++) {
@@ -297,44 +269,10 @@
                     cell.setAttribute('id', "o" + j)
                     row.appendChild(cell);
                     body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
                 }
             }
         }
-        // for (var i = 1; i < 22; i++) {
-        //     if(relays.includes(i)) {
-        //         continue;
-        //     }
-        //     else if (i < 13) {
-        //         continue;
-        //     }
-        //     else {
-        //         fetch('/api/individualRecords/' + id + "&" + i)
-        //             .then(function (response) {
-        //                 return response.json();
-        //             }).then(function (records) {
-        //                 console.log(records)
-        //                 var body = document.getElementById('compareOther');
-        //                 var row = document.createElement('tr');
-        //                 var column = document.createElement('td');
-        //                 var cell = row.insertCell();
-        //                 if(records[0].min === null){
-        //                     var text = "";
-        //                     var displayText = document.createTextNode(text);
-        //                 }
-        //                 else{
-        //                     text = records[0].min;
-        //                     var displayText = document.createTextNode(text);
-        //                 }
-        //                 console.log(displayText);
-        //                 //var displayText = document.createTextNode(text);
-        //                 cell.appendChild(displayText);
-        //                 row.appendChild(cell);
-        //                 body.appendChild(row);
-        //             }).catch(function (error) {
-        //                 console.log("Error: " + error);
-        //             });
-        //     }
-        // }
     }
 
     function tableFill(name) {
