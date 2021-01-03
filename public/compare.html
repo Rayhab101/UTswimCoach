@@ -239,7 +239,6 @@
         console.log(cell.id);
         fetch('/api/individualRecords/' + id + "&" + race)
             .then(function (response) {
-                response.statusText
                 console.log(response.statusText)
                 //return response.json();
             }).then(function (records) {
