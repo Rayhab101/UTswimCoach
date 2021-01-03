@@ -156,7 +156,6 @@
 
         function girlRecordPull(race, cell, school,column) {
             var relays = [1, 8, 11, 12, 19, 22]
-            console.log(column.cellIndex)
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
                     .then(function (response) {
@@ -215,12 +214,13 @@
                 var row = document.createElement('tr');
                 var column = document.createElement("td");
                 var cell = row.insertCell();
-                console.log(races[i]);
+                //console.log(races[i]);
                 var text = document.createTextNode(column.innerHTML = races[i]);
                 cell.appendChild(text);
                 row.appendChild(cell);
                 body.appendChild(row);
             }
+            console.log(document.getElementById("races").rows.length)
             for (var i = 1; i < 12; i++) {
                 var body = document.getElementById("boyRecords");
                 var row = document.createElement('tr');
