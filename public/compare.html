@@ -250,9 +250,7 @@
                 else{
                     text = records[0].min;
                 }
-                cell.appendChild(document.createTextNode(text))
-                row.appendChild(cell);
-                body.appendChild(row);
+                return text;
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
@@ -276,7 +274,10 @@
                     var cell = row.insertCell();
                     cell.setAttribute('id', "o" + j)
                     //pullPerson(id, j).then(response => console.log(response));
-                    pullPerson(id, j, body, row, cell);
+                    var text = pullPerson(id, j, body, row, cell);
+                    cell.appendChild(document.createTextNode(text))
+                    row.appendChild(cell);
+                    body.appendChild(row);
                 }
             }
             // for (var i = 12; i < 22; j++) {
