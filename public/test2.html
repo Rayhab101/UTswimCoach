@@ -67,9 +67,11 @@
     const events = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
 
     function timesPull(id,event,meet){
-        console.log("1: "+id)
-        console.log("2: "+event)
-        console.log("3: "+meet)
+        for(var i = 1; i<meet.length; i++){
+            console.log("1: "+id)
+            console.log("2: "+event)
+            console.log("3: "+meet[i])
+        }
     }
 
     function dataPull(chartType) {
