@@ -45,14 +45,14 @@
 
 </style>
 <script type="text/javascript">
-var records = [];
+//var records = [];
 function schoolRecord(school,race,gender){
     fetch('/api/schoolRecord/'+race+"&"+school)
     .then(function(response){
         return response.json()
     })
     .then(function (records){
-        console.log(records)
+        console.log(records);
     })
     .catch(function(error){
         console.log("Error: " + error);
@@ -923,7 +923,7 @@ function schoolRecord(school,race,gender){
     }
 </script>
 
-<body onload="schoolRecord()"> <!--onload="tableLoad()">-->
+<body onload="schoolRecord(6,2,'M')"> <!--onload="tableLoad()">-->
     <header id="header"></header>
     <div class="swim_info" id="swim_info">
         <button onclick="window.history.go(-1)">Go Back</button>
