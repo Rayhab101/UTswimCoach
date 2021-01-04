@@ -115,6 +115,8 @@
         var name = tableData["name"];
         var headGrade = tableData["status_grade"];
         var keys = Object.keys(tableData);
+        console.log(keys)
+        console.log(Object.keys(tableData))
         var body = document.getElementById("swimmer_data");
         var head = document.getElementById("swimmer_name");
         head.innerHTML = (name + " - " + headGrade);
@@ -927,8 +929,6 @@
             <br>
             <br>
             <div class="canvasContainer" id="canvasContainer">
-                <!-- <iframe src="./510580_map1-2.pdf#&scrollbar=0" frameborder="0" scrolling="auto" height="100%"
-                width="100%" id="myFrame"></iframe> -->
                 <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
