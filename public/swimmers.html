@@ -117,6 +117,7 @@
         var name = tableData["name"];
         var headGrade = tableData["status_grade"];
         var keys = Object.keys(tableData);
+        console.log(keys)
         var body = document.getElementById("swimmer_data");
         var head = document.getElementById("swimmer_name");
         head.innerHTML = (name + " - " + headGrade);
