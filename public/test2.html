@@ -114,9 +114,6 @@
     function getSwimData(tableData) {
         var name = tableData["name"];
         var headGrade = tableData["status_grade"];
-        var keys = Object.keys(tableData);
-        console.log(keys)
-        console.log(Object.keys(tableData))
         var body = document.getElementById("swimmer_data");
         var head = document.getElementById("swimmer_name");
         head.innerHTML = (name + " - " + headGrade);
@@ -152,9 +149,9 @@
             var text = document.createTextNode(meets[j]);
             cell.appendChild(text);
             if (j == 0) {
-                for (var i = 5; i < keys.length; i++) {
+                for (var i = 0; i < events.length; i++) {
                     cell = row.insertCell();
-                    text = document.createTextNode(keys[i]);
+                    text = document.createTextNode(events[i]);
                     cell.appendChild(text);
                 }
                 body.appendChild(row);
