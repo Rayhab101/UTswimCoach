@@ -164,15 +164,23 @@
                 cell.appendChild(text);
                 body.appendChild(row);
                 console.log(events[a])
-                for (var k = 0; k < 9; k++) {
-                    var data = events[k];
+                if(tableData["gender"] == "F"){
+                    var to = 12
+                    var from = 1
+                }
+                else{
+                    var from = 12
+                    var to = 22
+                }
+                for (var k = from; k < to; k++) {
+                    //var data = events[k];
                     cell = row.insertCell();
                     if (typeof data[a] != "undefined") {
                         //console.log(data[0])
-                        text = document.createTextNode(column.innerHTML = data[a])
+                        text = document.createTextNode(column.innerHTML = "1")//data[a])
                     }
                     else {
-                        text = document.createTextNode(column.innerHTML = "");
+                        text = document.createTextNode(column.innerHTML = "2");
                     }
                     cell.appendChild(text);
                     row.appendChild(cell)
