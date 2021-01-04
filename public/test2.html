@@ -88,18 +88,16 @@
 
     function tableLoad() {
         var pullperson = location.search.substring(1);
-        //console.log(location.search.substring());
         pullperson = pullperson.split("=");
         pullperson = Number(pullperson[1]);
-        //fetch("http://localhost:8080/api/public/swim/"+pullperson)
-        fetch("/api/swim/"+pullperson)
+            fetch("/api/swim/"+pullperson)
             .then(function (response) {
                 return response.json();
             })
             .then(function (myJson) {
                 console.log(pullperson)
                 console.log(myJson[0].swimmer_id)
-                // getSwimData(myJson.swimmers[pullperson])
+                getSwimData(myJson[0].name)
                 // fr200(myJson.swimmers[pullperson])
                 // im200(myJson.swimmers[pullperson])
                 // im100(myJson.swimmers[pullperson])
