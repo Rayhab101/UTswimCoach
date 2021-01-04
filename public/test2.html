@@ -92,21 +92,22 @@
         pullperson = pullperson.split("=");
         pullperson = Number(pullperson[1]);
         //fetch("http://localhost:8080/api/public/swim/"+pullperson)
-        fetch("/api/swimmers")
+        fetch("/api/swims"+pullperson)
             .then(function (response) {
                 return response.json();
             })
             .then(function (myJson) {
-                getSwimData(myJson.swimmers[pullperson])
-                fr200(myJson.swimmers[pullperson])
-                im200(myJson.swimmers[pullperson])
-                im100(myJson.swimmers[pullperson])
-                fr50(myJson.swimmers[pullperson])
-                fl100(myJson.swimmers[pullperson])
-                fr100(myJson.swimmers[pullperson])
-                fr500(myJson.swimmers[pullperson])
-                bk100(myJson.swimmers[pullperson])
-                br100(myJson.swimmers[pullperson])
+                console.log(myJson)
+                // getSwimData(myJson.swimmers[pullperson])
+                // fr200(myJson.swimmers[pullperson])
+                // im200(myJson.swimmers[pullperson])
+                // im100(myJson.swimmers[pullperson])
+                // fr50(myJson.swimmers[pullperson])
+                // fl100(myJson.swimmers[pullperson])
+                // fr100(myJson.swimmers[pullperson])
+                // fr500(myJson.swimmers[pullperson])
+                // bk100(myJson.swimmers[pullperson])
+                // br100(myJson.swimmers[pullperson])
             })
             .catch(function (error) {
                 console.log("Error: " + error);
