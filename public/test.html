@@ -61,7 +61,6 @@
       var body = document.getElementById("swimmers");
       var sizeData = dataArray.length;
       for (var i = 0; i < sizeData; i++) {
-        console.log(dataArray[i].name);
         var r = dataArray[i].name;
         var g = dataArray[i].status_grade;
         var year = dataArray[i]["year"];
@@ -71,8 +70,8 @@
         }
         var col = document.createElement("div");
         col.setAttribute("class", "column");
-
         var a = document.createElement("a");
+        console.log(dataArray[i])
         a.setAttribute("href", "./swimmers.html?swimmerid="+dataArray[i].swimmerid);
         a.setAttribute("style", "text-decoration: none; color: black;");
         var carred = document.createElement("div");
