@@ -175,13 +175,13 @@
                 for (var k = from; k < to; k++) {
                     //var data = events[k];
                     cell = row.insertCell();
-                    if (typeof data[a] != "undefined") {
-                        //console.log(data[0])
-                        text = document.createTextNode(column.innerHTML = "1")//data[a])
-                    }
-                    else {
-                        text = document.createTextNode(column.innerHTML = "2");
-                    }
+                    // if (typeof data[a] != "undefined") {
+                    //     //console.log(data[0])
+                    //     text = document.createTextNode(column.innerHTML = "1")//data[a])
+                    // }
+                    // else {
+                    //     text = document.createTextNode(column.innerHTML = "2");
+                    // }
                     cell.appendChild(text);
                     row.appendChild(cell)
                     body.appendChild(row);
