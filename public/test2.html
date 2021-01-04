@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Swim Coach - Swimmer Info</title>
+    <link rel="stylesheet" href="swim.css" media="all">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+</head>
+<style>
+    .swim_info {
+        padding-top: 95px;
+    }
+
+    table {
+        background-color: rgba(255, 255, 255, .95);
+        border-collapse: separate;
+        border: solid black 1px;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        text-align: center;
+        width: 100%
+    }
+
+    th {
+        text-align: center;
+        font-size: 24px;
+    }
+
+</style>
+<script type="text/javascript">
+var records = [];
+function schoolRecord(school,race,gender){
+    fetch('/api/schoolRecord/'+race+"&"+school)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function (records){
+        console.log(records)
+    })
+    .catch(function(error){
+        console.log("Error: " + error);
+    });
+}
+    const schoolRecordM = ["1:56.66", "2:12:47", "1:01.52", "0:22.88", "0:58.99", "0:49.71", "5:36.41", "0:55.92", "1:04.94"];
+    const schoolRecordF = ["2:10.79", "2:30.27", "1:14.39", "0:26.82", "1:12.17", "0:59.58", "5:57.35", "1:09.82", "1:16.54"];
+    const stateRecordM = ["1:38.75", "1:51.74", "0:50.28", "0:20.60", "0:49.37", "0:45.39", "4:33.95", "0:49.49", "0:57.57"];
+    const stateRecordF = ["1:51.33", "2:04.68", "0:58.30", "0:23.73", "0:54.61", "0:51.69", "5:02.94", "0:55.78", "1:04.02"];
+    const meets = [new Date(2020, 09, 23),
+    new Date(2020, 09, 30),
+    new Date(2020, 11, 3),
+    new Date(2020, 11, 15),
+    new Date(2021, 0, 7),
+    new Date(2021, 0, 12),
+    new Date(2021, 0, 15),
+    new Date(2021, 0, 21),
+    new Date(2021, 0, 29),
+    new Date(2021, 0, 30),
+    new Date(2021, 1, 12)
+    ];
+
+    const events = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
+
+    function dataPull(chartType) {
+        for (var a = 0; a < chartType.length; a++) {
+            //console.log(chartType[a]);
+            if (chartType[a] != "") {
+                var check = chartType[a].split(".");
+                var doubleCheck = check[0].split(":");
+                var maybe = Number(doubleCheck[1]);
+                maybe += 10;
+                var minute = maybe > 59 ? Number(doubleCheck[0]) + 1 : doubleCheck[0];
+                maybe = maybe > 59 ? maybe - 50 : maybe;
+                var maxValue = minute + ":" + maybe + "." + check[1];
+                break;
+            }
+            else {
+                var maxValue = "03:00.00";
+                //break;
+            }
+        }
+        return maxValue;
+    }
+
+    function tableLoad() {
+        var pullperson = location.search.substring(1);
+        //console.log(location.search.substring());
+        pullperson = pullperson.split("=");
+        pullperson = Number(pullperson[1]);
+        //fetch("http://localhost:8080/api/public/swim/"+pullperson)
+        fetch("/api/swimmers")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                getSwimData(myJson.swimmers[pullperson])
+                fr200(myJson.swimmers[pullperson])
+                im200(myJson.swimmers[pullperson])
+                im100(myJson.swimmers[pullperson])
+                fr50(myJson.swimmers[pullperson])
+                fl100(myJson.swimmers[pullperson])
+                fr100(myJson.swimmers[pullperson])
+                fr500(myJson.swimmers[pullperson])
+                bk100(myJson.swimmers[pullperson])
+                br100(myJson.swimmers[pullperson])
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function getSwimData(tableData) {
+        var name = tableData["name"];
+        var headGrade = tableData["status_grade"];
+        var keys = Object.keys(tableData);
+        var body = document.getElementById("swimmer_data");
+        var head = document.getElementById("swimmer_name");
+        head.innerHTML = (name + " - " + headGrade);
+        head.setAttribute("colspan", 10);
+        body.appendChild(head);
+    //     var check = ['0:24.33','0:24.00'];
+    // if(check[0]<check[1]){
+    //     console.log(check[0]+" is less than "+ check[1]);
+    // }
+    // else{
+    //     console.log(check[0]+" is not less than "+ check[1]);
+    // }
+        var meets = [
+            "Times/Meets",
+            "Red & Blue",
+            "Cedar Valley",
+            "Tooele",
+            "@Taylorsville",
+            "Iron Sea Horse & Bonneville",
+            "@Granger",
+            "Juan Diego & Summit",
+            "Stansbury (Senior Night)",
+            "St Joe’s Region Meet (Tooele)",
+            "Region 10 Meet (Tooele)",
+            "State Meet (BYU)"
+        ];
+
+        var a = 0;
+        for (var j = 0; j < meets.length; j++) {
+            var row = document.createElement("tr");
+            var column = document.createElement("td");
+            var cell = row.insertCell();
+            var text = document.createTextNode(meets[j]);
+            cell.appendChild(text);
+            if (j == 0) {
+                for (var i = 5; i < keys.length; i++) {
+                    cell = row.insertCell();
+                    text = document.createTextNode(keys[i]);
+                    cell.appendChild(text);
+                }
+                body.appendChild(row);
+            }
+            else {
+                row = document.createElement("tr");
+                cell = row.insertCell();
+                cell.setAttribute("style", "width: 20%");
+                text = document.createTextNode(meets[j]);
+                cell.appendChild(text);
+                body.appendChild(row);
+
+                for (var k = 5; k < 14; k++) {
+                    var data = tableData[keys[k]];
+                    cell = row.insertCell();
+                    if (typeof data[a] != "undefined") {
+                        //console.log(data[0])
+                        text = document.createTextNode(column.innerHTML = data[a])
+                    }
+                    else {
+                        text = document.createTextNode(column.innerHTML = "");
+                    }
+                    cell.appendChild(text);
+                    row.appendChild(cell)
+                    body.appendChild(row);
+                }
+                a++;
+            }
+        }
+    }
+
+    function fr200(chartData) {
+        if (typeof chartData["200fr"] != "undefined" && chartData["200fr"].length > 0) {
+            var maxValue = dataPull(chartData["200fr"]);
+            maxValue1 = "04:00:00"
+            //var maxValue = maxValue0
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["200fr"].length; i++) {
+                if (chartData["200fr"][i] != "") {
+                    newChartData[j] = chartData["200fr"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+                }
+                stateRecord[i] = (chartData["gender"][0] === "M") ? {y:stateRecordM[0], x:pushDate,indexLabel:stateRecordM[0]} : {y:stateRecordF[0], x:pushDate,indexLabel:stateRecordF[0]};
+                schoolRecord[i] = (chartData["gender"][0] === "M") ? {y:schoolRecordM[0], x:pushDate,indexLabel:schoolRecordM[0]} : {y:schoolRecordF[0], x:pushDate,indexLabel:schoolRecordF[0]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("200fr");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "200 Free Times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 10,
+                                min: '1:30.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("200fr");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+    function im200(chartData) {
+        if (typeof chartData["200IM"] != "undefined" && chartData["200IM"].length > 0) {
+            var maxValue = dataPull(chartData["200IM"]);
+            if(maxValue === "03:00.00"){maxValue = "04:00:00";}
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["200IM"].length; i++) {
+                if (chartData["200IM"][i] != "") {
+                    newChartData[j] = chartData["200IM"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+
+                }
+                stateRecord[i] = (chartData["gender"][0] === "M") ? {y:stateRecordM[1], x:pushDate,indexLabel:stateRecordM[1]} : {y:stateRecordF[1], x:pushDate,indexLabel:stateRecordF[1]};
+                schoolRecord[i] = (chartData["gender"][0] === "M") ? {y:schoolRecordM[1], x:pushDate,indexLabel:schoolRecordM[1]} : {y:schoolRecordF[1], x:pushDate,indexLabel:schoolRecordF[1]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("200IM");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "200 IM Times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 10,
+                                min: '1:30.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("200IM");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+    function fr50(chartData) {
+        if (typeof chartData["50fr"] != "undefined" && chartData["50fr"].length > 0) {
+            var maxValue = dataPull(chartData["50fr"]);
+            //console.log(maxValue);
+            if(maxValue==="03:00.00"){
+                maxValue="01:10.00";
+            }
+            //console.log(maxValue);
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["50fr"].length; i++) {
+                if (chartData["50fr"][i] != "") {
+                    newChartData[j] = chartData["50fr"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+
+                }
+                stateRecord[i] = (chartData["gender"][0] == "M") ? {y:stateRecordM[3], x:pushDate,indexLabel:stateRecordM[3]} : {y:stateRecordF[3], x:pushDate,indexLabel:stateRecordF[3]};
+                schoolRecord[i] = (chartData["gender"][0] == "M") ? {y:schoolRecordM[3], x:pushDate,indexLabel:schoolRecordM[3]} : {y:schoolRecordF[3], x:pushDate,indexLabel:schoolRecordF[3]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("50fr");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "50 Free Times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 2,
+                                min: '0:17.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("50fr");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+    function fl100(chartData) {
+        if (typeof chartData["100fl"] != "undefined" && chartData["100fl"].length > 0) {
+            var maxValue = dataPull(chartData["100fl"]);
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["100fl"].length; i++) {
+                if (chartData["100fl"][i] != "") {
+                    newChartData[j] = chartData["100fl"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+
+                }
+                stateRecord[i] = (chartData["gender"][0] == "M") ? {y:stateRecordM[4], x:pushDate,indexLabel:stateRecordM[4]} : {y:stateRecordF[4], x:pushDate,indexLabel:stateRecordF[4]};
+                schoolRecord[i] = (chartData["gender"][0] == "M") ? {y:schoolRecordM[4], x:pushDate,indexLabel:schoolRecordM[4]} : {y:schoolRecordF[4], x:pushDate,indexLabel:schoolRecordF[4]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("100fl");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "100 Fly Times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 10,
+                                min: '0:40.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("100fl");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+    function fr100(chartData) {
+        if (typeof chartData["100fr"] != "undefined" && chartData["100fr"].length > 0) {
+            var maxValue = dataPull(chartData["100fr"]);
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["100fr"].length; i++) {
+                if (chartData["100fr"][i] != "") {
+                    newChartData[j] = chartData["100fr"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+
+                }
+                stateRecord[i] = (chartData["gender"][0] == "M") ? {y:stateRecordM[5], x:pushDate,indexLabel:stateRecordM[5]} : {y:stateRecordF[5], x:pushDate,indexLabel:stateRecordF[5]};
+                schoolRecord[i] = (chartData["gender"][0] == "M") ? {y:schoolRecordM[5], x:pushDate,indexLabel:schoolRecordM[5]} : {y:schoolRecordF[5], x:pushDate,indexLabel:schoolRecordF[5]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("100fr");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "100 Free Times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 10,
+                                min: '0:40.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("100fr");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+    function fr500(chartData) {
+        if (typeof chartData["500fr"] != "undefined" && chartData["500fr"].length > 0) {
+            var maxValue = dataPull(chartData["500fr"]);
+            if(maxValue==="03:00.00"){
+            maxValue = "11:00.00"}
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["500fr"].length; i++) {
+                if (chartData["500fr"][i] != "") {
+                    newChartData[j] = chartData["500fr"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+
+                }
+                stateRecord[i] = (chartData["gender"][0] == "M") ? {y:stateRecordM[6], x:pushDate,indexLabel:stateRecordM[6]} : {y:stateRecordF[6], x:pushDate,indexLabel:stateRecordF[6]};
+                schoolRecord[i] = (chartData["gender"][0] == "M") ? {y:schoolRecordM[6], x:pushDate,indexLabel:schoolRecordM[6]} : {y:schoolRecordF[6], x:pushDate,indexLabel:schoolRecordF[6]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("500fr");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "500 Free Times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 20,
+                                min: '4:30.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("500fr");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+    function bk100(chartData) {
+        if (typeof chartData["100bk"] != "undefined" && chartData["100bk"].length > 0) {
+            var maxValue = dataPull(chartData["100bk"]);
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["100bk"].length; i++) {
+                if (chartData["100bk"][i] != "") {
+                    newChartData[j] = chartData["100bk"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+
+                }
+                stateRecord[i] = (chartData["gender"][0] == "M") ? {y:stateRecordM[7], x:pushDate,indexLabel:stateRecordM[7]} : {y:stateRecordF[7], x:pushDate,indexLabel:stateRecordF[7]};
+                schoolRecord[i] = (chartData["gender"][0] == "M") ? {y:schoolRecordM[7], x:pushDate,indexLabel:schoolRecordM[7]} : {y:schoolRecordF[7], x:pushDate,indexLabel:schoolRecordF[7]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("100bk");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "100 Back Times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 10,
+                                min: '0:40.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("100bk");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+    function br100(chartData) {
+        if (typeof chartData["100br"] != "undefined" && chartData["100br"].length > 0) {
+            var maxValue = dataPull(chartData["100br"]);
+            var pushDate = []
+            var stateRecord = []
+            var schoolRecord = []
+            var j = 0
+            var newChartData = []
+            var testChartData = []
+            for (var i = 0; i < chartData["100br"].length; i++) {
+                if (chartData["100br"][i] != "") {
+                    newChartData[j] = chartData["100br"][i]
+                    var splitDates = meets[i].toString().split(" ");
+                    var year = splitDates[3];
+                    var day = splitDates[2];
+                    var month = splitDates[1];
+                    pushDate[j] = month + " " + day + ", " + year;
+                    testChartData[j] = {y: newChartData[j] , x: pushDate[j], indexLabel:newChartData[j]};
+                    j++;
+
+                }
+                stateRecord[i] = (chartData["gender"][0] == "M") ? {y:stateRecordM[8], x:pushDate,indexLabel:stateRecordM[8]} : {y:stateRecordF[8], x:pushDate,indexLabel:stateRecordF[8]};
+                schoolRecord[i] = (chartData["gender"][0] == "M") ? {y:schoolRecordM[8], x:pushDate,indexLabel:schoolRecordM[8]} : {y:schoolRecordF[8], x:pushDate,indexLabel:schoolRecordF[8]};
+            }
+            //console.log(testChartData);
+            var name = chartData.name.split(" ");
+            var ctx = document.getElementById("100br");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pushDate,
+                    datasets: [{
+                        label: "100 breast times",
+                        data: testChartData,
+                        fill: false,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderColor: "rgba(0, 0, 0, 0.9)"
+                    },
+                    {
+                        label: "School Record",
+                        data: schoolRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        borderColor: "rgba(0, 0, 255, 0.9)"
+                    },
+                    {
+                        label: "State Record",
+                        data: stateRecord,
+                        fill: true,
+                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        borderColor: "rgba(255, 0, 0, 0.9)"
+                    }
+                    ],
+                    
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: 'm:ss.SS',
+                                unit: 'seconds',
+                                unitStepSize: 10,
+                                min: '0:40.000',
+                                max: maxValue,
+                                displayFormats: {
+                                    'seconds': 'm:ss.SS'
+                                }
+                            },
+                            ticks: { reverse: true }
+                        }]
+                    },
+                }
+            });
+            myChart.render();
+        }
+        else {
+            var hide = document.getElementById("100br");
+            hide.setAttribute("style", "display:none");
+        }
+    }
+
+
+</script>
+<script type="text/javascript">
+    function printImage() {
+        var table = document.getElementById("swimmer_data");
+        table.setAttribute("style","font-size:12px");
+        var windowContent = '<!DOCTYPE html>';
+        windowContent += '<html>';
+        windowContent += '<head><style> table {text-align: center; border: solid black 3px}tr,td {border: solid black 1px; text-align: center}th {text-align: center;}</style></head>';
+        windowContent += '<main>';
+        windowContent += table.outerHTML;
+        windowContent += '<br>'
+        for (var i = 0; i < events.length; i++) {
+            const dataUrl = document.getElementById(events[i]).toDataURL('image', 1.0);
+            if(i != 8){
+                windowContent += '<img src="' + dataUrl + '" style="width:50%">';
+            }
+            else{
+                windowContent += '<img src="' + dataUrl + '" style="display: block; margin-left: auto;margin-right: auto;width: 50%;">';
+            }
+        }
+        windowContent += '</main>';
+        windowContent += '</html>';
+        const printWin = window.open('');
+        printWin.document.open();
+        printWin.document.write(windowContent);
+        printWin.document.addEventListener('load', function () {
+            printWin.focus();
+            printWin.print();
+            printWin.document.close();
+            printWin.close();
+        }, true);
+        table.removeAttribute("style");
+    }
+</script>
+
+<body onload="schoolRecord()"> <!--onload="tableLoad()">-->
+    <header id="header"></header>
+    <div class="swim_info" id="swim_info">
+        <button onclick="window.history.go(-1)">Go Back</button>
+        <button class="printPage" id="printPage"
+            style="font-size: 12px; border-radius: 10%; background-color: white; font-weight: bold;"
+            onclick="printImage()">Print Swimmer
+            Data</button>
+        <div class="container" id="container">
+            <div id="testTable" printable>
+                <table class="swimmer_data" id="swimmer_data">
+                    <th id="swimmer_name"></th>
+                </table>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="canvasContainer" id="canvasContainer">
+                <!-- <iframe src="./510580_map1-2.pdf#&scrollbar=0" frameborder="0" scrolling="auto" height="100%"
+                width="100%" id="myFrame"></iframe> -->
+                <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100fl" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="500fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100bk" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100br" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+            </div>
+        </div>
+    </div>
+    <footer id="footer"></footer>
+</body>
+
+</html>
