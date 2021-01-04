@@ -56,7 +56,7 @@ function schoolRecord(){
     })
     .then(function (records){
         schoolRecords[race] = records[0].time
-        console.log(records);
+        console.log(records[0].time);
 
     })
     .catch(function(error){
