@@ -117,7 +117,7 @@
         var body = document.getElementById("swimmer_data");
         var head = document.getElementById("swimmer_name");
         head.innerHTML = (name + " - " + headGrade);
-        head.setAttribute("colspan", 10);
+        head.setAttribute("colspan", 9);
         body.appendChild(head);
     //     var check = ['0:24.33','0:24.00'];
     // if(check[0]<check[1]){
@@ -174,8 +174,10 @@
                 }
                 for (var k = from; k < to; k++) {
                     //var data = events[k];
+                    relays = [1,8,11,12,19,22]
+                    if(!relays.includes(k)){
                     cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = "1");
+                    text = document.createTextNode(column.innerHTML = k);
                     // if (typeof data[a] != "undefined") {
                     //     //console.log(data[0])
                     //     text = document.createTextNode(column.innerHTML = "1")//data[a])
@@ -186,6 +188,7 @@
                     cell.appendChild(text);
                     row.appendChild(cell)
                     body.appendChild(row);
+                    }
                 }
                 a++;
             }
