@@ -55,7 +55,7 @@ function schoolRecord(){
         return response.json()
     })
     .then(function (records){
-        schoolRecords[i] = records[0].time
+        schoolRecords[race] = records[0].time
         console.log(records);
 
     })
