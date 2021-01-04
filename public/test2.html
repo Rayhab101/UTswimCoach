@@ -92,7 +92,7 @@
         pullperson = pullperson.split("=");
         pullperson = Number(pullperson[1]);
         //fetch("http://localhost:8080/api/public/swim/"+pullperson)
-        fetch("/api/swims/"+pullperson)
+        fetch("/api/swim/"+pullperson)
             .then(function (response) {
                 return response.json();
             })
