@@ -164,21 +164,21 @@
                 text = document.createTextNode(meets[j]);
                 cell.appendChild(text);
                 body.appendChild(row);
-
-                for (var k = 0; k < 9; k++) {
-                    var data = events[k];
-                    cell = row.insertCell();
-                    if (typeof data[a] != "undefined") {
-                        //console.log(data[0])
-                        text = document.createTextNode(column.innerHTML = data[a])
-                    }
-                    else {
-                        text = document.createTextNode(column.innerHTML = "");
-                    }
-                    cell.appendChild(text);
-                    row.appendChild(cell)
-                    body.appendChild(row);
-                }
+                console.log(events[a])
+                // for (var k = 0; k < 9; k++) {
+                //     var data = events[k];
+                //     cell = row.insertCell();
+                //     if (typeof data[a] != "undefined") {
+                //         //console.log(data[0])
+                //         text = document.createTextNode(column.innerHTML = data[a])
+                //     }
+                //     else {
+                //         text = document.createTextNode(column.innerHTML = "");
+                //     }
+                //     cell.appendChild(text);
+                //     row.appendChild(cell)
+                //     body.appendChild(row);
+                // }
                 a++;
             }
         }
