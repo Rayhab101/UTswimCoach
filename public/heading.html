@@ -9,7 +9,7 @@
 <script>
     var county = location.search.substring(1);
     county = county.split("=")
-    school = location.search.substring(0);
+    school = location.href;
     school = school.split("_");
     //console.log(county[0]=='school_id')
     if (isNaN(Number(county[1]))) {
