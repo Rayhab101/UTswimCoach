@@ -72,11 +72,8 @@
             console.log("1: "+id)
             console.log("2: "+event)
             console.log("3: "+meet[i])
-            text = document.createTextNode(column.innerHTML = event);
+            return event;
         }
-        cell.appendChild(text);
-        row.appendChild(cell)
-        body.appendChild(row);
     }
 
     function dataPull(chartType) {
@@ -191,8 +188,11 @@
                     relays = [1, 8, 11, 12, 19, 22]
                     if (!relays.includes(k)) {
                         cell = row.insertCell();
-                        timesPull(tableData.swimmer_id, k, meets, column)
+                        text = timesPull(tableData.swimmer_id, k, meets, column)
                     }
+                    cell.appendChild(text);
+                    row.appendChild(cell)
+                    body.appendChild(row);
                 }
                 a++;
             }
