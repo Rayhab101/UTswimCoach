@@ -28,7 +28,7 @@
             var pullperson = location.search.substring(1);
             pullperson = pullperson.split("=");
             pullperson = Number(pullperson[1]);
-            fetch("http://localhost:8080/api/coaches/" + pullperson)
+            fetch("api/coaches/" + pullperson)
                 .then(function (response) {
                     return response.json();
                 })
