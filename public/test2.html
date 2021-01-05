@@ -72,7 +72,8 @@
             console.log("1: "+id)
             console.log("2: "+event)
             console.log("3: "+meet[i])
-            return event;
+            text = document.createTextNode(column.innerHTML = event);
+            return text;
         }
     }
 
@@ -188,7 +189,7 @@
                     relays = [1, 8, 11, 12, 19, 22]
                     if (!relays.includes(k)) {
                         cell = row.insertCell();
-                        text = timesPull(tableData.swimmer_id, k, meets, column)
+                        var text = timesPull(tableData.swimmer_id, k, meets, column)
                     }
                     cell.appendChild(text);
                     row.appendChild(cell)
