@@ -28,10 +28,12 @@
             <div style="padding-left: 45px;"><img class="team_pic" src="st_joseph_team.jpeg"></div>
         </div>
     </main>
-    <footer id="footer"></footer>
+    <footer id="footer" onload="swap()"></footer>
     <script>
-    document.getElementById("headingPhoto").src = '/images/JayHawk.png';
-    document.getElementById("headerName").innerHTML = "St. Joseph's Swim Team";
+        function swap(){
+            document.getElementById("headingPhoto").src = '/images/JayHawk.png';
+            document.getElementById("headerName").innerHTML = "St. Joseph's Swim Team";
+        }
     </script>
 </body>
 </html>
