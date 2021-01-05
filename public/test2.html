@@ -66,12 +66,16 @@
 
     const events = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
 
-    function timesPull(id,event,meet){
+    function timesPull(id,event,meet,column){
         for(var i = 1; i<meet.length; i++){
             console.log("1: "+id)
             console.log("2: "+event)
             console.log("3: "+meet[i])
+            text = document.createTextNode(column.innerHTML = event);
         }
+        cell.appendChild(text);
+        row.appendChild(cell)
+        body.appendChild(row);
     }
 
     function dataPull(chartType) {
@@ -186,18 +190,7 @@
                     relays = [1, 8, 11, 12, 19, 22]
                     if (!relays.includes(k)) {
                         cell = row.insertCell();
-                        timesPull(tableData.swimmer_id, k, meets)
-                        text = document.createTextNode(column.innerHTML = k);
-                        // if (typeof data[a] != "undefined") {
-                        //     //console.log(data[0])
-                        //     text = document.createTextNode(column.innerHTML = "1")//data[a])
-                        // }
-                        // else {
-                        //     text = document.createTextNode(column.innerHTML = "2");
-                        // }
-                        cell.appendChild(text);
-                        row.appendChild(cell)
-                        body.appendChild(row);
+                        timesPull(tableData.swimmer_id, k, meets, column)
                     }
                 }
                 a++;
