@@ -35,6 +35,7 @@ footer {
     height: 45px;
     align-items: center;
     text-align: center;
+    
 }
 
 .swim_style{
@@ -62,4 +63,8 @@ h3{
     object-fit: contain;
     width: 600px;
     height: 395px;
+}
+div p{
+    padding-top: 30px;
+    color:white;
 }
