@@ -17,7 +17,7 @@
     });
 </script> 
 </head>
-<body>
+<body onload="swap()">
     <header id="header"></header>
     <main class="swim_style">
         <div class="container">
@@ -28,7 +28,7 @@
             <div style="padding-left: 45px;"><img class="team_pic" src="st_joseph_team.jpeg"></div>
         </div>
     </main>
-    <footer id="footer" onload="swap()"></footer>
+    <footer id="footer"></footer>
     <script>
         function swap(){
             document.getElementById("headingPhoto").src = '/images/JayHawk.png';
