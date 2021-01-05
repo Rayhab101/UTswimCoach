@@ -18,7 +18,7 @@ html {
     height: 525px;
     margin-left: auto;
     margin-right: auto;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 footer {
@@ -38,7 +38,7 @@ footer {
 }
 
 .swim_style{
-    padding-top: 125px;
+    padding-top: 110px;
 }
 .school{
     grid-row: 1 / 3;
