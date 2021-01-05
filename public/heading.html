@@ -13,8 +13,18 @@
     school = school.split("_");
     console.log(school)
     if (isNaN(Number(county[1]))) {
-        document.getElementById("headingPhoto").src = '/images/BLHS-logo-good.png'
-        document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
+        if(school[1]=="ben"){
+            document.getElementById("headingPhoto").src = '/images/BLHS-logo-good.png'
+            document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
+        }
+        else if(school[1]=="saint"){
+            document.getElementById("headingPhoto").src = '/images/JayHawk.png'
+            document.getElementById("headerName").innerHTML = "Saint Joseph's Swim Team";
+        }
+        else{
+            document.getElementById("headingPhoto").src = '/images/BLHS-logo-good.png'
+            document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
+        }
     }
     else if (county[0] !== 'school') {
         if(school[1]=="ben"){
