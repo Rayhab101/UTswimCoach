@@ -82,7 +82,7 @@
         //     return stuff;
         // }
 
-        function createTable(swimmers) {
+        function createTable(swimmers,body) {
             var mCount = 0;
             // for (var i = 0; i < swimmers.length; i++) {
                 // if (!out.includes(swimmers[i].swimmerid)) {
@@ -125,7 +125,7 @@
                     for(var i=0;i<myJson.length;i++){
                         console.log(myJson[i].name)
                         //createTable(sortByKey(myJson[i].name));
-                        createTable(myJson[i].name);
+                        createTable(myJson[i].name,body);
                     }
                 })
                 .catch(function (error) {
