@@ -77,7 +77,7 @@
                 })
                 .then(function (myJson) {
                     for (var i = 0; i < myJson.length; i++) {
-                        cutOff = myJson[i].gender == "F" ? cutOff++ : cutOff;
+                        if(myJson[i].gender == "F"){cutOff++;}
                         console.log(cutOff)
                     }
                 })
