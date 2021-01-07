@@ -135,8 +135,8 @@
                     console.log(myJson.length)
                     for(var i=0;i<myJson.length;i++){
                         console.log(myJson[i].name)
+                        createTable(sortByKey(myJson[i].name));
                     }
-                    //createTable(sortByKey(myJson.swimmers));
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
