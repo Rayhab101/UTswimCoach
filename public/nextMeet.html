@@ -127,7 +127,7 @@
             }
         }
         function meetPull() {
-            fetch("http://localhost:8080/api/swimmers")
+            fetch("/api/swimmers")
                 .then(function (response) {
                     return response.json();
                 })
