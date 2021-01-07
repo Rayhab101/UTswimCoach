@@ -66,66 +66,54 @@
         }
     </style>
     <script>
-        function GetSortOrder(prop) {
-            return function (a, b) {
-                if (a[prop] > b[prop]) {
-                    return 1;
-                } else if (a[prop] < b[prop]) {
-                    return -1;
-                }
-                return 0;
-            }
-        }
+        // function GetSortOrder(prop) {
+        //     return function (a, b) {
+        //         if (a[prop] > b[prop]) {
+        //             return 1;
+        //         } else if (a[prop] < b[prop]) {
+        //             return -1;
+        //         }
+        //         return 0;
+        //     }
+        // }
 
-        function sortByKey(sorting) {
-            var stuff = sorting.sort(GetSortOrder("gender"));
-            return stuff;
-        }
+        // function sortByKey(sorting) {
+        //     var stuff = sorting.sort(GetSortOrder("gender"));
+        //     return stuff;
+        // }
 
         function createTable(swimmers) {
-            var out = [0, 27];
-            var body = document.getElementById("meetTable");
             var mCount = 0;
-            for (var i = 0; i < swimmers.length; i++) {
-                if (!out.includes(swimmers[i].swimmerid)) {
+            // for (var i = 0; i < swimmers.length; i++) {
+                // if (!out.includes(swimmers[i].swimmerid)) {
                     var row = document.createElement("tr");
                     var column = document.createElement("td");
                     var cell = row.insertCell();
-                    if (swimmers[i].gender[0] == 'F') {
-                        text = document.createTextNode(swimmers[i].name);
+                    // if (swimmers[i].gender[0] == 'F') {
+                        text = document.createTextNode(swimmers);
                         cell.appendChild(text);
                         for (var j = 0; j < 11; j++) {
                             var column = document.createElement("td");
                             column.setAttribute("style", "width:100%;");
-                            // var x = document.createElement("input");
-                            // x.setAttribute("type", "text");
-                            // x.setAttribute('id',swimmers[i].swimmerid + "-"+j);
                             var cell = row.insertCell();
-                            //cell.appendChild(x)
                         }
-                        //console.log(swimmers[i].name);
-                    }
-                    else {
-                        text = document.createTextNode(swimmers[i].name);
-                        cell.appendChild(text);
+                    // }
+                    // else {
+                    //     text = document.createTextNode(swimmers[i].name);
+                    //     cell.appendChild(text);
 
-                        cell.setAttribute("style", "white-space:nowrap;")
-                        for (var j = 0; j < 11; j++) {
-                            var column = document.createElement("td");
-                            // var x = document.createElement("input");
-                            // x.setAttribute("type", "text");
-                            // x.setAttribute('id',swimmers[i].swimmerid + "-"+j);
-                            var cell = row.insertCell();
-                            //cell.appendChild(x)
-                        }
-                        //console.log(swimmers[i].name);
-                        //console.log(swimmers[i]);
-                    }
-                }
+                    //     cell.setAttribute("style", "white-space:nowrap;")
+                    //     for (var j = 0; j < 11; j++) {
+                    //         var column = document.createElement("td");
+                    //         var cell = row.insertCell();
+                    //     }
+                    // }
+                // }
 
                 body.appendChild(row);
-            }
+            // }
         }
+
         function meetPull() {
             fetch("/api/getAllSwimmers")
                 .then(function (response) {
@@ -133,15 +121,18 @@
                 })
                 .then(function (myJson) {
                     console.log(myJson.length)
+                    var body = document.getElementById("meetTable");
                     for(var i=0;i<myJson.length;i++){
                         console.log(myJson[i].name)
-                        createTable(sortByKey(myJson[i].name));
+                        //createTable(sortByKey(myJson[i].name));
+                        createTable(myJson[i].name);
                     }
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
         }
+
         function printImage() {
             var table = document.getElementById("table");
             var button = document.getElementById("button");
@@ -167,6 +158,7 @@
             table.removeAttribute("style");
             button.removeAttribute("style");
         }
+
     </script>
 </head>
 
