@@ -226,6 +226,20 @@
             var column = $(this).parent().children().index($(this));
             var rows = $(this).parent().index();
             var $this = $(this);
+            var cutOff = 0
+            fetch("/api/getAllSwimmers")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    for (var i = 0; i < myJson.length; i++) {
+                        console.log(myJson[i].gender)
+                        // cutOff = myJson[i].gender == "F" ? cutOff++ : cutOff;
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
             if (column != 0) {
                 if (races.includes(column)) {
                     putRelay($this, column, rows);
