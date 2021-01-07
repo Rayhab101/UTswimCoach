@@ -14,58 +14,7 @@
             $("#header").load("heading.html");
             $("#footer").load("footing.html");
         });
-    </script>
-    <style>
-        .swim_info {
-            padding-top: 90px;
-        }
-
-        table,
-        tr {
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid black 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
-            width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-
-        }
-
-        td {
-            width: 8.5%;
-        }
-
-        th {
-            text-align: center;
-            font-size: 24px;
-            width: 100%;
-        }
-
-        button {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .scrollable {
-            overflow:
-                auto;
-        }
-
-        .container {
-            width: 1250px;
-            height: 555px;
-            overflow: auto;
-        }
-
-        input {
-            width: 90%;
-            text-align: center;
-        }
-    </style>
-    <script>
+        
         function createTable(swimmers, body) {
             var row = document.createElement("tr");
             var column = document.createElement("td");
@@ -73,7 +22,6 @@
             text = document.createTextNode(swimmers);
             cell.appendChild(text);
             for (var j = 0; j < 11; j++) {
-                //var column = document.createElement("td");
                 column.setAttribute("style", "width:100%; white-space:nowrap;");
                 var cell = row.insertCell();
             }
@@ -86,11 +34,8 @@
                     return response.json();
                 })
                 .then(function (myJson) {
-                    console.log(myJson.length)
                     var body = document.getElementById("meetTable");
                     for (var i = 0; i < myJson.length; i++) {
-                        console.log(myJson[i].name)
-                        //createTable(sortByKey(myJson[i].name));
                         createTable(myJson[i].name, body);
                     }
                 })
