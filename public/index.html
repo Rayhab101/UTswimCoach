@@ -47,38 +47,43 @@
             background-color: transparent;
             text-align: center;
         }
-        @media only screen and (max-width: 670px){
+
+        @media only screen and (max-width: 670px) {
             .container1 {
-            display: grid;
-            height: 100%;
-            width: 100%;
-            padding-left: 5px;
-        }
-            .jayhawk {
-            padding-top: 20px;
-            width: 50%;
-            height: 50%;
-            grid-row: 3;
-            grid-column: 1;
-        }
-        .pic {
-            width: 50%;
-            height: 50%;
-            object-fit: contain;
-            grid-row: 2;
-            grid-column: 1;
-        }
-        .team-picture {
-            grid-row: 1;
-            grid-column: 1;
+                display: grid;
+                height: 100%;
+                width: 100%;
+                padding-left: auto;
+            }
+
+            /* .jayhawk {
+                padding-top: 20px;
+                width: 50%;
+                height: 50%;
+                grid-row: 3;
+                grid-column: 1;
+            }
+
+            .pic {
+                width: 50%;
+                height: 50%;
+                object-fit: contain;
+                grid-row: 2;
+                grid-column: 1;
+            } */
+
+            .team-picture {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .schedule {
+                background-color: transparent;
+                grid-row: 2;
+                grid-column: 1;
+            }
         }
 
-        .schedule {
-            background-color: transparent;
-            grid-row: 2;
-            grid-column: 1;
-        }
-        }
         .team-picture {
             grid-row: 1;
             grid-column: 2;
