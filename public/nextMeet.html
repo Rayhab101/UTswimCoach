@@ -112,7 +112,7 @@
         function putRelay($this, relay, person) {
             console.log(relay, person)
             if (relay == 1) {
-                if (person < 19) {
+                if (person < 16) {
                     if (girls1.length != 0) {
                         if ($this.text() == "") {
                             $this.text(girls1.pop());
@@ -129,7 +129,7 @@
                         }
                     }
                 }
-                else if (person > 18) {
+                else if (person > 15) {
                     if (boys1.length != 0) {
                         if ($this.text() == "") {
                             $this.text(boys1.pop());
@@ -148,7 +148,7 @@
                 }
             }
             else if (relay == 8) {
-                if (person < 19) {
+                if (person < 16) {
                     if (girls8.length != 0) {
                         if ($this.text() == "") {
                             $this.text(girls8.pop());
@@ -165,7 +165,7 @@
                         }
                     }
                 }
-                else if (person > 18) {
+                else if (person > 15) {
                     if (boys8.length != 0) {
                         if ($this.text() == "") {
                             $this.text(boys8.pop());
@@ -184,7 +184,7 @@
                 }
             }
             else if (relay == 11) {
-                if (person < 19) {
+                if (person < 16) {
                     if (girls11.length != 0) {
                         if ($this.text() == "") {
                             $this.text(girls11.pop());
@@ -201,7 +201,7 @@
                         }
                     }
                 }
-                else if (person > 18) {
+                else if (person > 15) {
                     if (boys11.length != 0) {
                         if ($this.text() == "") {
                             $this.text(boys11.pop());
@@ -220,6 +220,7 @@
                 }
             }
         }
+
         $("#meetTable").on("click", "td", function () {
             var races = [1, 8, 11]
             var column = $(this).parent().children().index($(this));
