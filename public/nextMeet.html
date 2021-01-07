@@ -35,7 +35,7 @@
         }
 
         td {
-            width: 8.3%;
+            width: 8.5%;
         }
 
         th {
@@ -66,52 +66,18 @@
         }
     </style>
     <script>
-        // function GetSortOrder(prop) {
-        //     return function (a, b) {
-        //         if (a[prop] > b[prop]) {
-        //             return 1;
-        //         } else if (a[prop] < b[prop]) {
-        //             return -1;
-        //         }
-        //         return 0;
-        //     }
-        // }
-
-        // function sortByKey(sorting) {
-        //     var stuff = sorting.sort(GetSortOrder("gender"));
-        //     return stuff;
-        // }
-
-        function createTable(swimmers,body) {
-            var mCount = 0;
-            // for (var i = 0; i < swimmers.length; i++) {
-                // if (!out.includes(swimmers[i].swimmerid)) {
-                    var row = document.createElement("tr");
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
-                    // if (swimmers[i].gender[0] == 'F') {
-                        text = document.createTextNode(swimmers);
-                        cell.appendChild(text);
-                        for (var j = 0; j < 11; j++) {
-                            var column = document.createElement("td");
-                            column.setAttribute("style", "width:100%; white-space:nowrap;");
-                            var cell = row.insertCell();
-                        }
-                    // }
-                    // else {
-                    //     text = document.createTextNode(swimmers[i].name);
-                    //     cell.appendChild(text);
-
-                    //     cell.setAttribute("style", "white-space:nowrap;")
-                    //     for (var j = 0; j < 11; j++) {
-                    //         var column = document.createElement("td");
-                    //         var cell = row.insertCell();
-                    //     }
-                    // }
-                // }
-
-                body.appendChild(row);
-            // }
+        function createTable(swimmers, body) {
+            var row = document.createElement("tr");
+            var column = document.createElement("td");
+            var cell = row.insertCell();
+            text = document.createTextNode(swimmers);
+            cell.appendChild(text);
+            for (var j = 0; j < 11; j++) {
+                //var column = document.createElement("td");
+                column.setAttribute("style", "width:100%; white-space:nowrap;");
+                var cell = row.insertCell();
+            }
+            body.appendChild(row);
         }
 
         function meetPull() {
@@ -122,10 +88,10 @@
                 .then(function (myJson) {
                     console.log(myJson.length)
                     var body = document.getElementById("meetTable");
-                    for(var i=0;i<myJson.length;i++){
+                    for (var i = 0; i < myJson.length; i++) {
                         console.log(myJson[i].name)
                         //createTable(sortByKey(myJson[i].name));
-                        createTable(myJson[i].name,body);
+                        createTable(myJson[i].name, body);
                     }
                 })
                 .catch(function (error) {
@@ -166,7 +132,7 @@
     <header id="header"></header>
     <div class="container" id="table">
         <table id="meetTable">
-            <th colspan="12">Ben Lomond vs St. Joseph vs Taylorsville</th>
+            <th colspan="12">Ben Lomond vs St. Joseph vs Ogden vs Bonneville</th>
             <tr>
                 <td><button onclick="printImage()" id="button">Print</button></td>
                 <td>200 Medley Relay</td>
@@ -186,34 +152,34 @@
     </div>
     <footer id="footer"></footer>
     <script>
-        let girls1 = ['B-4','B-3','B-2','B-1','A-4','A-3','A-2','A-1'];
-        let girls8 = ['B-4','B-3','B-2','B-1','A-4','A-3','A-2','A-1'];
-        let girls11 = ['B-4','B-3','B-2','B-1','A-4','A-3','A-2','A-1'];
+        let girls1 = ['B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+        let girls8 = ['B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+        let girls11 = ['B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
         let aTeam1 = 1;
         let aTeam8 = 1;
         let aTeam11 = 1;
-        let boys1 = ['SJ-4','SJ-3','SJ-2','SJ-1','B-4','B-3','B-2','B-1','A-4','A-3','A-2','A-1'];
-        let boys8 = ['SJ-4','SJ-3','SJ-2','SJ-1','B-4','B-3','B-2','B-1','A-4','A-3','A-2','A-1'];
-        let boys11 = ['SJ-4','SJ-3','SJ-2','SJ-1','B-4','B-3','B-2','B-1','A-4','A-3','A-2','A-1'];
+        let boys1 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+        let boys8 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+        let boys11 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
         let bTeam1 = 1;
         let bTeam8 = 1;
         let bTeam11 = 1;
 
         function putRelay($this, relay, person) {
-            console.log(relay,person)
+            console.log(relay, person)
             if (relay == 1) {
                 if (person < 19) {
                     if (girls1.length != 0) {
                         if ($this.text() == "") {
                             $this.text(girls1.pop());
                         }
-                        else{
+                        else {
                             girls1.push($this.text())
                             $this.text("");
                         }
                     }
-                    else{
-                        if($this.text() != ""){
+                    else {
+                        if ($this.text() != "") {
                             girls1.push($this.text())
                             $this.text("");
                         }
@@ -224,13 +190,13 @@
                         if ($this.text() == "") {
                             $this.text(boys1.pop());
                         }
-                        else{
+                        else {
                             boys1.push($this.text())
                             $this.text("");
                         }
                     }
-                    else{
-                        if($this.text() != ""){
+                    else {
+                        if ($this.text() != "") {
                             boys1.push($this.text())
                             $this.text("");
                         }
@@ -243,13 +209,13 @@
                         if ($this.text() == "") {
                             $this.text(girls8.pop());
                         }
-                        else{
+                        else {
                             girls8.push($this.text())
                             $this.text("");
                         }
                     }
-                    else{
-                        if($this.text() != ""){
+                    else {
+                        if ($this.text() != "") {
                             girls8.push($this.text())
                             $this.text("");
                         }
@@ -260,13 +226,13 @@
                         if ($this.text() == "") {
                             $this.text(boys8.pop());
                         }
-                        else{
+                        else {
                             boys8.push($this.text())
                             $this.text("");
                         }
                     }
-                    else{
-                        if($this.text() != ""){
+                    else {
+                        if ($this.text() != "") {
                             boys8.push($this.text())
                             $this.text("");
                         }
@@ -279,13 +245,13 @@
                         if ($this.text() == "") {
                             $this.text(girls11.pop());
                         }
-                        else{
+                        else {
                             girls11.push($this.text())
                             $this.text("");
                         }
                     }
-                    else{
-                        if($this.text() != ""){
+                    else {
+                        if ($this.text() != "") {
                             girls11.push($this.text())
                             $this.text("");
                         }
@@ -296,13 +262,13 @@
                         if ($this.text() == "") {
                             $this.text(boys11.pop());
                         }
-                        else{
+                        else {
                             boys11.push($this.text())
                             $this.text("");
                         }
                     }
-                    else{
-                        if($this.text() != ""){
+                    else {
+                        if ($this.text() != "") {
                             boys11.push($this.text())
                             $this.text("");
                         }
