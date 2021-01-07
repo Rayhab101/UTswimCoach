@@ -93,7 +93,7 @@ app.post('/api/swimmers', (req, res) => {
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)
-
+app.get('/api/getAllSwimmers',userctrl.getAllSwimmers)
 // Gets Coaches
 app.get('/api/coaches', userctrl.getCoaches)
 app.get('/api/coaches/:id', userctrl.getCoach)

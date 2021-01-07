@@ -109,6 +109,12 @@ module.exports = {
             return res.status(200).send(race)
         }).catch(err => (res.sendStatus(500)))
     },
+    getAllSwimmers: (req,res) => {
+        const db = req.app.get("db");
+        db.get_all_swimmers().then(swimmers => {
+            return res.status(200).send(swimmers)
+        })
+    },
     getSwimmers: (req,res) => {
         //console.log(req.params)
         const {id}=req.params;
