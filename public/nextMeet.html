@@ -132,8 +132,9 @@
                     return response.json();
                 })
                 .then(function (myJson) {
-                    //console.log(myJson.swimmers)
-                    createTable(sortByKey(myJson.swimmers));
+                    console.log(myJson)
+                    console.log(myJson.swimmers)
+                    //createTable(sortByKey(myJson.swimmers));
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
