@@ -63,6 +63,7 @@ tr {
 
 td {
     width: 8.3%;
+    border: solid black 1px;
 }
 
 th {
