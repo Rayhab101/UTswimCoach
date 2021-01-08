@@ -195,7 +195,7 @@ header .coachBtn {
         color: white;
         font-size: 20px;
     }
-    header nav{
+    .navbar {
         display:none;
     }
     span a{
