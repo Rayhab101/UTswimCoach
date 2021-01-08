@@ -210,6 +210,9 @@ header .coachBtn {
         color: white;
         font-size: 20px;
     }
+    .navbar1{
+        display: grid;
+    }
 }
 /*
 @media screen and (max-width:399px){
