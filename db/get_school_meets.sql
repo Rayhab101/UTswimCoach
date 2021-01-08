@@ -1,1 +1,1 @@
-SELECT * FROM meet_schools;
+SELECT * FROM meet_schools ORDER BY meet_id;
