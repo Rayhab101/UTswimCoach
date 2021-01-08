@@ -143,8 +143,8 @@
         .then(function (response) {
                 return response.json();
             })
-            .then(function (meets) {
-                console.table(meets)
+            .then(function (meet) {
+                console.table(meet.location)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
