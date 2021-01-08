@@ -144,7 +144,7 @@
                 return response.json();
             })
             .then(function (meet) {
-                console.log(meet)
+                console.log(meet[0].location)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
