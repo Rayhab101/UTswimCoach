@@ -198,9 +198,6 @@ header .coachBtn {
     .navbar {
         display:none;
     }
-    span a{
-        display: none;
-    }
 
     .dropdown i{
         display: grid;
@@ -211,7 +208,7 @@ header .coachBtn {
         font-size: 20px;
     }
     .navbar1{
-        display: grid;
+        display: block;
     }
 }
 /*
