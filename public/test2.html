@@ -74,7 +74,7 @@
         .then((response) => response.json())
         .then(function(races){
             console.log(races[0].min)
-            console.log(races[0].min===null)
+            //console.log(races[0].min===null)
             if(races[0].min){
                 console.log("1:"+races[0].min)
                 var sending = toString(races[0].min);
@@ -82,7 +82,7 @@
             else{
                 var sending = ""
             }
-            console.log("2"+sending)
+            //console.log("2"+sending)
             text = document.createTextNode(column.innerHTML = races[0].min)
             cell.appendChild(text);
             row.appendChild(cell)
