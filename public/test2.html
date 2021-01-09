@@ -68,6 +68,17 @@
 
     function timesPull(id, event, meet, column) {
         console.log(id, event, meet, column)
+        var pull = id + "&" + event + "&" + meet;
+        fetch('/api/timeFill/'+ pull)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (races) {
+            console.log(races)
+        })
+        .catch(function (error) {
+                console.log("Error: " + error);
+            });
         for (var i = 1; i < meet.length; i++) {
             // console.log("1: " + id)
             // console.log("2: " + event)

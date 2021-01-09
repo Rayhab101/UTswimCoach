@@ -138,6 +138,7 @@ app.get('/api/relayTimes/:id', userctrl.getRelayTimes)
 app.get('/api/swimmerName/:id', userctrl.getSwimmerName)
 //Get Individual Times
 app.get('/api/individualRecords/:id', userctrl.getIndividualRecord)
+app.get('/api/timeFill/:id', userctrl.timeFill)
 
 app.set('port', process.env.PORT || 8080)
 massive({
