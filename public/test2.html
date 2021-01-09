@@ -76,6 +76,7 @@
             return response.json();
         })
         .then(function (races) {
+            console.log(typeof races[0].min)
             var sending = typeof races[0].min=='undefined' ? "" : races[0].min;
             return sending
         })
@@ -176,7 +177,7 @@
                         text = document.createTextNode(meets[j]);
                         cell.appendChild(text);
                         body.appendChild(row);
-                        console.log(events[a])
+                        //console.log(events[a])
                         if (tableData["gender"] == "F") {
                             var to = 12
                             var from = 1
@@ -187,7 +188,7 @@
                         }
                         for (var k = from; k < to; k++) {
                             var data = events[k];
-                            console.log(data)
+                            //console.log(data)
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
