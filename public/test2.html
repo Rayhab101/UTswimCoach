@@ -74,7 +74,15 @@
         return fetch('/api/timeFill/'+ pull)
         .then((response) => response.json())
         .then(function(races){
-            console.log(races)
+            console.log(races[0].min)
+            if(!races[0].min===null){
+                ///console.log("2:"+races[0].min===null)
+                sending = races[0].min;
+            }
+            else{
+                sending = ""
+            }
+            console.log(sending)
             // cell.appendChild(text);
             // row.appendChild(cell)
             // body.appendChild(row);
