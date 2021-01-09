@@ -146,12 +146,13 @@
             .then(function (meet) {
                 for(var i = 0; i<meet.length; i++){
                     console.log(meet[i].location)
-                    //meets[i] = meet[i].location
+                    meets[i] = meet[i].location
                 }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+        console.log(meets)
         // var meets = [
         //     "Times/Meets",
         //     "Red & Blue",
