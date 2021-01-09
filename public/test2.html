@@ -67,14 +67,12 @@
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
     function timesPull(id, event, meets, meet, column,cell,row,body) {
-        //console.log(id, event, meet, column)
+        console.log(id, event, meet, column)
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         console.log(pull)
         return fetch('/api/timeFill/'+ pull)
         .then((response) => response.json())
         .then(function(races){
-            //console.log(races[0].min)
-            //console.log(races[0].min===null)
             if(races[0].min){
                 console.log("1:"+races[0].min)
                 var sending = toString(races[0].min);
@@ -82,39 +80,11 @@
             else{
                 var sending = ""
             }
-            //console.log("2"+sending)
             text = document.createTextNode(column.innerHTML = races[0].min)
             cell.appendChild(text);
             row.appendChild(cell)
             body.appendChild(row);
         });
-        // .then(function (races) {
-        //     console.log("1:"+races[0].min===null)
-        //     if(!races[0].min===null){
-        //         console.log("2:"+races[0].min===null)
-        //         sending = races[0].min;
-        //     }
-        //     else{
-        //         sending = ""
-        //     }
-        // })
-        // .catch(function (error) {
-        //         console.log("Error: " + error);
-        //     });
-
-        // console.log(sending)
-        // return Promise.resolve(sending);
-        // for (var i = 1; i < meets.length; i++) {
-        //     // console.log("1: " + id)
-        //     // console.log("2: " + event)
-        //     // console.log("3: " + meets)
-        //     // console.log("4: " + meet)
-        //     // console.log("5: " + i)
-        //     // console.log("6: " + column)
-            
-        //     text = document.createTextNode(column.innerHTML = event);
-        //     return text;
-        // }
     }
 
     function dataPull(chartType) {
