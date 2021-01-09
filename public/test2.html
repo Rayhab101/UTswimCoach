@@ -199,7 +199,7 @@
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
                                 timesPull(tableData.swimmer_id, k, meets, meets[j], column).then((response)=> console.log(response[0].min))
-                                console.log(text)
+                                console.log(response[0].min)
                                 var text = document.createTextNode(column.innerHTML = "");
                             }
                             var text = document.createTextNode(column.innerHTML = "");
