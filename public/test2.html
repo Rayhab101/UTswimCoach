@@ -84,11 +84,11 @@
             else{
                 sending = ""
             }
-            return Promise.resolve(sending);
         })
         .catch(function (error) {
                 console.log("Error: " + error);
             });
+        return Promise.resolve(sending);
         // for (var i = 1; i < meets.length; i++) {
         //     // console.log("1: " + id)
         //     // console.log("2: " + event)
