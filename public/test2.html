@@ -77,13 +77,13 @@
         })
         .then(function (races) {
             var text = document.createTextNode(column.innerHTML = races[0].min);
-            cell.appendChild(text);
-            row.appendChild(cell)
-            body.appendChild(row);
         })
         .catch(function (error) {
                 console.log("Error: " + error);
             });
+        cell.appendChild(text);
+        row.appendChild(cell)
+        body.appendChild(row);
         // for (var i = 1; i < meets.length; i++) {
         //     // console.log("1: " + id)
         //     // console.log("2: " + event)
