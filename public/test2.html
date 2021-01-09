@@ -76,7 +76,7 @@
             return response.json();
         })
         .then(function (races) {
-            var sending = races[0].min=='undefined' ? "" : races[0].min;
+            var sending = typeof races[0].min=='undefined' ? "" : races[0].min;
             return sending
         })
         .catch(function (error) {
