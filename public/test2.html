@@ -145,15 +145,15 @@
             })
             .then(function (meet) {
                 for(var i = 0; i<meet.length; i++){
-                    console.log(meet[i].location)
+                    //console.log(meet[i].location)
                     meets[i] = meet[i].location
-                    console.log(meets[i])
+                    //console.log(meets[i])
                 }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-        console.log(meets)
+        console.log(meets.length)
         // var meets = [
         //     "Times/Meets",
         //     "Red & Blue",
