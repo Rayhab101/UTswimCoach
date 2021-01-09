@@ -75,20 +75,21 @@
         .then(function (response) {
             return response.json();
         })
-        .then(function (races) {
-            console.log("1:"+races[0].min===null)
-            if(!races[0].min===null){
-                console.log("2:"+races[0].min===null)
-                sending = races[0].min;
-            }
-            else{
-                sending = ""
-            }
-        })
+        // .then(function (races) {
+        //     console.log("1:"+races[0].min===null)
+        //     if(!races[0].min===null){
+        //         console.log("2:"+races[0].min===null)
+        //         sending = races[0].min;
+        //     }
+        //     else{
+        //         sending = ""
+        //     }
+        // })
         .catch(function (error) {
                 console.log("Error: " + error);
             });
-        return Promise.resolve(sending);
+        // console.log(sending)
+        // return Promise.resolve(sending);
         // for (var i = 1; i < meets.length; i++) {
         //     // console.log("1: " + id)
         //     // console.log("2: " + event)
