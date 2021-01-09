@@ -84,7 +84,7 @@
             else{
                 sending = ""
             }
-            return sending
+            return Promise.resolve(sending)
         })
         .catch(function (error) {
                 console.log("Error: " + error);
