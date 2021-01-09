@@ -75,7 +75,7 @@
         .then(function(races){
             console.log(races[0].min)
             console.log(races[0].min===null)
-            if(!races[0].min===null){
+            if(races[0].min){
                 console.log("2:"+races[0].min)
                 var sending = toString(races[0].min);
             }
