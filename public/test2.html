@@ -66,9 +66,9 @@
 
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
-    function timesPull(id, event, meets, meet, column,cell,row,body) {
+    function timesPull(id, event, meets, meet, column) {
         //console.log(id, event, meet, column)
-        var text;
+
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         //console.log(pull)
         fetch('/api/timeFill/'+ pull)
@@ -76,14 +76,11 @@
             return response.json();
         })
         .then(function (races) {
-            text = document.createTextNode(column.innerHTML = races[0].min);
-            cell.appendChild(text);
+            document.createTextNode(column.innerHTML = races[0].min);
         })
         .catch(function (error) {
                 console.log("Error: " + error);
             });
-        row.appendChild(cell)
-        body.appendChild(row);
         // for (var i = 1; i < meets.length; i++) {
         //     // console.log("1: " + id)
         //     // console.log("2: " + event)
@@ -193,8 +190,11 @@
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
+                                var text = timesPull(tableData.swimmer_id, k, meets, meets[j], column)
                             }
+                            cell.appendChild(text);
+                            row.appendChild(cell)
+                            body.appendChild(row);
                         }
                         a++;
                     }
