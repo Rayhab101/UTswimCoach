@@ -71,7 +71,7 @@
         var sending;
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         //console.log(pull)
-        fetch('/api/timeFill/'+ pull)
+        return fetch('/api/timeFill/'+ pull)
         .then((response) => response.json());
         // .then(function (races) {
         //     console.log("1:"+races[0].min===null)
