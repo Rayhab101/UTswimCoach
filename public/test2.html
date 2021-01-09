@@ -72,7 +72,8 @@
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         //console.log(pull)
         return fetch('/api/timeFill/'+ pull)
-        .then((response) => response.json());
+        .then((response) => response.json())
+        .then((races)=> console.log("1:"+races[0].min===null));
         // .then(function (races) {
         //     console.log("1:"+races[0].min===null)
         //     if(!races[0].min===null){
