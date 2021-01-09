@@ -70,7 +70,7 @@
         console.log(id, event, meet, column)
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         console.log(pull)
-        return fetch('/api/timeFill/'+ pull)
+        fetch('/api/timeFill/'+ pull)
         .then((response) => response.json())
         .then(function(races){
             if(!races[0].min=='null'){
@@ -185,7 +185,6 @@
                                 cell = row.insertCell();
                                 console.log("K: "+ k)
                                 console.log("j: "+ j)
-
                                 timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
                                 //console.log(response[0].min)
                                 //var text = document.createTextNode(column.innerHTML = "");
