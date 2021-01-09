@@ -76,7 +76,8 @@
             return response.json();
         })
         .then(function (races) {
-            return races[0].min
+            var sending = races[0].min==undefined ? "" : races[0].min;
+            return sending
         })
         .catch(function (error) {
                 console.log("Error: " + error);
