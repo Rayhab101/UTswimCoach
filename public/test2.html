@@ -69,9 +69,9 @@
     function timesPull(id, event, meet, column) {
 
         for (var i = 1; i < meet.length; i++) {
-            console.log("1: " + id)
-            console.log("2: " + event)
-            console.log("3: " + meet[i])
+            // console.log("1: " + id)
+            // console.log("2: " + event)
+            // console.log("3: " + meet[i])
             text = document.createTextNode(column.innerHTML = event);
             return text;
         }
@@ -107,6 +107,7 @@
                 return response.json();
             })
             .then(function (myJson) {
+                console.log(myJson)
                 getSwimData(myJson[0])
                 // fr200(myJson.swimmers[pullperson])
                 // im200(myJson.swimmers[pullperson])
@@ -135,7 +136,7 @@
                     meets[i] = meet[i].location
                     //console.log(meets[i])
                 }
-                var a = 0;
+                //var a = 0;
                 for (var j = 0; j < meets.length; j++) {
                     var row = document.createElement("tr");
                     var column = document.createElement("td");
@@ -167,7 +168,8 @@
                             var to = 22
                         }
                         for (var k = from; k < to; k++) {
-                            //var data = events[k];
+                            var data = events[k];
+                            console.log(data)
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
@@ -177,7 +179,7 @@
                             row.appendChild(cell)
                             body.appendChild(row);
                         }
-                        a++;
+                        //a++;
                     }
                 }
             })
