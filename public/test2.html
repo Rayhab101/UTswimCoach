@@ -181,7 +181,6 @@
                         cell = row.insertCell();
                         cell.setAttribute("style", "width: 20%");
                         text = document.createTextNode(meets[j]);
-                        console.log("check: "+ text)
                         cell.appendChild(text);
                         body.appendChild(row);
                         //console.log(events[a])
@@ -197,26 +196,16 @@
                             var data = events[k];
                             //console.log(data)
                             relays = [1, 8, 11, 12, 19, 22]
-                            //var text;
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                timesPull(tableData.swimmer_id, k, meets, meets[j], column)
-                                .then( function (response){ 
-                                    console.log(response[0].min)
-                                    if(!response[0].min===null){
-                                        var text = document.createTextNode(column.innerHTML = toString(response[0].min));
-                                    }
-                                    else{
-                                        //var text=document.createTextNode(column.innerHTML = "")
-                                    }
-                                    console.log("1: "+ text)
-                                })
+                                timesPull(tableData.swimmer_id, k, meets, meets[j], column).then( function (response){ console.log(response[0].min)})
+                                var text = document.createTextNode(column.innerHTML = "");
                             }
+                            var text = document.createTextNode(column.innerHTML = "");
+                            cell.appendChild(text);
+                            row.appendChild(cell)
+                            body.appendChild(row);
                         }
-                        //var text = document.createTextNode(column.innerHTML = "");
-                        cell.appendChild(text);
-                        row.appendChild(cell)
-                        body.appendChild(row);
                         a++;
                     }
                 }
