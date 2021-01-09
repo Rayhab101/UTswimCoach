@@ -70,16 +70,16 @@
         //console.log(id, event, meet, column)
         var pull = id + "&" + event + "&" + meet;
         console.log(pull)
-        fetch('/api/timeFill/'+ pull)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (races) {
-            console.log(races)
-        })
-        .catch(function (error) {
-                console.log("Error: " + error);
-            });
+        // fetch('/api/timeFill/'+ pull)
+        // .then(function (response) {
+        //     return response.json();
+        // })
+        // .then(function (races) {
+        //     console.log(races)
+        // })
+        // .catch(function (error) {
+        //         console.log("Error: " + error);
+        //     });
         for (var i = 1; i < meet.length; i++) {
             // console.log("1: " + id)
             // console.log("2: " + event)
@@ -185,7 +185,7 @@
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                var text = timesPull(tableData.swimmer_id, k, meets, column)
+                                var text = timesPull(tableData.swimmer_id, k, meets[j], column)
                             }
                             cell.appendChild(text);
                             row.appendChild(cell)
