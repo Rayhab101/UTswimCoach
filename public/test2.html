@@ -73,12 +73,12 @@
         fetch('/api/timeFill/'+ pull)
         .then((response) => response.json())
         .then(function(races){
-            if(!races[0].min===null){
+            if(!races[0].min=='null'){
                 console.log("1:"+races[0].min)
                 var sending = toString(races[0].min);
             }
             else{
-                var sending = " "
+                var sending = ""
             }
             text = document.createTextNode(column.innerHTML = races[0].min)
             cell.appendChild(text);
@@ -177,7 +177,7 @@
                             var from = 12
                             var to = 22
                         }
-                        for (var k = from; k < 14; k++) {
+                        for (var k = from; k < to; k++) {
                             var data = events[k];
                             //console.log(data)
                             relays = [1, 8, 11, 12, 19, 22]
