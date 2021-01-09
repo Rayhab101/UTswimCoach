@@ -213,6 +213,10 @@
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
+                                console.log("A: "+a)
+                                console.log("K: "+ k)
+                                console.log("j: "+ j)
+
                                 timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
                                 //console.log(response[0].min)
                                 //var text = document.createTextNode(column.innerHTML = "");
