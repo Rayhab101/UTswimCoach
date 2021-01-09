@@ -203,7 +203,7 @@
                                 .then( function (response){ 
                                     console.log(response[0].min)
                                     if(!response[0].min===null){
-                                        var text = document.createTextNode(column.innerHTML = response[0].min);
+                                        var text = document.createTextNode(column.innerHTML = toString(response[0].min));
                                     }
                                     else{
                                         var text=document.createTextNode(column.innerHTML = "")
