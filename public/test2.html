@@ -26,6 +26,7 @@
         });
     </script>
 </head>
+
 <style>
     .swim_info {
         padding-top: 95px;
@@ -106,32 +107,6 @@
             }
         }
         return maxValue;
-    }
-
-    function tableLoad() {
-        var pullperson = location.search.substring(1);
-        pullperson = pullperson.split("=");
-        pullperson = Number(pullperson[1]);
-        fetch("/api/swim/" + pullperson)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                //console.log(myJson)
-                getSwimData(myJson[0])
-                // fr200(myJson.swimmers[pullperson])
-                // im200(myJson.swimmers[pullperson])
-                // im100(myJson.swimmers[pullperson])
-                // fr50(myJson.swimmers[pullperson])
-                // fl100(myJson.swimmers[pullperson])
-                // fr100(myJson.swimmers[pullperson])
-                // fr500(myJson.swimmers[pullperson])
-                // bk100(myJson.swimmers[pullperson])
-                // br100(myJson.swimmers[pullperson])
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
     }
 
     function getMeets(body,tableData) {
@@ -220,21 +195,31 @@
         // }
 
         getMeets(body,tableData)
-        // var meets = [
-        //     "Times/Meets",
-        //     "Red & Blue",
-        //     "Cedar Valley",
-        //     "Tooele",
-        //     "@Taylorsville",
-        //     "Iron Sea Horse & Bonneville",
-        //     "@Granger",
-        //     "Juan Diego & Summit",
-        //     "Stansbury (Senior Night)",
-        //     "St Joe’s Region Meet (Tooele)",
-        //     "Region 10 Meet (Tooele)",
-        //     "State Meet (BYU)"
-        // ];
+    }
 
+    function tableLoad() {
+        var pullperson = location.search.substring(1);
+        pullperson = pullperson.split("=");
+        pullperson = Number(pullperson[1]);
+        fetch("/api/swim/" + pullperson)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                //getSwimData(myJson[0])
+                // fr200(myJson.swimmers[pullperson])
+                // im200(myJson.swimmers[pullperson])
+                // im100(myJson.swimmers[pullperson])
+                // fr50(myJson.swimmers[pullperson])
+                // fl100(myJson.swimmers[pullperson])
+                // fr100(myJson.swimmers[pullperson])
+                // fr500(myJson.swimmers[pullperson])
+                // bk100(myJson.swimmers[pullperson])
+                // br100(myJson.swimmers[pullperson])
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
     }
 
     function fr200(chartData) {
@@ -975,6 +960,16 @@
             <div id="testTable" printable>
                 <table class="swimmer_data" id="swimmer_data">
                     <th id="swimmer_name"></th>
+                    <tr>
+                        <td>200 Freestyle</td>
+                        <td>200 IM</td>
+                        <td>50 Freestyle</td>
+                        <td>100 Butterfly</td>
+                        <td>100 Freestyle</td>
+                        <td>500 Freestyle</td>
+                        <td>100 Backstroke</td>
+                        <td>100 Breaststroke</td>
+                    </tr>
                 </table>
             </div>
             <br>
