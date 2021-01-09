@@ -76,7 +76,7 @@
             return response.json();
         })
         .then(function (races) {
-            console.log(typeof races[0].min)
+            console.log(races[0].min===undefined)
             var sending = typeof races[0].min===undefined ? "" : races[0].min;
             return sending
         })
