@@ -76,7 +76,7 @@
             return response.json();
         })
         .then(function (races) {
-            console.log(races)
+            console.log(races[0].min)
         })
         .catch(function (error) {
                 console.log("Error: " + error);
