@@ -123,7 +123,7 @@
             });
     }
 
-    function getMeets(body) {
+    function getMeets(body,tableData {
         var meets = []
         fetch('/api/meets')
             .then(function (response) {
@@ -202,7 +202,7 @@
         //     console.log(check[0]+" is not less than "+ check[1]);
         // }
 
-        getMeets(body)
+        getMeets(body,tableData)
         // var meets = [
         //     "Times/Meets",
         //     "Red & Blue",
