@@ -135,11 +135,11 @@
                     meets[i] = meet[i].location
                     //console.log(meets[i])
                 }
-                return meets;
             })
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+            return meets;
     }
     function getSwimData(tableData) {
         var name = tableData["name"];
