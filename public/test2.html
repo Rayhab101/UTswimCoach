@@ -76,22 +76,22 @@
             return response.json();
         })
         .then(function (races) {
-            console.log(races[0].min)
+            var text = document.createTextNode(column.innerHTML = races[0].min);
         })
         .catch(function (error) {
                 console.log("Error: " + error);
             });
-        for (var i = 1; i < meets.length; i++) {
-            // console.log("1: " + id)
-            // console.log("2: " + event)
-            // console.log("3: " + meets)
-            // console.log("4: " + meet)
-            // console.log("5: " + i)
-            // console.log("6: " + column)
+        // for (var i = 1; i < meets.length; i++) {
+        //     // console.log("1: " + id)
+        //     // console.log("2: " + event)
+        //     // console.log("3: " + meets)
+        //     // console.log("4: " + meet)
+        //     // console.log("5: " + i)
+        //     // console.log("6: " + column)
             
-            text = document.createTextNode(column.innerHTML = event);
-            return text;
-        }
+        //     text = document.createTextNode(column.innerHTML = event);
+        //     return text;
+        // }
     }
 
     function dataPull(chartType) {
