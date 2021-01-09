@@ -138,37 +138,35 @@
         // else{
         //     console.log(check[0]+" is not less than "+ check[1]);
         // }
-        var meets = []
-        fetch('/api/meets')
-        .then(function (response) {
-                return response.json();
-            })
-            .then(function (meet) {
-                for(var i = 0; i<meet.length; i++){
-                    //console.log(meet[i].location)
-                    meets[i] = meet[i].location
-                    //console.log(meets[i])
-                }
-                return meets
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
-        console.log(meets.length)
-        // var meets = [
-        //     "Times/Meets",
-        //     "Red & Blue",
-        //     "Cedar Valley",
-        //     "Tooele",
-        //     "@Taylorsville",
-        //     "Iron Sea Horse & Bonneville",
-        //     "@Granger",
-        //     "Juan Diego & Summit",
-        //     "Stansbury (Senior Night)",
-        //     "St Joe’s Region Meet (Tooele)",
-        //     "Region 10 Meet (Tooele)",
-        //     "State Meet (BYU)"
-        // ];
+        // var meets = []
+        // fetch('/api/meets')
+        // .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (meet) {
+        //         for(var i = 0; i<meet.length; i++){
+        //             //console.log(meet[i].location)
+        //             meets[i] = meet[i].location
+        //             //console.log(meets[i])
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         console.log("Error: " + error);
+        //     });
+        var meets = [
+            "Times/Meets",
+            "Red & Blue",
+            "Cedar Valley",
+            "Tooele",
+            "@Taylorsville",
+            "Iron Sea Horse & Bonneville",
+            "@Granger",
+            "Juan Diego & Summit",
+            "Stansbury (Senior Night)",
+            "St Joe’s Region Meet (Tooele)",
+            "Region 10 Meet (Tooele)",
+            "State Meet (BYU)"
+        ];
 
         var a = 0;
         for (var j = 0; j < meets.length; j++) {
