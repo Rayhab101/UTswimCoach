@@ -198,7 +198,7 @@
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                var text = timesPull(tableData.swimmer_id, k, meets, meets[j], column).then( function (response){ return Promise.resolve(response[0].min)})
+                                var text = timesPull(tableData.swimmer_id, k, meets, meets[j], column).then((response)=> Promise.resolve(response[0].min))
                                 console.log(text)
                                 var text = document.createTextNode(column.innerHTML = "");
                             }
