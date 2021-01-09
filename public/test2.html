@@ -191,6 +191,7 @@
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
                                 var time = timesPull(tableData.swimmer_id, k, meets, meets[j], column)
+                                console.log(time)
                                 var text = document.createTextNode(column.innerHTML = time);
                             }
                             cell.appendChild(text);
