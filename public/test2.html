@@ -84,7 +84,7 @@
             else{
                 sending = ""
             }
-            return Promise.resolve(sending)
+            return Promise.resolve(sending);
         })
         .catch(function (error) {
                 console.log("Error: " + error);
@@ -198,7 +198,7 @@
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                timesPull(tableData.swimmer_id, k, meets, meets[j], column).then(response => console.log(response))
+                                timesPull(tableData.swimmer_id, k, meets, meets[j], column).then((response) => console.log(response))
                                 var text = document.createTextNode(column.innerHTML = "");
                             }
                             cell.appendChild(text);
