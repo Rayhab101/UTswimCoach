@@ -68,7 +68,7 @@
 
     function timesPull(id, event, meets, meet, column) {
         //console.log(id, event, meet, column)
-
+        var sending;
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         //console.log(pull)
         fetch('/api/timeFill/'+ pull)
@@ -77,9 +77,12 @@
         })
         .then(function (races) {
             console.log(races[0].min===null)
-            var sending=""
             if(!races[0].min===null){
+                console.log(races[0].min===null)
                 sending = races[0].min;
+            }
+            else{
+                sending = ""
             }
             return sending
         })
