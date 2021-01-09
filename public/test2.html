@@ -145,7 +145,8 @@
             })
             .then(function (meet) {
                 for(var i = 0; i<meet.length; i++){
-                    meets[i] = meet[i].location
+                    console.log(meet[i].location)
+                    //meets[i] = meet[i].location
                 }
             })
             .catch(function (error) {
