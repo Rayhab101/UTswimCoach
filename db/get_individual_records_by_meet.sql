@@ -1,2 +1,2 @@
 SELECT time FROM records
-WHERE swimmer=$1 and race=$2 and meet=$3;
+WHERE swimmer=$1 and race=$2 and meet=$3 ORDER BY meet,race;
