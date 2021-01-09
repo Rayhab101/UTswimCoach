@@ -68,7 +68,6 @@
 
     function timesPull(id, event, meets, meet, column,cell,row,body) {
         //console.log(id, event, meet, column)
-        var sending;
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         //console.log(pull)
         return fetch('/api/timeFill/'+ pull)
@@ -78,10 +77,10 @@
             console.log(races[0].min===null)
             if(!races[0].min===null){
                 ///console.log("2:"+races[0].min===null)
-                sending = races[0].min;
+                var sending = toString(races[0].min);
             }
             else{
-                sending = ""
+                var sending = ""
             }
             console.log(sending)
             // cell.appendChild(text);
