@@ -206,8 +206,9 @@
                                         var text = document.createTextNode(column.innerHTML = response[0].min);
                                     }
                                     else{
-                                        text=document.createTextNode(column.innerHTML = "")
+                                        var text=document.createTextNode(column.innerHTML = "")
                                     }
+                                    console.log("1: "+ text)
                                     cell.appendChild(text);
                                     row.appendChild(cell)
                                     body.appendChild(row);
