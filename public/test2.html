@@ -220,8 +220,8 @@
                         cell.appendChild(text);
                         for (var k = 0; k < events.length; k++) {
                             cell = row.insertCell();
-                            text = document.createTextNode(column.innerHTML = events[k]);
-                            cell.appendChild(text);
+                            event = document.createTextNode(column.innerHTML = events[k]);
+                            cell.appendChild(event);
                         }
                         body.appendChild(row);
                     //     //console.log(events[a])
