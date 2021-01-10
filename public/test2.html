@@ -235,12 +235,9 @@
     }
 
     function lookForRace(id,event){
-        fetch("/api/swim/" + id).then(function(response){ response.json()})
+        fetch("/api/chartFill/" + id + "&"+ event).then(function(response){ response.json()})
         .then(function(events){
-            return events
-        })
-        .then((json) => {
-        return json; // return the customer_name here
+            console.log(events)
         })
         .catch(function (error) {
                 console.log("Error: " + error);

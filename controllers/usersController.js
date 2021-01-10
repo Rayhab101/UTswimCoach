@@ -248,5 +248,17 @@ module.exports = {
             //console.log(school_relays);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
+    },
+    chartFill: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("&");
+        id=idSplit[0];
+        var race=idSplit[1];
+        const db = req.app.get("db");
+        console.log(id,race);
+        db.get_individual_races(id,race).then(times => {
+            //console.log(school_relays);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
     }
 }
