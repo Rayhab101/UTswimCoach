@@ -73,7 +73,7 @@
         //console.log(pull)
         fetch('/api/timeFill/'+ pull)
         .then(function (response) {
-            return Promise.resolve(response.json())
+            return response.json()
         })
         .then(function(races){
             var sending = races[0].min;
@@ -81,8 +81,9 @@
             time = document.createTextNode(column.innerHTML = sending);
             cell.appendChild(time);
             row.appendChild(cell);
-            body.appendChild(row);
+            
         });
+        body.appendChild(row);
     }
 
     function dataPull(chartType) {
