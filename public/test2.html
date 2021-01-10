@@ -236,7 +236,10 @@
 
     function lookForRace(id,event){
         console.log(id,event)
-        fetch("/api/chartFill/" + id + "&"+ event).then(function(response){ response.json()})
+        fetch("/api/chartFill/" + id + "&"+ event)
+        .then(function(response){ 
+            return response.json()
+        })
         .then(function(events){
             console.log(events)
         })
