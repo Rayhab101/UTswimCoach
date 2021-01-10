@@ -115,6 +115,7 @@
     }
 
     function dataPull(chartType) {
+        console.log(chartType)
         for (var a = 0; a < chartType.length; a++) {
             //console.log(chartType[a]);
             if (chartType[a] != "") {
@@ -242,7 +243,8 @@
         })
         .then(function(events){
             if(events.length !=0){
-                console.log(events)
+                var maxValue = dataPull(events[0].time)
+                console.log(maxValue)
             }
         })
         .catch(function (error) {
@@ -253,7 +255,7 @@
     function fr200(chartData) {
         console.log(chartData)
         var races = chartData.gender == "F" ? 2 : 13;
-        console.log(lookForRace(chartData.swimmer_id,races))
+        lookForRace(chartData.swimmer_id,races)
         
         if (typeof chartData["200fr"] != "undefined" && chartData["200fr"].length > 0) {
             var maxValue = dataPull(chartData["200fr"]);
