@@ -253,7 +253,7 @@
     function fr200(chartData) {
         console.log(chartData)
         var races = chartData.gender == "F" ? 2 : 13;
-        lookForRace(chartData.swimmer_id,races)
+        console.log(lookForRace(chartData.swimmer_id,races))
         
         if (typeof chartData["200fr"] != "undefined" && chartData["200fr"].length > 0) {
             var maxValue = dataPull(chartData["200fr"]);
