@@ -77,12 +77,13 @@
         })
         .then(function(races){
             //console.log(races[0].min===null)
-            if(!races[0].min===null){
-                console.log("1:"+races[0].min)
-                var sending = toString(races[0].min);
+            if(races[0].min===null){
+                var sending = ""
+
             }
             else{
-                var sending = ""
+                console.log("1:"+races[0].min)
+                var sending = toString(races[0].min);
             }
             // text = document.createTextNode(column.innerHTML = races[0].min)
             // cell.appendChild(text);
