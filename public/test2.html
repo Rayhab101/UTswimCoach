@@ -78,15 +78,13 @@
             return response.json()
         })
         .then(function(races){
-            console.log(column)
             console.log(races[0].min)
             var sending = races[0].min;
             //console.log(sending)
+            document.getElementById(cell.id).innerHTML = races[0];
             time = document.createTextNode(column.innerHTML = sending);
-            cell.appendChild(time);
-            row.appendChild(cell);
+
         });
-        body.appendChild(row);
     }
 
     function dataPull(chartType) {
@@ -238,6 +236,7 @@
                                 cell = row.insertCell();
                                 cell.setAttribute("id", at+"_"+k)
                                 timesPull(tableData.swimmer_id,column,cell,row,body)
+                                body.appendChild(row);
                             }
                         }
                         a++;
