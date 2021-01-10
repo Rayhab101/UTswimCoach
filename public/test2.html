@@ -69,23 +69,23 @@
 
     function timesPull(id, event, meets, meet, column,cell,row,body) {
         console.log(id, event, meet, column)
-        var pull = id + "&" + event + "&" + meets.indexOf(meet);
-        console.log(pull)
-        fetch('/api/timeFill/'+ pull)
-        .then((response) => response.json())
-        .then(function(races){
-            if(!races[0].min=='null'){
-                console.log("1:"+races[0].min)
-                var sending = toString(races[0].min);
-            }
-            else{
-                var sending = ""
-            }
-            text = document.createTextNode(column.innerHTML = races[0].min)
-            cell.appendChild(text);
-            row.appendChild(cell)
-            body.appendChild(row);
-        });
+        // var pull = id + "&" + event + "&" + meets.indexOf(meet);
+        // console.log(pull)
+        // fetch('/api/timeFill/'+ pull)
+        // .then((response) => response.json())
+        // .then(function(races){
+        //     if(!races[0].min=='null'){
+        //         console.log("1:"+races[0].min)
+        //         var sending = toString(races[0].min);
+        //     }
+        //     else{
+        //         var sending = ""
+        //     }
+        //     text = document.createTextNode(column.innerHTML = races[0].min)
+        //     cell.appendChild(text);
+        //     row.appendChild(cell)
+        //     body.appendChild(row);
+        // });
     }
 
     function dataPull(chartType) {
@@ -219,9 +219,10 @@
                         text = document.createTextNode(column.innerHTML= meets[j]);
                         cell.appendChild(text);
                         for (var k = 0; k < events.length; k++) {
-                            console.log("row: "+j)
-                            console.log("column: "+ k)
+                            // console.log("row: "+j)
+                            // console.log("column: "+ k)
                             cell = row.insertCell();
+                            timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
                             event = document.createTextNode(column.innerHTML = k);
                             cell.appendChild(event);
                         }
