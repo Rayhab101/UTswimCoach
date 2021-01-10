@@ -252,15 +252,17 @@
                     for (var i = 0; i < events.length; i++) {
                         console.log(events[j].time)
                         newChartData[j] = events[i].time;
+                        //This need to be fixed --------------------------
                         var splitDates = meets[i].toString().split(" ");
                         var year = splitDates[3];
                         var day = splitDates[2];
                         var month = splitDates[1];
                         pushDate[j] = month + " " + day + ", " + year;
+                        //------------------------------------------------
                         testChartData[j] = { y: newChartData[j], x: pushDate[j], indexLabel: newChartData[j] };
                         j++;
-                        stateRecord[i] = (chartData["gender"][0] === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
-                        schoolRecord[i] = (chartData["gender"][0] === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
+                        stateRecord[i] = (events.gender === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
+                        schoolRecord[i] = (events.gender === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
                     }
 
                     var name = chartData.name.split(" ");
