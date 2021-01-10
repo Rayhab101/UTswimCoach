@@ -69,8 +69,7 @@
 
     function timesPull(id, event, meet, column,cell,row,body) {
         //console.log(id, event, meet, column)
-        //var pull = id + "&" + event + "&" + meet;
-        var pull = 2 + "&" + 13 + "&" + 2;
+        var pull = id + "&" + event + "&" + meet;
         //console.log(pull)
         fetch('/api/timeFill/'+ pull)
         .then(function (response) {
