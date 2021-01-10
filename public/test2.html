@@ -112,10 +112,10 @@
             return response.json()
         })
         .then(function(races){
-            console.log(races.length)
+            console.log(races[0])
             //var sending = races[0].min;
             //console.log(sending)
-            // if(sending != null){
+            // if(races.length != 0){
             //     document.getElementById(cell.id).innerHTML = sending;
             // }
         });
