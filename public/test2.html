@@ -125,7 +125,6 @@
                 var minute = maybe > 59 ? Number(doubleCheck[0]) + 1 : doubleCheck[0];
                 maybe = maybe > 59 ? maybe - 50 : maybe;
                 var maxValue = minute + ":" + maybe + "." + check[1];
-                break;
             }
             else {
                 var maxValue = "03:00.00";
@@ -251,7 +250,7 @@
     }
 
     function fr200(chartData) {
-        console.log(chartData)
+        //console.log(chartData)
         var races = chartData.gender == "F" ? 2 : 13;
         lookForRace(chartData.swimmer_id,races)
         
