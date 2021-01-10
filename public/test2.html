@@ -239,7 +239,9 @@
             return response.json()
         })
         .then(function(events){
+            var hide = document.getElementById(race_id);
             if(events.length !=0){
+                hide.setAttribute("style", "display:block");
                 var maxValue = dataPull(events[0].time)
                 //console.log(maxValue)
                 for(var i=0;i<events.length;i++){
@@ -300,7 +302,6 @@
         //     myChart.render();
         //     }
             else {
-            var hide = document.getElementById(race_id);
             hide.setAttribute("style", "display:none");
         }
         })
