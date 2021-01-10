@@ -109,10 +109,10 @@
         fetch('/api/timeFill/'+ pull)
         .then(function (response) {
             console.log(response.json())
-            //return response.json()
+            return response.json()
         })
         .then(function(races){
-            console.log(races)
+            console.log(races[0].min)
             //var sending = races[0].min;
             //console.log(sending)
             // if(sending != null){
