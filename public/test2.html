@@ -233,7 +233,6 @@
     }
 
     async function getData(id) {
-        try {
             const response = await fetch('/api/meets/'+id)
             .then(function (response){
                 return response.json();
@@ -243,11 +242,9 @@
                 // const exam = await response.json();
                 // return exam;
             })
-
-        } 
-        catch (error) {
-            console.error(error);
-        }
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
     }
 
     var stuff=0; 
@@ -271,7 +268,7 @@
                     var testChartData = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
-                        getDate();
+                        getDate(events[i].meet);
                         //This need to be fixed --------------------------
                         var splitDates = meets[i].toString().split(" ");
                         var year = splitDates[3];
