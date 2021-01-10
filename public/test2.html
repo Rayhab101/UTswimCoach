@@ -76,7 +76,7 @@
             return Promise.resolve(response.json())
         })
         .then(function(races){
-            console.log(typeof races[0].min)
+            console.log(typeof races[0].min === 'object')
             if(typeof races[0].min === 'object'){
                 var sending = ""
             }
