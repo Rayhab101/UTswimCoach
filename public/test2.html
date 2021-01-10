@@ -67,10 +67,10 @@
 
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
-    function timesPull(id, event, meet, column,cell,row,body) {
+    function timesPull(id, column,cell,row,body) {
         //console.log(id, event, meet, column)
         var pull = id + "&" + event + "&" + meet;
-        //console.log(pull)
+        console.log(cell.id)
         fetch('/api/timeFill/'+ pull)
         .then(function (response) {
             return response.json()
@@ -234,7 +234,7 @@
                                 console.log(at)
                                 cell = row.insertCell();
                                 cell.setAttribute("id", at+"_"+k)
-                                timesPull(tableData.swimmer_id, k, at , column,cell,row,body)
+                                timesPull(tableData.swimmer_id,column,cell,row,body)
                             }
                         }
                         a++;
