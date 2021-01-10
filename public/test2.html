@@ -114,12 +114,11 @@
         });
     }
 
-    function dataPull(chartType) {
-        console.log(chartType)
-        for (var a = 0; a < chartType.length; a++) {
+    function dataPull(time) {
+        console.log(time)
             //console.log(chartType[a]);
-            if (chartType[a] != "") {
-                var check = chartType[a].split(".");
+            if (time != "") {
+                var check = time.split(".");
                 var doubleCheck = check[0].split(":");
                 var maybe = Number(doubleCheck[1]);
                 maybe += 10;
@@ -132,7 +131,6 @@
                 var maxValue = "03:00.00";
                 //break;
             }
-        }
         return maxValue;
     }
 
@@ -236,7 +234,7 @@
     }
 
     function lookForRace(id,event){
-        console.log(id,event)
+        //console.log(id,event)
         fetch("/api/chartFill/" + id + "&"+ event)
         .then(function(response){ 
             return response.json()
