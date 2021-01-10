@@ -232,8 +232,9 @@
             });
     }
 
+    var stuff=0;
     function lookForRace(id, event, race_id) {
-        var race=["","200 Free","200 IM","50 Free","100 Fly","100 Free","500 Free","","100 Backstroke","100 Breaststroke",""]
+        // var race=["","200 Free","200 IM","50 Free","100 Fly","100 Free","500 Free","","100 Backstroke","100 Breaststroke",""]
         //console.log(id,event)
         fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
@@ -252,7 +253,6 @@
                     var newChartData = []
                     var testChartData = []
                     for (var i = 0; i < events.length; i++) {
-                        //console.log(events[j].time)
                         newChartData[j] = events[i].time;
                         //This need to be fixed --------------------------
                         var splitDates = meets[i].toString().split(" ");
@@ -274,7 +274,7 @@
                         data: {
                             labels: pushDate,
                             datasets: [{
-                                label: race[1]+ " Times",
+                                label: race[stuff]+ " Times",
                                 data: testChartData,
                                 fill: false,
                                 pointBorderColor: 'rgba(0, 0, 0, 0.9)',
@@ -324,6 +324,7 @@
                 else {
                     hide.setAttribute("style", "display:none");
                 }
+                stuff++;
             })
             .catch(function (error) {
                 console.log("Error: " + error);
