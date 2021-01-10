@@ -222,7 +222,7 @@
                             console.log("row: "+j)
                             console.log("column: "+ k)
                             cell = row.insertCell();
-                            event = document.createTextNode(column.innerHTML = events[k]);
+                            event = document.createTextNode(column.innerHTML = k);
                             cell.appendChild(event);
                         }
                         body.appendChild(row);
