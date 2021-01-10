@@ -79,14 +79,14 @@
         .then(function(races){
             console.log(races)
             if(typeof races[0].min === 'object'){
-                var sending = "."
+                var sending = ""
             }
             else if(races[0].min==='string'){
                 //console.log("1:"+races[0].min)
                 var sending = races[0].min;
             }
             else{
-                var sending = ".";
+                var sending = "";
             }
             //console.log(sending)
             time = document.createTextNode(column.innerHTML = sending);
