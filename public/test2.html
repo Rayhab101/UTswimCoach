@@ -241,7 +241,10 @@
         .then(function(events){
             if(events.length !=0){
                 var maxValue = dataPull(events[0].time)
-                console.log(maxValue)
+                //console.log(maxValue)
+                for(var i=0;i<events.length;i++){
+                    console.log("hi")
+                }
             }
         })
         .catch(function (error) {
