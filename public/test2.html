@@ -87,6 +87,8 @@
             //console.log(sending)
             time = document.createTextNode(column.innerHTML = sending);
             cell.appendChild(time);
+            row.appendChild(cell);
+            body.appendChild(row);
         });
     }
 
@@ -240,19 +242,7 @@
                             }
                         }
                         a++;
-                        body.appendChild(row);
-                    //     //console.log(events[a])
-
-                    //     for (var k = from; k < to; k++) {
-                    //         var data = events[k];
-                    //         //console.log(data)
-
-                    //         //var text = document.createTextNode(column.innerHTML = "");
-                    //         // cell.appendChild(text);
-                    //         // row.appendChild(cell)
-                    //         // body.appendChild(row);
-                    //     }
-                    //     a++;
+                        
                     }
                 }
             })
