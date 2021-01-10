@@ -234,8 +234,13 @@
             });
     }
 
+    function lookForRace(id){
+        fetch("/api/swim/" + id).then((response)=> console.log(response.json()))
+    }
+
     function fr200(chartData) {
         console.log(chartData)
+        var hasRace = lookForRace(chartData.swimmer_id)
         if (typeof chartData["200fr"] != "undefined" && chartData["200fr"].length > 0) {
             var maxValue = dataPull(chartData["200fr"]);
             maxValue1 = "04:00:00"
