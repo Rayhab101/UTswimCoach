@@ -266,7 +266,18 @@
                     var testChartData = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
-                        getDate(events[i].meet);
+                        //getDate(events[i].meet);
+                        fetch('/api/meets/'+events[i].meet)
+                            .then(function (response){
+                                return response.json();
+                            })
+                            .then(function (fecha){
+                                console.log(Promise.resolve(fecha[0].date))
+                            })
+                            .catch(function (error) {
+                                console.log("Error: " + error);
+                            });
+                        
                         //This need to be fixed --------------------------
                         var splitDates = meets[i].toString().split(" ");
                         var year = splitDates[3];
