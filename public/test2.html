@@ -232,8 +232,9 @@
             });
     }
 
-    var stuff=0;
+    var stuff=0; 
     function lookForRace(id, event, race_id) {
+        
         console.log(stuff)
         var race=["","200 Free","200 IM","50 Free","100 Fly","100 Free","500 Free","","100 Backstroke","100 Breaststroke",""]
         //console.log(id,event)
@@ -325,11 +326,12 @@
                 else {
                     hide.setAttribute("style", "display:none");
                 }
-                stuff++;
+                
             })
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+            stuff++;
     }
 
     function fr200(chartData) {
