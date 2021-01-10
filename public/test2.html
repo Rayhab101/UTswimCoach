@@ -232,7 +232,7 @@
             });
     }
 
-    async function getData(id) {
+    function getData(id) {
         try {
             const response = await fetch('/api/meets/'+id)
             .then(function (response){
@@ -260,7 +260,7 @@
             })
             .then(function (events) {
                 var hide = document.getElementById(race_id);
-                //console.log(events)
+                console.log(events)
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
                     var pushDate = []
@@ -352,7 +352,6 @@
     function fr200(chartData) {
         var races = chartData.gender == "F" ? 2 : 13;
         var race_id = "200fr";
-        console.log(chartData)
         lookForRace(chartData.swimmer_id, races, race_id)
         stuff++;
     }
