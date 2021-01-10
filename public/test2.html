@@ -238,7 +238,7 @@
                 return response.json();
             })
             .then(function (fecha){
-                console.log(fecha.date)
+                console.log(fecha[0].date)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
