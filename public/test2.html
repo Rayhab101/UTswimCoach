@@ -47,6 +47,38 @@
         font-size: 24px;
     }
 </style>
+
+<body onload="tableLoad()">
+    <header id="header"></header>
+    <div class="swim_info" id="swim_info">
+        <button onclick="window.history.go(-1)">Go Back</button>
+        <button class="printPage" id="printPage"
+            style="font-size: 12px; border-radius: 10%; background-color: white; font-weight: bold;"
+            onclick="printImage()">Print Swimmer
+            Data</button>
+        <div class="container" id="container">
+            <div id="testTable" printable>
+                <table class="swimmer_data" id="swimmer_data">
+                    <th id="swimmer_name"></th>
+                </table>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="canvasContainer" id="canvasContainer">
+                <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100fl" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="500fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100bk" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100br" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+            </div>
+        </div>
+    </div>
+    <footer id="footer"></footer>
+</body>
 <script type="text/javascript">
     const schoolRecordM = ["1:56.66", "2:12:47", "1:01.52", "0:22.88", "0:58.99", "0:49.71", "5:36.41", "0:55.92", "1:04.94"];
     const schoolRecordF = ["2:10.79", "2:30.27", "1:14.39", "0:26.82", "1:12.17", "0:59.58", "5:57.35", "1:09.82", "1:16.54"];
@@ -1005,37 +1037,4 @@
         table.removeAttribute("style");
     }
 </script>
-
-<body onload="tableLoad()">
-    <header id="header"></header>
-    <div class="swim_info" id="swim_info">
-        <button onclick="window.history.go(-1)">Go Back</button>
-        <button class="printPage" id="printPage"
-            style="font-size: 12px; border-radius: 10%; background-color: white; font-weight: bold;"
-            onclick="printImage()">Print Swimmer
-            Data</button>
-        <div class="container" id="container">
-            <div id="testTable" printable>
-                <table class="swimmer_data" id="swimmer_data">
-                    <th id="swimmer_name"></th>
-                </table>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="canvasContainer" id="canvasContainer">
-                <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100fl" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="500fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100bk" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100br" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-            </div>
-        </div>
-    </div>
-    <footer id="footer"></footer>
-</body>
-
 </html>
