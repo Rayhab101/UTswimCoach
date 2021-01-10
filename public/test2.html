@@ -218,6 +218,8 @@
                         text = document.createTextNode(column.innerHTML= meets[j]);
                         cell.appendChild(text);
                         for (var k = 0; k < events.length; k++) {
+                            console.log("row: "+j)
+                            console.log("column: "+ k)
                             cell = row.insertCell();
                             event = document.createTextNode(column.innerHTML = events[k]);
                             cell.appendChild(event);
