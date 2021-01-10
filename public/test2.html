@@ -243,7 +243,7 @@
                 var hide = document.getElementById(race_id);
                 console.log(events)
                 if (events.length != 0) {
-                    hide.setAttribute("style", "display:block");
+                    // hide.setAttribute("style", "display:block");
                     var maxValue = dataPull(events[0].time)
                     var pushDate = []
                     var stateRecord = []
@@ -321,9 +321,9 @@
                     });
                     myChart.render();
                 }
-                // else {
-                //     hide.setAttribute("style", "display:none");
-                // }
+                else {
+                    hide.setAttribute("style", "display:none");
+                }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
