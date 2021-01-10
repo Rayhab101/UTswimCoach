@@ -116,7 +116,6 @@
             if(sending != null){
                 document.getElementById(cell.id).innerHTML = sending;
             }
-            body.appendChild(row);
         });
     }
 
@@ -201,6 +200,7 @@
                                 timesPull(tableData.swimmer_id,column,cell,row,body)
                             }
                         }
+                        body.appendChild(row);
                         a++;
                         
                     }
