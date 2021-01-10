@@ -67,6 +67,25 @@
 
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
+    function timesPull(id, column,cell,row,body) {
+        //console.log(id, event, meet, column)
+        console.log(cell.id)
+        var meet = cell.id.split("_")
+        var pull = id + "&" + meet[1] + "&" + meet[0];
+        
+        fetch('/api/timeFill/'+ pull)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function(races){
+            console.log(races[0].min)
+            var sending = races[0].min;
+            //console.log(sending)
+            document.getElementById(cell.id).innerHTML = sending;
+            body.appendChild(row);
+        });
+    }
+
     function dataPull(chartType) {
         for (var a = 0; a < chartType.length; a++) {
             //console.log(chartType[a]);
@@ -987,7 +1006,7 @@
     }
 </script>
 
-<body onload="tableLoad()">
+<body>
     <header id="header"></header>
     <div class="swim_info" id="swim_info">
         <button onclick="window.history.go(-1)">Go Back</button>
@@ -1004,7 +1023,7 @@
             <br>
             <br>
             <br>
-            <div class="canvasContainer" id="canvasContainer">
+            <div class="canvasContainer" id="canvasContainer" onload="tableLoad()">
                 <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
@@ -1018,24 +1037,5 @@
     </div>
     <footer id="footer"></footer>
 </body>
-<script>
-        function timesPull(id, column,cell,row,body) {
-        //console.log(id, event, meet, column)
-        console.log(cell.id)
-        var meet = cell.id.split("_")
-        var pull = id + "&" + meet[1] + "&" + meet[0];
-        
-        fetch('/api/timeFill/'+ pull)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function(races){
-            console.log(races[0].min)
-            var sending = races[0].min;
-            //console.log(sending)
-            document.getElementById(cell.id).innerHTML = sending;
-            body.appendChild(row);
-        });
-    }
-</script>
+
 </html>
