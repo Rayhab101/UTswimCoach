@@ -233,6 +233,7 @@
     }
 
     function lookForRace(id, event, race_id) {
+        var race=["","200 Free","200 IM","50 Free","100 Fly","100 Free","500 Free","","100 Backstroke","100 Breaststroke",""]
         //console.log(id,event)
         fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
@@ -273,7 +274,7 @@
                         data: {
                             labels: pushDate,
                             datasets: [{
-                                label: "200 Free Times",
+                                label: race[1]+ " Times",
                                 data: testChartData,
                                 fill: false,
                                 pointBorderColor: 'rgba(0, 0, 0, 0.9)',
@@ -320,9 +321,9 @@
                     });
                     myChart.render();
                 }
-                else {
-                    hide.setAttribute("style", "display:none");
-                }
+                // else {
+                //     hide.setAttribute("style", "display:none");
+                // }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
