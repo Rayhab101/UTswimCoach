@@ -77,7 +77,7 @@
         })
         .then(function(races){
             console.log(typeof races[0].min)
-            if(typeof races[0].min == "object"){
+            if(typeof races[0].min == Object){
                 var sending = ""
             }
             else{
