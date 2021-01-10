@@ -100,6 +100,9 @@
             })
             .then(function (myJson) {
                 getSwimData(myJson.swimmers[pullperson])
+                console.log(myJson)
+                console.log(pullperson)
+                console.log(myJson.swimmers[pullperson])
                 fr200(myJson.swimmers[pullperson])
                 im200(myJson.swimmers[pullperson])
                 im100(myJson.swimmers[pullperson])

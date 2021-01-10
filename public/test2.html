@@ -218,13 +218,10 @@
                 return response.json();
             })
             .then(function (myJson) {
-                console.log(myJson)
-                console.log(pullperson)
                 getSwimData(myJson[0])
 
-                // fr200(myJson.swimmers[pullperson])
+                fr200(myJson.swimmers[pullperson])
                 // im200(myJson.swimmers[pullperson])
-                // im100(myJson.swimmers[pullperson])
                 // fr50(myJson.swimmers[pullperson])
                 // fl100(myJson.swimmers[pullperson])
                 // fr100(myJson.swimmers[pullperson])
@@ -238,6 +235,7 @@
     }
 
     function fr200(chartData) {
+        console.log(chartData)
         if (typeof chartData["200fr"] != "undefined" && chartData["200fr"].length > 0) {
             var maxValue = dataPull(chartData["200fr"]);
             maxValue1 = "04:00:00"
