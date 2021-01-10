@@ -229,10 +229,19 @@
                         for (var k = from; k < to; k++) {
                             // console.log("row: "+j)
                             // console.log("column: "+ k)
+                            relays = [1, 8, 11, 12, 19, 22]
+                            if (!relays.includes(k)) {
+                                // cell = row.insertCell();
+                                // console.log("K: "+ k)
+                                // console.log("j: "+ j)
+                                // //timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
+                                // //console.log(response[0].min)
+                                // //var text = document.createTextNode(column.innerHTML = "");
                             cell = row.insertCell();
                             timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
                             event = document.createTextNode(column.innerHTML = k);
                             cell.appendChild(event);
+                            }
                         }
                         body.appendChild(row);
                     //     //console.log(events[a])
@@ -240,15 +249,7 @@
                     //     for (var k = from; k < to; k++) {
                     //         var data = events[k];
                     //         //console.log(data)
-                    //         relays = [1, 8, 11, 12, 19, 22]
-                    //         if (!relays.includes(k)) {
-                    //             cell = row.insertCell();
-                    //             console.log("K: "+ k)
-                    //             console.log("j: "+ j)
-                    //             //timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
-                    //             //console.log(response[0].min)
-                    //             //var text = document.createTextNode(column.innerHTML = "");
-                    //         }
+
                     //         //var text = document.createTextNode(column.innerHTML = "");
                     //         // cell.appendChild(text);
                     //         // row.appendChild(cell)
