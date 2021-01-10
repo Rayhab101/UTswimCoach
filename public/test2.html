@@ -113,7 +113,9 @@
             console.log(races[0].min)
             var sending = races[0].min;
             //console.log(sending)
-            document.getElementById(cell.id).innerHTML = sending;
+            if(sending != null){
+                document.getElementById(cell.id).innerHTML = sending;
+            }
             body.appendChild(row);
         });
     }
