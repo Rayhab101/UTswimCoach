@@ -121,6 +121,7 @@
                     meets[i] = meet[i].location
                     //console.log(meets[i])
                 }
+                console.log(meets)
                 var a = 0;
                 var row = document.createElement("tr");
                 var column = document.createElement("td");
@@ -160,7 +161,7 @@
                                 cell = row.insertCell();
                                 console.log("K: "+ k)
                                 console.log("j: "+ j)
-                                timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
+                                //timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
                                 //console.log(response[0].min)
                                 //var text = document.createTextNode(column.innerHTML = "");
                             }
@@ -193,7 +194,6 @@
         // else{
         //     console.log(check[0]+" is not less than "+ check[1]);
         // }
-
         getMeets(body,tableData)
     }
 
