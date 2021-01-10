@@ -272,12 +272,12 @@
                                 return response.json();
                             })
                             .then(function (fecha){
-                                console.log(Promise.resolve(fecha[0].date))
+                                var test = Promise.resolve(fecha[0].date)
                             })
                             .catch(function (error) {
                                 console.log("Error: " + error);
                             });
-                        
+                        console.log(test)
                         //This need to be fixed --------------------------
                         var splitDates = meets[i].toString().split(" ");
                         var year = splitDates[3];
