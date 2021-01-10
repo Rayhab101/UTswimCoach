@@ -235,6 +235,7 @@
     }
 
     function lookForRace(id,event){
+        console.log(id,event)
         fetch("/api/chartFill/" + id + "&"+ event).then(function(response){ response.json()})
         .then(function(events){
             console.log(events)
@@ -246,7 +247,8 @@
 
     function fr200(chartData) {
         console.log(chartData)
-        var hasRace = lookForRace(chartData.swimmer_id,2)
+        var races = chartData.gender == "F" ? 2 : 13;
+        var hasRace = lookForRace(chartData.swimmer_id,races)
         console.log(hasRace)
         if (typeof chartData["200fr"] != "undefined" && chartData["200fr"].length > 0) {
             var maxValue = dataPull(chartData["200fr"]);
