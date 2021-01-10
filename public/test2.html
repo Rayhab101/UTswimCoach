@@ -232,8 +232,8 @@
             });
     }
 
-    function getDate(id) {
-            const response1 = fetch('/api/meets/'+id)
+    async function getDate(id) {
+            const response1 = await fetch('/api/meets/'+id)
             .then(function (response){
                 return response.json();
             })
