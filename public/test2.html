@@ -238,14 +238,13 @@
                 return response.json();
             })
             .then(function (date){
-                console.log(date)
+                console.log(date,id)
                 // const exam = await response.json();
                 // return exam;
             })
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-            console.log("1: "+date)
     }
 
     var stuff=0; 
