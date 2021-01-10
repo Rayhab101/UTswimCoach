@@ -214,6 +214,7 @@
                     else {
                         row = document.createElement("tr");
                         cell = row.insertCell();
+                        cell.setAttribute("id", j);
                         cell.setAttribute("style", "width: 20%");
                         text = document.createTextNode(column.innerHTML= meets[j]);
                         cell.appendChild(text);
