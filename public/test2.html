@@ -230,9 +230,9 @@
                             var at = meet[a].meet_id
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
+                                console.log(at)
                                 cell = row.insertCell();
-                                // timesPull(tableData.swimmer_id, k, at , column,cell,row,body)
-                                timesPull(2, k, at , column,cell,row,body)
+                                timesPull(tableData.swimmer_id, k, at , column,cell,row,body)
                             }
                         }
                         a++;
