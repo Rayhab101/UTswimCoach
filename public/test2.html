@@ -105,17 +105,14 @@
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + meet[0];
         //var pull = id + "&"  + meet[0];
-        console.log(pull)
         fetch('/api/timeFill/'+ pull)
         .then(function (response) {
             //console.log(response.json())
             return response.json()
         })
         .then(function(races){
-            console.log(races[0])
-            var sending = races[0].time;
-            //console.log(sending)
             if(races.length != 0){
+                var sending = races[0].time;
                 document.getElementById(cell.id).innerHTML = sending;
             }
         });
