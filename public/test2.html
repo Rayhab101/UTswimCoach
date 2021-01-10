@@ -232,10 +232,26 @@
             });
     }
 
+    async function getData(id) {
+        try {
+            const response = await fetch('/api/meets/'+id)
+            .then(function (response){
+                return response.json();
+            })
+            .then(function (date){
+                console.log(date)
+                // const exam = await response.json();
+                // return exam;
+            })
+
+        } 
+        catch (error) {
+            console.error(error);
+        }
+    }
+
     var stuff=0; 
     function lookForRace(id, event, race_id) {
-        
-        //console.log(stuff)
         var race=["200 Free","200 IM","50 Free","100 Fly","100 Free","500 Free","100 Backstroke","100 Breaststroke"]
         var title = race[stuff]
         fetch("/api/chartFill/" + id + "&" + event)
@@ -246,7 +262,6 @@
                 var hide = document.getElementById(race_id);
                 //console.log(events)
                 if (events.length != 0) {
-                    // hide.setAttribute("style", "display:block");
                     var maxValue = dataPull(events[0].time)
                     var pushDate = []
                     var stateRecord = []
@@ -256,6 +271,7 @@
                     var testChartData = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
+                        getDate();
                         //This need to be fixed --------------------------
                         var splitDates = meets[i].toString().split(" ");
                         var year = splitDates[3];
@@ -336,6 +352,7 @@
     function fr200(chartData) {
         var races = chartData.gender == "F" ? 2 : 13;
         var race_id = "200fr";
+        console.log(chartData)
         lookForRace(chartData.swimmer_id, races, race_id)
         stuff++;
     }
