@@ -99,37 +99,37 @@
 
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
-    function timesPull(id, column,cell,row,body) {
+    function timesPull(id, column, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + meet[0];
-        fetch('/api/timeFill/'+ pull)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function(races){
-            if(races.length != 0){
-                var sending = races[0].time;
-                document.getElementById(cell.id).innerHTML = sending;
-            }
-        });
+        fetch('/api/timeFill/' + pull)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (races) {
+                if (races.length != 0) {
+                    var sending = races[0].time;
+                    document.getElementById(cell.id).innerHTML = sending;
+                }
+            });
     }
 
     function dataPull(time) {
         console.log(time)
-            //console.log(chartType[a]);
-            if (time != "") {
-                var check = time.split(".");
-                var doubleCheck = check[0].split(":");
-                var maybe = Number(doubleCheck[1]);
-                maybe += 10;
-                var minute = maybe > 59 ? Number(doubleCheck[0]) + 1 : doubleCheck[0];
-                maybe = maybe > 59 ? maybe - 50 : maybe;
-                var maxValue = minute + ":" + maybe + "." + check[1];
-            }
-            else {
-                var maxValue = "03:00.00";
-                //break;
-            }
+        //console.log(chartType[a]);
+        if (time != "") {
+            var check = time.split(".");
+            var doubleCheck = check[0].split(":");
+            var maybe = Number(doubleCheck[1]);
+            maybe += 10;
+            var minute = maybe > 59 ? Number(doubleCheck[0]) + 1 : doubleCheck[0];
+            maybe = maybe > 59 ? maybe - 50 : maybe;
+            var maxValue = minute + ":" + maybe + "." + check[1];
+        }
+        else {
+            var maxValue = "03:00.00";
+            //break;
+        }
         return maxValue;
     }
 
@@ -170,7 +170,7 @@
                         cell = row.insertCell();
                         cell.setAttribute("id", j);
                         cell.setAttribute("style", "width: 20%");
-                        text = document.createTextNode(column.innerHTML= meets[j]);
+                        text = document.createTextNode(column.innerHTML = meets[j]);
                         cell.appendChild(text);
                         if (tableData["gender"] == "F") {
                             var to = 12
@@ -185,13 +185,13 @@
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                cell.setAttribute("id", at+"_"+k)
-                                timesPull(tableData.swimmer_id,column,cell,row,body)
+                                cell.setAttribute("id", at + "_" + k)
+                                timesPull(tableData.swimmer_id, column, cell, row, body)
                             }
                         }
                         body.appendChild(row);
                         a++;
-                        
+
                     }
                 }
             })
@@ -232,124 +232,115 @@
             });
     }
 
-    function lookForRace(id,event,race_id){
+    function lookForRace(id, event, race_id) {
         //console.log(id,event)
-        fetch("/api/chartFill/" + id + "&"+ event)
-        .then(function(response){ 
-            return response.json()
-        })
-        .then(function(events){
-            var hide = document.getElementById(race_id);
-            if(events.length !=0){
-                hide.setAttribute("style", "display:block");
-                var maxValue = dataPull(events[0].time)
-                //console.log(maxValue)
-                for(var i=0;i<events.length;i++){
-                    console.log("hi")
-                }
-            }
-        //         var ctx = document.getElementById("200fr");
-        //         var myChart = new Chart(ctx, {
-        //         type: 'line',
-        //         data: {
-        //             labels: pushDate,
-        //             datasets: [{
-        //                 label: "200 Free Times",
-        //                 data: testChartData,
-        //                 fill: false,
-        //                 pointBorderColor: 'rgba(0, 0, 0, 0.9)',
-        //                 pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
-        //                 borderColor: "rgba(0, 0, 0, 0.9)"
-        //             },
-        //             {
-        //                 label: "School Record",
-        //                 data: schoolRecord,
-        //                 fill: true,
-        //                 pointBorderColor: 'rgba(0, 0, 255, 0.9)',
-        //                 pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
-        //                 borderColor: "rgba(0, 0, 255, 0.9)"
-        //             },
-        //             {
-        //                 label: "State Record",
-        //                 data: stateRecord,
-        //                 fill: true,
-        //                 pointBorderColor: 'rgba(255, 0, 0, 0.9)',
-        //                 pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
-        //                 borderColor: "rgba(255, 0, 0, 0.9)"
-        //             }
-        //             ],
+        fetch("/api/chartFill/" + id + "&" + event)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (events) {
+                var hide = document.getElementById(race_id);
+                if (events.length != 0) {
+                    hide.setAttribute("style", "display:block");
+                    var maxValue = dataPull(events[0].time)
+                    //console.log(maxValue)
+                    for (var i = 0; i < events.length; i++) {
+                        console.log("hi")
+                    }
+                    var pushDate = []
+                    var stateRecord = []
+                    var schoolRecord = []
+                    var j = 0
+                    var newChartData = []
+                    var testChartData = []
+                    for (var i = 0; i < chartData["200fr"].length; i++) {
+                        if (chartData["200fr"][i] != "") {
+                            newChartData[j] = chartData["200fr"][i]
+                            var splitDates = meets[i].toString().split(" ");
+                            var year = splitDates[3];
+                            var day = splitDates[2];
+                            var month = splitDates[1];
+                            pushDate[j] = month + " " + day + ", " + year;
+                            testChartData[j] = { y: newChartData[j], x: pushDate[j], indexLabel: newChartData[j] };
+                            j++;
+                        }
+                        stateRecord[i] = (chartData["gender"][0] === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
+                        schoolRecord[i] = (chartData["gender"][0] === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
+                    }
+                    //console.log(testChartData);
+                    var name = chartData.name.split(" ");
+                    var ctx = document.getElementById("200fr");
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: pushDate,
+                            datasets: [{
+                                label: "200 Free Times",
+                                data: testChartData,
+                                fill: false,
+                                pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                                pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                borderColor: "rgba(0, 0, 0, 0.9)"
+                            },
+                            {
+                                label: "School Record",
+                                data: schoolRecord,
+                                fill: true,
+                                pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                                pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                                borderColor: "rgba(0, 0, 255, 0.9)"
+                            },
+                            {
+                                label: "State Record",
+                                data: stateRecord,
+                                fill: true,
+                                pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                                pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                                borderColor: "rgba(255, 0, 0, 0.9)"
+                            }
+                            ],
 
-        //         },
-        //         options: {
-        //             scales: {
-        //                 yAxes: [{
-        //                     type: 'time',
-        //                     time: {
-        //                         parser: 'm:ss.SS',
-        //                         unit: 'seconds',
-        //                         unitStepSize: 10,
-        //                         min: '1:30.000',
-        //                         max: maxValue,
-        //                         displayFormats: {
-        //                             'seconds': 'm:ss.SS'
-        //                         }
-        //                     },
-        //                     ticks: { reverse: true }
-        //                 }]
-        //             },
-        //         }
-        //     });
-        //     myChart.render();
-        //     }
-            else {
-            hide.setAttribute("style", "display:none");
-        }
-        })
-        .catch(function (error) {
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    type: 'time',
+                                    time: {
+                                        parser: 'm:ss.SS',
+                                        unit: 'seconds',
+                                        unitStepSize: 10,
+                                        min: '1:30.000',
+                                        max: maxValue,
+                                        displayFormats: {
+                                            'seconds': 'm:ss.SS'
+                                        }
+                                    },
+                                    ticks: { reverse: true }
+                                }]
+                            },
+                        }
+                    });
+                    myChart.render();
+                }
+                else {
+                    hide.setAttribute("style", "display:none");
+                }
+            })
+            .catch(function (error) {
                 console.log("Error: " + error);
             });
     }
 
     function fr200(chartData) {
-        //console.log(chartData)
         var races = chartData.gender == "F" ? 2 : 13;
         var race_id = "200fr";
-        lookForRace(chartData.swimmer_id,races,race_id)
-        
-        if (typeof chartData["200fr"] != "undefined" && chartData["200fr"].length > 0) {
-            var maxValue = dataPull(chartData["200fr"]);
-            maxValue1 = "04:00:00"
-            //var maxValue = maxValue0
-            var pushDate = []
-            var stateRecord = []
-            var schoolRecord = []
-            var j = 0
-            var newChartData = []
-            var testChartData = []
-            for (var i = 0; i < chartData["200fr"].length; i++) {
-                if (chartData["200fr"][i] != "") {
-                    newChartData[j] = chartData["200fr"][i]
-                    var splitDates = meets[i].toString().split(" ");
-                    var year = splitDates[3];
-                    var day = splitDates[2];
-                    var month = splitDates[1];
-                    pushDate[j] = month + " " + day + ", " + year;
-                    testChartData[j] = { y: newChartData[j], x: pushDate[j], indexLabel: newChartData[j] };
-                    j++;
-                }
-                stateRecord[i] = (chartData["gender"][0] === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
-                schoolRecord[i] = (chartData["gender"][0] === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
-            }
-            //console.log(testChartData);
-            var name = chartData.name.split(" ");
-
-        }
+        lookForRace(chartData.swimmer_id, races, race_id)
     }
 
     function im200(chartData) {
         var races = chartData.gender == "F" ? 3 : 14;
         var race_id = "200IM";
-        lookForRace(chartData.swimmer_id,races,race_id)
+        lookForRace(chartData.swimmer_id, races, race_id)
 
         // if (typeof chartData["200IM"] != "undefined" && chartData["200IM"].length > 0) {
         //     var maxValue = dataPull(chartData["200IM"]);
@@ -439,7 +430,7 @@
     function fr50(chartData) {
         var races = chartData.gender == "F" ? 4 : 15;
         var race_id = "50fr";
-        lookForRace(chartData.swimmer_id,races,race_id)
+        lookForRace(chartData.swimmer_id, races, race_id)
 
         // if (typeof chartData["50fr"] != "undefined" && chartData["50fr"].length > 0) {
         //     var maxValue = dataPull(chartData["50fr"]);
@@ -533,7 +524,7 @@
     function fl100(chartData) {
         var races = chartData.gender == "F" ? 5 : 16;
         var race_id = "100fl";
-        lookForRace(chartData.swimmer_id,races,race_id)
+        lookForRace(chartData.swimmer_id, races, race_id)
 
         // if (typeof chartData["100fl"] != "undefined" && chartData["100fl"].length > 0) {
         //     var maxValue = dataPull(chartData["100fl"]);
@@ -622,7 +613,7 @@
     function fr100(chartData) {
         var races = chartData.gender == "F" ? 6 : 17;
         var race_id = "100fr";
-        lookForRace(chartData.swimmer_id,races,race_id)
+        lookForRace(chartData.swimmer_id, races, race_id)
 
         // if (typeof chartData["100fr"] != "undefined" && chartData["100fr"].length > 0) {
         //     var maxValue = dataPull(chartData["100fr"]);
@@ -711,7 +702,7 @@
     function fr500(chartData) {
         var races = chartData.gender == "F" ? 7 : 18;
         var race_id = "500fr";
-        lookForRace(chartData.swimmer_id,races,race_id)
+        lookForRace(chartData.swimmer_id, races, race_id)
 
         // if (typeof chartData["500fr"] != "undefined" && chartData["500fr"].length > 0) {
         //     var maxValue = dataPull(chartData["500fr"]);
@@ -803,7 +794,7 @@
     function bk100(chartData) {
         var races = chartData.gender == "F" ? 9 : 20;
         var race_id = "100bk";
-        lookForRace(chartData.swimmer_id,races,race_id)
+        lookForRace(chartData.swimmer_id, races, race_id)
 
         // if (typeof chartData["100bk"] != "undefined" && chartData["100bk"].length > 0) {
         //     var maxValue = dataPull(chartData["100bk"]);
@@ -892,7 +883,7 @@
     function br100(chartData) {
         var races = chartData.gender == "F" ? 10 : 21;
         var race_id = "100br";
-        lookForRace(chartData.swimmer_id,races,race_id)
+        lookForRace(chartData.swimmer_id, races, race_id)
 
         // if (typeof chartData["100br"] != "undefined" && chartData["100br"].length > 0) {
         //     var maxValue = dataPull(chartData["100br"]);
@@ -1013,4 +1004,5 @@
         table.removeAttribute("style");
     }
 </script>
+
 </html>
