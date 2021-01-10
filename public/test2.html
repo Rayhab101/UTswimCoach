@@ -234,7 +234,7 @@
 
     var stuff=0;
     function lookForRace(id, event, race_id) {
-        // var race=["","200 Free","200 IM","50 Free","100 Fly","100 Free","500 Free","","100 Backstroke","100 Breaststroke",""]
+        var race=["","200 Free","200 IM","50 Free","100 Fly","100 Free","500 Free","","100 Backstroke","100 Breaststroke",""]
         //console.log(id,event)
         fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
