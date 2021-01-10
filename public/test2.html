@@ -243,33 +243,29 @@
                 if (events.length != 0) {
                     hide.setAttribute("style", "display:block");
                     var maxValue = dataPull(events[0].time)
-                    //console.log(maxValue)
-                    for (var i = 0; i < events.length; i++) {
-                        console.log("hi")
-                    }
                     var pushDate = []
                     var stateRecord = []
                     var schoolRecord = []
                     var j = 0
                     var newChartData = []
                     var testChartData = []
-                    for (var i = 0; i < chartData["200fr"].length; i++) {
-                        if (chartData["200fr"][i] != "") {
-                            newChartData[j] = chartData["200fr"][i]
-                            var splitDates = meets[i].toString().split(" ");
-                            var year = splitDates[3];
-                            var day = splitDates[2];
-                            var month = splitDates[1];
-                            pushDate[j] = month + " " + day + ", " + year;
-                            testChartData[j] = { y: newChartData[j], x: pushDate[j], indexLabel: newChartData[j] };
-                            j++;
-                        }
+                    for (var i = 0; i < events.length; i++) {
+                        
+                        newChartData[j] = events[i];
+                        console.log(newChartData[j])
+                        var splitDates = meets[i].toString().split(" ");
+                        var year = splitDates[3];
+                        var day = splitDates[2];
+                        var month = splitDates[1];
+                        pushDate[j] = month + " " + day + ", " + year;
+                        testChartData[j] = { y: newChartData[j], x: pushDate[j], indexLabel: newChartData[j] };
+                        j++;
                         stateRecord[i] = (chartData["gender"][0] === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
                         schoolRecord[i] = (chartData["gender"][0] === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
                     }
-                    //console.log(testChartData);
+
                     var name = chartData.name.split(" ");
-                    var ctx = document.getElementById("200fr");
+                    var ctx = document.getElementById(race_id);
                     var myChart = new Chart(ctx, {
                         type: 'line',
                         data: {
