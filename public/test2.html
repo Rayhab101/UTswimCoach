@@ -1006,7 +1006,7 @@
     }
 </script>
 
-<body>
+<body onload="tableLoad()">
     <header id="header"></header>
     <div class="swim_info" id="swim_info">
         <button onclick="window.history.go(-1)">Go Back</button>
@@ -1023,7 +1023,7 @@
             <br>
             <br>
             <br>
-            <div class="canvasContainer" id="canvasContainer" onload="tableLoad()">
+            <div class="canvasContainer" id="canvasContainer">
                 <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
