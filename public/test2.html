@@ -237,10 +237,8 @@
             .then(function (response){
                 return response.json();
             })
-            .then(function (date){
-                console.log(date,id)
-                // const exam = await response.json();
-                // return exam;
+            .then(function (fecha){
+                console.log(fecha.date)
             })
             .catch(function (error) {
                 console.log("Error: " + error);
