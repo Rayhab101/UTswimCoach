@@ -265,7 +265,7 @@
                         schoolRecord[i] = (events.gender === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
                     }
 
-                    var name = chartData.name.split(" ");
+                    //var name = chartData.name.split(" ");
                     var ctx = document.getElementById(race_id);
                     var myChart = new Chart(ctx, {
                         type: 'line',
