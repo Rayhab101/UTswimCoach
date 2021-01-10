@@ -246,6 +246,63 @@
                     console.log("hi")
                 }
             }
+        //         var ctx = document.getElementById("200fr");
+        //         var myChart = new Chart(ctx, {
+        //         type: 'line',
+        //         data: {
+        //             labels: pushDate,
+        //             datasets: [{
+        //                 label: "200 Free Times",
+        //                 data: testChartData,
+        //                 fill: false,
+        //                 pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+        //                 pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+        //                 borderColor: "rgba(0, 0, 0, 0.9)"
+        //             },
+        //             {
+        //                 label: "School Record",
+        //                 data: schoolRecord,
+        //                 fill: true,
+        //                 pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+        //                 pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+        //                 borderColor: "rgba(0, 0, 255, 0.9)"
+        //             },
+        //             {
+        //                 label: "State Record",
+        //                 data: stateRecord,
+        //                 fill: true,
+        //                 pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+        //                 pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+        //                 borderColor: "rgba(255, 0, 0, 0.9)"
+        //             }
+        //             ],
+
+        //         },
+        //         options: {
+        //             scales: {
+        //                 yAxes: [{
+        //                     type: 'time',
+        //                     time: {
+        //                         parser: 'm:ss.SS',
+        //                         unit: 'seconds',
+        //                         unitStepSize: 10,
+        //                         min: '1:30.000',
+        //                         max: maxValue,
+        //                         displayFormats: {
+        //                             'seconds': 'm:ss.SS'
+        //                         }
+        //                     },
+        //                     ticks: { reverse: true }
+        //                 }]
+        //             },
+        //         }
+        //     });
+        //     myChart.render();
+        //     }
+            else {
+            var hide = document.getElementById("200fr");
+            hide.setAttribute("style", "display:none");
+        }
         })
         .catch(function (error) {
                 console.log("Error: " + error);
@@ -283,62 +340,7 @@
             }
             //console.log(testChartData);
             var name = chartData.name.split(" ");
-            var ctx = document.getElementById("200fr");
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: pushDate,
-                    datasets: [{
-                        label: "200 Free Times",
-                        data: testChartData,
-                        fill: false,
-                        pointBorderColor: 'rgba(0, 0, 0, 0.9)',
-                        pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
-                        borderColor: "rgba(0, 0, 0, 0.9)"
-                    },
-                    {
-                        label: "School Record",
-                        data: schoolRecord,
-                        fill: true,
-                        pointBorderColor: 'rgba(0, 0, 255, 0.9)',
-                        pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
-                        borderColor: "rgba(0, 0, 255, 0.9)"
-                    },
-                    {
-                        label: "State Record",
-                        data: stateRecord,
-                        fill: true,
-                        pointBorderColor: 'rgba(255, 0, 0, 0.9)',
-                        pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
-                        borderColor: "rgba(255, 0, 0, 0.9)"
-                    }
-                    ],
 
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            type: 'time',
-                            time: {
-                                parser: 'm:ss.SS',
-                                unit: 'seconds',
-                                unitStepSize: 10,
-                                min: '1:30.000',
-                                max: maxValue,
-                                displayFormats: {
-                                    'seconds': 'm:ss.SS'
-                                }
-                            },
-                            ticks: { reverse: true }
-                        }]
-                    },
-                }
-            });
-            myChart.render();
-        }
-        else {
-            var hide = document.getElementById("200fr");
-            hide.setAttribute("style", "display:none");
         }
     }
 
