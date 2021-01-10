@@ -67,25 +67,6 @@
 
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
-    function timesPull(id, column,cell,row,body) {
-        //console.log(id, event, meet, column)
-        console.log(cell.id)
-        var meet = cell.id.split("_")
-        var pull = id + "&" + meet[1] + "&" + meet[0];
-        
-        fetch('/api/timeFill/'+ pull)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function(races){
-            console.log(races[0].min)
-            var sending = races[0].min;
-            //console.log(sending)
-            document.getElementById(cell.id).innerHTML = sending;
-            body.appendChild(row);
-        });
-    }
-
     function dataPull(chartType) {
         for (var a = 0; a < chartType.length; a++) {
             //console.log(chartType[a]);
@@ -1037,5 +1018,24 @@
     </div>
     <footer id="footer"></footer>
 </body>
-
+<script>
+        function timesPull(id, column,cell,row,body) {
+        //console.log(id, event, meet, column)
+        console.log(cell.id)
+        var meet = cell.id.split("_")
+        var pull = id + "&" + meet[1] + "&" + meet[0];
+        
+        fetch('/api/timeFill/'+ pull)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function(races){
+            console.log(races[0].min)
+            var sending = races[0].min;
+            //console.log(sending)
+            document.getElementById(cell.id).innerHTML = sending;
+            body.appendChild(row);
+        });
+    }
+</script>
 </html>
