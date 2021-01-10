@@ -78,6 +78,7 @@
             return response.json()
         })
         .then(function(races){
+            console.log(column)
             console.log(races[0].min)
             var sending = races[0].min;
             //console.log(sending)
