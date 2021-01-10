@@ -239,6 +239,9 @@
         .then(function(events){
             return events
         })
+        .then((json) => {
+        return json; // return the customer_name here
+        })
         .catch(function (error) {
                 console.log("Error: " + error);
             });
