@@ -104,7 +104,7 @@
         //console.log(cell.id)
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + meet[0];
-        
+        console.log(pull)
         fetch('/api/timeFill/'+ pull)
         .then(function (response) {
             return response.json()
