@@ -326,25 +326,25 @@
                 else {
                     hide.setAttribute("style", "display:none");
                 }
-                
             })
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-            stuff++;
+            
     }
 
     function fr200(chartData) {
         var races = chartData.gender == "F" ? 2 : 13;
         var race_id = "200fr";
         lookForRace(chartData.swimmer_id, races, race_id)
+        stuff++;
     }
 
     function im200(chartData) {
         var races = chartData.gender == "F" ? 3 : 14;
         var race_id = "200IM";
         lookForRace(chartData.swimmer_id, races, race_id)
-
+        stuff++;
         // if (typeof chartData["200IM"] != "undefined" && chartData["200IM"].length > 0) {
         //     var maxValue = dataPull(chartData["200IM"]);
         //     if (maxValue === "03:00.00") { maxValue = "04:00:00"; }
@@ -434,7 +434,7 @@
         var races = chartData.gender == "F" ? 4 : 15;
         var race_id = "50fr";
         lookForRace(chartData.swimmer_id, races, race_id)
-
+        stuff++;
         // if (typeof chartData["50fr"] != "undefined" && chartData["50fr"].length > 0) {
         //     var maxValue = dataPull(chartData["50fr"]);
         //     //console.log(maxValue);
@@ -528,7 +528,7 @@
         var races = chartData.gender == "F" ? 5 : 16;
         var race_id = "100fl";
         lookForRace(chartData.swimmer_id, races, race_id)
-
+        stuff++;
         // if (typeof chartData["100fl"] != "undefined" && chartData["100fl"].length > 0) {
         //     var maxValue = dataPull(chartData["100fl"]);
         //     var pushDate = []
@@ -617,7 +617,7 @@
         var races = chartData.gender == "F" ? 6 : 17;
         var race_id = "100fr";
         lookForRace(chartData.swimmer_id, races, race_id)
-
+        stuff++;
         // if (typeof chartData["100fr"] != "undefined" && chartData["100fr"].length > 0) {
         //     var maxValue = dataPull(chartData["100fr"]);
         //     var pushDate = []
@@ -706,7 +706,7 @@
         var races = chartData.gender == "F" ? 7 : 18;
         var race_id = "500fr";
         lookForRace(chartData.swimmer_id, races, race_id)
-
+        stuff++;
         // if (typeof chartData["500fr"] != "undefined" && chartData["500fr"].length > 0) {
         //     var maxValue = dataPull(chartData["500fr"]);
         //     if (maxValue === "03:00.00") {
@@ -798,7 +798,7 @@
         var races = chartData.gender == "F" ? 9 : 20;
         var race_id = "100bk";
         lookForRace(chartData.swimmer_id, races, race_id)
-
+        stuff++;
         // if (typeof chartData["100bk"] != "undefined" && chartData["100bk"].length > 0) {
         //     var maxValue = dataPull(chartData["100bk"]);
         //     var pushDate = []
@@ -887,7 +887,7 @@
         var races = chartData.gender == "F" ? 10 : 21;
         var race_id = "100br";
         lookForRace(chartData.swimmer_id, races, race_id)
-
+        stuff++;
         // if (typeof chartData["100br"] != "undefined" && chartData["100br"].length > 0) {
         //     var maxValue = dataPull(chartData["100br"]);
         //     var pushDate = []
