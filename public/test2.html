@@ -67,25 +67,24 @@
 
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
-    function timesPull(id, event, meets, meet, column,cell,row,body) {
+    function timesPull(id, event, meets, meet, column,cell) {
         console.log(id, event, meet, column)
-        // var pull = id + "&" + event + "&" + meets.indexOf(meet);
-        // console.log(pull)
-        // fetch('/api/timeFill/'+ pull)
-        // .then((response) => response.json())
-        // .then(function(races){
-        //     if(!races[0].min=='null'){
-        //         console.log("1:"+races[0].min)
-        //         var sending = toString(races[0].min);
-        //     }
-        //     else{
-        //         var sending = ""
-        //     }
-        //     text = document.createTextNode(column.innerHTML = races[0].min)
-        //     cell.appendChild(text);
-        //     row.appendChild(cell)
-        //     body.appendChild(row);
-        // });
+        var pull = id + "&" + event + "&" + meets.indexOf(meet);
+        console.log(pull)
+        fetch('/api/timeFill/'+ pull)
+        .then((response) => response.json())
+        .then(function(races){
+            console.log(races)
+            // if(!races[0].min=='null'){
+            //     console.log("1:"+races[0].min)
+            //     var sending = toString(races[0].min);
+            // }
+            // else{
+            //     var sending = ""
+            // }
+            // text = document.createTextNode(column.innerHTML = races[0].min)
+            // cell.appendChild(text);
+        });
     }
 
     function dataPull(chartType) {
@@ -232,7 +231,7 @@
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
+                                timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell)
                                 event = document.createTextNode(column.innerHTML = k);
                                 cell.appendChild(event);
                             }
