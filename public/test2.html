@@ -218,11 +218,11 @@
                         cell.setAttribute("style", "width: 20%");
                         text = document.createTextNode(column.innerHTML= meets[j]);
                         cell.appendChild(text);
-                        row.appendChild(cell);
-                        cell = row.insertCell();
-                        cell.setAttribute("style", "width: 20%");
-                        text = document.createTextNode(column.innerHTML= j);
-                        cell.appendChild(text);
+                        for (var k = 0; k < events.length; k++) {
+                            cell = row.insertCell();
+                            text = document.createTextNode(column.innerHTML = events[i]);
+                            cell.appendChild(text);
+                        }
                         body.appendChild(row);
                     //     //console.log(events[a])
                     //     if (tableData["gender"] == "F") {
