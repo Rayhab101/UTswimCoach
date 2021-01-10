@@ -244,7 +244,7 @@ module.exports = {
         var meet=idSplit[2];
         const db = req.app.get("db");
         console.log(id,race,meet);
-        db.get_individual_records(id,race,meet).then(times => {
+        db.get_individual_records_by_meet(id,race,meet).then(times => {
             //console.log(school_relays);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
