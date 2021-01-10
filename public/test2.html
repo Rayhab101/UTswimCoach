@@ -77,14 +77,13 @@
         })
         .then(function(races){
             console.log(races[0].min===null)
-            console.log(races[0].min==='null')
-            // if(!races[0].min=='null'){
-            //     console.log("1:"+races[0].min)
-            //     var sending = toString(races[0].min);
-            // }
-            // else{
-            //     var sending = ""
-            // }
+            if(!races[0].min===null){
+                console.log("1:"+races[0].min)
+                var sending = toString(races[0].min);
+            }
+            else{
+                var sending = ""
+            }
             // text = document.createTextNode(column.innerHTML = races[0].min)
             // cell.appendChild(text);
             time = document.createTextNode(column.innerHTML = "");
