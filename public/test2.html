@@ -67,7 +67,7 @@
 
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
-    function timesPull(id, event, meets, meet, column,cell) {
+    function timesPull(id, event, meet, column,cell) {
         //console.log(id, event, meet, column)
         var pull = id + "&" + event + "&" + meets.indexOf(meet);
         //console.log(pull)
@@ -232,12 +232,14 @@
                         for (var k = from; k < to; k++) {
                             // console.log("row: "+j)
                             // console.log("column: "+ k)
+                            var at = meet[a].meet_id
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
-                                timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell)
+                                timesPull(tableData.swimmer_id, k, at , column,cell)
                             }
                         }
+                        a++;
                         body.appendChild(row);
                     //     //console.log(events[a])
 
