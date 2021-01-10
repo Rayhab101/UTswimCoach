@@ -232,7 +232,7 @@
             });
     }
 
-    function getData(id) {
+    async function getData(id) {
         try {
             const response = await fetch('/api/meets/'+id)
             .then(function (response){
