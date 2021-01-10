@@ -218,7 +218,8 @@
                 return response.json();
             })
             .then(function (myJson) {
-                console.table(myJson)
+                console.log(myJson)
+                console.log(pullperson)
                 getSwimData(myJson[0])
 
                 // fr200(myJson.swimmers[pullperson])
