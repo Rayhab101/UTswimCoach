@@ -232,8 +232,8 @@
             });
     }
 
-    async function getData(id) {
-            const response = await fetch('/api/meets/'+id)
+    function getData(id) {
+            const response1 = fetch('/api/meets/'+id)
             .then(function (response){
                 return response.json();
             })
@@ -245,6 +245,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+            console.log(response1)
     }
 
     var stuff=0; 
