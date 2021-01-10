@@ -100,14 +100,10 @@
     const events = ["200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
     function timesPull(id, column,cell,row,body) {
-        //console.log(id, event, meet, column)
-        //console.log(cell.id)
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + meet[0];
-        //var pull = id + "&"  + meet[0];
         fetch('/api/timeFill/'+ pull)
         .then(function (response) {
-            //console.log(response.json())
             return response.json()
         })
         .then(function(races){
@@ -178,7 +174,6 @@
                         cell.setAttribute("style", "width: 20%");
                         text = document.createTextNode(column.innerHTML= meets[j]);
                         cell.appendChild(text);
-                        //console.log(meet[0].meet_id)
                         if (tableData["gender"] == "F") {
                             var to = 12
                             var from = 1
@@ -188,12 +183,9 @@
                             var to = 22
                         }
                         for (var k = from; k < to; k++) {
-                            // console.log("row: "+j)
-                            // console.log("column: "+ k)
                             var at = meet[a].meet_id
                             relays = [1, 8, 11, 12, 19, 22]
                             if (!relays.includes(k)) {
-                                //console.log(at)
                                 cell = row.insertCell();
                                 cell.setAttribute("id", at+"_"+k)
                                 timesPull(tableData.swimmer_id,column,cell,row,body)
@@ -227,6 +219,8 @@
             })
             .then(function (myJson) {
                 getSwimData(myJson[0])
+                console.table(myJson)
+                
                 // fr200(myJson.swimmers[pullperson])
                 // im200(myJson.swimmers[pullperson])
                 // im100(myJson.swimmers[pullperson])
