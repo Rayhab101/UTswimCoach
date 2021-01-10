@@ -197,57 +197,57 @@
                     meets[i] = meet[i].location
                 }
                 console.log(meets)
-                // var a = 0;
-                // var row = document.createElement("tr");
-                // var column = document.createElement("td");
-                // var cell = row.insertCell();
-                // for (var j = 0; j < meets.length; j++) {
-                //     var text = document.createTextNode(column.innerHTML = meets[j]);
-                //     cell.appendChild(text);
-                //     if (j == 0) {
-                //         for (var i = 0; i < events.length; i++) {
-                //             cell = row.insertCell();
-                //             text = document.createTextNode(events[i]);
-                //             cell.appendChild(text);
-                //         }
-                //         body.appendChild(row);
-                //     }
-                //     else {
-                //         row = document.createElement("tr");
-                //         cell = row.insertCell();
-                //         cell.setAttribute("style", "width: 20%");
-                //         text = document.createTextNode(column.innerHTML= meets[j]);
-                //         cell.appendChild(text);
-                //         body.appendChild(row);
-                //         //console.log(events[a])
-                //         if (tableData["gender"] == "F") {
-                //             var to = 12
-                //             var from = 1
-                //         }
-                //         else {
-                //             var from = 12
-                //             var to = 22
-                //         }
-                //         for (var k = from; k < to; k++) {
-                //             var data = events[k];
-                //             //console.log(data)
-                //             relays = [1, 8, 11, 12, 19, 22]
-                //             if (!relays.includes(k)) {
-                //                 cell = row.insertCell();
-                //                 console.log("K: "+ k)
-                //                 console.log("j: "+ j)
-                //                 //timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
-                //                 //console.log(response[0].min)
-                //                 //var text = document.createTextNode(column.innerHTML = "");
-                //             }
-                //             //var text = document.createTextNode(column.innerHTML = "");
-                //             // cell.appendChild(text);
-                //             // row.appendChild(cell)
-                //             // body.appendChild(row);
-                //         }
-                //         a++;
-                //     }
-                // }
+                var a = 0;
+                var row = document.createElement("tr");
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                for (var j = 0; j < meets.length; j++) {
+                    var text = document.createTextNode(column.innerHTML = meets[j]);
+                    cell.appendChild(text);
+                    if (j == 0) {
+                        for (var i = 0; i < events.length; i++) {
+                            cell = row.insertCell();
+                            text = document.createTextNode(column.innerHTML = events[i]);
+                            cell.appendChild(text);
+                        }
+                        body.appendChild(row);
+                    }
+                    else {
+                        row = document.createElement("tr");
+                        cell = row.insertCell();
+                        cell.setAttribute("style", "width: 20%");
+                        text = document.createTextNode(column.innerHTML= meets[j]);
+                        cell.appendChild(text);
+                        body.appendChild(row);
+                        //console.log(events[a])
+                        if (tableData["gender"] == "F") {
+                            var to = 12
+                            var from = 1
+                        }
+                        else {
+                            var from = 12
+                            var to = 22
+                        }
+                        for (var k = from; k < to; k++) {
+                            var data = events[k];
+                            //console.log(data)
+                            relays = [1, 8, 11, 12, 19, 22]
+                            if (!relays.includes(k)) {
+                                cell = row.insertCell();
+                                console.log("K: "+ k)
+                                console.log("j: "+ j)
+                                //timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell,row,body)
+                                //console.log(response[0].min)
+                                //var text = document.createTextNode(column.innerHTML = "");
+                            }
+                            //var text = document.createTextNode(column.innerHTML = "");
+                            // cell.appendChild(text);
+                            // row.appendChild(cell)
+                            // body.appendChild(row);
+                        }
+                        a++;
+                    }
+                }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
