@@ -76,16 +76,18 @@
             return Promise.resolve(response.json())
         })
         .then(function(races){
-            console.log(races)
-            if(!races[0].min=='null'){
-                console.log("1:"+races[0].min)
-                var sending = toString(races[0].min);
-            }
-            else{
-                var sending = ""
-            }
+            console.log(races[0].min)
+            // if(!races[0].min=='null'){
+            //     console.log("1:"+races[0].min)
+            //     var sending = toString(races[0].min);
+            // }
+            // else{
+            //     var sending = ""
+            // }
             // text = document.createTextNode(column.innerHTML = races[0].min)
             // cell.appendChild(text);
+            time = document.createTextNode(column.innerHTML = "");
+            cell.appendChild(time);
         });
     }
 
@@ -234,8 +236,6 @@
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
                                 timesPull(tableData.swimmer_id, k, meets, meets[j], column,cell)
-                                event = document.createTextNode(column.innerHTML = k);
-                                cell.appendChild(event);
                             }
                         }
                         body.appendChild(row);
