@@ -410,12 +410,12 @@
         windowContent += '<br>'
         for (var i = 0; i < races.length; i++) {
             const dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
-            if (i != 8) {
-                windowContent += '<img src="' + dataUrl + '" style="width:50%">';
-            }
-            else {
+            // if (i != 8) {
+            //     windowContent += '<img src="' + dataUrl + '" style="width:50%">';
+            // }
+            // else {
                 windowContent += '<img src="' + dataUrl + '" style="display: block; margin-left: auto;margin-right: auto;width: 50%;">';
-            }
+            // }
         }
         windowContent += '</main>';
         windowContent += '</html>';
