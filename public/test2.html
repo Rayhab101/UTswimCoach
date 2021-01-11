@@ -332,9 +332,9 @@
                     }
                     makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue,title);
                 }
-                // else {
-                //     hide.setAttribute("style", "display:none");
-                // }
+                else {
+                    hide.setAttribute("style", "display:none");
+                }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -410,11 +410,11 @@
         windowContent += '<br>'
         for (var i = 0; i < races.length; i++) {
             const dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
-            // if (i != 8) {
-            //     windowContent += '<img src="' + dataUrl + '" style="width:50%">';
-            // }
+            if (i != 8) {
+                windowContent += '<img src="' + dataUrl + '" style="width:50%">';
+            }
             // else {
-                windowContent += '<img src="' + dataUrl + '" style="display: block; margin-left: auto;margin-right: auto;width: 50%;">';
+            //     windowContent += '<img src="' + dataUrl + '" style="display: block; margin-left: auto;margin-right: auto;width: 50%;">';
             // }
         }
         windowContent += '</main>';
@@ -429,7 +429,6 @@
             printWin.close();
         }, true);
         table.removeAttribute("style");
-        window.opener.location.reload(true);
     }
 </script>
 
