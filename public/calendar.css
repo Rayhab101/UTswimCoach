@@ -11,10 +11,11 @@ html {
   min-height: 768px;
 }
 body{
+  padding-top: 120px;
   height:95%
 }
 .container {
-  margin-top: 120px;
+  padding-top: 120px;
   width: 90%;
   height: 85%;
   margin-left: auto;
