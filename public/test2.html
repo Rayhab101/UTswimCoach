@@ -401,7 +401,7 @@
 
 </script>
 <script type="text/javascript">
-    const events = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
+    const races = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
     function printImage() {
         var table = document.getElementById("swimmer_data");
         table.setAttribute("style", "font-size:12px");
@@ -411,8 +411,8 @@
         windowContent += '<main>';
         windowContent += table.outerHTML;
         windowContent += '<br>'
-        for (var i = 0; i < events.length; i++) {
-            const dataUrl = document.getElementById(events[i]).toDataURL('image', 1.0);
+        for (var i = 0; i < races.length; i++) {
+            const dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
             if (i != 8) {
                 windowContent += '<img src="' + dataUrl + '" style="width:50%">';
             }
