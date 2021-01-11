@@ -15,7 +15,7 @@ html {
 .container {
     display:grid;
     width: 1024px;
-    height: 525px;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     /* overflow: auto; */
