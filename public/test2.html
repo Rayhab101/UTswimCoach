@@ -245,7 +245,7 @@
             });
     }
 
-    function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue) {
+    function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue,title) {
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
