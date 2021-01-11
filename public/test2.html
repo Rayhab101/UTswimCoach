@@ -334,7 +334,7 @@
                         stateRecord[i] = (events.gender === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
                         schoolRecord[i] = (events.gender === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
                     }
-                    makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue);
+                    makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue,title);
                 }
                 else {
                     hide.setAttribute("style", "display:none");
