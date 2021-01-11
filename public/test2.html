@@ -422,12 +422,12 @@
         const printWin = window.open('');
         printWin.document.open();
         printWin.document.write(windowContent);
-        printWin.document.addEventListener('load', function () {
-            printWin.focus();
-            printWin.print();
-            printWin.document.close();
-            printWin.close();
-        }, true);
+        // printWin.document.addEventListener('load', function () {
+        //     printWin.focus();
+        //     printWin.print();
+        //     printWin.document.close();
+        //     printWin.close();
+        // }, true);
         table.removeAttribute("style");
     }
 </script>
