@@ -13,7 +13,7 @@ html {
 
 .container {
     width: 1024px;
-    height: 525px;
+    height: 50%;
     margin-left: auto;
     margin-right: auto;
     overflow: auto;
