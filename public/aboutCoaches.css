@@ -10,6 +10,9 @@ html {
     min-width: 1024px;
     min-height: 768px;
 }
+body{
+    padding-top: 125px;
+}
 
 .container {
     width: 1024px;
@@ -35,46 +38,5 @@ footer {
 }
 
 footer p{
-    color:white;
-}
-
-.container{
-    display:grid;
-}
-body{
-    padding-top: 125px;
-    height: 100%;
-}
-.swim_style{
-    height: 50%;
-}
-.coaches{
-    width: 220px;
-    height: 250px;
-    padding-bottom: 30px;
-}
-.head_coach{
-    grid-row: 1;
-    grid-column: 1;
-}
-.assistant_coach1{
-    grid-row: 2;
-    grid-column: 1;
-}
-.assistant_coach2{
-    grid-row: 3;
-    grid-column: 1;
-}
-.morning_coach{
-    grid-row: 4;
-    grid-column: 1;
-}
-.about{
-    padding-left: 25px;
-    padding-right: 50px;
-    grid-column: 2;
-    color:white;
-}
-h3{
     color:white;
 }
