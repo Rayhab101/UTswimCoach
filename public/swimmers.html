@@ -975,7 +975,7 @@
         var windowContent = '<!DOCTYPE html>';
         windowContent += '<html>';
         windowContent += '<head><style> table {text-align: center; border: solid black 3px}tr,td {border: solid black 1px; text-align: center}th {text-align: center;}</style></head>';
-        windowContent += '<main onUnload="self.opener.location.reload();">';
+        windowContent += '<main>';
         windowContent += table.outerHTML;
         windowContent += '<br>'
         for (var i = 0; i < events.length; i++) {
