@@ -304,6 +304,8 @@
         const meetInfo =  await fetch("/api/meets")
         const schoolRecord = await fetch("/api/schoolRecords/"+event)
         const stateRecord = await fetch("/api/races/"+event)
+        const strTime = stateRecord[0].sr_time;
+        const strTitle = stateRecord[0].title;
         fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
                 return response.json()
@@ -331,12 +333,8 @@
                         
                         testChartData[j] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
                         j++;
-                        if(stateRecord[event].sr_time === undefined){
-                            console.log("HI")
-                            stater[i] = { y: stateRecord[event].sr_time, x: meetInfo[i].date, indexLabel: stateRecord[event] } 
+                            stater[i] = { y: strTime, x: meetInfo[i].date, indexLabel: strTitle } 
                             schoolr[i] = { y: schoolRecord[event].time, x: meetInfo[i].date, indexLabel: schoolRecord[event] } 
-                        }
-
                     }
                     makeChart(race_id, meetInfo, testChartData, schoolRecord, stateRecord, maxValue, title);
                 }
