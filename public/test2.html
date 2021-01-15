@@ -304,7 +304,7 @@
         const meetInfo =  await fetch("/api/meets")
         const schoolRecord = await fetch("/api/schoolRecords/"+event)
         const stateRecord = await fetch("/api/races/"+event)
-        if(typeof stateRecord[0].sr_time === undefined){
+        if(typeof stateRecord[0].sr_time === "undefined"){
             console.log("HI")
             const strTime = stateRecord[0].sr_time;
             const strTitle = stateRecord[0].title;
