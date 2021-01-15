@@ -334,8 +334,8 @@
                         
                         testChartData[j] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
                         j++;
-                        stater[i] = { y: stateRecord[i].sr_time, x: meetInfo[i].date, indexLabel: stateRecord[0] } 
-                        schoolr[i] = { y: schoolRecord[i].time, x: meetInfo[i].date, indexLabel: schoolRecord[0] } 
+                        stater[i] = { y: stateRecord[event].sr_time, x: meetInfo[i].date, indexLabel: stateRecord[event] } 
+                        schoolr[i] = { y: schoolRecord[event].time, x: meetInfo[i].date, indexLabel: schoolRecord[event] } 
                     }
                     makeChart(race_id, meetInfo, testChartData, schoolRecord, stateRecord, maxValue, title);
                 }
