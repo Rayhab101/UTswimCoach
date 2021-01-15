@@ -304,18 +304,20 @@
         const meetInfo =  await fetch("/api/meets")
         const schoolRecord = await fetch("/api/schoolRecords/"+event)
         const stateRecord = await fetch("/api/races/"+event)
+        console.log(meetInfo)
+        console.log(schoolRecord)
+        console.log(stateRecord)
         fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
                 return response.json()
             })
             .then(function (events) {
                 var hide = document.getElementById(race_id);
-                console.log(events)
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
                     //var pushDate = []
-                    // var stateRecord = []
-                    // var schoolRecord = []
+                    var schoolr = []
+                    var stater = []
                     var j = 0
                     var newChartData = []
                     var testChartData = []
@@ -332,8 +334,8 @@
                         
                         testChartData[j] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
                         j++;
-                        stateRecord[i] = (events.gender === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
-                        schoolRecord[i] = (events.gender === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
+                        stater[i] = { y: stateRecord[i].sr_time, x: meetInfo[i].date, indexLabel: stateRecord[0] } 
+                        schoolr[i] = { y: schoolRecord[i].time, x: meetInfo[i].date, indexLabel: schoolRecord[0] } 
                     }
                     makeChart(race_id, meetInfo, testChartData, schoolRecord, stateRecord, maxValue, title);
                 }
