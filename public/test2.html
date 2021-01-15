@@ -243,7 +243,6 @@
 
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
 
-        
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -299,9 +298,12 @@
     }
 
     var stuff = 0;
-    function lookForRace(id, event, race_id) {
+    async function lookForRace(id, event, race_id) {
         var race = ["200 Free", "200 IM", "50 Free", "100 Fly", "100 Free", "500 Free", "100 Backstroke", "100 Breaststroke"]
         var title = race[stuff]
+        const meetInfo =  await fetch("/api/meets")
+        const schoolRecord = await fetch("/api/schoolRecords/"+event)
+        const stateRecord = await fetch("/api/races/"+event)
         fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
                 return response.json()
@@ -311,7 +313,7 @@
                 console.log(events)
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
-                    var pushDate = []
+                    //var pushDate = []
                     var stateRecord = []
                     var schoolRecord = []
                     var j = 0
@@ -321,18 +323,19 @@
                         newChartData[j] = events[i].time;
                         //getDate(events[i].meet);
                         //This needs to be fixed --------------------------
-                        var splitDates = meets[i].toString().split(" ");
-                        var year = splitDates[3];
-                        var day = splitDates[2];
-                        var month = splitDates[1];
-                        pushDate[j] = month + " " + day + ", " + year;
+                        // var splitDates = meets[i].toString().split(" ");
+                        // var year = splitDates[3];
+                        // var day = splitDates[2];
+                        // var month = splitDates[1];
+                        // pushDate[j] = month + " " + day + ", " + year;
                         //------------------------------------------------
-                        testChartData[j] = { y: newChartData[j], x: pushDate[j], indexLabel: newChartData[j] };
+                        
+                        testChartData[j] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
                         j++;
                         stateRecord[i] = (events.gender === "M") ? { y: stateRecordM[0], x: pushDate, indexLabel: stateRecordM[0] } : { y: stateRecordF[0], x: pushDate, indexLabel: stateRecordF[0] };
                         schoolRecord[i] = (events.gender === "M") ? { y: schoolRecordM[0], x: pushDate, indexLabel: schoolRecordM[0] } : { y: schoolRecordF[0], x: pushDate, indexLabel: schoolRecordF[0] };
                     }
-                    makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title);
+                    makeChart(race_id, meetInfo, testChartData, schoolRecord, stateRecord, maxValue, title);
                 }
                 else {
                     hide.setAttribute("style", "display:none");
