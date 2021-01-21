@@ -313,7 +313,6 @@
                 return response.json()
             })
             .then(function (events) {
-                console.log(events.length)
                 var hide = document.getElementById(race_id);
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
@@ -333,7 +332,9 @@
                         // var month = splitDates[1];
                         // pushDate[j] = month + " " + day + ", " + year;
                         //------------------------------------------------
-                        
+                        console.log(newChartData[j])
+                        console.log(meetInfo[j])
+                        console.log(newChartData[j])
                         testChartData[j] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
                         j++;
                             //stater[i] = { y: strTime, x: meetInfo[i].date, indexLabel: strTitle } 
