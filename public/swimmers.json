@@ -589,76 +589,6 @@
         },
         {
             "swimmerid": 8,
-            "name": "Brigitta Benroth",
-            "gender": "F",
-            "status_grade": "Sophomore",
-            "year": "1",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "0:58.81",
-                "0:51.66",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "1:51.93",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 9,
             "name": "Crystal Higgs",
             "gender": "F",
             "status_grade": "Junior",
@@ -737,147 +667,7 @@
             ]
         },
         {
-            "swimmerid": 10,
-            "name": "Daniel Canales",
-            "gender": "M",
-            "status_grade": "Sophomore",
-            "year": "1",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 11,
-            "name": "Diana Gonzalez",
-            "gender": "F",
-            "status_grade": "Junior",
-            "year": "2",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 12,
+            "swimmerid": 9,
             "name": "Garren Gooda",
             "gender": "M",
             "status_grade": "Senior",
@@ -956,7 +746,7 @@
             ]
         },
         {
-            "swimmerid": 13,
+            "swimmerid": 10,
             "name": "Gavin Cox",
             "gender": "M",
             "status_grade": "Sophomore",
@@ -1035,7 +825,7 @@
             ]
         },
         {
-            "swimmerid": 14,
+            "swimmerid": 11,
             "name": "Giovana Ferreira",
             "gender": "F",
             "status_grade": "Sophomore",
@@ -1114,7 +904,7 @@
             ]
         },
         {
-            "swimmerid": 15,
+            "swimmerid": 12,
             "name": "Gunder Allen",
             "gender": "M",
             "status_grade": "Sophomore",
@@ -1193,165 +983,7 @@
             ]
         },
         {
-            "swimmerid": 16,
-            "name": "Jacquelyn Arlofski",
-            "gender": "F",
-            "status_grade": "Sophomore",
-            "year": "1",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "0:38.06",
-                "0:39.76",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "1:52.33",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 17,
-            "name": "Jaxon Spinozza",
-            "gender": "M",
-            "status_grade": "Senior",
-            "year": "2",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "1:53.91",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "1:38.64",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 18,
+            "swimmerid": 13,
             "name": "John Rebeck",
             "gender": "M",
             "status_grade": "Senior",
@@ -1430,7 +1062,7 @@
             ]
         },
         {
-            "swimmerid": 19,
+            "swimmerid": 14,
             "name": "Joseph Erickson",
             "gender": "M",
             "status_grade": "Sophomore",
@@ -1509,7 +1141,7 @@
             ]
         },
         {
-            "swimmerid": 20,
+            "swimmerid": 15,
             "name": "Kaden Miller",
             "gender": "M",
             "status_grade": "Freshman",
@@ -1588,7 +1220,7 @@
             ]
         },
         {
-            "swimmerid": 21,
+            "swimmerid": 16,
             "name": "Kaylee Falkner",
             "gender": "F",
             "status_grade": "Sophomore",
@@ -1667,7 +1299,7 @@
             ]
         },
         {
-            "swimmerid": 22,
+            "swimmerid": 17,
             "name": "Kendra Sandberg",
             "gender": "F",
             "status_grade": "Junior",
@@ -1746,7 +1378,7 @@
             ]
         },
         {
-            "swimmerid": 23,
+            "swimmerid": 18,
             "name": "Kenzkei Lee",
             "gender": "M",
             "status_grade": "Sophomore",
@@ -1825,7 +1457,7 @@
             ]
         },
         {
-            "swimmerid": 24,
+            "swimmerid": 19,
             "name": "Kiara Olson",
             "gender": "F",
             "status_grade": "Sophomore",
@@ -1904,217 +1536,7 @@
             ]
         },
         {
-            "swimmerid": 25,
-            "name": "Kovu Stefani",
-            "gender": "M",
-            "status_grade": "Sophomore",
-            "year": "1",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 26,
-            "name": "Leighla (Lu) Steed",
-            "gender": "F",
-            "status_grade": "Sophomore",
-            "year": "1",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "1:05.43",
-                "0:55.12",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "2:26.24",
-                "",
-                "2:12.35",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "2:37.87",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "2:32.47",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 27,
-            "name": "Ivy Buenrestro",
-            "gender": "F",
-            "status_grade": "Sophomore",
-            "year": "2",
-            "200fr": [
-                "",
-                "4:54.87",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "2:15.65",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 28,
+            "swimmerid": 20,
             "name": "Lindsey Cummens",
             "gender": "F",
             "status_grade": "Senior",
@@ -2193,7 +1615,7 @@
             ]
         },
         {
-            "swimmerid": 29,
+            "swimmerid": 21,
             "name": "Lucas Buttschardt",
             "gender": "M",
             "status_grade": "Sophomore",
@@ -2272,7 +1694,7 @@
             ]
         },
         {
-            "swimmerid": 30,
+            "swimmerid": 22,
             "name": "Macie Lane",
             "gender": "F",
             "status_grade": "Sophomore",
@@ -2351,7 +1773,7 @@
             ]
         },
         {
-            "swimmerid": 31,
+            "swimmerid": 23,
             "name": "MacKeon Tuck",
             "gender": "M",
             "status_grade": "Junior",
@@ -2430,7 +1852,7 @@
             ]
         },
         {
-            "swimmerid": 32,
+            "swimmerid": 24,
             "name": "Max Holl",
             "gender": "M",
             "status_grade": "Junior",
@@ -2509,7 +1931,7 @@
             ]
         },
         {
-            "swimmerid": 33,
+            "swimmerid": 25,
             "name": "Megan Graham",
             "gender": "F",
             "status_grade": "Sophomore",
@@ -2588,7 +2010,7 @@
             ]
         },
         {
-            "swimmerid": 34,
+            "swimmerid": 26,
             "name": "Melany Farley",
             "gender": "F",
             "status_grade": "Sophomore",
@@ -2667,7 +2089,7 @@
             ]
         },
         {
-            "swimmerid": 35,
+            "swimmerid": 27,
             "name": "Michael Lopez",
             "gender": "M",
             "status_grade": "Freshman",
@@ -2746,165 +2168,7 @@
             ]
         },
         {
-            "swimmerid": 36,
-            "name": "Naomi Ortegon",
-            "gender": "F",
-            "status_grade": "Sophomore",
-            "year": "2",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "1:43.15",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 37,
-            "name": "Ruben Yaina",
-            "gender": "M",
-            "status_grade": "Sophomore",
-            "year": "1",
-            "200fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "200IM": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100IM": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "50fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fl": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "500fr": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100bk": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "100br": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ]
-        },
-        {
-            "swimmerid": 38,
+            "swimmerid": 28,
             "name": "Sean Gorritti",
             "gender": "M",
             "status_grade": "Freshman",
@@ -2983,7 +2247,7 @@
             ]
         },
         {
-            "swimmerid": 39,
+            "swimmerid": 29,
             "name": "Shannon Boothe",
             "gender": "F",
             "status_grade": "Sophomore",
@@ -3062,7 +2326,7 @@
             ]
         },
         {
-            "swimmerid": 40,
+            "swimmerid": 30,
             "name": "Shaylynn Bodily",
             "gender": "F",
             "status_grade": "Senior",
@@ -3141,7 +2405,7 @@
             ]
         },
         {
-            "swimmerid": 41,
+            "swimmerid": 31,
             "name": "Thomas Sorley",
             "gender": "M",
             "status_grade": "Senior",
@@ -3220,7 +2484,7 @@
             ]
         },
         {
-            "swimmerid": 42,
+            "swimmerid": 32,
             "name": "Zander Owens",
             "gender": "M",
             "status_grade": "Freshman",
@@ -3299,7 +2563,7 @@
             ]
         },
         {
-            "swimmerid": 43,
+            "swimmerid": 33,
             "name": "Easton Jacobsen",
             "gender": "M",
             "status_grade": "Sophomore",
