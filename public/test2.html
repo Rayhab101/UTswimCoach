@@ -302,7 +302,7 @@
         var race = ["200 Free", "200 IM", "50 Free", "100 Fly", "100 Free", "500 Free", "100 Backstroke", "100 Breaststroke"]
         var title = race[stuff]
         const meetInfo =  await fetch("/api/meets").then(data => console.log("DATA HERE", data.json()))
-        const schoolRecord = await fetch("/api/schoolRecords/"+event).then(school => school.json())
+        const schoolRecord = await fetch("/api/schoolRecord/"+event).then(school => school.json())
         console.log(schoolRecord)
         const stateRecord = await fetch("/api/races/"+event).then(state => state.json())
         console.log(stateRecord)
