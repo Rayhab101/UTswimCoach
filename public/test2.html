@@ -298,11 +298,11 @@
     }
 
     var stuff = 0;
-    async function lookForRace(id, event, race_id) {
+    async function lookForRace(id, event, race_id,school_id) {
         var race = ["200 Free", "200 IM", "50 Free", "100 Fly", "100 Free", "500 Free", "100 Backstroke", "100 Breaststroke"]
         var title = race[stuff]
         const meetInfo =  await fetch("/api/meets").then(data =>  data.json())
-        const schoolRecord = await fetch("/api/schoolRecord/"+event +"&"+6).then(school => school.json())
+        const schoolRecord = await fetch("/api/schoolRecord/"+event +"&"+school_id).then(school => school.json())
         //console.log(schoolRecord)
         const stateRecord = await fetch("/api/races/"+event).then(state => state.json())
         //console.log(stateRecord)
@@ -313,6 +313,7 @@
                 return response.json()
             })
             .then(function (events) {
+                console.log(events.length)
                 var hide = document.getElementById(race_id);
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
@@ -353,57 +354,56 @@
     function fr200(chartData) {
         var races = chartData.gender == "F" ? 2 : 13;
         var race_id = "200fr";
-        console.log(chartData.school)
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
     function im200(chartData) {
         var races = chartData.gender == "F" ? 3 : 14;
         var race_id = "200IM";
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
     function fr50(chartData) {
         var races = chartData.gender == "F" ? 4 : 15;
         var race_id = "50fr";
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
     function fl100(chartData) {
         var races = chartData.gender == "F" ? 5 : 16;
         var race_id = "100fl";
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
     function fr100(chartData) {
         var races = chartData.gender == "F" ? 6 : 17;
         var race_id = "100fr";
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
     function fr500(chartData) {
         var races = chartData.gender == "F" ? 7 : 18;
         var race_id = "500fr";
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
     function bk100(chartData) {
         var races = chartData.gender == "F" ? 9 : 20;
         var race_id = "100bk";
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
     function br100(chartData) {
         var races = chartData.gender == "F" ? 10 : 21;
         var race_id = "100br";
-        lookForRace(chartData.swimmer_id, races, race_id)
+        lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
 
