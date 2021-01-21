@@ -298,11 +298,11 @@
     }
 
     var stuff = 0;
-    async function lookForRace(id, event, race_id,school) {
+    async function lookForRace(id, event, race_id) {
         var race = ["200 Free", "200 IM", "50 Free", "100 Fly", "100 Free", "500 Free", "100 Backstroke", "100 Breaststroke"]
         var title = race[stuff]
         const meetInfo =  await fetch("/api/meets").then(data => console.log("DATA HERE", data.json()))
-        const schoolRecord = await fetch("/api/schoolRecord/"+event +"&"+school).then(school => school.json())
+        const schoolRecord = await fetch("/api/schoolRecord/"+event +"&"+6).then(school => school.json())
         console.log(schoolRecord)
         const stateRecord = await fetch("/api/races/"+event).then(state => state.json())
         console.log(stateRecord)
@@ -353,6 +353,7 @@
     function fr200(chartData) {
         var races = chartData.gender == "F" ? 2 : 13;
         var race_id = "200fr";
+        console.log("---"+chartData)
         lookForRace(chartData.swimmer_id, races, race_id,chartData.school)
         stuff++;
     }
