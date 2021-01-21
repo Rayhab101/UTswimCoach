@@ -303,7 +303,7 @@
         var title = race[stuff]
         const meetInfo =  await fetch("/api/meets").then(data => console.log("DATA HERE", data.json()))
         const schoolRecord = await fetch("/api/schoolRecords/"+event)
-        const stateRecord = await fetch("/api/races/"+event)
+        const stateRecord = await fetch("/api/races/"+event).then(data => data.json())
         console.log(stateRecord.json())
             // const strTime = stateRecord[0].sr_time;
             // const strTitle = stateRecord[0].title;
