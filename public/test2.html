@@ -247,7 +247,6 @@
         console.log(schoolRecord)
         console.log(stateRecord)
         console.log(maxValue)
-        console.log(title)
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -288,7 +287,7 @@
                             parser: 'm:ss.SS',
                             unit: 'seconds',
                             unitStepSize: 10,
-                            min: stateRecord,
+                            min: stateRecord.sr_time,
                             max: maxValue,
                             displayFormats: {
                                 'seconds': 'm:ss.SS'
