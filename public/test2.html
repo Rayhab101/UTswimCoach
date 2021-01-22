@@ -325,12 +325,17 @@
                     //var pushDate = []
                     var schoolr = []
                     var stater = []
+                    
                     var j = 1
                     var newChartData = []
                     var testChartData = []
                     var dates = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
+                        schoolr.push(schoolRecord)
+                        console.log(schoolr)
+                        stater.push(stateRecord)
+                        console.log(stater)
                         for(var k=0; k<meetInfo.length; k++){
                             console.log("1: "+ events[i].meet)
                             console.log("2: "+meetInfo[k].meet_id)
