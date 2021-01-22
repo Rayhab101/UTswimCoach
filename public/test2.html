@@ -114,9 +114,7 @@
             });
     }
 
-    function dataPull(time) {
-        //console.log(time)
-        //console.log(chartType[a]);
+    function maxPull(time) {
         if (time != "") {
             var check = time.split(".");
             var doubleCheck = check[0].split(":");
@@ -256,10 +254,7 @@
     }
 
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
-        // console.table(pushDate)
-        // console.table(testChartData)
         var minValue = minPull(stateRecord[0].y);
-        //console.log("1:"+minValue)
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -332,11 +327,8 @@
             })
             .then(function(events) {
                 var hide = document.getElementById(race_id);
-                // console.log("1: "+ events[0].meet)
-                // console.log("2: "+meetInfo[0].meet_id)
                 if (events.length != 0) {
-                    var maxValue = dataPull(events[0].time)
-                    //var pushDate = []
+                    var maxValue = maxPull(events[0].time)
                     var schoolr = []
                     var stater = []
                     var str=[]
@@ -347,43 +339,20 @@
                     var dates = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
-                        schoolr.push(schoolRecord[0].time)
-                        stater.push(stateRecord[0].sr_time)
+                        // schoolr.push(schoolRecord[0].time)
+                        // stater.push(stateRecord[0].sr_time)
                         for(var k=0; k<meetInfo.length; k++){
                             if(events[i].meet==meetInfo[k].meet_id){
                                 dates.push(meetInfo[k].date);
-                                //console.log(k+ ": "+ dates)
                                 str[i] = {y:stateRecord[0].sr_time, x:dates,indexLabel:stateRecord[0].sr_time}
                                 scr[i] = {y:schoolRecord[0].time, x:dates,indexLabel:schoolRecord[0].time}
                                 
                             }
                         }
-                        console.log(str);
-                        console.log(scr);
-                        //console.log(dates)
-                        //getDate(events[i].meet);
-                        //This needs to be fixed --------------------------
-                        // var splitDates = meets[i].toString().split(" ");
-                        // var year = splitDates[3];
-                        // var day = splitDates[2];
-                        // var month = splitDates[1];
-                        // pushDate[j] = month + " " + day + ", " + year;
-                        //------------------------------------------------
-                        // console.log(newChartData[j])
-                        //console.log(meetInfo[j-1].date)
-                        // console.log(newChartData[j])
                         testChartData[j-1] = { y: newChartData[j], x: dates[j-1], indexLabel: newChartData[j] };
                         j++;
-                            //stater[i] = { y: strTime, x: meetInfo[i].date, indexLabel: strTitle } 
-                            //schoolr[i] = { y: schoolRecord[event].time, x: meetInfo[i].date, indexLabel: schoolRecord[event] } 
                     }
-                    // console.log(race_id)
-                    // console.log(meetInfo)
-                    //console.table(testChartData)
-                    // console.log(schoolRecord)
-                    // console.log(stateRecord)
-                    // console.log(maxValue)
-                    // console.log(title)
+
                     makeChart(race_id, dates, testChartData, scr, str, maxValue, title);
                 }
                 else {
