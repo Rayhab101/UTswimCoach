@@ -315,9 +315,9 @@
             .then(function (response) {
                 return response.json()
             })
-            .then(function (events) {
+            .then(function(events) {
                 var hide = document.getElementById(race_id);
-                console.table(events)
+                console.log(events)
                 console.table(meetInfo)
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
