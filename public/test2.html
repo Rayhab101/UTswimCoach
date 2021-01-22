@@ -260,7 +260,7 @@
         console.table(pushDate)
         console.table(testChartData)
         var minValue = minPull(stateRecord);
-
+        console.log(minValue)
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -301,7 +301,7 @@
                             parser: 'm:ss.SS',
                             unit: 'seconds',
                             unitStepSize: 10,
-                            min: minValue,
+                            min: schoolRecord[0],
                             max: maxValue,
                             displayFormats: {
                                 'seconds': 'm:ss.SS'
