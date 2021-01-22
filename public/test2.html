@@ -261,7 +261,7 @@
                 },
                 {
                     label: "School Record",
-                    data: schoolRecord[0].time,
+                    data: schoolRecord,
                     fill: true,
                     pointBorderColor: 'rgba(0, 0, 255, 0.9)',
                     pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
@@ -269,7 +269,7 @@
                 },
                 {
                     label: "State Record",
-                    data: stateRecord[0].sr_time,
+                    data: stateRecord,
                     fill: true,
                     pointBorderColor: 'rgba(255, 0, 0, 0.9)',
                     pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
@@ -286,7 +286,7 @@
                             parser: 'm:ss.SS',
                             unit: 'seconds',
                             unitStepSize: 10,
-                            min: stateRecord.sr_time,
+                            min: stateRecord[0],
                             max: maxValue,
                             displayFormats: {
                                 'seconds': 'm:ss.SS'
