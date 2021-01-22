@@ -244,9 +244,8 @@
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
         console.log(pushDate)
         console.log(testChartData)
-        console.log(schoolRecord)
-        console.log(stateRecord)
-        console.log(maxValue)
+        console.log(schoolRecord.time)
+        console.log(stateRecord.sr_time)
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
