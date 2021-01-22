@@ -258,7 +258,7 @@
                 },
                 {
                     label: "School Record",
-                    data: schoolRecord,
+                    data: schoolRecord[0].time,
                     fill: true,
                     pointBorderColor: 'rgba(0, 0, 255, 0.9)',
                     pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
@@ -266,7 +266,7 @@
                 },
                 {
                     label: "State Record",
-                    data: stateRecord,
+                    data: stateRecord[0].sr_time,
                     fill: true,
                     pointBorderColor: 'rgba(255, 0, 0, 0.9)',
                     pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
@@ -336,7 +336,7 @@
                         // console.log(newChartData[j])
                         // console.log(meetInfo[j])
                         // console.log(newChartData[j])
-                        testChartData[j] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
+                        testChartData[j-1] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
                         j++;
                             //stater[i] = { y: strTime, x: meetInfo[i].date, indexLabel: strTitle } 
                             //schoolr[i] = { y: schoolRecord[event].time, x: meetInfo[i].date, indexLabel: schoolRecord[event] } 
