@@ -353,7 +353,7 @@
                             if(events[i].meet==meetInfo[k].meet_id){
                                 dates.push(meetInfo[k].date);
                                 //console.log(k+ ": "+ dates)
-                                str[i] = {y:stateRecord[0].sr_time, x:dates,indexLabel:stateRecord[0].sr_tim}
+                                str[i] = {y:stateRecord[0].sr_time, x:dates,indexLabel:stateRecord[0].sr_time}
                                 scr[i] = {y:schoolRecord[0].time, x:dates,indexLabel:schoolRecord[0].time}
                                 
                             }
@@ -384,7 +384,7 @@
                     // console.log(stateRecord)
                     // console.log(maxValue)
                     // console.log(title)
-                    makeChart(race_id, dates, testChartData, schoolr, stater, maxValue, title);
+                    makeChart(race_id, dates, testChartData, scr, str, maxValue, title);
                 }
                 else {
                     hide.setAttribute("style", "display:none");
