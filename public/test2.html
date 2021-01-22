@@ -121,7 +121,7 @@
             var check = time.split(".");
             var doubleCheck = check[0].split(":");
             var maybe = Number(doubleCheck[1]);
-            maybe += 10;
+            maybe += 15;
             var minute = maybe > 59 ? Number(doubleCheck[0]) + 1 : doubleCheck[0];
             maybe = maybe > 59 ? maybe - 50 : maybe;
             var maxValue = minute + ":" + maybe + "." + check[1];
@@ -135,7 +135,7 @@
             var check = time.split(".");
             var doubleCheck = check[0].split(":");
             var maybe = Number(doubleCheck[1]);
-            maybe -= 10;
+            maybe -= 5;
             var minute = maybe < 0 ? Number(doubleCheck[0]) - 1 : doubleCheck[0];
             maybe = maybe < 0 ? maybe + 50 : maybe;
             var minValue = minute + ":" + maybe + "." + check[1];
