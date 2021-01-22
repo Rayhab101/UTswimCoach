@@ -332,9 +332,9 @@
                     var dates = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
-                        schoolr.push(schoolRecord)
+                        schoolr.push(schoolRecord[0].time)
                         console.log(schoolr)
-                        stater.push(stateRecord)
+                        stater.push(stateRecord[0].sr_time)
                         console.log(stater)
                         for(var k=0; k<meetInfo.length; k++){
                             console.log("1: "+ events[i].meet)
