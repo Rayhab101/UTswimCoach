@@ -336,9 +336,9 @@
                         // pushDate[j] = month + " " + day + ", " + year;
                         //------------------------------------------------
                         // console.log(newChartData[j])
-                        console.log(meetInfo[j].date)
+                        console.log(meetInfo[j-1].date)
                         // console.log(newChartData[j])
-                        testChartData[j-1] = { y: newChartData[j], x: meetInfo[j], indexLabel: newChartData[j] };
+                        testChartData[j-1] = { y: newChartData[j], x: meetInfo[j].date, indexLabel: newChartData[j] };
                         j++;
                             //stater[i] = { y: strTime, x: meetInfo[i].date, indexLabel: strTitle } 
                             //schoolr[i] = { y: schoolRecord[event].time, x: meetInfo[i].date, indexLabel: schoolRecord[event] } 
