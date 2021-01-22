@@ -317,8 +317,8 @@
             })
             .then(function(events) {
                 var hide = document.getElementById(race_id);
-                console.log("1: "+ events[0].meet)
-                console.log("2: "+meetInfo[0].meet_id)
+                // console.log("1: "+ events[0].meet)
+                // console.log("2: "+meetInfo[0].meet_id)
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
                     //var pushDate = []
@@ -331,6 +331,8 @@
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
                         for(var k=0; k<meetInfo.length; k++){
+                            console.log("1: "+ events[0].meet)
+                            console.log("2: "+meetInfo[k].meet_id)
                             if(events.meet==meetInfo[k].meet_id){
                                 dates.push(meetInfo[k].date);
                                 break;
