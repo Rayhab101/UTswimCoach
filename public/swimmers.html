@@ -219,7 +219,10 @@
                 stateRecord[i] = (chartData["gender"][0] === "M") ? {y:stateRecordM[0], x:pushDate,indexLabel:stateRecordM[0]} : {y:stateRecordF[0], x:pushDate,indexLabel:stateRecordF[0]};
                 schoolRecord[i] = (chartData["gender"][0] === "M") ? {y:schoolRecordM[0], x:pushDate,indexLabel:schoolRecordM[0]} : {y:schoolRecordF[0], x:pushDate,indexLabel:schoolRecordF[0]};
             }
-            //console.log(testChartData);
+            console.log("1: " +testChartData);
+            console.log("2: " +pushDate);
+            console.log("3: " +schoolRecord);
+            console.log("4: " +stateRecord);
             var name = chartData.name.split(" ");
             var ctx = document.getElementById("200fr");
             var myChart = new Chart(ctx, {
