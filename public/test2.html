@@ -258,9 +258,6 @@
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
         // console.table(pushDate)
         // console.table(testChartData)
-        var str = {y:stateRecord, x:pushDate, indexLabel:stateRecord}
-        var scr = {y:schoolRecord, x:pushDate, indexLabel:schoolRecord}
-        console.log(str);
         var minValue = minPull(stateRecord[0]);
         //console.log("1:"+minValue)
         var ctx = document.getElementById(race_id);
@@ -278,7 +275,7 @@
                 },
                 {
                     label: "School Record",
-                    data: scr,
+                    data: schoolRecord,
                     fill: true,
                     pointBorderColor: 'rgba(0, 0, 255, 0.9)',
                     pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
@@ -286,7 +283,7 @@
                 },
                 {
                     label: "State Record",
-                    data: str,
+                    data: stateRecord,
                     fill: true,
                     pointBorderColor: 'rgba(255, 0, 0, 0.9)',
                     pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
@@ -342,7 +339,8 @@
                     //var pushDate = []
                     var schoolr = []
                     var stater = []
-                    
+                    var str=[]
+                    var scr=[]
                     var j = 1
                     var newChartData = []
                     var testChartData = []
@@ -355,9 +353,13 @@
                             if(events[i].meet==meetInfo[k].meet_id){
                                 dates.push(meetInfo[k].date);
                                 //console.log(k+ ": "+ dates)
+                                str[i] = {y:stateRecord[0].sr_time, x:dates,indexLabel:stateRecord[0].sr_tim}
+                                scr[i] = {y:schoolRecord[0].time, x:dates,indexLabel:schoolRecord[0].time}
                                 
                             }
                         }
+                        console.log(str);
+                        console.log(scr);
                         //console.log(dates)
                         //getDate(events[i].meet);
                         //This needs to be fixed --------------------------
