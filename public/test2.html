@@ -259,6 +259,7 @@
         // console.table(pushDate)
         // console.table(testChartData)
         var str = {y:stateRecord[0], x:pushDate,indexLabel:stateRecord[0]}
+        var scr = {y:schoolRecord[0], x:pushDate,indexLabel:schoolRecord[0]}
         console.log(str);
         var minValue = minPull(stateRecord[0]);
         //console.log("1:"+minValue)
@@ -277,7 +278,7 @@
                 },
                 {
                     label: "School Record",
-                    data: schoolRecord,
+                    data: scr,
                     fill: true,
                     pointBorderColor: 'rgba(0, 0, 255, 0.9)',
                     pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
@@ -285,7 +286,7 @@
                 },
                 {
                     label: "State Record",
-                    data: stateRecord,
+                    data: str,
                     fill: true,
                     pointBorderColor: 'rgba(255, 0, 0, 0.9)',
                     pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
