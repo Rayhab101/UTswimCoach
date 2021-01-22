@@ -242,7 +242,13 @@
     }
 
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
-
+        console.log(race_id)
+        console.log(pushDate)
+        console.log(testChartData)
+        console.log(schoolRecord)
+        console.log(stateRecord)
+        console.log(maxValue)
+        console.log(title)
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -341,13 +347,13 @@
                             //stater[i] = { y: strTime, x: meetInfo[i].date, indexLabel: strTitle } 
                             //schoolr[i] = { y: schoolRecord[event].time, x: meetInfo[i].date, indexLabel: schoolRecord[event] } 
                     }
-                    console.log(race_id)
-                    console.log(meetInfo)
-                    console.log(testChartData)
-                    console.log(schoolRecord)
-                    console.log(stateRecord)
-                    console.log(maxValue)
-                    console.log(title)
+                    // console.log(race_id)
+                    // console.log(meetInfo)
+                    // console.log(testChartData)
+                    // console.log(schoolRecord)
+                    // console.log(stateRecord)
+                    // console.log(maxValue)
+                    // console.log(title)
                     makeChart(race_id, meetInfo, testChartData, schoolRecord, stateRecord, maxValue, title);
                 }
                 else {
