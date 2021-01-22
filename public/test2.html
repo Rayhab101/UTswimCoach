@@ -258,7 +258,7 @@
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
         // console.table(pushDate)
         // console.table(testChartData)
-        var minValue = minPull(stateRecord.y);
+        var minValue = minPull(stateRecord[0].y);
         //console.log("1:"+minValue)
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
