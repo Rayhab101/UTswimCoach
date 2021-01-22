@@ -317,7 +317,7 @@
             })
             .then(function (events) {
                 var hide = document.getElementById(race_id);
-                console.table(events.meet)
+                console.table(events)
                 console.table(meetInfo)
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
