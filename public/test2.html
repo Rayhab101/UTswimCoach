@@ -259,7 +259,7 @@
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
         console.table(pushDate)
         console.table(testChartData)
-        var min = minPull(stateRecord);
+        var minValue = minPull(stateRecord);
 
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
@@ -301,7 +301,7 @@
                             parser: 'm:ss.SS',
                             unit: 'seconds',
                             unitStepSize: 10,
-                            min: min,
+                            min: minValue,
                             max: maxValue,
                             displayFormats: {
                                 'seconds': 'm:ss.SS'
