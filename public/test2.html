@@ -329,8 +329,6 @@
                 var hide = document.getElementById(race_id);
                 if (events.length != 0) {
                     var maxValue = maxPull(events[0].time)
-                    var schoolr = []
-                    var stater = []
                     var str=[]
                     var scr=[]
                     var j = 1
@@ -339,14 +337,11 @@
                     var dates = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
-                        // schoolr.push(schoolRecord[0].time)
-                        // stater.push(stateRecord[0].sr_time)
                         for(var k=0; k<meetInfo.length; k++){
                             if(events[i].meet==meetInfo[k].meet_id){
                                 dates.push(meetInfo[k].date);
                                 str[i] = {y:stateRecord[0].sr_time, x:dates,indexLabel:stateRecord[0].sr_time}
                                 scr[i] = {y:schoolRecord[0].time, x:dates,indexLabel:schoolRecord[0].time}
-                                
                             }
                         }
                         testChartData[j-1] = { y: newChartData[j], x: dates[j-1], indexLabel: newChartData[j] };
