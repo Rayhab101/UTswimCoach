@@ -333,9 +333,8 @@
                         for(var k=0; k<meetInfo.length; k++){
                             console.log("1: "+ events[i].meet)
                             console.log("2: "+meetInfo[k].meet_id)
-                            if(events.meet==meetInfo[k].meet_id){
+                            if(events[i].meet==meetInfo[k].meet_id){
                                 dates.push(meetInfo[k].date);
-                                break;
                             }
                         }
                         console.log(dates)
