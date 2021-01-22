@@ -245,6 +245,7 @@
         console.table(pushDate)
         console.table(testChartData)
 
+
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -363,7 +364,7 @@
                     // console.log(stateRecord)
                     // console.log(maxValue)
                     // console.log(title)
-                    makeChart(race_id, meetInfo, testChartData, schoolRecord, stateRecord, maxValue, title);
+                    makeChart(race_id, dates, testChartData, schoolRecord, stateRecord, maxValue, title);
                 }
                 else {
                     hide.setAttribute("style", "display:none");
