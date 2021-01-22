@@ -317,7 +317,8 @@
             })
             .then(function (events) {
                 var hide = document.getElementById(race_id);
-                console.table(events)
+                console.table(events.meet)
+                console.table(meetInfo)
                 if (events.length != 0) {
                     var maxValue = dataPull(events[0].time)
                     //var pushDate = []
@@ -328,6 +329,7 @@
                     var testChartData = []
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
+                        //if(events.meet==meetInfo)
                         //getDate(events[i].meet);
                         //This needs to be fixed --------------------------
                         // var splitDates = meets[i].toString().split(" ");
@@ -337,7 +339,7 @@
                         // pushDate[j] = month + " " + day + ", " + year;
                         //------------------------------------------------
                         // console.log(newChartData[j])
-                        console.log(meetInfo[j-1].date)
+                        //console.log(meetInfo[j-1].date)
                         // console.log(newChartData[j])
                         testChartData[j-1] = { y: newChartData[j], x: meetInfo[j].date, indexLabel: newChartData[j] };
                         j++;
