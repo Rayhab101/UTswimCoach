@@ -334,7 +334,11 @@
                     var newChartData = []
                     var testChartData = []
                     var dates = []
-                    console.table(events)
+                    console.table(events.sort((a,b)=>{
+                        if(a.meet>b.meet){
+                            return 1;
+                        }
+                            }))
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
                         for(var k=0; k<meetInfo.length; k++){
