@@ -430,6 +430,7 @@
         windowContent += '</body>';
         windowContent += '</html>';
         const printWin = window.open("","_blank");
+        document.location.reload(true)
         printWin.document.open();
         printWin.document.write(windowContent);
         printWin.document.addEventListener('load', function () {
