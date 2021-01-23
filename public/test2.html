@@ -435,9 +435,9 @@
         printWin.document.addEventListener('load', function () {
             printWin.focus();
             printWin.print();
-            //printWin.document.close();
+            printWin.document.close();
             printWin.close();
-        }, false);
+        }, true);
         table.removeAttribute("style");
     }
 </script>
