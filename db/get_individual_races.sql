@@ -1,1 +1,1 @@
-SELECT * FROM records WHERE swimmer=$1 and race=$2
+SELECT * FROM records WHERE swimmer=$1 and race=$2 ORDER BY meet;
