@@ -416,7 +416,7 @@
         var windowContent = '<!DOCTYPE html>';
         windowContent += '<html>';
         windowContent += '<head><style> table {text-align: center; border: solid black 3px}tr,td {border: solid black 1px; text-align: center}th {text-align: center;}</style></head>';
-        windowContent += '<body onUnload="self.opener.location.reload();">';
+        windowContent += '<body">';
         windowContent += table.outerHTML;
         //windowContent += '<br>'
         for (var i = 0; i < races.length; i++) {
@@ -438,7 +438,7 @@
         
         table.removeAttribute("style");
         //self.opener.location.reload();
-        window.BeforeUnloadEvent =document.location.reload(true)
+        //window.BeforeUnloadEvent =document.location.reload(true)
     }
    
 </script>
