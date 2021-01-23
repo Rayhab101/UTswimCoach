@@ -412,6 +412,7 @@
     const races = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
     function printImage() {
         var table = document.getElementById("swimmer_data");
+        console.log(document.getElementById(races[0]).toDataURL('image', 1.0))
         table.setAttribute("style", "font-size:12px");
         var windowContent = '<!DOCTYPE html>';
         windowContent += '<html>';
@@ -421,7 +422,7 @@
         //windowContent += '<br>'
         for (var i = 0; i < races.length; i++) {
             var dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
-            console.log(dataUrl)
+            
             windowContent += '<img src="' + dataUrl + '" style="width:50%">';
         }
         windowContent += '</body>';
