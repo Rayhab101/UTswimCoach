@@ -313,13 +313,8 @@
         var race = ["200 Free", "200 IM", "50 Free", "100 Fly", "100 Free", "500 Free", "100 Backstroke", "100 Breaststroke"]
         var title = race[stuff]
         const meetInfo =  await fetch("/api/meets").then(data =>  data.json())
-        //console.table(meetInfo)
         const schoolRecord = await fetch("/api/schoolRecord/"+event +"&"+school_id).then(school => school.json())
-        //console.log(schoolRecord)
         const stateRecord = await fetch("/api/races/"+event).then(state => state.json())
-        //console.log(stateRecord)
-            // const strTime = stateRecord[0].sr_time;
-            // const strTitle = stateRecord[0].title;
         fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
                 return response.json()
@@ -351,7 +346,6 @@
                         testChartData[j-1] = { y: newChartData[j], x: dates[j-1], indexLabel: newChartData[j] };
                         j++;
                     }
-
                     makeChart(race_id, dates, testChartData, scr, str, maxValue, title);
                 }
                 else {
@@ -361,7 +355,6 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-
     }
 
     function fr200(chartData) {
