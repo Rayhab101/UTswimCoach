@@ -425,7 +425,7 @@
         }
         windowContent += '</body>';
         windowContent += '</html>';
-        const printWin = window.open('', '', 'width=' + screen.availWidth + ',height=' + screen.availHeight);
+        const printWin = window.open('');
         
         printWin.document.open();
         printWin.document.write(windowContent);
