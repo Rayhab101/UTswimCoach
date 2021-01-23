@@ -433,10 +433,8 @@
             printWin.focus();
             printWin.print();
             printWin.document.close();
-            
+            printWin.close();
         }, true);
-        printWin.close();
-        console.log("unloaded")
         table.removeAttribute("style");
         //self.opener.location.reload();
         //window.BeforeUnloadEvent =document.location.reload(true)
