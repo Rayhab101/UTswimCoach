@@ -439,6 +439,9 @@
             printWin.close();
         }, true);
         table.removeAttribute("style");
+        printWin.document.addEventListener('unload', function () {
+            window.location.reload();
+        }, true);
     }
 </script>
 
