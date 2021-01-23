@@ -421,6 +421,7 @@
         //windowContent += '<br>'
         for (var i = 0; i < races.length; i++) {
             var dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
+            console.log(dataUrl)
             windowContent += '<img src="' + dataUrl + '" style="width:50%">';
         }
         windowContent += '</body>';
