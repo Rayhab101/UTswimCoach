@@ -425,7 +425,7 @@
         }
         windowContent += '</body>';
         windowContent += '</html>';
-        const printWin = window.open('');
+        const printWin = window.open('','_blank');
         
         printWin.document.open();
         printWin.document.write(windowContent);
@@ -433,11 +433,11 @@
             printWin.focus();
             printWin.print();
             printWin.document.close();
-            window.close();
+            printWin.close();
         }, true);
         table.removeAttribute("style");
         //self.opener.location.reload();
-        //document.location.reload(true);
+        document.location.reload(true);
     }
    
 </script>
