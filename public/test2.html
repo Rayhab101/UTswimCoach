@@ -429,7 +429,7 @@
         }
         windowContent += '</body>';
         windowContent += '</html>';
-        const printWin = window.open('');
+        const printWin = window.open("","_blank");
         printWin.document.open();
         printWin.document.write(windowContent);
         printWin.document.addEventListener('load', function () {
@@ -439,9 +439,7 @@
             printWin.close();
         }, true);
         table.removeAttribute("style");
-        printWin.document.addEventListener('unload', function () {
-            window.location.reload();
-        }, true);
+
     }
 </script>
 
