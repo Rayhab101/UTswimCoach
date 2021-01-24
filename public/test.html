@@ -4,111 +4,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team- Home</title>
+    <title>BL/SJ Swim Team- Contact</title>
     <link rel="stylesheet" href="swim.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script>
         $(function () {
             $("#header").load("heading.html");
             $("#footer").load("footing.html");
         });
-
     </script>
-    <style>
-        .jayhawk {
-            padding-top: 20px;
-            width: 90%;
-            height: 90%;
-            object-fit: contain;
-            grid-row: 2;
-            grid-column: 1;
-        }
 
-        .pic {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            grid-row: 2;
-            grid-column: 2;
-        }
-
-        .container {
-            /* height: 100%;
-            width: 100%; */
-            display: grid;
-            padding-left: 50px;
-            padding-right: 90px;
-        }
-
-        .welcome {
-            padding-top: 100px;
-            color: white;
-            font-size: larger;
-            background-color: transparent;
-            text-align: center;
-        }
-
-        @media only screen and (max-width: 700px) {
-            .container {
-                height: 100%;
-                width: 100%;
-                padding-left: auto;
-            }
-            body{
-            height:50%;
-            width: 50%;
-        }
-
-            /* .jayhawk {
-                padding-top: 20px;
-                width: 50%;
-                height: 50%;
-                grid-row: 3;
-                grid-column: 1;
-            }
-
-            .pic {
-                width: 50%;
-                height: 50%;
-                object-fit: contain;
-                grid-row: 2;
-                grid-column: 1;
-            } */
-        }
-
-        .team-picture {
-            grid-row: 1;
-            grid-column: 2;
-        }
-
-        .schedule {
-            background-color: transparent;
-            grid-row: 1;
-            grid-column: 1;
-        }
-        body {
-            height:85%;
-            width: 100%;
-        }
-    </style>
 </head>
+<style>
+    .swim_info {
+        padding-top: 125px;
+    }
 
-<body>
+    /* table,
+    tr {
+        background-color: rgba(255, 255, 255, .95);
+        border-collapse: separate;
+        border: solid black 1px;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        text-align: center;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    th {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    form {
+        background-color: white;
+    }
+
+    button {
+        margin-left: auto;
+        margin-right: auto;
+    } */
+    p,h3 {
+        color: white;
+        text-align: center;
+    }
+    /* p{
+        color: white;
+    } */
+    .container{
+        display: grid;
+        margin-left: 150px;
+    }
+    .coach{
+        grid-row: 1;
+        grid-column: 1;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .assistant_coach1{
+        grid-row: 1;
+        grid-column: 2;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .assistant_coach2{
+        grid-row: 1;
+        grid-column: 3;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .morning_coach{
+        grid-row: 1;
+        grid-column: 4;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    img{
+        width: 220px;
+        height: 250px;
+    }
+    .pool{
+        grid-row: 2;
+        grid-column: 1 / 2;
+        background-color: white;
+    }
+    .school{
+        grid-row: 2;
+        grid-column: 3 / 4;
+        background-color: white;
+    }
+</style>
+<script>
+    function pullSchool() {
+        var school = location.search.substring(1);
+        school = school.split("=");
+        school = school[1];
+        console.log(school);
+        if (school) {
+            fetch("http://localhost:8080/api/schoolCoaches/" + school)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (coaches) {
+                    //console.log(coaches)
+                    pullPerson(coaches)
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+        else {
+            const blankTable = [
+                {
+                name: 'Name',
+                job: 'Email For',
+                email: 'Email',
+                color: "color:black"
+            },
+            {
+                name: 'John Moran',
+                job: 'President',
+                email: 'johnmoran@skaggscatholiccenter.org',
+                color: "color:mediumblue"
+            },
+            {
+                name: 'Mel Roberts',
+                job: 'Treasurer',
+                email: 'swimcoach506@hotmail.com',
+                color: "color:mediumblue"
+            },
+            {
+                name: 'Ryan Lund',
+                job: 'Developer',
+                email: 'lund64311@gmail.com',
+                color: "color:mediumblue"
+            }
+        ];
+            var body = document.getElementById("swimmer_data");
+            var head = document.getElementById("contact");
+            head.innerHTML = ("Contacts");
+            head.setAttribute("colspan", 3);
+            body.appendChild(head);
+            for(var i=0; i<blankTable.length;i++){
+            var row = document.createElement("tr");
+            var column = document.createElement("td");
+            var cell = row.insertCell();
+            console.log(blankTable[i].name)
+            text = document.createTextNode(column.innerHTML = blankTable[i].name);
+            cell.appendChild(text);
+            var column = document.createElement("td");
+            var cell = row.insertCell();
+            text = document.createTextNode(column.innerHTML = blankTable[i].job);
+            cell.appendChild(text);
+            var column = document.createElement("td");
+            var cell = row.insertCell();
+            cell.setAttribute("style", blankTable[i].color);
+            text = document.createTextNode(column.innerHTML = blankTable[i].email);
+            cell.appendChild(text);
+            body.appendChild(row);
+            }
+        }
+    }
+    function pullPerson(check) {
+        var body = document.getElementById("swimmer_data");
+        var head = document.getElementById("contact");
+        head.innerHTML = ("Contact A Coach");
+        head.setAttribute("colspan", 3);
+        body.appendChild(head);
+        for (var i = 0; i < check.length; i++) {
+            fetch("http://localhost:8080/api/coaches/" + check[i].coach_id)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (check) {
+                    var row = document.createElement("tr");
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    console.log(check)
+                    text = document.createTextNode(column.innerHTML = check[0].position);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = check[0].name);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    cell.setAttribute("style", "color:mediumblue");
+                    cell.className = 'emailMe'
+                    cell.id = check[0].coach_id;
+                    text = document.createTextNode(column.innerHTML = "Email");
+                    cell.appendChild(text);
+                    body.appendChild(row);
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                    pullSchool(check)
+                });
+        }
+    }
+
+    function emailCoach(name) {
+        fetch("http://localhost:8080/api/coaches/" + name)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (coaches) {
+                //console.log(coaches[0].email)
+                window.open('mailto:' + coaches[0].email);
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+</script>
+
+<body><!--onload="pullSchool()">-->
     <header id="header"></header>
-    <div class="welcome">
-        <h3>Welcome to the Ben Lomond and Saint Joseph Swim Team Web Page</h3>
-    </div>
-    <div class="container">
-        <div class="schedule">
-            <img class="jayhawk" src="Swim Schedule.png" alt="Team Calendar">
+    <main class="swim_info">
+        <div class="container" id="container">
+            <div class="coach">
+                <img class="head_coach_pic" src="coaches/Tim.jpeg">
+                <h3>Tim Boothe:</h3>
+                <p>Head Coach</p>
+                <p>Email Address: <a href="mailto:boothet@ogdensd.org" style="color:white">boothet@ogdensd.org</a></p>
+                <p>Phone Number: (801)644-5644</p>
+            </div>
+            <div class="assistant_coach1">
+                <img class="assistant_coach" src="coaches/Nina.jpeg">
+                <h3>Nina Allen:</h3><p> Assistant Coach</p><p>Allenn@ogdensd.org</p>
+            </div>
+            <div class="assistant_coach2">
+                <img class="assistant_coach" src="coaches/Makel.jpeg">
+                <h3>Makel Miller:</h3><p> Assistant Coach</p>
+            </div>
+            <div class="morning_coach">
+                <img class="assistant_coach" src="coaches/Ryan.jpg">
+                <h3>Ryan Lund:</h3>
+                <p>Morning Coach/Website Developer</p>
+                <p>Email Address: <a href="mailto:Lund64311@gmail.com" style="color:white">Lund64311@gmail.com</a></p>
+                <p>Phone Number: (801)317-7503</p>
+            </div>
+
         </div>
-        <div class="team-picture">
-            <img class="pic" src="Full_team_picture.png" alt="Team Picture">
-        </div>
-    </div>
+    </main>
     <footer id="footer"></footer>
+    <script>
+        $(document).on('click', '.emailMe', function () {
+            emailCoach(this.parentNode.children[2].id);
+        });
+    </script>
 </body>
 
 </html>
