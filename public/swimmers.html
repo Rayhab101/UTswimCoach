@@ -440,8 +440,10 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
-    console.log(document.getElementById(races[0]).toDataURL('image', 1.0))
-    console.log(document.getElementById(races[2]).toDataURL('image', 1.0))
+    for (var i = 0; i < races.length; i++) {
+            var dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
+            console.log(dataUrl)
+    }
 </script>
 
 </html>
