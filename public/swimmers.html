@@ -412,7 +412,6 @@
     const races = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
     function printImage() {
         var table = document.getElementById("swimmer_data");
-        console.log(table.getAttribute)
         table.setAttribute("style", "font-size:12px");
         var windowContent = '<!DOCTYPE html>';
         windowContent += '<html>';
@@ -441,6 +440,10 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
+    for (var i = 0; i < races.length; i++) {
+            var dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
+            console.log(document.getElementById(races[i]).getAttribute)
+        }
 </script>
 
 </html>
