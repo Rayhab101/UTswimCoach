@@ -470,11 +470,13 @@
   return -1; // Not found
 }
 var test = document.getElementById(races[0]).toDataURL('image', 1.0)
+console.log(test)
     test = test.toString()
+    console.log(test)
     var test2 = document.getElementById(races[2]).toDataURL('image', 1.0)
     test2 = test2.toString()
-console.log(kmpSearch('SsAgAABA', test) != -1) // true
-console.log(kmpSearch('SsAgAABA', test2) != -1) // false
+// console.log(kmpSearch('SsAgAABA', test) != -1) // true
+// console.log(kmpSearch('SsAgAABA', test2) != -1) // false
     
 </script>
 
