@@ -344,7 +344,7 @@
                     makeChart(race_id, dates, testChartData, scr, str, maxValue, title);
                 }
                 else {
-                    hide.setAttribute("style", "display:hidden");
+                    hide.setAttribute("style", "display:none");
                 }
             })
             .catch(function (error) {
@@ -441,7 +441,7 @@
         document.location.reload(true);
     }
     var x = document.getElementById(races[0]);
-    console.log(window.getComputedStyle(x).visibility)
+    console.log(window.getComputedStyle(x).display)
 
   if (window.getComputedStyle(x).display === "none") {
     console.log("HI")
