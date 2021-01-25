@@ -423,6 +423,7 @@
         for (var i = 0; i < races.length; i++) {
             var dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
             a = document.getElementById(races[i]).getAttribute('style')
+            windowContent += '<h1>'+a+'</h1>'
             windowContent += '<img src="' + dataUrl + '" style="width:50%">';
         }
         windowContent += '</body>';
@@ -441,7 +442,6 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
-console.log(a)
     
 </script>
 
