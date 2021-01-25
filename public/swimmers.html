@@ -441,8 +441,10 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
-
-    console.log(document.getElementById(races[0]).css('display') === 'none');
+    var x = document.getElementById(races[2]);
+  if (window.getComputedStyle(x).display === "none") {
+    console.log("HI")
+  }
 </script>
 
 </html>
