@@ -440,12 +440,15 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
-    var x = document.getElementById(races[0]);
-    console.log(window.getComputedStyle(x).display)
 
-  if (window.getComputedStyle(x).display === "none") {
-    console.log("HI")
-  }
+    if( $(race[0]).is(':visible') ) {
+    // it's visible, do something
+    console.log("hi")
+}
+else {
+    console.log("bye")
+    // it's not visible so do something else
+}
 </script>
 
 </html>
