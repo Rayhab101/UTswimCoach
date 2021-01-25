@@ -440,8 +440,8 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
-    var x = document.getElementById(races[0]).display;
-    console.log(window.getComputedStyle(x))
+    var x = document.getElementById(races[0]);
+    console.log(window.getComputedStyle(x).display)
 
   if (window.getComputedStyle(x).display === "none") {
     console.log("HI")
