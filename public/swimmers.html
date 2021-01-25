@@ -74,6 +74,7 @@
                 <canvas id="500fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="100bk" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="100br" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="blank" style="display:none"></canvas>
             </div>
         </div>
     </div>
@@ -440,13 +441,9 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
-
-    console.log(document.getElementById(races[0]))
-    $('#canvasContainer canvas:visible').each( function() {
-        console.log("hi")
-    //document.write($(this).html()+'<br />');
-});
-
+    if(document.getElementById(races[i]).toDataURL('image', 1.0) == document.getElementById('blank').toDataURL()){
+        console.log("HI")
+    }
 </script>
 
 </html>
