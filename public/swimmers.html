@@ -442,14 +442,11 @@
     }
 
     console.log(document.getElementById(races[0]))
-    if( $('#canvasContainer canvas:visible')) {
-    // it's visible, do something
-    console.log("hi")
-}
-else {
-    console.log("bye")
-    // it's not visible so do something else
-}
+    $('#canvasContainer canvas:visible').each( function() {
+        console.log("hi")
+    //document.write($(this).html()+'<br />');
+});
+
 </script>
 
 </html>
