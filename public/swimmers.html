@@ -224,7 +224,6 @@
             })
             .then(function (myJson) {
                 getSwimData(myJson[0])
-
                 fr200(myJson[0])
                 im200(myJson[0])
                 fr50(myJson[0])
@@ -441,15 +440,11 @@
         //self.opener.location.reload();
         document.location.reload(true);
     }
-    var x = document.getElementById(races[0]);
+    var x = document.getElementById(races[5]);
     console.log(window.getComputedStyle(x).display)
-    var x = document.getElementById(races[1]);
+    var x = document.getElementById(races[6]);
     console.log(window.getComputedStyle(x).display)
-    var x = document.getElementById(races[2]);
-    console.log(window.getComputedStyle(x).display)
-    var x = document.getElementById(races[3]);
-    console.log(window.getComputedStyle(x).display)
-    var x = document.getElementById(races[4]);
+    var x = document.getElementById(races[7]);
     console.log(window.getComputedStyle(x).display)
   if (window.getComputedStyle(x).display === "none") {
     console.log("HI")
