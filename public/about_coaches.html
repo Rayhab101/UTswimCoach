@@ -77,10 +77,13 @@
             name.textContent = 'About Coach '+ lastName
             console.log(coaches[i])
             div1.appendChild(picture)
+            body.appendChild(div1)
             about.appendChild(name)
             //about.appendChild(coaches[i])
+            body.appendChild(about)
+            
         }
-        body.appendChild()
+        
     }).catch(function (error) {
         console.log("Error: " + error);
     });
