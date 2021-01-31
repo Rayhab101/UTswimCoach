@@ -65,7 +65,7 @@
             return response.json();
         }
     }).then(function (coaches) {
-        var body = document.getElementsByClassName('container')
+        var body = document.getElementsById('container')
         for(var i=0; i<coaches.length;i++){
             var div1 = document.createElement('div').setAttribute('class','picSize')
             var picture = document.createElement('img').setAttribute('class','picture')
@@ -90,7 +90,7 @@
 <body onload="open()">
     <header id="header"></header>
     <main class="swim_style" style="height:100%">
-        <div class="container">
+        <div class="container" id="container">
             <!-- <div class="head_coach">
                 <img class="coaches" src="coaches/Tim.jpeg">
             </div>
