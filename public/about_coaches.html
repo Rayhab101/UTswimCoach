@@ -78,7 +78,7 @@
             picture.setAttribute('src','coaches/'+lastName[0]+'.jpeg');
             lastName= lastName[1];
             name.textContent = 'About Coach '+ lastName;
-            var facts;
+            var facts = document.createElement('p');
             facts.textContent('&emsp;&emsp;'+coaches[i].about)
             console.log(coaches[i])
             div1.appendChild(picture)
