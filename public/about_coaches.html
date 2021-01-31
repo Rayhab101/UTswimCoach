@@ -58,6 +58,7 @@
     }
 </style>
 <script>
+    function open(){
     fetch('/api/coaches/')
     .then(function (response) {
         if (response.status == 200) {
@@ -83,9 +84,10 @@
     }).catch(function (error) {
         console.log("Error: " + error);
     });
+}
 </script>
 </head>
-<body>
+<body onload="open()">
     <header id="header"></header>
     <main class="swim_style" style="height:100%">
         <div class="container">
