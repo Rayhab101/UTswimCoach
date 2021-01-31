@@ -65,6 +65,14 @@
         }
     }).then(function (coaches) {
         for(var i=0; i<coaches.length;i++){
+            var body = document.createElement('div')
+            var picture = document.createElement('img')
+            var about = document.createElement('div').setAttribute('class','about')
+            var name = document.createElement('h3')
+            var lastName = coaches[0].name.split(' ')
+            lastName= lastName[1]
+            //name.textContent('About Coach '+)
+            console.log(lastName)
             console.log(coaches[i])
         }
     }).catch(function (error) {
