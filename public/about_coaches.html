@@ -64,7 +64,9 @@
             return response.json();
         }
     }).then(function (coaches) {
-        console.log(coaches)
+        for(var i=0; i<coaches.length;i++){
+            console.log(coaches[i])
+        }
     }).catch(function (error) {
         console.log("Error: " + error);
     });
