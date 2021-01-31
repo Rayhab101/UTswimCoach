@@ -57,6 +57,18 @@
         color:white;
     }
 </style>
+<script>
+    fetch('/api/coaches/')
+    .then(function (response) {
+        if (response.status == 200) {
+            return response.json();
+        }
+    }).then(function (coaches) {
+        console.log(coaches)
+    }).catch(function (error) {
+        console.log("Error: " + error);
+    });
+</script>
 </head>
 <body>
     <header id="header"></header>
