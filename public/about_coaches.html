@@ -75,7 +75,7 @@
             about.setAttribute('class','about');
             var name = document.createElement('h3');
             var lastName = coaches[0].name.split(' ');
-            picture.setAttribute('src','coaches/'+lastName[0]+'.jpeg');
+            picture.setAttribute('src','coaches/'+lastName[i]+'.jpeg');
             lastName= lastName[1];
             name.textContent = 'About Coach '+ lastName;
             console.log(coaches[i])
