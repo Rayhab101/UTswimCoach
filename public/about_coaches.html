@@ -71,8 +71,9 @@
             var name = document.createElement('h3')
             var lastName = coaches[0].name.split(' ')
             lastName= lastName[1]
+            name.textContent = 'About Coach '+ lastName
             //name.textContent('About Coach '+)
-            console.log(lastName)
+            console.log(name)
             console.log(coaches[i])
         }
     }).catch(function (error) {
