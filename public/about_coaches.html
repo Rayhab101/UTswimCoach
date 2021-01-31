@@ -64,17 +64,19 @@
             return response.json();
         }
     }).then(function (coaches) {
+        var body = document.getElementsByClassName('container')
         for(var i=0; i<coaches.length;i++){
-            var body = document.createElement('div')
-            var picture = document.createElement('img')
+            var div1 = document.createElement('div').setAttribute('class','picSize')
+            var picture = document.createElement('img').setAttribute('class','picture')
             var about = document.createElement('div').setAttribute('class','about')
             var name = document.createElement('h3')
             var lastName = coaches[0].name.split(' ')
             lastName= lastName[1]
             name.textContent = 'About Coach '+ lastName
             //name.textContent('About Coach '+)
-            console.log(name)
+            console.log(div)
             console.log(coaches[i])
+            
         }
     }).catch(function (error) {
         console.log("Error: " + error);
@@ -88,7 +90,10 @@
             <div class="head_coach">
                 <img class="coaches" src="coaches/Tim.jpeg">
             </div>
-            <div class="about"><h3>About Coach Boothe: </h3>&emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ut dicta neque consequatur eos enim, eaque laborum cumque quo? Quos soluta ad modi tempore fugiat voluptate odit incidunt assumenda perspiciatis!</div>
+            <div class="about">
+                <h3>About Coach Boothe: </h3>
+                &emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ut dicta neque consequatur eos enim, eaque laborum cumque quo? Quos soluta ad modi tempore fugiat voluptate odit incidunt assumenda perspiciatis!
+            </div>
             <div class="assistant_coach1">
                 <img class="coaches" src="coaches/Nina.jpeg">
             </div>
