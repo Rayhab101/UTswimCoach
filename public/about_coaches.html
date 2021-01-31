@@ -74,10 +74,12 @@
             picture.setAttribute('src','coaches/'+lastName[0]+'.jpeg')
             lastName= lastName[1]
             name.textContent = 'About Coach '+ lastName
-            //name.textContent('About Coach '+)
             console.log(coaches[i])
-            
+            div1.appendChild(picture)
+            about.appendChild(name)
+            //about.appendChild(coaches[i])
         }
+        body.appendChild()
     }).catch(function (error) {
         console.log("Error: " + error);
     });
@@ -87,7 +89,7 @@
     <header id="header"></header>
     <main class="swim_style" style="height:100%">
         <div class="container">
-            <div class="head_coach">
+            <!-- <div class="head_coach">
                 <img class="coaches" src="coaches/Tim.jpeg">
             </div>
             <div class="about">
@@ -105,7 +107,7 @@
             <div class="morning_coach">
                 <img class="coaches" src="coaches/Ryan.jpeg">
             </div>
-            <div class="about"><h3>About Coach Lund: </h3>&emsp;&emsp;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero commodi explicabo tempora esse minima repudiandae dolores, qui amet aut voluptas iusto rem hic sint facere dicta aspernatur voluptatum aperiam. Eligendi?</div>
+            <div class="about"><h3>About Coach Lund: </h3>&emsp;&emsp;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero commodi explicabo tempora esse minima repudiandae dolores, qui amet aut voluptas iusto rem hic sint facere dicta aspernatur voluptatum aperiam. Eligendi?</div> -->
         </div>
     </main>
     <footer id="footer"></footer>
