@@ -68,10 +68,10 @@
         for(var i=0; i<coaches.length;i++){
             var div1 = document.createElement('div').setAttribute('class','picSize')
             var picture = document.createElement('img').setAttribute('class','picture')
-            //picture.setAttribute('src',coaches[0])
             var about = document.createElement('div').setAttribute('class','about')
             var name = document.createElement('h3')
             var lastName = coaches[0].name.split(' ')
+            picture.setAttribute('src',lastName[0]+'.jpeg')
             lastName= lastName[1]
             name.textContent = 'About Coach '+ lastName
             //name.textContent('About Coach '+)
