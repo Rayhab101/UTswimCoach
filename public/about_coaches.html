@@ -78,11 +78,13 @@
             picture.setAttribute('src','coaches/'+lastName[0]+'.jpeg');
             lastName= lastName[1];
             name.textContent = 'About Coach '+ lastName;
+            var facts;
+            facts.textContent('&emsp;&emsp;'+coaches[i].about)
             console.log(coaches[i])
             div1.appendChild(picture)
             body.appendChild(div1)
             about.appendChild(name)
-            about.appendChild('&emsp;&emsp;'+coaches[i].about)
+            about.appendChild(facts)
             body.appendChild(about)
             
         }
