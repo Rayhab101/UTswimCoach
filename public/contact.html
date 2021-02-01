@@ -118,7 +118,8 @@
                 .then(function (check) {
                     
                     for(var i=0; i<check.length;i++){
-                        console.log(check[i])
+                        var lastName = check[i].name.split(" ");
+                        console.log(lastName[1])
                     }
                     // var row = document.createElement("tr");
                     // var column = document.createElement("td");
