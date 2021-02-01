@@ -110,7 +110,7 @@
     function pullPerson() {
         var body = document.getElementById("container");
 
-            fetch("api/coaches/")
+            fetch("/api/coaches")
                 .then(function (response) {
                     return response.json();
                 })
