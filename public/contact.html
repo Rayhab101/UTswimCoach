@@ -111,13 +111,15 @@
 <script>
     function pullPerson() {
         var body = document.getElementById("container");
-
             fetch("/api/coaches")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (check) {
-                    console.log(check)
+                    
+                    for(var i=0; i<check.length;i++){
+                        console.log(check[i])
+                    }
                     // var row = document.createElement("tr");
                     // var column = document.createElement("td");
                     // var cell = row.insertCell();
