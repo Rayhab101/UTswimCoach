@@ -107,112 +107,38 @@
     }
 </style>
 <script>
-    function pullSchool() {
-        var school = location.search.substring(1);
-        school = school.split("=");
-        school = school[1];
-        console.log(school);
-        if (school) {
-            fetch("http://localhost:8080/api/schoolCoaches/" + school)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (coaches) {
-                    //console.log(coaches)
-                    pullPerson(coaches)
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
-        }
-        else {
-            const blankTable = [
-                {
-                name: 'Name',
-                job: 'Email For',
-                email: 'Email',
-                color: "color:black"
-            },
-            {
-                name: 'John Moran',
-                job: 'President',
-                email: 'johnmoran@skaggscatholiccenter.org',
-                color: "color:mediumblue"
-            },
-            {
-                name: 'Mel Roberts',
-                job: 'Treasurer',
-                email: 'swimcoach506@hotmail.com',
-                color: "color:mediumblue"
-            },
-            {
-                name: 'Ryan Lund',
-                job: 'Developer',
-                email: 'lund64311@gmail.com',
-                color: "color:mediumblue"
-            }
-        ];
-            var body = document.getElementById("swimmer_data");
-            var head = document.getElementById("contact");
-            head.innerHTML = ("Contacts");
-            head.setAttribute("colspan", 3);
-            body.appendChild(head);
-            for(var i=0; i<blankTable.length;i++){
-            var row = document.createElement("tr");
-            var column = document.createElement("td");
-            var cell = row.insertCell();
-            console.log(blankTable[i].name)
-            text = document.createTextNode(column.innerHTML = blankTable[i].name);
-            cell.appendChild(text);
-            var column = document.createElement("td");
-            var cell = row.insertCell();
-            text = document.createTextNode(column.innerHTML = blankTable[i].job);
-            cell.appendChild(text);
-            var column = document.createElement("td");
-            var cell = row.insertCell();
-            cell.setAttribute("style", blankTable[i].color);
-            text = document.createTextNode(column.innerHTML = blankTable[i].email);
-            cell.appendChild(text);
-            body.appendChild(row);
-            }
-        }
-    }
-    function pullPerson(check) {
-        var body = document.getElementById("swimmer_data");
-        var head = document.getElementById("contact");
-        head.innerHTML = ("Contact A Coach");
-        head.setAttribute("colspan", 3);
-        body.appendChild(head);
-        for (var i = 0; i < check.length; i++) {
-            fetch("http://localhost:8080/api/coaches/" + check[i].coach_id)
+    function pullPerson() {
+        var body = document.getElementById("container");
+
+            fetch("api/coaches/")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (check) {
-                    var row = document.createElement("tr");
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
                     console.log(check)
-                    text = document.createTextNode(column.innerHTML = check[0].position);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = check[0].name);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
-                    cell.setAttribute("style", "color:mediumblue");
-                    cell.className = 'emailMe'
-                    cell.id = check[0].coach_id;
-                    text = document.createTextNode(column.innerHTML = "Email");
-                    cell.appendChild(text);
-                    body.appendChild(row);
+                    // var row = document.createElement("tr");
+                    // var column = document.createElement("td");
+                    // var cell = row.insertCell();
+                    // console.log(check)
+                    // text = document.createTextNode(column.innerHTML = check[0].position);
+                    // cell.appendChild(text);
+                    // var column = document.createElement("td");
+                    // var cell = row.insertCell();
+                    // text = document.createTextNode(column.innerHTML = check[0].name);
+                    // cell.appendChild(text);
+                    // var column = document.createElement("td");
+                    // var cell = row.insertCell();
+                    // cell.setAttribute("style", "color:mediumblue");
+                    // cell.className = 'emailMe'
+                    // cell.id = check[0].coach_id;
+                    // text = document.createTextNode(column.innerHTML = "Email");
+                    // cell.appendChild(text);
+                    // body.appendChild(row);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                     pullSchool(check)
                 });
-        }
     }
 
     function emailCoach(name) {
@@ -258,15 +184,6 @@
             </div>
 
         </div>
-            <!-- <table class="swimmer_data" id="swimmer_data">
-                <th id="contact" colspan="3"></th>
-                <tr>
-                    <td>Head Coach</td>
-                    <td id="coach0">Tim Boothe</td>
-                    <td class="emailMe" style="color:mediumblue"><u>Email</u></td>
-                </tr>
-            </table> -->
-
     </main>
     <footer id="footer"></footer>
     <script>
