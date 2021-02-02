@@ -120,6 +120,7 @@
                     for(var i=0; i<check.length;i++){
                         var card = document.createElement("div");
                         card.setAttribute('class','coach');
+                        card.setAttribute('style','grid-column:'+(i+1));
                         var lastName = check[i].name.split(" ");
                         var picture = 'coaches/'+ lastName[0]+'.jpeg';
                         var fullName = check[i].name;
@@ -133,7 +134,7 @@
                         // var link = document.createElement('a').setAttribute('href',coachEmail);
                         // link.setAttribute('style','color:white').textContent(check[i].email);
                         // var phoneNumber = document.createElement('p').textContent("Phone Number: "+coachPhone);
-                        card.appendChild(fullName)
+                        //card.appendChild(fullName)
                         //emailHolder.appendChild(link);
                         console.log(check[i])
                     }
