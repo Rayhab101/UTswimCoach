@@ -70,26 +70,6 @@
         margin-left: 150px;
     }
     .coach{
-        grid-row: 1;
-        grid-column: 1;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .assistant_coach1{
-        grid-row: 1;
-        grid-column: 2;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .assistant_coach2{
-        grid-row: 1;
-        grid-column: 3;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .morning_coach{
-        grid-row: 1;
-        grid-column: 4;
         margin-left: auto;
         margin-right: auto;
     }
@@ -128,7 +108,6 @@
                         var coachEmail = 'mailto:' + check[i].email;
                         var coachPhone = check[i].phone;
                         var image = new Image();
-                        //image = document.createElement('img').setAttribute('src',picture);
                         image.src = picture;
                         var coach = document.createElement("h3");
                         coach.textContent = fullName +":";
@@ -151,29 +130,9 @@
                         body.appendChild(card);
                         console.log(check[i])
                     }
-
-                    // 
-                    // var column = document.createElement("td");
-                    // var cell = row.insertCell();
-                    // console.log(check)
-                    // text = document.createTextNode(column.innerHTML = check[0].position);
-                    // cell.appendChild(text);
-                    // var column = document.createElement("td");
-                    // var cell = row.insertCell();
-                    // text = document.createTextNode(column.innerHTML = check[0].name);
-                    // cell.appendChild(text);
-                    // var column = document.createElement("td");
-                    // var cell = row.insertCell();
-                    // cell.setAttribute("style", "color:mediumblue");
-                    // cell.className = 'emailMe'
-                    // cell.id = check[0].coach_id;
-                    // text = document.createTextNode(column.innerHTML = "Email");
-                    // cell.appendChild(text);
-                    // body.appendChild(row);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
-                    //pullSchool(check)
                 });
     }
 
