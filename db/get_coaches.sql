@@ -1,1 +1,1 @@
-SELECT * FROM coaches ORDER BY coach_id;
+SELECT * FROM coaches WHERE is_active=TRUE ORDER BY coach_id;
