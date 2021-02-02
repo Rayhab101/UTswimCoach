@@ -131,16 +131,22 @@
                         //image = document.createElement('img').setAttribute('src',picture);
                         image.src = picture;
                         var coach = document.createElement("h3");
-                        coach.textContent = fullName;
-                        // var title = document.createElement('p').textContent(coachPosition)
-                        // var emailHolder = document.createElement('p').textContent("Email Address: ")
-                        // var link = document.createElement('a').setAttribute('href',coachEmail);
-                        // link.setAttribute('style','color:white').textContent(check[i].email);
-                        // var phoneNumber = document.createElement('p').textContent("Phone Number: "+coachPhone);
-                        //card.appendChild(fullName)
-                        //emailHolder.appendChild(link);
+                        coach.textContent = fullName +":";
+                        var title = document.createElement('p');
+                        title.textContent =coachPosition;
+                        var emailHolder = document.createElement('p');
+                        emailHolder.textContent = "Email Address: ";
+                        var link = document.createElement('a').setAttribute('href',coachEmail);
+                        link.setAttribute('style','color:white')
+                        link.textContent = check[i].email;
+                        var phoneNumber = document.createElement('p');
+                        phoneNumber.textContent = "Phone Number: "+coachPhone;
+                        emailHolder.appendChild(link);
                         card.appendChild(image);
-                        card.appendChild(coach)
+                        card.appendChild(coach);
+                        card.appendChild(title)
+                        card.appendChild(emailHolder)
+                        card.appendChild(phoneNumber)
                         body.appendChild(card);
                         console.log(check[i])
                     }
