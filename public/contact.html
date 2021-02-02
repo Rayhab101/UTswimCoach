@@ -136,7 +136,8 @@
                         title.textContent =coachPosition;
                         var emailHolder = document.createElement('p');
                         emailHolder.textContent = "Email Address: ";
-                        var link = document.createElement('a').setAttribute('href',coachEmail);
+                        var link = document.createElement('a');
+                        link.setAttribute('href',coachEmail);
                         link.setAttribute('style','color:white')
                         link.textContent = check[i].email;
                         var phoneNumber = document.createElement('p');
