@@ -92,12 +92,12 @@
                         link.textContent = check[i].email;
                         var phoneNumber = document.createElement('p');
                         phoneNumber.textContent = "Phone Number: "+coachPhone;
-                        emailHolder.appendChild(link);
                         card.appendChild(image);
                         card.appendChild(coach);
-                        card.appendChild(title)
-                        card.appendChild(emailHolder)
-                        card.appendChild(phoneNumber)
+                        card.appendChild(title);
+                        card.appendChild(emailHolder);
+                        card.appendChild(link);
+                        card.appendChild(phoneNumber);
                         body.appendChild(card);
                         console.log(check[i])
                     }
