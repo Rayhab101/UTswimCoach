@@ -79,6 +79,9 @@
                         var coachPosition = check[i].position;
                         var coachEmail = 'mailto:' + check[i].email;
                         var coachPhone = check[i].phone;
+                        if(coachPhone==''){
+                            coachPhone='not available'
+                        }
                         var image = new Image();
                         image.src = picture;
                         var coach = document.createElement("h3");
