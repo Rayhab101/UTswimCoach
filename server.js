@@ -64,7 +64,6 @@ function updateGrade() {
         }
     })
 }
-
 var j = schedule.scheduleJob('0 0 15 8 *', function () {
     updateGrade();
 });
