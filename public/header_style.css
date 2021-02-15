@@ -57,6 +57,8 @@ header .coachBtn {
     grid-row: 1;
     grid-column: 3;
     margin-left: auto;
+    background-color: navy;
+    color: white;
 }
 
 
