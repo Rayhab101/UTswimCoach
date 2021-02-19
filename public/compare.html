@@ -137,9 +137,9 @@
 <script>
 
     async function checkSchoolRecord(id,race,min,cell){
-        console.log(id+"+"+race+"+"+min+"+"+cell.id);
+        //console.log(id+"+"+race+"+"+min+"+"+cell.id);
         var school = await fetch('/api/swimmers/'+id).then(data =>  data.json())
-        console.log("1:"+school)
+        console.log(school)
     }
 
     function buildPage() {
