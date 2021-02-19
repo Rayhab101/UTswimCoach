@@ -136,6 +136,10 @@
 </body>
 <script>
 
+    function checkSchoolRecord(race,min){
+        console.log(race,min);
+    }
+
     function buildPage() {
         var school = location.search.substring(1);
         school = school.split("=");
@@ -194,6 +198,7 @@
                 else {
                     text = records[0].min;
                 }
+                checkSchoolRecord(race,text);
                 document.getElementById(cell.id).innerHTML = text;
             }).catch(function (error) {
                 console.log("Error: " + error);
