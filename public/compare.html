@@ -144,7 +144,7 @@
                     return response.json();
                 }
             }).then(function (records) {
-                console.log(records);
+                console.log(records[0].school);
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
