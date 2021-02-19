@@ -145,9 +145,9 @@
                 return response.json();
             })
             .then(function (record) {
-                console.log(record[0].time==min)
-                //console.log(id+"+"+race+"+"+min+"+"+cell.id);
-                //document.getElementById(cell.id).innerHTML = record[0].time;
+                if(record[0].time==min){
+                    document.getElementById(cell.id).style.backgroundColor = "LightGreen";
+                }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
