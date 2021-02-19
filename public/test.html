@@ -4,281 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team- Records</title>
+    <title>BL/SJ Swim Team - Archive</title>
     <link rel="stylesheet" href="swim.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
+
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script>
         $(function () {
             $("#header").load("heading.html");
-            $("footer").load("footing.html");
+            $("#footer").load("footing.html");
         });
     </script>
     <style>
-        .swim_info {
-            padding-top: 110px;
-        }
-        .container1{
+        .container{
             display: grid;
-            height: 500px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        #swimmers{
+            margin-left:auto;
+            margin-right:auto;
             background-color: white;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-        }
-
-        table{
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid white 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
+            border-radius: 5px;
+            height: 90%;
             width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-
-        }
-        td {
-            height: 25px;
-            border-collapse: separate;
-            border: solid white 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-        }
-        th {
-            text-align: center;
-            font-size: 24px;
-        }
-
-        button {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .swimmer_data1{
             grid-row: 1;
             grid-column: 1;
         }
-        .swimmer_data2{
+
+        #charts{
+            margin-left:auto;
+            margin-right:auto;
+            background-color: white;
+            border-radius: 5px;
+            height: 90%;
+            width: 90%;
             grid-row: 1;
             grid-column: 2;
         }
-        .swimmer_data3{
+
+        #meets{
+            margin-left:auto;
+            margin-right:auto;
+            background-color: white;
+            border-radius: 5px;
+            height: 90%;
+            width: 90%;
             grid-row: 1;
             grid-column: 3;
         }
-        .head{
-            border-top: solid black 1px;
-            border-bottom: solid black 1px;
+
+        #most_improved{
+            margin-left:auto;
+            margin-right:auto;
+            background-color: white;
+            border-radius: 5px;
+            height: 90%;
+            width: 90%;
+            grid-row: 2;
+            grid-column: 1;
         }
+
+        #state_qualifier{
+            margin-left:auto;
+            margin-right:auto;
+            background-color: white;
+            border-radius: 5px;
+            height: 90%;
+            width: 90%;
+            grid-row: 2;
+            grid-column: 2;
+        }
+
+        #coaches{
+            margin-left:auto;
+            margin-right:auto;
+            background-color: white;
+            border-radius: 5px;
+            height: 90%;
+            width: 90%;
+            grid-row: 2;
+            grid-column: 3;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        .swim_years{
+            margin-left: 30px;
+        }
+
     </style>
-    <script>
-        async function recordPull(race, cell, school) {
-            var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.id[1])
-            race = cell.id[1] == "g" ? race : race+11;
-            if (!relays.includes(race)) {
-                await fetch('/api/schoolRecord/' + race + "&" + school)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (record) {
-
-                        fetch('/api/swim/'+record[0].swimmer_id)
-                        .then(function (response){
-                            return response.json();
-                        })
-                        .then(function (swimmer){
-                            console.log(swimmer)
-                            document.getElementById(cell.id).innerHTML = swimmer[0].name;
-                        })
-                    }).catch(function (error) {
-                        console.log("Error: " + error);
-                    });
-            }
-            else {
-                await fetch("/api/relayRecord/" + race + "&" + school)
-                    .then(function (responseRelay) {
-                        return responseRelay.json();
-                    })
-                    .then(function (relay) {
-                        //console.log(relay)
-                        document.getElementById(cell.id).innerHTML = relay[0].swimmers;
-                    })
-                    .catch(function (error) {
-                        console.log("Error: " + error);
-                    });
-            }
-    }
-
-        async function timePull(race,cell,school){
-            var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.id[1])
-            race = cell.id[1] == "g" ? race : race+11;
-            if (!relays.includes(race)) {
-                await fetch('/api/schoolRecord/' + race + "&" + school)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (record) {
-                        //console.log(record)
-                        document.getElementById(cell.id).innerHTML = record[0].time;
-                    }).catch(function (error) {
-                        console.log("Error: " + error);
-                    });
-            }
-            else {
-                await fetch("/api/relayRecord/" + race + "&" + school)
-                    .then(function (responseRelay) {
-                        return responseRelay.json();
-                    })
-                    .then(function (relay) {
-                        //console.log(relay)
-                        document.getElementById(cell.id).innerHTML = relay[0].time;
-                    })
-                    .catch(function (error) {
-                        console.log("Error: " + error);
-                    });
-            }
-        }
-
-        async function yearPull(race,cell,school){
-            var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.id[1])
-            race = cell.id[1] == "g" ? race : race+11;
-            if (!relays.includes(race)) {
-                await fetch('/api/schoolRecord/' + race + "&" + school)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (record) {
-                        //console.log(record)
-                        document.getElementById(cell.id).innerHTML = record[0].year;
-                    }).catch(function (error) {
-                        console.log("Error: " + error);
-                    });
-            }
-            else {
-                await fetch("/api/relayRecord/" + race + "&" + school)
-                    .then(function (responseRelay) {
-                        return responseRelay.json();
-                    })
-                    .then(function (relay) {
-                        //console.log(relay)
-                        document.getElementById(cell.id).innerHTML = relay[0].year;
-                    })
-                    .catch(function (error) {
-                        console.log("Error: " + error);
-                    });
-            }
-        }
-
-        function pullSchool() {
-            var school = location.search.substring(1);
-            school = school.split("=");
-            school = Number(school[1]);
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("girlRecords");
-                var row = document.createElement('tr');
-                var column = document.createElement("td");
-                //var text = document.createTextNode(column.innerHTML = "A");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rg' + i);
-                //cell.appendChild(text);
-                recordPull(i, cell, school);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rgt' + i);
-                //cell.appendChild(text);
-                timePull(i, cell, school);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rgy' + i);
-                //cell.appendChild(text);
-                body.appendChild(row);
-                yearPull(i, cell, school);
-            }
-            var races = ["","200 Medley Relay","200 Freestyle","200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
-            for (var i = 1; i < 13; i++) {
-                var body = document.getElementById("races");
-                var row = document.createElement('tr');
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                var text = document.createTextNode(column.innerHTML = races[i]);
-                cell.appendChild(text);
-                row.appendChild(cell);
-                body.appendChild(row);
-            }
-            //document.getElementById("races").deleteRow(12);
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("boyRecords");
-                var row = document.createElement('tr');
-                var column = document.createElement("td");
-                //var text = document.createTextNode(column.innerHTML = "A");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rb' + i);
-                cell.appendChild(text);
-                recordPull(i, cell, school);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rbt' + i);
-                cell.appendChild(text);
-                timePull(i, cell, school);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.setAttribute('id', 'rby' + i);
-                cell.appendChild(text);
-                body.appendChild(row);
-                yearPull(i, cell, school);
-            }
-
-            // var relays = [1, 8, 11, 12, 19, 22]
-            // for (var j = 1; j <= 22; j++) {
-            //     //console.log(j);
-            //     if (relays.includes(j)) {
-            //         pullRelay(j, school);
-            //     }
-            //     else {
-            //         pullRecord(j, school);
-            //     }
-            // }
-        }
-    </script>
 </head>
 
-<body onload="pullSchool()">
+<body>
     <header id="header"></header>
     <main class="swim_info">
-        <div class="container1" id="container1">
-            <table class="swimmer_data1" id="girlRecords">
-                <tr><td></td></tr>
-
-                <tr class="head">
-                    <td>RECORD HOLDER(S): WOMEN</td>
-                    <td>TIME</td>
-                    <td>YEAR</td>
-                </tr>
-                <tr><td></td></tr>
-            </table>
-            <table class="swimmer_data2" id="races">
-                <tr><td></td></tr>
-                <tr class="head">
-                    <td>RACE</td>
-                </tr>
-                <tr><td></td></tr>
-            </table>
-            <table class="swimmer_data3" id="boyRecords">
-                <tr><td></td></tr>
-                <tr class="head">
-                    <td>RECORD HOLDER(S): MEN</td>
-                    <td>TIME</td>
-                    <td>YEAR</td>
-                </tr>
-                <tr><td></td></tr>
-            </table>
+        <div class="container" style="padding-top:120px">
+            <div id="swimmers">
+                <h1>Swimmers</h1>
+                <div class="swim_years"><a href="?swimmers=1">2020-2021 Season</a></div>
+                <div class="swim_years"><a href="?swimmers=2">2021-2022 Season</a></div>
+            </div>
+            <div id="charts">
+                <h1>Charts</h1>
+                <div class="swim_years"><a href="?swimmer=1">2020-2021 Season</a></div>
+                <div class="swim_years"><a href="?swimmer=2">2021-2022 Season</a></div>
+            </div>
+            <div id="coaches">
+                <h1>Coaches</h1>
+                <div class="swim_years"><a href="?coaches=1">2020-2021 Season</a></div>
+                <div class="swim_years"><a href="?coaches=2">2021-2022 Season</a></div>
+            </div>
+            <div id="meets">
+                <h1>Meets</h1>
+                <div class="swim_years"><a href="?meets=1">2020-2021 Season</a></div>
+                <div class="swim_years"><a href="?meets=2">2021-2022 Season</a></div>
+            </div>
+            <div id="state_qualifier">
+                <h1>State Qualify</h1>
+                <div class="swim_years"><a href="?state=1">2019-2020 Season</a></div>
+                <div class="swim_years"><a href="?state=2">2020-2021 Season</a></div>
+            </div>
+            <div id="most_improved">
+                <h1>Most Improved</h1>
+                <div class="swim_years"><a href="?improved=1">2020-2021 Season</a></div>
+                <div class="swim_years"><a href="?improved=2">2021-2022 Season</a></div>
+            </div>
         </div>
     </main>
     <footer id="footer"></footer>
 </body>
-
+<script>
+    
+</script>
 </html>
