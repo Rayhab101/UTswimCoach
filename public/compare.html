@@ -136,8 +136,18 @@
 </body>
 <script>
 
-    function checkSchoolRecord(race,min,cell){
-        console.log(race+"+"+min+"+"+cell.id);
+    async function checkSchoolRecord(id,race,min,cell){
+        console.log(id+"+"+race+"+"+min+"+"+cell.id);
+        await fetch('/api/swimmers/'+id)
+        .then(function (response) {
+                if (response.status == 200) {
+                    return response.json();
+                }
+            }).then(function (records) {
+                console.log(records);
+            }).catch(function (error) {
+                console.log("Error: " + error);
+            });
     }
 
     function buildPage() {
@@ -198,7 +208,7 @@
                 else {
                     text = records[0].min;
                 }
-                checkSchoolRecord(race,text,cell);
+                checkSchoolRecord(id,race,text,cell);
                 document.getElementById(cell.id).innerHTML = text;
             }).catch(function (error) {
                 console.log("Error: " + error);
