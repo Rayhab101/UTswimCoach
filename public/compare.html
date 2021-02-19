@@ -137,9 +137,21 @@
 <script>
 
     async function checkSchoolRecord(id,race,min,cell){
-        //console.log(id+"+"+race+"+"+min+"+"+cell.id);
-        var school = await fetch('/api/swimmers/'+id).then(data =>  data.json())
-        console.log(school)
+        
+        var swimmerData = await fetch('/api/swimmers/'+id).then(data =>  data.json())
+        var school = swimmerData[0].school;
+        fetch('/api/schoolRecord/'+race+"&"+school)
+        .then(function (response) {
+                return response.json();
+            })
+            .then(function (record) {
+                console.log(record)
+                //console.log(id+"+"+race+"+"+min+"+"+cell.id);
+                //document.getElementById(cell.id).innerHTML = record[0].time;
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
     }
 
     function buildPage() {
