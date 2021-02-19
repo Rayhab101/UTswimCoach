@@ -138,16 +138,8 @@
 
     async function checkSchoolRecord(id,race,min,cell){
         console.log(id+"+"+race+"+"+min+"+"+cell.id);
-        await fetch('/api/swimmers/'+id)
-        .then(function (response) {
-                if (response.status == 200) {
-                    return response.json();
-                }
-            }).then(function (records) {
-                console.log(records[0].school);
-            }).catch(function (error) {
-                console.log("Error: " + error);
-            });
+        var school = await fetch('/api/swimmers/'+id).then(data =>  data.json())
+        console.log("1:"+school)
     }
 
     function buildPage() {
