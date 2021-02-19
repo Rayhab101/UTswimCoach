@@ -145,7 +145,7 @@
                 return response.json();
             })
             .then(function (record) {
-                console.log(record)
+                console.log(record[0].time==min)
                 //console.log(id+"+"+race+"+"+min+"+"+cell.id);
                 //document.getElementById(cell.id).innerHTML = record[0].time;
             })
