@@ -136,8 +136,8 @@
 </body>
 <script>
 
-    function checkSchoolRecord(race,min){
-        console.log(race,min);
+    function checkSchoolRecord(race,min,cell){
+        console.log(race+"+"+min+"+"+cell.id);
     }
 
     function buildPage() {
@@ -198,7 +198,7 @@
                 else {
                     text = records[0].min;
                 }
-                checkSchoolRecord(race,text);
+                checkSchoolRecord(race,text,cell);
                 document.getElementById(cell.id).innerHTML = text;
             }).catch(function (error) {
                 console.log("Error: " + error);
