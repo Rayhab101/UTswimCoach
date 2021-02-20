@@ -211,6 +211,11 @@ header .coachBtn {
     } */
     .navbar1{
         display: block;
+        grid-row: 2;
+        grid-column: 3;
+    }
+    .coachBtn{
+        display: none
     }
 }
 /*
