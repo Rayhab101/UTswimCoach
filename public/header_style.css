@@ -176,6 +176,9 @@ header .coachBtn {
         text-align: center;
         font-size: 12px;
     }
+    .smNav{
+        display: none;
+    }
 }
 /*
 @media screen and (max-width:770px) and (min-width: 700px){
@@ -216,8 +219,9 @@ header .coachBtn {
         display: none
     }
 
-    i:hover{
+    i:hover .smNav{
         background-color: darkblue;
+        display: block;
     }
 
 }
