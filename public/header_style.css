@@ -159,7 +159,9 @@ header .coachBtn {
         .btns{
             display: grid;
         }
-
+        .smNav{
+            display: none;
+        }
 @media screen and (min-width:500px){
     header h1{
         padding-top: 20px;
@@ -177,7 +179,8 @@ header .coachBtn {
         font-size: 12px;
     }
     .smNav{
-        display: none;
+        padding-top:120;
+        background-color: blue;
     }
 }
 /*
