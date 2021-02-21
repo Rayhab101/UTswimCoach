@@ -131,10 +131,10 @@
     }
 
     .welcome {
-        padding-top: 150px;
+        padding-top: 120px;
         color: white;
         font-size: larger;
         background-color: transparent;
-        text-align: center;
+        text-align: left;
     }
 }
