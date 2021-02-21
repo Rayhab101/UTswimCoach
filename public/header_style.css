@@ -213,11 +213,15 @@ header .coachBtn {
         display: block;
         grid-row: 2;
         grid-column: 2;
-        position: relative;
+        position: left;
+        color: white;
     }
     .coachBtn{
         display: none
     }
+}
+.navbar1{
+    display: none;
 }
 /*
 @media screen and (max-width:399px){
