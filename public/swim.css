@@ -111,6 +111,7 @@
         min-width: 100%;
         min-height: 100%;
     }
+
     footer {
         position: fixed;
         margin-right: auto;
@@ -135,7 +136,7 @@
         color: white;
         background-color: transparent;
         text-align: left;
-        margin-left: 10px;
+        margin-left: 15px;
         width: 100%
     }
 
