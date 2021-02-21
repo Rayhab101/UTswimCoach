@@ -219,9 +219,8 @@ header .coachBtn {
         display: none
     }
 
-    i:hover .smNav{
+    i:hover{
         background-color: darkblue;
-        display: block;
     }
 
 }
