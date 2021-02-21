@@ -133,9 +133,10 @@
     .welcome {
         padding-top: 130px;
         color: white;
-        font-size: 16px;
+        font-size: auto;
         background-color: transparent;
         text-align: left;
         margin-left: 10px;
+        width: 100%
     }
 }
