@@ -147,4 +147,14 @@
         margin-right: auto;
         overflow: auto;
     }
+    .team-picture {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .schedule {
+        background-color: transparent;
+        grid-row: 2;
+        grid-column: 1;
+    }
 }
