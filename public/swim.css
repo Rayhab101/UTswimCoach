@@ -103,4 +103,22 @@
         min-width: 1024px;
         min-height: 768px;
     }
+    footer {
+        position: fixed;
+        margin-right: auto;
+        margin-left: auto;
+        border-top: black;
+        background-color: rgb(7, 37, 168,0.7);
+        background-size: cover;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 45px;
+        align-items: center;
+        text-align: center;
+    }
+    
+    footer p{
+        color:white;
+    }
 }
