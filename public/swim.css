@@ -91,5 +91,16 @@
 }
 
 @media screen and (max-width:500px){
-
+    html {
+        height: 100%;
+        background-color: #2F3035;
+        background-image: url(pool_background.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        position: relative;
+        min-width: 1024px;
+        min-height: 768px;
+    }
 }
