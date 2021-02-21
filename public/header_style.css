@@ -203,7 +203,7 @@ header .coachBtn {
     .navbar {
         display:none;
     }
-    
+
     .navbar1{
         display: block;
         grid-row: 2;
@@ -214,6 +214,10 @@ header .coachBtn {
     }
     .coachBtn{
         display: none
+    }
+
+    i:hover{
+        background-color: #ddd;
     }
 
 }
