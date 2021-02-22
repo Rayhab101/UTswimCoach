@@ -16,6 +16,7 @@
         });
     </script>
     <style>
+        @media screen and (min-width:500px){
         .container {
             display: grid;
         }
@@ -58,6 +59,53 @@
             grid-row: 1;
             grid-column: 5;
         }
+    }
+    @media screen and (max-width:500px){
+        .container {
+            display: grid;
+        }
+
+        .swim_style {
+            padding-top: 125px;
+        }
+
+        table {
+            background-color: white;
+            width: 100%;
+            font-size: xx-small;
+        }
+
+        td {
+            text-align: center;
+            height: 22px;
+        }
+
+        .t0 {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .t1 {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .t2 {
+            display:none;
+            grid-row: 1;
+            grid-column: 3;
+        }
+
+        .t3 {
+            grid-row: 1;
+            grid-column: 3;
+        }
+
+        .t4 {
+            grid-row: 1;
+            grid-column: 4;
+        }
+    }
     </style>
 
 </head>
@@ -116,7 +164,7 @@
             </table>
             <table class="t3" id="schoolRecord">
                 <tr>
-                    <th>School</th>
+                    <th>School Record</th>
                 </tr>
                 <tr>
                     <td></td>
@@ -124,7 +172,7 @@
             </table>
             <table class="t4" id="stateRecord">
                 <tr>
-                    <th>State</th>
+                    <th>State Record</th>
                 </tr>
                 <tr>
                     <td></td>
