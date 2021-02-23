@@ -17,6 +17,7 @@
     });
   </script>
   <style>
+    @media screen and (min-width:500px){
     * {
       box-sizing: border-box;
     }
@@ -54,6 +55,47 @@
     .swim_info {
       padding-top: 100px;
     }
+  }
+    @media screen and (max-width:500px){
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 10px;
+    }
+
+    /* Remove extra left and right margins, due to padding */
+    .row {
+      margin: 0 -5px;
+      margin-top: 20px
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Style the counter cards */
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 8px;
+      text-align: center;
+      background-color: #f1f1f1;
+      border-radius: 10%;
+      width: 100%;
+      font-size: xx-small;
+    }
+
+    .swim_info {
+      padding-top: 100px;
+    }
+}
 
   </style>
   <script type="text/javascript">
