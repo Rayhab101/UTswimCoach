@@ -121,6 +121,7 @@ div p{
         padding-right: auto;
         padding-bottom: 20px;
         color:white;
+        word-break:break-all;
     }
     h3{
         color:white;
