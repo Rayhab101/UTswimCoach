@@ -90,6 +90,7 @@ div p{
         height: 525px;
         margin-left: auto;
         margin-right: auto;
+        justify-items: center;
         /* overflow: auto; */
     }
     
