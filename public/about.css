@@ -86,8 +86,8 @@ div p{
     
     .container {
         display:grid;
-        width: auto;
-        height: auto;
+        width: 1024px;
+        height: 525px;
         margin-left: auto;
         margin-right: auto;
         /* overflow: auto; */
@@ -127,8 +127,8 @@ div p{
     }
     .team_pic{
         object-fit: contain;
-        width: auto;
-        height: auto;
+        width: 300px;
+        height: 200px;
     }
     div p{
         padding-top: 30px;
