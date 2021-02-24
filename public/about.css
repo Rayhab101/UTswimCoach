@@ -118,13 +118,9 @@ div p{
     .about{
         grid-row: 1;
         grid-column: 1;
-        padding-left: auto;
-        padding-right: auto;
-        padding-bottom: 20px;
-        color:white;
-        word-break:break-all;
-        justify-items: center;
+        display: flex;
         align-items: center;
+        justify-content: center;
     }
     h3{
         color:white;
