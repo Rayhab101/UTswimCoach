@@ -28,6 +28,7 @@
 </head>
 
 <style>
+    @media screen and (min-width:500px){
     .swim_info {
         padding-top: 95px;
     }
@@ -46,6 +47,32 @@
         text-align: center;
         font-size: 24px;
     }
+}
+
+@media screen and (max-width:500px){
+    .swim_info {
+        padding-top: 95px;
+    }
+
+    table {
+        background-color: rgba(255, 255, 255, .95);
+        border-collapse: separate;
+        border: solid black 1px;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        text-align: center;
+        width: 100%;
+
+    }
+
+    th {
+        text-align: center;
+        font-size: 12px;
+    }
+    td {
+        font-size: xx-small;
+    }
+}
 </style>
 
 <body onload="tableLoad()">
