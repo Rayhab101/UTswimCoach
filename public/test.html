@@ -47,7 +47,7 @@
             grid-column: 1;
         }
 
-        #charts{
+        #schedule{
             margin-left:auto;
             margin-right:auto;
             background-color: white;
@@ -69,7 +69,7 @@
             grid-column: 3;
         }
 
-        #most_improved{
+        #home_page{
             margin-left:auto;
             margin-right:auto;
             background-color: white;
@@ -80,7 +80,7 @@
             grid-column: 1;
         }
 
-        #state_qualifier{
+        #ben_lomond{
             margin-left:auto;
             margin-right:auto;
             background-color: white;
@@ -113,7 +113,7 @@
             grid-column: 3;
         }
 
-        #test{
+        #st_josephs{
             margin-left:auto;
             margin-right:auto;
             background-color: white;
@@ -144,7 +144,7 @@
                 <h1>Update Swimmers</h1>
                 <i class="fas fa-swimmer" style="font-size: 2em;"></i>
             </button>
-            <button id="charts">
+            <button id="schedule">
                 <h1>Update Schedule</h1>
                 <i class="fas fa-calendar" style="font-size: 2em;"></i>
             </button>
@@ -156,11 +156,11 @@
                 <h1>Update Meets</h1>
                 <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
             </button>
-            <button id="state_qualifier">
+            <button id="ben_lomond">
                 <h1>Update Ben Lomond's About</h1>
                 <i class="fas fa-address-card" style="font-size: 2em;"></i>
             </button>
-            <button id="most_improved">
+            <button id="home_page">
                 <h1>Update Home Page</h1>
                 <i class="fas fa-window-maximize" style="font-size: 2em;"></i>
             </button>
@@ -168,7 +168,7 @@
                 <h1>Next Meet</h1>
                 <i class="fas fa-user-check" style="font-size: 2em;"></i>
             </button>
-            <button id="test">
+            <button id="st_josephs">
                 <h1 sytle="margin-bottom:0">Update Saint Joseph's About</h1>
                 <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
             </button>
@@ -183,9 +183,29 @@
     document.getElementById('hotKeys').style.display = 'none';
     switch(this.id){
         case 'swimmers': 
-        alert("Hello")
-        break;
-
+            swimmers();
+            break;
+        case 'schedule':
+            schedule();
+            break;
+        case 'meets':
+            meets();
+            break;
+        case 'coaches':
+            coaches();
+            break;
+        case 'home_page':
+            home();
+            break;
+        case 'ben_lomond':
+            benLomond();
+            break;
+        case 'st_josephs':
+            stJosephs();
+            break;
+        case 'nextMeet':
+            window.location.href = "https://evening-shore-15119.herokuapp.com/nextMeet.html";
+            break;
     }
 });
 </script>
