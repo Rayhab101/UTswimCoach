@@ -142,6 +142,21 @@
     <script>
         function load() {
             document.getElementById('hotKeys').style.display = 'block';
+            document.getElementById('team').style.display = 'none';
+                document.getElementById('newSchedule').style.display = 'none';
+                document.getElementById('meetSetup').style.display = 'none';
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('benLomond').style.display = 'none';
+                document.getElementById('stJosephs').style.display = 'none';
+                document.getElementById('coachChange').style.display = 'none';
+        }
+        async function coaches(){
+            let coach = await fetch('/api/schoolCoaches/'+ 6).then(function (responseRelay) {
+                return responseRelay.json();
+            }).catch(function (error) {
+                console.log("Error: " + error)
+            });
+            console.log(coach)
         }
     </script>
 </head>
