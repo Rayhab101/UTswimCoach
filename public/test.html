@@ -138,9 +138,14 @@
             width: 14%;
         }
     </style>
+    <script>
+        function load(){
+            document.getElementById('hotKeys').style.display = 'block';
+        }
+    </script>
 </head>
 
-<body onload="document.getElementById('hotKeys').style.display = 'block';">
+<body onload="load()">
     <header id="header"></header>
     <main class="swim_info">
         <div id="hotKeys">
