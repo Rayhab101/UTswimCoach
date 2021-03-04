@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BL/SJ Swim Team - Archive</title>
     <link rel="stylesheet" href="swim.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+        integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
@@ -29,16 +31,17 @@
         });
     </script>
     <style>
-        .container{
+        .container {
             display: grid;
             grid-auto-columns: 1fr;
             grid-auto-rows: 1fr;
-            margin-left:auto;
-            margin-right:auto;
+            margin-left: auto;
+            margin-right: auto;
         }
-        #swimmers{
-            margin-left:auto;
-            margin-right:auto;
+
+        #swimmers {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -47,9 +50,9 @@
             grid-column: 1;
         }
 
-        #schedule{
-            margin-left:auto;
-            margin-right:auto;
+        #schedule {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -58,9 +61,9 @@
             grid-column: 2;
         }
 
-        #meets{
-            margin-left:auto;
-            margin-right:auto;
+        #meets {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -69,9 +72,9 @@
             grid-column: 3;
         }
 
-        #home_page{
-            margin-left:auto;
-            margin-right:auto;
+        #home_page {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -80,9 +83,9 @@
             grid-column: 1;
         }
 
-        #ben_lomond{
-            margin-left:auto;
-            margin-right:auto;
+        #ben_lomond {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -91,9 +94,9 @@
             grid-column: 3;
         }
 
-        #coaches{
-            margin-left:auto;
-            margin-right:auto;
+        #coaches {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -102,9 +105,9 @@
             grid-column: 4;
         }
 
-        #nextMeet{
-            margin-left:auto;
-            margin-right:auto;
+        #nextMeet {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -113,9 +116,9 @@
             grid-column: 2;
         }
 
-        #st_josephs{
-            margin-left:auto;
-            margin-right:auto;
+        #st_josephs {
+            margin-left: auto;
+            margin-right: auto;
             background-color: white;
             border-radius: 5px;
             height: 50%;
@@ -124,14 +127,13 @@
             grid-column: 4;
         }
 
-        h1{
+        h1 {
             text-align: center;
         }
 
-        .swim_years{
+        .swim_years {
             margin-left: 30px;
         }
-
     </style>
 </head>
 
@@ -139,74 +141,128 @@
     <header id="header"></header>
     <main class="swim_info">
         <div id="hotKeys">
-        <div class="container" style="padding-top:120px">
-            <button id="swimmers">
-                <h1>Update Swimmers</h1>
-                <i class="fas fa-swimmer" style="font-size: 2em;"></i>
-            </button>
-            <button id="schedule">
-                <h1>Update Schedule</h1>
-                <i class="fas fa-calendar" style="font-size: 2em;"></i>
-            </button>
-            <button id="coaches">
-                <h1>Update Coaches</h1>
-                <i class="fas fa-user-edit" style="font-size: 2em;"></i>
-            </button>
-            <button id="meets">
-                <h1>Update Meets</h1>
-                <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
-            </button>
-            <button id="ben_lomond">
-                <h1>Update Ben Lomond's About</h1>
-                <i class="fas fa-address-card" style="font-size: 2em;"></i>
-            </button>
-            <button id="home_page">
-                <h1>Update Home Page</h1>
-                <i class="fas fa-window-maximize" style="font-size: 2em;"></i>
-            </button>
-            <button id="nextMeet">
-                <h1>Next Meet</h1>
-                <i class="fas fa-user-check" style="font-size: 2em;"></i>
-            </button>
-            <button id="st_josephs">
-                <h1 sytle="margin-bottom:0">Update Saint Joseph's About</h1>
-                <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
-            </button>
+            <div class="container" style="padding-top:120px">
+                <button id="swimmers">
+                    <h1>Update Swimmers</h1>
+                    <i class="fas fa-swimmer" style="font-size: 2em;"></i>
+                </button>
+                <button id="schedule">
+                    <h1>Update Schedule</h1>
+                    <i class="fas fa-calendar" style="font-size: 2em;"></i>
+                </button>
+                <button id="coaches">
+                    <h1>Update Coaches</h1>
+                    <i class="fas fa-user-edit" style="font-size: 2em;"></i>
+                </button>
+                <button id="meets">
+                    <h1>Update Meets</h1>
+                    <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
+                </button>
+                <button id="ben_lomond">
+                    <h1>Update Ben Lomond's About</h1>
+                    <i class="fas fa-address-card" style="font-size: 2em;"></i>
+                </button>
+                <button id="home_page">
+                    <h1>Update Home Page</h1>
+                    <i class="fas fa-window-maximize" style="font-size: 2em;"></i>
+                </button>
+                <button id="nextMeet">
+                    <h1>Next Meet</h1>
+                    <i class="fas fa-user-check" style="font-size: 2em;"></i>
+                </button>
+                <button id="st_josephs">
+                    <h1 sytle="margin-bottom:0">Update Saint Joseph's About</h1>
+                    <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
+                </button>
+            </div>
         </div>
+        <div id="team">
+            <div class="container" style="padding-top:120px">
+
+            </div>
+        </div>
+        <div id="newSchedule">
+                        <div class="container" style="padding-top:120px">
+                
+            </div>
+        </div>
+        <div id="meetSetup">
+            <div class="container" style="padding-top:120px">
+                
+            </div>
+        </div>
+        <div id="coachChange">
+            <div class="container" style="padding-top:120px">
+                <table id="coach">
+                    <td colspan="7">Coaches</td>
+                    <tr>
+                        <td>Picture</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Phone Number</td>
+                        <td>Position</td>
+                        <td>About</td>
+                        <td></td>
+                        <td><a onclick="location.reload()">X</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="homePage">
+            <div class="container" style="padding-top:120px">
+                
+            </div>
+        </div>
+        <div id="benLomond">
+            <div class="container" style="padding-top:120px">
+                
+            </div>
+        </div>
+        <div id="stJosephs">
+            <div class="container" style="padding-top:120px">
+                
+            </div>
+        </div>
+        <div id="next_meet">
+            <div class="container" style="padding-top:120px">
+                
+            </div>
         </div>
     </main>
     <footer id="footer"></footer>
 </body>
 <script>
-    $("button").click(function() {
-    alert(this.id); // or alert($(this).attr('id'));
-    document.getElementById('hotKeys').style.display = 'none';
-    switch(this.id){
-        case 'swimmers': 
-            swimmers();
-            break;
-        case 'schedule':
-            schedule();
-            break;
-        case 'meets':
-            meets();
-            break;
-        case 'coaches':
-            coaches();
-            break;
-        case 'home_page':
-            home();
-            break;
-        case 'ben_lomond':
-            benLomond();
-            break;
-        case 'st_josephs':
-            stJosephs();
-            break;
-        case 'nextMeet':
-            window.location.href = "https://evening-shore-15119.herokuapp.com/nextMeet.html";
-            break;
-    }
-});
+    $("button").click(function () {
+        alert(this.id); // or alert($(this).attr('id'));
+        document.getElementById('hotKeys').style.display = 'none';
+        switch (this.id) {
+            case 'swimmers':
+                swimmers();
+                break;
+            case 'schedule':
+                schedule();
+                break;
+            case 'meets':
+                meets();
+                break;
+            case 'coaches':
+                document.getElementById('coachChange').style.display = 'none';
+                coaches();
+                break;
+            case 'home_page':
+                home();
+                break;
+            case 'ben_lomond':
+                benLomond();
+                break;
+            case 'st_josephs':
+                stJosephs();
+                break;
+            case 'nextMeet':
+                window.location.href = "https://evening-shore-15119.herokuapp.com/nextMeet.html";
+                break;
+        }
+    });
 </script>
+
 </html>
