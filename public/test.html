@@ -134,12 +134,13 @@
         .swim_years {
             margin-left: 30px;
         }
+
         td {
             width: 14%;
         }
     </style>
     <script>
-        function load(){
+        function load() {
             document.getElementById('hotKeys').style.display = 'block';
         }
     </script>
@@ -186,23 +187,25 @@
         </div>
         <div id="team">
             <div class="container" style="padding-top:120px">
-
+                Team
             </div>
         </div>
         <div id="newSchedule">
-                        <div class="container" style="padding-top:120px">
-                
+            <div class="container" style="padding-top:120px">
+                Schedule
             </div>
         </div>
         <div id="meetSetup">
             <div class="container" style="padding-top:120px">
-                
+                Meet
             </div>
         </div>
         <div id="coachChange">
             <div class="container" style="padding-top:120px; justify-content: center;">
                 <table id="coach" style="background-color: white; text-align: center;">
-                    <td colspan="7">Coaches <a href="https://evening-shore-15119.herokuapp.com/test.html" style="cursor: pointer; background-color:blue; border-radius: 25%; color: white; float: right;">X</a></td>
+                    <td colspan="7">Coaches <a href="https://evening-shore-15119.herokuapp.com/test.html"
+                            style="cursor: pointer; background-color:blue; border-radius: 25%; color: white; float: right;">X</a>
+                    </td>
                     <tr>
                         <td>Picture</td>
                         <td>Name</td>
@@ -217,22 +220,22 @@
         </div>
         <div id="homePage">
             <div class="container" style="padding-top:120px">
-                
+                Home
             </div>
         </div>
         <div id="benLomond">
             <div class="container" style="padding-top:120px">
-                
+                Ben Lomond
             </div>
         </div>
         <div id="stJosephs">
             <div class="container" style="padding-top:120px">
-                
+                St. Joseph's
             </div>
         </div>
         <div id="next_meet">
             <div class="container" style="padding-top:120px">
-                
+                Next Meet
             </div>
         </div>
     </main>
@@ -244,32 +247,80 @@
         document.getElementById('hotKeys').style.display = 'none';
         switch (this.id) {
             case 'swimmers':
+            document.getElementById('team').style.display = 'block';
+                document.getElementById('newSchedule').style.display = 'none';
+                document.getElementById('meetSetup').style.display = 'none';
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('benLomond').style.display = 'none';
+                document.getElementById('stJosephs').style.display = 'none';
+                document.getElementById('next_meet').style.display = 'none';
+                document.getElementById('coachChange').style.display = 'none';
                 swimmers();
                 break;
             case 'schedule':
+            document.getElementById('team').style.display = 'none';
+                document.getElementById('newSchedule').style.display = 'block';
+                document.getElementById('meetSetup').style.display = 'none';
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('benLomond').style.display = 'none';
+                document.getElementById('stJosephs').style.display = 'none';
+                document.getElementById('next_meet').style.display = 'none';
+                document.getElementById('coachChange').style.display = 'none';
                 schedule();
                 break;
             case 'meets':
+            document.getElementById('team').style.display = 'none';
+                document.getElementById('newSchedule').style.display = 'none';
+                document.getElementById('meetSetup').style.display = 'block';
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('benLomond').style.display = 'none';
+                document.getElementById('stJosephs').style.display = 'none';
+                document.getElementById('next_meet').style.display = 'none';
+                document.getElementById('coachChange').style.display = 'none';
                 meets();
                 break;
             case 'coaches':
-            document.getElementById('team').style.display = 'none';
-            document.getElementById('newSchedule').style.display = 'none';
-            document.getElementById('meetSetup').style.display = 'none';
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('benLomond').style.display = 'none';
-            document.getElementById('stJosephs').style.display = 'none';
-            document.getElementById('next_meet').style.display = 'none';
+                document.getElementById('team').style.display = 'none';
+                document.getElementById('newSchedule').style.display = 'none';
+                document.getElementById('meetSetup').style.display = 'none';
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('benLomond').style.display = 'none';
+                document.getElementById('stJosephs').style.display = 'none';
+                document.getElementById('next_meet').style.display = 'none';
                 document.getElementById('coachChange').style.display = 'block';
                 coaches();
                 break;
             case 'home_page':
+            document.getElementById('team').style.display = 'none';
+                document.getElementById('newSchedule').style.display = 'none';
+                document.getElementById('meetSetup').style.display = 'none';
+                document.getElementById('homePage').style.display = 'block';
+                document.getElementById('benLomond').style.display = 'none';
+                document.getElementById('stJosephs').style.display = 'none';
+                document.getElementById('next_meet').style.display = 'none';
+                document.getElementById('coachChange').style.display = 'none';
                 home();
                 break;
             case 'ben_lomond':
+            document.getElementById('team').style.display = 'none';
+                document.getElementById('newSchedule').style.display = 'none';
+                document.getElementById('meetSetup').style.display = 'none';
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('benLomond').style.display = 'block';
+                document.getElementById('stJosephs').style.display = 'none';
+                document.getElementById('next_meet').style.display = 'none';
+                document.getElementById('coachChange').style.display = 'none';
                 benLomond();
                 break;
             case 'st_josephs':
+            document.getElementById('team').style.display = 'none';
+                document.getElementById('newSchedule').style.display = 'none';
+                document.getElementById('meetSetup').style.display = 'none';
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('benLomond').style.display = 'none';
+                document.getElementById('stJosephs').style.display = 'block';
+                document.getElementById('next_meet').style.display = 'none';
+                document.getElementById('coachChange').style.display = 'none';
                 stJosephs();
                 break;
             case 'nextMeet':
