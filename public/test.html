@@ -151,7 +151,7 @@
                 document.getElementById('coachChange').style.display = 'none';
         }
         async function coaches(){
-            let coach = await fetch('/api/schoolCoaches/'+ 6).then(function (responseRelay) {
+            let coach = await fetch('/api/coaches').then(function (responseRelay) {
                 return responseRelay.json();
             }).catch(function (error) {
                 console.log("Error: " + error)
