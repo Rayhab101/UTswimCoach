@@ -159,6 +159,7 @@
             });
             console.log(coach)
             for(var i = 0; i<coach.length;i++ ){
+
                 var row = document.createElement("tr");
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
@@ -166,23 +167,23 @@
                                 cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(coach[i+1].name);
+                                text = document.createTextNode(coach[i].name);
                                 cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(coach[i+1].email);
+                                text = document.createTextNode(coach[i].email);
                                 cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(coach[i+1].phone);
+                                text = document.createTextNode(coach[i].phone);
                                 cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(coach[i+1].position);
+                                text = document.createTextNode(coach[i].position);
                                 cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(coach[i+1].about);
+                                text = document.createTextNode(coach[i].about);
                                 cell.appendChild(text);
                                 body.appendChild(row);
             }
