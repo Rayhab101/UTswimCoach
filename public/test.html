@@ -294,11 +294,19 @@
     <footer id="footer"></footer>
 </body>
 <script>
-$('td').click(function () {
-    $('td').replaceWith(function () {
-        return '<input type="text" id="modify" "value="' + $('#Text').val() + '" />';
-    });
-})
+$('td').on('click', function() {
+    var $this = $(this);
+    var $input = $('<input>', {
+        value: $this.text(),
+        type: 'text',
+        blur: function() {
+           $this.text(this.value);
+        },
+        keyup: function(e) {
+           if (e.which === 13) $input.blur();
+        }
+    }).appendTo( $this.empty() ).focus();
+});
 
     $("button").click(function () {
         alert(this.id); // or alert($(this).attr('id'));
