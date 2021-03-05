@@ -185,10 +185,11 @@
                                 var cell = row.insertCell();
                                 text = document.createTextNode(coach[i].about);
                                 cell.appendChild(text);
-                                // var column = document.createElement("td");
-                                // var cell = row.insertCell();
-                                // text = document.createElement("button").textContent = 'Edit';
-                                // cell.appendChild(text);
+                                var column = document.createElement("td");
+                                var cell = row.insertCell();
+                                text = document.createElement("button");
+                                cell.appendChild(text);
+                                cell.appendChild(text);
                                 body.appendChild(row);
             }
         }
