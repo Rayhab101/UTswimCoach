@@ -190,9 +190,11 @@
                                 var cell = row.insertCell();
                                 text = document.createElement("button");
                                 text.textContent = "Edit";
+                                text.setAttribute("style","background-color: light-green");
                                 cell.appendChild(text);
                                 text = document.createElement("button");
-                                text.textContent = "Save";
+                                text.textContent = "Delete";
+                                text.setAttribute("style","background-color: red");
                                 cell.appendChild(text);
                                 body.appendChild(row);
             }
