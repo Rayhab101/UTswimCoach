@@ -294,6 +294,12 @@
     <footer id="footer"></footer>
 </body>
 <script>
+$('td').click(function () {
+    $('td').replaceWith(function () {
+        return '<input type="text" id="modify" "value="' + $('#Text').val() + '" />';
+    });
+})
+
     $("button").click(function () {
         alert(this.id); // or alert($(this).attr('id'));
         document.getElementById('hotKeys').style.display = 'none';
