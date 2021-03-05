@@ -296,6 +296,7 @@
 <script>
 $('td').on('click', function() {
     var $this = $(this);
+    console.log($this)
     var $input = $('<input>', {
         value: $this.text(),
         type: 'text',
