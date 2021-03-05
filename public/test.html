@@ -192,10 +192,12 @@
                                 text = document.createElement("button");
                                 text.textContent = "Edit";
                                 text.setAttribute("style","background-color: lime");
+                                text.setAttribute("onclick","alert('Edit'");
                                 cell.appendChild(text);
                                 text = document.createElement("button");
                                 text.textContent = "Delete";
                                 text.setAttribute("style","background-color: red");
+                                text.setAttribute("onclick","alert('Delete'");
                                 cell.appendChild(text);
                                 body.appendChild(row);
             }
@@ -294,21 +296,6 @@
     <footer id="footer"></footer>
 </body>
 <script>
-$('tr').on('click', function() {
-    var $this = $(this);
-    console.log($this)
-    var $input = $('<input>', {
-        value: $this.text(),
-        type: 'text',
-        blur: function() {
-           $this.text(this.value);
-        },
-        keyup: function(e) {
-           if (e.which === 13) $input.blur();
-        }
-    }).appendTo( $this.empty() ).focus();
-});
-
     $("button").click(function () {
         alert(this.id); // or alert($(this).attr('id'));
         document.getElementById('hotKeys').style.display = 'none';
