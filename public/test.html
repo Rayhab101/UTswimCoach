@@ -189,10 +189,10 @@
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
                                 text = document.createElement("button");
-                                text.createTextNode("Edit")
+                                text.textContent = "Edit";
                                 cell.appendChild(text);
                                 text = document.createElement("button");
-                                text.createTextNode("Save")
+                                text.textContent = "Save";
                                 cell.appendChild(text);
                                 body.appendChild(row);
             }
