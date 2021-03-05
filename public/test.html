@@ -161,6 +161,7 @@
             for(var i = 0; i<coach.length;i++ ){
 
                 var row = document.createElement("tr");
+                row.setAttribute('id',coach[i].coach_id)
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
                                 text = document.createTextNode('');
@@ -187,8 +188,9 @@
                                 cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createElement("button");
+                                text = document.createElement("button").value = "Edit";
                                 cell.appendChild(text);
+                                text = document.createElement("button").value = "Save";
                                 cell.appendChild(text);
                                 body.appendChild(row);
             }
