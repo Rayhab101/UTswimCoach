@@ -123,15 +123,13 @@ div p{
         padding-right: auto;
         padding-bottom: 20px;
         color:white;
-        word-break:break-all;
+        /* word-break:break-all; */
 justify-content: center;
 overflow-wrap: break-word;
 word-wrap: break-word;
     }
     h3{
         color:white;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
     }
     .team_pic{
         object-fit: contain;
@@ -140,7 +138,5 @@ word-wrap: break-word;
     }
     div{
         font-size: smaller;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
     }
     }
