@@ -139,7 +139,7 @@
     }
 }
 
-@media screen and (max-width:750px){
+@media screen and (max-width:500px){
     html {
         height: 100%;
         background-color: #2F3035;
