@@ -266,7 +266,7 @@ header .coachBtn {
   background-color: inherit;
   font-family: inherit;
   margin: 0;
-  background-color: blue;
+  background-color: rgb(7, 37, 168,0.7);
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
