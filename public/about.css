@@ -128,7 +128,7 @@ justify-content: center;
     }
     h3{
         color:white;
-        overflow-wrap: break-word;
+        
     }
     .team_pic{
         object-fit: contain;
@@ -137,5 +137,6 @@ justify-content: center;
     }
     div{
         font-size: smaller;
+        overflow-wrap: break-word;
     }
     }
