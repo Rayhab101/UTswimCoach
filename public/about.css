@@ -87,7 +87,7 @@ div p{
     
     .container {
         display:grid;
-        width: 100%;
+        width: 80%;
         height: 525px;
         margin-left: auto;
         margin-right: auto;
