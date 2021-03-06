@@ -27,6 +27,7 @@
 
 </head>
 <style>
+    @media screen and (max-width:500px){
     .swim_info {
         padding-top: 125px;
     }
@@ -59,6 +60,41 @@
         grid-column: 3 / 4;
         background-color: white;
     }
+}
+@media screen and (max-width:500px){
+    .swim_info {
+        padding-top: 125px;
+    }
+
+    p,h3 {
+        color: white;
+        text-align: center;
+    }
+    .container{
+        display: block;
+        margin-left: 30px;
+    }
+    .coach{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    img{
+        justify-self: center;
+        width: 220px;
+        height: 250px;
+    }
+    .pool{
+        grid-row: 2;
+        grid-column: 1 / 2;
+        background-color: white;
+    }
+    .school{
+        grid-row: 2;
+        grid-column: 3 / 4;
+        background-color: white;
+    }
+}
 </style>
 <script>
     function pullPerson() {
@@ -130,29 +166,6 @@
     <header id="header"></header>
     <main class="swim_info">
         <div class="container" id="container">
-            <!-- <div class="coach">
-                <img class="head_coach_pic" src="coaches/Tim.jpeg">
-                <h3>Tim Boothe:</h3>
-                <p>Head Coach</p>
-                <p>Email Address: <a href="mailto:boothet@ogdensd.org" style="color:white">boothet@ogdensd.org</a></p>
-                <p>Phone Number: (801)644-5644</p>
-            </div>
-            <div class="assistant_coach1">
-                <img class="assistant_coach" src="coaches/Nina.jpeg">
-                <h3>Nina Allen:</h3><p> Assistant Coach</p>
-            </div>
-            <div class="assistant_coach2">
-                <img class="assistant_coach" src="coaches/Makel.jpeg">
-                <h3>Makel Miller:</h3><p> Assistant Coach</p>
-            </div>
-            <div class="morning_coach">
-                <img class="assistant_coach" src="coaches/Ryan.jpeg">
-                <h3>Ryan Lund:</h3>
-                <p>Morning Coach/Website Developer</p>
-                <p>Email Address: <a href="mailto:Lund64311@gmail.com" style="color:white">Lund64311@gmail.com</a></p>
-                <p>Phone Number: (801)317-7503</p>
-            </div> -->
-
         </div>
     </main>
     <footer id="footer"></footer>
