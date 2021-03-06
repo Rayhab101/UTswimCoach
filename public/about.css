@@ -1,4 +1,4 @@
-@media screen and (min-width:500px){
+@media screen and (min-width:750px){
 html {
     height: 100%;
     width:100%;
@@ -70,7 +70,7 @@ div p{
 }
 }
 
-@media screen and (max-width:500px){
+@media screen and (max-width:750px){
     html {
         height: 100%;
         width:100%;

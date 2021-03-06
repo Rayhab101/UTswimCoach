@@ -162,7 +162,7 @@ header .coachBtn {
         .smNav{
             display: none;
         }
-@media screen and (min-width:500px){
+@media screen and (min-width:750px){
     header h1{
         padding-top: 20px;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -195,7 +195,7 @@ header .coachBtn {
         font-size: 12px;
     }
 }*/
-@media screen and (max-width:500px){
+@media screen and (max-width:750px){
     header h1{
         padding-top: 20px;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
