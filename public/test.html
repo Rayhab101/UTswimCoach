@@ -167,7 +167,7 @@
                 row.setAttribute('id',coach[i].coach_id)
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(person[0]+".jpeg");
+                                text = document.createElement("img").setAttribute("src",person[0]+".jpeg");
                                 cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
