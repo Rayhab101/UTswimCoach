@@ -206,6 +206,19 @@
                 body.appendChild(row);
             }
         }
+        $(function(){
+    $("td").click(function(){
+        alert("Clicked");    
+        $(this).toggleClass('ui');
+        
+        console.log($(this).data('value'));
+        if ($(this).data('value') == 1) {
+            $(this).attr("data-value",0);
+        } else {
+            $(this).attr("data-value",1);
+        }
+    });
+    });
     </script>
 </head>
 
@@ -300,19 +313,6 @@
     <footer id="footer"></footer>
 </body>
 <script>
-    $(function(){
-    $("td").click(function(){
-        alert("Clicked");    
-        $(this).toggleClass('ui');
-        
-        console.log($(this).data('value'));
-        if ($(this).data('value') == 1) {
-            $(this).attr("data-value",0);
-        } else {
-            $(this).attr("data-value",1);
-        }
-    });
-    });
     $("button").click(function () {
         alert(this.id); // or alert($(this).attr('id'));
         document.getElementById('hotKeys').style.display = 'none';
