@@ -161,13 +161,14 @@
             });
             console.log(coach)
             for(var i = 0; i<coach.length;i++ ){
-
+                var person = coach[i].name;
+                person = person.split(" ")
                 var row = document.createElement("tr");
                 row.setAttribute('id',coach[i].coach_id)
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
                                 img = document.createElement("img");
-                                img.setAttribute("src","coaches/Ryan.jpeg");
+                                img.setAttribute("src","coaches/"+person[0]+".jpeg");
                                 img.setAttribute("style","width:50px");
                                 img.setAttribute("style","height:80px")
                                 cell.appendChild(img);
