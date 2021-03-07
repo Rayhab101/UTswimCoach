@@ -165,10 +165,10 @@
                 var row = document.createElement("tr");
                 row.setAttribute('id',coach[i].coach_id)
                                 var column = document.createElement("td");
-                                //var cell = row.insertCell();
+                                var cell = row.insertCell();
                                 img = document.createElement("img");
                                 img.setAttribute("src","coaches/Ryan.jpeg")
-                                column.appendChild(img);
+                                cell.appendChild(img);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
                                 text = document.createTextNode(coach[i].name);
