@@ -31,7 +31,6 @@
         });
     </script>
     <style>
-        
         .container {
             display: grid;
             grid-auto-columns: 1fr;
@@ -71,7 +70,7 @@
             width: 100%;
             grid-row: 1;
             grid-column: 3;
-            
+
         }
 
         #home_page {
@@ -145,66 +144,66 @@
         function load() {
             document.getElementById('hotKeys').style.display = 'block';
             document.getElementById('team').style.display = 'none';
-                document.getElementById('newSchedule').style.display = 'none';
-                document.getElementById('meetSetup').style.display = 'none';
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('benLomond').style.display = 'none';
-                document.getElementById('stJosephs').style.display = 'none';
-                document.getElementById('coachChange').style.display = 'none';
+            document.getElementById('newSchedule').style.display = 'none';
+            document.getElementById('meetSetup').style.display = 'none';
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('benLomond').style.display = 'none';
+            document.getElementById('stJosephs').style.display = 'none';
+            document.getElementById('coachChange').style.display = 'none';
         }
-        async function coaches(){
+        async function coaches() {
             var body = document.getElementById('coach');
             let coach = await fetch('/api/coaches').then(function (responseRelay) {
                 return responseRelay.json();
             }).catch(function (error) {
                 console.log("Error: " + error)
             });
-            console.log(coach)
-            for(var i = 0; i<coach.length;i++ ){
+            //console.log(coach)
+            for (var i = 0; i < coach.length; i++) {
                 var person = coach[i].name;
                 person = person.split(" ")
                 var row = document.createElement("tr");
-                row.setAttribute('id',coach[i].coach_id)
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                img = document.createElement("img");
-                                img.setAttribute("src","coaches/"+person[0]+".jpeg");
-                                img.setAttribute("style","width:50px");
-                                img.setAttribute("style","height:80px")
-                                cell.appendChild(img);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(coach[i].name);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(coach[i].email);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(coach[i].phone);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(coach[i].position);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(coach[i].about);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createElement("button");
-                                text.textContent = "Edit";
-                                text.setAttribute("style","background-color: lime");
-                                text.setAttribute("onclick","alert('Edit')");
-                                cell.appendChild(text);
-                                text = document.createElement("button");
-                                text.textContent = "Delete";
-                                text.setAttribute("style","background-color: red");
-                                text.setAttribute("onclick","alert('Delete')");
-                                cell.appendChild(text);
-                                body.appendChild(row);
+                row.setAttribute('id', coach[i].coach_id)
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                img = document.createElement("img");
+                img.setAttribute("src", "coaches/" + person[0] + ".jpeg");
+                img.setAttribute("style", "width:50px");
+                img.setAttribute("style", "height:80px")
+                cell.appendChild(img);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                text = document.createTextNode(coach[i].name);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                text = document.createTextNode(coach[i].email);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                text = document.createTextNode(coach[i].phone);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                text = document.createTextNode(coach[i].position);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                text = document.createTextNode(coach[i].about);
+                cell.appendChild(text);
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                text = document.createElement("button");
+                text.textContent = "Edit";
+                text.setAttribute("style", "background-color: lime");
+                text.setAttribute("onclick", "alert('Edit')");
+                cell.appendChild(text);
+                text = document.createElement("button");
+                text.textContent = "Delete";
+                text.setAttribute("style", "background-color: red");
+                text.setAttribute("onclick", "alert('Delete')");
+                cell.appendChild(text);
+                body.appendChild(row);
             }
         }
     </script>
@@ -301,45 +300,15 @@
     <footer id="footer"></footer>
 </body>
 <script>
-    $(function(){
-  $("td").click(function(event){
-    if($(this).children("input").length > 0)
-          return false;
-
-    var tdObj = $(this);
-    var preText = tdObj.html();
-    var inputObj = $("<input type='text' />");
-    tdObj.html("");
-
-    inputObj.width(tdObj.width())
-            .height(tdObj.height())
-            .css({border:"0px",fontSize:"17px"})
-            .val(preText)
-            .appendTo(tdObj)
-            .trigger("focus")
-            .trigger("select");
-
-    inputObj.keyup(function(event){
-      if(13 == event.which) { // press ENTER-key
-        var text = $(this).val();
-        tdObj.html(text);
-      }
-      else if(27 == event.which) {  // press ESC-key
-        tdObj.html(preText);
-      }
-    });
-
-    inputObj.click(function(){
-      return false;
-    });
-  });
-});
+        $("tr").click(function (event) {
+            console.log($(this))
+        });
     $("button").click(function () {
         alert(this.id); // or alert($(this).attr('id'));
         document.getElementById('hotKeys').style.display = 'none';
         switch (this.id) {
             case 'swimmers':
-            document.getElementById('team').style.display = 'block';
+                document.getElementById('team').style.display = 'block';
                 document.getElementById('newSchedule').style.display = 'none';
                 document.getElementById('meetSetup').style.display = 'none';
                 document.getElementById('homePage').style.display = 'none';
@@ -349,7 +318,7 @@
                 swimmers();
                 break;
             case 'schedule':
-            document.getElementById('team').style.display = 'none';
+                document.getElementById('team').style.display = 'none';
                 document.getElementById('newSchedule').style.display = 'block';
                 document.getElementById('meetSetup').style.display = 'none';
                 document.getElementById('homePage').style.display = 'none';
@@ -359,7 +328,7 @@
                 schedule();
                 break;
             case 'meets':
-            document.getElementById('team').style.display = 'none';
+                document.getElementById('team').style.display = 'none';
                 document.getElementById('newSchedule').style.display = 'none';
                 document.getElementById('meetSetup').style.display = 'block';
                 document.getElementById('homePage').style.display = 'none';
@@ -379,7 +348,7 @@
                 coaches();
                 break;
             case 'home_page':
-            document.getElementById('team').style.display = 'none';
+                document.getElementById('team').style.display = 'none';
                 document.getElementById('newSchedule').style.display = 'none';
                 document.getElementById('meetSetup').style.display = 'none';
                 document.getElementById('homePage').style.display = 'block';
@@ -389,7 +358,7 @@
                 home();
                 break;
             case 'ben_lomond':
-            document.getElementById('team').style.display = 'none';
+                document.getElementById('team').style.display = 'none';
                 document.getElementById('newSchedule').style.display = 'none';
                 document.getElementById('meetSetup').style.display = 'none';
                 document.getElementById('homePage').style.display = 'none';
@@ -399,7 +368,7 @@
                 benLomond();
                 break;
             case 'st_josephs':
-            document.getElementById('team').style.display = 'none';
+                document.getElementById('team').style.display = 'none';
                 document.getElementById('newSchedule').style.display = 'none';
                 document.getElementById('meetSetup').style.display = 'none';
                 document.getElementById('homePage').style.display = 'none';
