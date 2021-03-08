@@ -20,8 +20,8 @@
 <script>
     async function pullText(){
     var about = await fetch('/api/schools/6').then(data =>  data.json())
-    console.log(about.about)
-    console.log(about.short_description)
+    console.log(about[0].about)
+    console.log(about[0].short_description)
     //console.log(school)
 }
 </script>   
