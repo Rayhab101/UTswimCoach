@@ -18,13 +18,13 @@
 </script> 
 </head>
 <script>
-    var about,school = fetch('/api/schools/6').then(function (responseRelay) {
+    var about = fetch('/api/schools/6').then(function (responseRelay) {
                 return responseRelay.json();
             }).catch(function (error) {
                 console.log("Error: " + error)
             });
     console.log(about)
-    console.log(school)
+    //console.log(school)
 </script>   
 <body>
     <header id="header"></header>
