@@ -18,9 +18,11 @@
 </script> 
 </head>
 <script>
-    var about = fetch('/api/schools/6').then(data =>  data.json())
+    async function pullText(){
+    var about = await fetch('/api/schools/6').then(data =>  data.json())
     console.log(about)
     //console.log(school)
+}
 </script>   
 <body>
     <header id="header"></header>
