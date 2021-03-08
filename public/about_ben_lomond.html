@@ -18,12 +18,8 @@
 </script> 
 </head>
 <script>
-    var about = fetch('/api/schools/6').then(function (responseRelay) {
-                return responseRelay.json();
-            }).catch(function (error) {
-                console.log("Error: " + error)
-            });
-    console.log(about[0])
+    var about = fetch('/api/schools/6').then(data =>  data.json())
+    console.log(about)
     //console.log(school)
 </script>   
 <body>
