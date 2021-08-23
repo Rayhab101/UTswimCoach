@@ -516,7 +516,7 @@
                     fetch("/api/top50/" + i)
                         .then(function (responseChart) {
                             return responseChart.json();
-                        })
+                        }) 
                         .then(function (chart) {
                             //console.log(chart)
                             var t50 = chart.length;
