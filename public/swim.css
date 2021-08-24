@@ -22,23 +22,34 @@
     
     footer {
         position: fixed;
-        margin-right: auto;
         margin-left: auto;
-        border-top: black;
         background-color: rgb(7, 37, 168,0.7);
-        background-size: cover;
         left: 0;
         bottom: 0;
         width: 100%;
         height: 10vh;
+        display: flex;
+        justify-content: space-around;
         align-items: center;
-        justify-items: center;
-        text-align: center;
-    }
-    
-    footer p{
-        color:white;
-    }
+        grid-auto-rows: 50px;
+        color: white;
+
+      }
+      
+      .footer a:link {
+        color: #fff;
+        padding: 0.45rem;
+        margin: 0 0.25rem;
+        list-style: none;
+      }
+      
+      .footer h4 {
+        margin-left: 0;
+        font-size: 42px;
+        justify-content: center;
+        font-family: "Caveat", cursive;
+        font-style: oblique;
+      }
     
     .state{
         grid-row: 1;
@@ -91,7 +102,7 @@
     }
 
     .welcome {
-        padding-top: 100px;
+        /* padding-top: 100px; */
         color: white;
         font-size: larger;
         background-color: transparent;
@@ -134,7 +145,8 @@
         grid-column: 1;
     }
     body {
-        height:85%;
+        padding-top:10vh;
+        height:80vh;
         width: 100%;
     }
 }
@@ -155,26 +167,38 @@
 
     footer {
         position: fixed;
-        margin-right: auto;
         margin-left: auto;
-        border-top: black;
         background-color: rgb(7, 37, 168,0.7);
-        background-size: cover;
         left: 0;
         bottom: 0;
         width: 100%;
-        height: 35px;
+        height: 10vh;
+        display: flex;
+        justify-content: space-around;
         align-items: center;
-        justify-items: center;
-        text-align: center;
-    }
-    
-    footer p{
-        color:white;
-    }
+        grid-auto-rows: 50px;
+        color: white;
+      }
+      
+      
+      .footer a:link {
+        color: #fff;
+        padding: 0.45rem;
+        margin: 0 0.25rem;
+        list-style: none;
+      }
+      
+      .footer h4 {
+        margin-left: 0;
+        font-size: 48px;
+        justify-content: center;
+        font-family: "Caveat", cursive;
+        font-style: oblique;
+        display:hidden;
+      }
 
     .welcome {
-        padding-top: 130px;
+        /* padding-top: 130px; */
         color: white;
         background-color: transparent;
         text-align: left;

@@ -64,7 +64,8 @@ function updateGrade() {
         }
     })
 }
-var j = schedule.scheduleJob('0 0 15 8 *', function () {
+const date = new Date(2022, 7, 24, 0, 10, 0);
+var j = schedule.scheduleJob(date, function () {
     updateGrade();
 });
 

@@ -186,7 +186,7 @@ module.exports = {
         const {id}=req.params;
         const db = req.app.get("db");
         db.get_top50(id).then(top50 => {
-            console.log(top50);
+            // console.log(top50);
             return res.status(200).send(top50)
         }).catch(err => (res.sendStatus(500)))
     },
@@ -230,7 +230,7 @@ module.exports = {
         id=idSplit[0];
         var race=idSplit[1];
         const db = req.app.get("db");
-        console.log(id,race);
+        // console.log(id,race);
         db.get_individual_records(id,race).then(school_relays => {
             //console.log(school_relays);
             return res.status(200).send(school_relays)
@@ -243,7 +243,7 @@ module.exports = {
         var race=idSplit[1];
         var meet=idSplit[2];
         const db = req.app.get("db");
-        console.log(id,race,meet);
+        // console.log(id,race,meet);
         db.get_individual_records_by_meet(id,race,meet).then(times => {
             //console.log(school_relays);
             return res.status(200).send(times)
@@ -255,7 +255,7 @@ module.exports = {
         id=idSplit[0];
         var race=idSplit[1];
         const db = req.app.get("db");
-        console.log(id,race);
+        // console.log(id,race);
         db.get_individual_races(id,race).then(times => {
             //console.log(school_relays);
             return res.status(200).send(times)
