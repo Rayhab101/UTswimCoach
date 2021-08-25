@@ -11,7 +11,7 @@
         </script>
     <style>
         .swim_info {
-            padding-top: 250px;
+            padding-top: 150px;
         }
 
         table {
@@ -41,13 +41,14 @@
             $("#footer").load("footing.html");
         });
         function buildPage() {
-            console.log("hitting Build page");
-            fetch("/api/swimmers")
+            // console.log("hitting Build page");
+            fetch("/api/activeSwimmers")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    buildDropdown(myJson.swimmers);
+                    // console.log(myJson);
+                    buildDropdown(myJson);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -62,27 +63,52 @@
             ddlSwimmers.options.add(head);
             for (var i = 0; i < people.length; i++) {
                 var option = document.createElement("OPTION");
-                option.setAttribute("id", i);
+                option.setAttribute("id", people[i].swimmer_id);
                 option.innerHTML = people[i].name;
                 ddlSwimmers.options.add(option);
             }
         }
-
-        function tableFill(id) {
-            fetch("/api/swimmers")
+        function meetDropdown() {
+            fetch("/api/meets")
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (myJson) {
-                    console.log(id);
-                    var grade = myJson.swimmers[id].status_grade;
-                    var year = myJson.swimmers[id].year;
-                    document.getElementById("grade").innerHTML = grade;
-                    document.getElementById("year").innerHTML = year;
+                .then(function (meets) {
+                    var ddlMeets = document.getElementById("ddlMeets");
+                    var head = document.createElement("OPTION");
+                    head.innerHTML = "Select Meet";
+                    ddlMeets.options.add(head);
+                    for (var i = 0; i < meets.length; i++) {
+                        var option = document.createElement("OPTION");
+                        option.setAttribute("id", "Meet_" + meets[i].meet_id);
+                        option.innerHTML = meets[i].location;
+                        ddlMeets.options.add(option);
+                    }
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
+        }
+
+        function tableFill(id) {
+            fetch("/api/activeSwimmers")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    for (var i = 0; i < myJson.length; i++) {
+                        if (myJson[i].swimmer_id == parseInt(id)) {
+                            var grade = myJson[i].status_grade;
+                            document.getElementById("grade").innerHTML = grade;
+                        }
+                    }
+
+
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+            meetDropdown();
         }
 
         function nameFill() {
@@ -94,37 +120,118 @@
             if (name != "Select Swimmer") {
                 document.getElementById("name").innerHTML = name;
                 tableFill(number);
+
             }
         }
 
-        const events = ["200fr", "200IM", "100IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
-
         function submitTimes(id) {
-            fetch("api/swimmers")
+
+            fetch("/api/activeSwimmers")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    console.log(id);
-                    if (id != "") {
-                        for (var i = 0; i < events.length; i++) {
-                            var time = document.getElementById(events[i]).value;
-                            console.log(myJson.swimmers[id][events[i]]);
-                            myJson.swimmers[id][events[i]].push(time);
+                    // console.log(myJson);
+                    for (var i = 0; i < myJson.length; i++) {
+                        if (myJson[i].swimmer_id == id) {
+                            // console.log("Hello " + myJson[i].name);
+                            var gender = myJson[i].gender;
+                            var school = myJson[i].school;
                         }
-                        fetch("api/swimmers", {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                            body: JSON.stringify(myJson)
-                        })
+                    }
+                    var swimmer = id;
+                    var checkOption = document.getElementById("ddlMeets");
+                    var meet = document.getElementById("ddlMeets").options[checkOption.selectedIndex].id;
+                    meet = meet.split("_");
+                    meet = meet[1];
+                    var year = new Date().getFullYear();
+                                year = parseInt(year);
+                    if (id != "") {
+                        for (var i = 0; i < 8; i++) {
+                            var time = document.getElementById("event_" + i).value;
+                            if (time != "") {
+                                if (gender == "F") {
+                                    switch (i) {
+                                        case 0:
+                                            var race = "2";
+                                            break;
+                                        case 1:
+                                            var race = "3";
+                                            break;
+                                        case 2:
+                                            var race = "4";
+                                            break;
+                                        case 3:
+                                            var race = "5";
+                                            break;
+                                        case 4:
+                                            var race = "6";
+                                            break;
+                                        case 5:
+                                            var race = "7";
+                                            break;
+                                        case 6:
+                                            var race = "9";
+                                            break;
+                                        case 7:
+                                            var race = "10";
+                                            break;
+                                        default:
+                                        console.log("How did you get here?: ");
+                                        break;
+                                    }
+                                }
+                                if (gender == "M") {
+                                    switch (i) {
+                                        case 0:
+                                            var race = "13";
+                                            break;
+                                        case 1:
+                                            var race = "14";
+                                            break;
+                                        case 2:
+                                            var race = "15";
+                                            break;
+                                        case 3:
+                                            var race = "16";
+                                            break;
+                                        case 4:
+                                            var race = "17";
+                                            break;
+                                        case 5:
+                                            var race = "18";
+                                            break;
+                                        case 6:
+                                            var race = "20";
+                                            break;
+                                        case 7:
+                                            var race = "21";
+                                            break;
+                                        default:
+                                            console.log("How did you get here?: ");
+                                            break;
+                                    }
+                                }
+                                console.log(swimmer+"_"+race+"_"+time.toString()+"_"+school+"_"+meet+"_"+year+"_"+2);
+                                // console.log(swimmer + "," + race + "," + time+","+","+school+","+meet+","+year);
+
+                            }
+
+                        }
+                        // fetch("api/swimmers", {
+                        //     headers: { 'Content-Type': 'application/json' },
+                        //     method: "POST",
+                        //     body: JSON.stringify(myJson)
+                        // })
                         document.getElementById("insert").setAttribute("hidden", true);
                     }
                     document.getElementById("insert").setAttribute("hidden", true);
+                    buildPage();
+
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
-                buildPage();
         }
     </script>
 
@@ -137,16 +244,15 @@
             <tr>
                 <td><select id="ddlSwimmers" onchange="nameFill()"></select></td>
                 <td>Grade</td>
-                <td>Year Swimming</td>
-                <td>200fr</td>
-                <td>200IM</td>
-                <td>100IM</td>
-                <td>50fr</td>
-                <td>100fl</td>
-                <td>100fr</td>
-                <td>500fr</td>
-                <td>100bk</td>
-                <td>100br</td>
+                <td>Meet</td>
+                <td>200 Freestyle</td>
+                <td>200 IM</td>
+                <td>50 Freestyle</td>
+                <td>100 Butterfly</td>
+                <td>100 Freestyle</td>
+                <td>500 Freestyle</td>
+                <td>100 Backstroke</td>
+                <td>100 Breaststroke</td>
                 <td rowspan="2"><button
                         onclick="submitTimes(document.getElementById('ddlSwimmers').options[document.getElementById('ddlSwimmers').selectedIndex].id)">Submit
                         Changes</button></td>
@@ -154,19 +260,19 @@
             <tr id="insert">
                 <td id="name"></td>
                 <td id="grade"></td>
-                <td id="year"></td>
-                <td><input id="200fr"></td>
-                <td><input id="200IM"></td>
-                <td><input id="100IM"></td>
-                <td><input id="50fr"></td>
-                <td><input id="100fl"></td>
-                <td><input id="100fr"></td>
-                <td><input id="500fr"></td>
-                <td><input id="100bk"></td>
-                <td><input id="100br"></td>
+                <td id="meet"><select id="ddlMeets"></select></td>
+                <td><input id="event_0"></td>
+                <td><input id="event_1"></td>
+                <td><input id="event_2"></td>
+                <td><input id="event_3"></td>
+                <td><input id="event_4"></td>
+                <td><input id="event_5"></td>
+                <td><input id="event_6"></td>
+                <td><input id="event_7"></td>
             </tr>
         </table>
     </div>
     <footer id="footer"></footer>
 </body>
+
 </html>

@@ -48,7 +48,7 @@ module.exports = {
     getMeets: (req, res) => {
         const db = req.app.get("db");
         db.get_meets().then(meets => {
-            //console.log(meets);
+            // console.log(meets)
             return res.status(200).send(meets)
         })
     },
@@ -56,7 +56,7 @@ module.exports = {
         const {id}=req.params;
         const db = req.app.get("db");
         db.get_meet(id).then(meet => {
-            //console.log(meet);
+            // console.log(meet);
             return res.status(200).send(meet)
         }).catch(err => (res.sendStatus(500)))
     },
@@ -120,7 +120,15 @@ module.exports = {
         const {id}=req.params;
         const db = req.app.get("db");
         db.get_swimmers(id).then(swimmers => {
-            console.log(swimmers);
+            // console.log(swimmers);
+            return res.status(200).send(swimmers)
+        })
+    },
+    getActiveSwimmers: (req,res) => {
+        //console.log(req.params)
+        const db = req.app.get("db");
+        db.get_active_swimmers().then(swimmers => {
+            // console.log(swimmers);
             return res.status(200).send(swimmers)
         })
     },
@@ -260,5 +268,17 @@ module.exports = {
             //console.log(school_relays);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
+    },
+    setTimes: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        id=idSplit[0];
+        var race=idSplit[1];
+        const db = req.app.get("db");
+        console.log(id,race);
+        // db.set_swim_times(id,race).then(times => {
+        //     console.log(times);
+        //     // return res.status(200).send(times)
+        // }).catch(err => (res.sendStatus(500)))
     }
 }

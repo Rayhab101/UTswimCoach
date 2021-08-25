@@ -80,16 +80,16 @@ app.get('/',(req,res) =>
     res.status(200).send(swimmers)
 )
 
-console.log(app.get('/api/swimmers', (req, res) => {
-    //console.log("HIT HERE")
-    res.status(200).send(swimmers)
-}))
-app.post('/api/swimmers', (req, res) => {
-    console.log("HIT HERE TOO")
-    //console.log(req.body)
-    res.status(200).send(swimmers)
-    fse.outputJsonSync('./public/swimmers.json', req.body)
-})
+// console.log(app.get('/api/swimmers', (req, res) => {
+//     console.log("HIT HERE");
+//     res.status(200).send(swimmers)
+// }))
+// app.post('/api/swimmers', (req, res) => {
+//     console.log("HIT HERE TOO")
+//     //console.log(req.body)
+//     res.status(200).send(swimmers)
+//     fse.outputJsonSync('./public/swimmers.json', req.body)
+// })
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)
@@ -140,6 +140,10 @@ app.get('/api/swimmerName/:id', userctrl.getSwimmerName)
 app.get('/api/individualRecords/:id', userctrl.getIndividualRecord)
 app.get('/api/timeFill/:id', userctrl.timeFill)
 app.get('/api/chartFill/:id', userctrl.chartFill)
+//Get active swimmers
+app.get('/api/activeSwimmers', userctrl.getActiveSwimmers)
+
+app.get('/api/setTimes', userctrl.setTimes)
 
 app.set('port', process.env.PORT || 8080)
 massive({

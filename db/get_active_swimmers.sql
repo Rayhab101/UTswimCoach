@@ -1,0 +1,1 @@
+SELECT * FROM swimmers WHERE is_active=TRUE ORDER BY name;
