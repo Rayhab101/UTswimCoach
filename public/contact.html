@@ -163,19 +163,20 @@
             });
     }
 </script>
-
+<header id="header"></header>
 <body onload="pullPerson()">
-    <header id="header"></header>
+    
     <main class="swim_info">
         <div class="container" id="container">
         </div>
     </main>
-    <footer id="footer"></footer>
+    
     <script>
         $(document).on('click', '.emailMe', function () {
             emailCoach(this.parentNode.children[2].id);
         });
     </script>
 </body>
+<footer id="footer"></footer>
 
 </html>
