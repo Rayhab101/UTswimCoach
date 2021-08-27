@@ -16,6 +16,8 @@
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script>
         $(function () {
             $("#header").load("heading.html");
@@ -27,8 +29,104 @@
 </style>
 </head>
 <header id="header"></header>
-<body>
+<script>
+    window.onload = function () {
+    new Chart('myChart', {
+      type: 'doughnut',
+      startAngle: 60,
+      plugins: [{
+        beforeDraw: chart => {
+          var ctx = chart.chart.ctx;
+          ctx.save();
+          var image = new Image();      
+          image.src = 'breaststroke_image.jpeg'; 
+        //   image.class = 'internal_image';
+          imageSize = 312;
+          ctx.drawImage(image, chart.chart.width / 2 - imageSize / 2, chart.chart.height / 2 - imageSize / 2, imageSize, imageSize);
+          ctx.restore();
+        }
+      }],
+      data: {
+        labels: ['200 Free', '200 IM', '50 Free','100 Fly', '100 Free', '500 Free','100 Back', '100 Breast'],
+        datasets: [{
+          data: [4.73, 8.12, 0.65, 1.12, 4.55, -5.0, 5.0, 10.23],
+          backgroundColor: ['#4F81BC', '#C0504E', '#9BBB58','#23BFAA', '#8064A1', '#4AACC6','#F79647', '#7F6084'],
+        //   hoverBackgroundColor: ['#ffff00', '#ffffa4', '#ced5df'],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }],
+      },
+      options: {
+        maintainAspectRatio: false,
+        tooltips: {
+          backgroundColor: "rgb(255,255,255)",
+          bodyFontColor: "#000000",
+          borderColor: '#dddfeb',
+          borderWidth: 1,
+          xPadding: 15,
+          yPadding: 15,
+          displayColors: false,
+          caretPadding: 10,
+        },
+        legend: {
+          display: false
+        },
+        cutoutPercentage: 50,
+      },
+    });
+    /*var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        title:{
+            text: "Email Categories",
+            horizontalAlign: "center",
+          verticalAlign: "center"
+        },
+        plugins: [{
+        afterDraw: chart => {
+          var ctx = chart.chart.ctx;
+          ctx.save();
+          var image = new Image();      
+          image.src = 'https://i.stack.imgur.com/S7tJH.png';      
+          imageSize = 40;
+          ctx.drawImage(image, chart.chart.width / 2 - imageSize / 2, chart.chart.height / 2 - imageSize / 2, imageSize, imageSize);
+          ctx.restore();
+        }
+      }],
+        data: [{
+            type: "doughnut",
+            startAngle: 60,
+            //innerRadius: 60,
+            indexLabelFontSize: 17,
+            indexLabel: "{label}",
+            toolTipContent: "<b>{label}:</b> {y} seconds off the record.",
+            dataPoints: [
+                { y: 1.2, label: "200 Free" },
+                { y: 0.11, label: "200 IM" },
+                { y: 0.6, label: "50 Free" },
+                { y: 1.7, label: "100 Fly"},
+                { y: 1.15, label: "100 Free"},
+                { y: 2.16, label: "500 Free"},
+                { y: 6.12, label: "100 Back" },
+                { y: 5.1, label: "100 Breast" }
+            ]
+        }]
+    });
+    chart.render();
+    */
+    }
+    </script>
+    <body>
+     <!-- <div>
+        <div id="chartContainer" style="height: 300px; width: 50%;">
+              <img src="https://www.thephoblographer.com/wp-content/uploads/2020/04/WTFStockPhotos26.jpg?width=300&enable=upscale">
+          
+        </div>
     
+      </div>-->
+      <!-- <iframe src="https://giphy.com/embed/bubqkrK3Sj9xnvRgEh" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nager-savoirnager-aisanceaquatique-bubqkrK3Sj9xnvRgEh">via GIPHY</a></p> -->
+
+      <canvas id="myChart" height="180"></canvas>
+      <!-- <iframe src="https://giphy.com/embed/bubqkrK3Sj9xnvRgEh" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nager-savoirnager-aisanceaquatique-bubqkrK3Sj9xnvRgEh">via GIPHY</a></p> -->
+
 </body>
 <footer id="footer"></footer>
 </html>

@@ -105,7 +105,7 @@
         /* padding-top: 100px; */
         color: white;
         font-size: larger;
-        background-color: transparent;
+        background-color: rgba(0, 0, 0, 0.6);
         text-align: center;
     }
 
@@ -251,4 +251,7 @@
         padding-left: auto;
         padding-right: auto;
     }
+}
+.internal_image{
+    border-radius: 50%;
 }

@@ -138,7 +138,7 @@
     <header id="header"></header>
     <div class="container">
         <table id="topHeader">
-            <th>Top Swimmers</th>
+            <th>Top Swimmers from 2020 - Present</th>
         </table>
         <br>
         <div class="contain">
@@ -475,8 +475,9 @@
                             return responseRace.json();
                         })
                         .then(function (race) {
-                            //console.table(race)
-                            for (var j = 0; j < race.length; j++) {
+                            // console.table(race.length)
+                            var newLength = race.length>50 ? 50 : race.length;
+                            for (var j = 0; j < newLength; j++) {
                                 var row = document.createElement("tr");
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
