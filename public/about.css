@@ -1,8 +1,8 @@
-@media screen and (min-width:750px){
-html {
-    height: 100%;
-    width:100%;
-    background-color: #2F3035;
+@media screen and (min-width: 750px) {
+  html {
+    height: 85vh;
+    width: 100vw;
+    background-color: #2f3035;
     background-image: url(pool_background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -11,22 +11,22 @@ html {
     position: relative;
     /* min-width: 100%;
     min-height: 100%; */
-}
+  }
 
-.container {
-    display:grid;
+  .container {
+    display: grid;
     width: auto;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     /* overflow: auto; */
-}
+  }
 
-footer {
+  footer {
     position: fixed;
     margin-left: auto;
-    background-color: rgb(7, 37, 168,0.7);
+    background-color: rgb(7, 37, 168, 0.7);
     left: 0;
     bottom: 0;
     width: 100%;
@@ -37,122 +37,121 @@ footer {
     grid-auto-rows: 50px;
     color: white;
   }
-  
-  
+
   .footer a:link {
     color: #fff;
     padding: 0.45rem;
     margin: 0 0.25rem;
     list-style: none;
   }
-  
+
   .footer h4 {
     margin-left: 0;
     font-size: 38px;
     justify-content: center;
     font-family: "Caveat", cursive;
     font-style: oblique;
-    display:hidden;
+    display: hidden;
   }
-.swim_style{
-    padding-top: 110px;
-}
-.school{
+  .swim_style {
+    padding-top: 90px;
+  }
+  .school {
     grid-row: 1 / 3;
     grid-column: 1;
     width: 270px;
     height: 300px;
-}
-.about{
+  }
+  .about {
     grid-row: 1;
     grid-column: 2;
     padding-left: 45px;
     padding-right: 50px;
     padding-bottom: 20px;
     grid-column: 2;
-    color:white;
-}
-h3{
-    color:white;
-}
-.team_pic{
+    color: white;
+  }
+  h3 {
+    color: white;
+  }
+  .team_pic {
     object-fit: contain;
-    width: 600px;
-    height: 395px;
-}
-div p{
+    width: 570px;
+    height: 365px;
+  }
+  div p {
     padding-top: 30px;
-    color:white;
-}
+    color: white;
+  }
 }
 
-@media screen and (max-width:750px){
-    html {
-        height: 100%;
-        width:100%;
-        background-color: #2F3035;
-        background-image: url(pool_background.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        overflow: hidden;
-        position: relative;
-        min-width: 100%;
-        min-height: 100%;
-    }
-    
-    .container {
-        display:grid;
-        width: 90%;
-        height: 525px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        /* overflow: auto; */
-    }
-    
-    footer {
-        position: fixed;
-        margin-right: auto;
-        margin-left: auto;
-        border-top: black;
-        background-color: rgb(7, 37, 168,0.7);
-        color: white;
-        background-size: cover;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 45px;
-        align-items: center;
-        text-align: center;
-    }
-    .swim_style{
-        padding-top: 110px;
-    }
-    .school{
-        display:none;
-    }
-    .about{
-        grid-row: 1;
-        grid-column: 1;
-        padding-left: auto;
-        padding-right: auto;
-        padding-bottom: 20px;
-        color:white;
-        /* word-break:break-all; */
-justify-content: center;
-overflow-wrap: break-word;
-word-wrap: break-word;
-    }
-    h3{
-        color:white;
-    }
-    .team_pic{
-        object-fit: contain;
-        width: 300px;
-        height: 200px;
-    }
-    div{
-        font-size: smaller;
-    }
-    }
+@media screen and (max-width: 750px) {
+  html {
+    height: 85vh;
+    width: 100vw;
+    background-color: #2f3035;
+    background-image: url(pool_background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .container {
+    display: grid;
+    width: 90%;
+    height: 525px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    /* overflow: auto; */
+  }
+
+  footer {
+    position: fixed;
+    margin-right: auto;
+    margin-left: auto;
+    border-top: black;
+    background-color: rgb(7, 37, 168, 0.7);
+    color: white;
+    background-size: cover;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    text-align: center;
+  }
+  .swim_style {
+    padding-top: 110px;
+  }
+  .school {
+    display: none;
+  }
+  .about {
+    grid-row: 1;
+    grid-column: 1;
+    padding-left: auto;
+    padding-right: auto;
+    padding-bottom: 20px;
+    color: white;
+    /* word-break:break-all; */
+    justify-content: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  h3 {
+    color: white;
+  }
+  .team_pic {
+    object-fit: contain;
+    width: 280px;
+    height: 190px;
+  }
+  div {
+    font-size: smaller;
+  }
+}
