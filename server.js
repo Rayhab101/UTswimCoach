@@ -143,7 +143,7 @@ app.get('/api/chartFill/:id', userctrl.chartFill)
 //Get active swimmers
 app.get('/api/activeSwimmers', userctrl.getActiveSwimmers)
 
-app.get('/api/setTimes', userctrl.setTimes)
+app.post('/api/setTimes', userctrl.setTimes)
 
 app.set('port', process.env.PORT || 8080)
 massive({

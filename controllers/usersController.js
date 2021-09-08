@@ -270,12 +270,16 @@ module.exports = {
         }).catch(err => (res.sendStatus(500)))
     },
     setTimes: (req,res) => {
-        var {id}=req.params;
-        var idSplit = id.split("_");
-        id=idSplit[0];
-        var race=idSplit[1];
-        const db = req.app.get("db");
-        console.log(id,race);
+        console.log(req.body);
+        console.log(req.params);
+        
+
+       
+        // var idSplit = id.split("_");
+        // id=idSplit[0];
+        // var race=idSplit[1];
+        // const db = req.app.get("db");
+        // console.log(id,race);
         // db.set_swim_times(id,race).then(times => {
         //     console.log(times);
         //     // return res.status(200).send(times)

@@ -14,28 +14,344 @@
             $("#header").load("heading.html");
             $("#footer").load("footing.html");
         });
-
     </script>
+    <style>
+        .galleryPic {
+            width: 30vw;
+        }
+
+        .container2 {
+            width: 100vw;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            /* padding-left: 50px;
+            padding-right: 90px; */
+        }
+
+        .welcome {
+            /* padding-top: 100px; */
+            color: white;
+            font-size: larger;
+            background-color: rgba(0, 0, 0, 0.6);
+            text-align: center;
+            width: 100vw;
+        }
+
+        .schedule {
+            /* background-color: whitesmoke; */
+            text-align: center;
+            font-size: small;
+            width: 30vw;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .container2 {
+                /* height: 100%; */
+                width: 100vh;
+                /* padding-left: auto; */
+
+            }
+
+            body {
+                height: 50%;
+                width: 50%;
+            }
+
+            /* .pic {
+                width: 50%;
+                height: 50%;
+                object-fit: contain;
+                grid-row: 2;
+                grid-column: 1;
+            } */
+        }
+
+        .schedule {
+            /* background-color: whitesmoke; */
+            text-align: center;
+            font-size: small;
+
+        }
+
+        table {
+            background-color: whitesmoke;
+        }
+
+        body {
+            height: 85vh;
+            width: 100vw;
+        }
+
+        .nextmeet {
+            background-image: url(vs_blpool.jpeg);
+            display: flex;
+            width: 30vw;
+            object-fit: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nextmeet img {
+            width: 40%;
+            height: 40%;
+        }
+    </style>
 </head>
 <header id="header"></header>
-<body>
-    
-    <div class="welcome">
-        <h3>Welcome to the Ben Lomond and Saint Joseph Swim Team Web Page</h3>
-    </div>
-    <div class="container1">
+<div class="welcome">
+    <h3>Welcome to the Ben Lomond and Saint Joseph Swim Team Web Page</h3>
+</div>
+
+<body onload="meets()">
+    <div class="container2">
         <div class="schedule">
-            <img class="jayhawk" src="Swim Schedule.png" alt="Team Calendar">
+            <table id="schedule">
+                <tr>
+                    <th colspan="6"><u>2021-2022 Swim Schedule</u></th>
+                </tr>
+                <tr><strong>
+                        <td>Date/Day</td>
+                        <td>Event</td>
+                        <td>Time</td>
+                        <td>Out</td>
+                        <td>Bus</td>
+                        <td>Home</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/27/2021</td>
+                        <td>Swim Meeting @The Pool</td>
+                        <td>3:00 PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>10/04/2021</td>
+                        <td>First Day of Practice</td>
+                        <td>2:45 PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>10/06/2021</td>
+                        <td>Parents Meeting @The Pool</td>
+                        <td>6:00 PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>10/22/2021</td>
+                        <td>Red and Blue Meet</td>
+                        <td>2:30 PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr>
+                    <th colspan="6"><u>Season Meets:</u></th>
+                </tr>
+            </table>
         </div>
-        <div class="team-picture">
-            <div>
-            <h6 style="text-align: center; color:whitesmoke">2020-2021 Ben Lomond/St. Joseph Swim Team<img class="pic" src="Full_team_picture.png" alt="Team Picture"></h6>
-            
+
+        <div class="w3-content w3-section">
+            <img id="mySlides" class="galleryPic">
+        </div>
+        <div style="background-color: rgba(0, 0, 0, 0.6)">
+            <h1 style="color:white; text-align: center; ">Next Meet</h1>
+            <div id="nextmeet" class="nextmeet">
             </div>
+            <h3 id="meetname" style="color:white; text-align: center;"></h3>
+            <textarea style="height: 30vh; width: 30vw; font-size:medium;resize: none;"
+                readonly>&#13;&#10;Hello swimmers, parents, and other visitors of the Ben Lomond & Saint Joseph Swim Team website. We are excited to start off another great swim season with a lot of new and returning athletes!&#13;&#10;&#13;&#10;As a reminder, please register your athlete and complete the pre-season physical before our first meet (the first week of November). </textarea>
         </div>
     </div>
-    
+    <script>
+        var slideIndex = 0;
+        carousel();
+        function carousel() {
+            var imgArray = [];
+            for (i = 0; i < 5; i++) {
+                imgArray[i] = new Image();
+                imgArray[i] = './Gallery/Quote' + i + '.png';
+                // console.log(imgArray[i]);
+            }
+            var x = document.getElementById("mySlides");
+
+            // console.log(x);
+            // for (var i = 0; i < imgArray.length; i++) {
+            //     console.log(i)
+            //     // x[i].style.display = "none";
+            // }
+
+
+            // console.log(slideIndex,imgArray.length,imgArray[slideIndex]);
+            if (slideIndex === imgArray.length) { slideIndex = 0 }
+            x.style.display = "block";
+            x.src = imgArray[slideIndex].toString();
+            slideIndex++;
+            setTimeout(carousel, 10000); // Change image every 10 seconds
+
+        }
+    </script>
 </body>
 <footer id="footer"></footer>
+<script>
+    async function against() {
+        // let image = await fetch('/api/schools').then(function (responseRelay) {
+        //     return responseRelay.json();
+        // }).catch(function (error) {
+        //     console.log("Error: " + error)
+        // });
+        var today = new Date();
+        var redBlue = new Date(2021, 09, 22)
+        // console.log(redBlue - today);
+        fetch("/api/meets").then(function (resMeets) {
+            return resMeets.json();
+        })
+            .then(async function (meets) {
+                var body = document.getElementById("nextmeet");
+                var text = document.getElementById("meetname")
+                var img = document.createElement("img");
+                var img2 = document.createElement("img");
+                var img3 = document.createElement("img");
+                var img4 = document.createElement("img");
+                if (meets[0].year == 2) {
+                    // console.log(meets[0].school1);
+                    let school1 = await fetch('/api/schools/' + meets[0].school1).then(function (responseRelay) {
+                        return responseRelay.json();
+                    }).catch(function (error) {
+                        console.log("Error: " + error)
+                    });
+                    // console.log(school1[0].photo);
+                    // console.log(meets[0].school2);
+                    var school2;
+                    if(meets[0].school2!=null){
+                    school2 = await fetch('/api/schools/' + meets[0].school2).then(function (responseRelay) {
+                        return responseRelay.json();
+                    }).catch(function (error) {
+                        console.log("Error: " + error)
+                    });
+                }
+                    // console.log(school2);
+                    // console.log(meets)
+                    for (var j = 0; j < meets.length; j++) {
+                        var date = meets[j].date;
+                        var splice = date.split("/");
+                        var year = Number(splice[2]);
+                        var month = Number(splice[0]) - 1;
+                        var day = Number(splice[1]);
+                        var nextMeet = new Date(year, month, day);
+                        var who;
+                        if ((nextMeet - today) > 0) {
+                            img.setAttribute("src", "./images/BLHS-logo-good.png");
+                            img.setAttribute("alt", "Ben Lomond Logo");
+                            body.appendChild(img);
+                            // console.log(school1[0].photo)
+                            img2.setAttribute("src", "./images/" + school1[0].photo);
+                                    img2.setAttribute("alt", school1[0].name + " Logo");
+                                    body.appendChild(img2);
+                                    who = "VS " + school1[0].name;
+                            img3.setAttribute("src", "./images/JayHawk.png");
+                            img3.setAttribute("alt", "Jayhawks Logo");
+                            body.appendChild(img3);
+                            if(school2!=undefined){
+                                img4.setAttribute("src", "./images/"+ school2[0].photo);
+                            img4.setAttribute("alt", school2[0].name);
+                            body.appendChild(img4);
+                            who = who+" & "+school2[0].name;
+                            text.innerHTML = who;
+                            }
+                            break;
+                        }
+                        else {
+                            img.setAttribute("src", "./images/BLHS-logo-good.png");
+                            img.setAttribute("alt", "Ben Lomond Logo");
+                            body.appendChild(img);
+                            img2.setAttribute("src", "./images/JayHawk.png");
+                            img2.setAttribute("alt", "Jayhawks Logo");
+                            body.appendChild(img2);
+                            text.innerHTML = "Red and Blue Meet"
+                            break;
+                        }
+                    }
+                }
+                else {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("alt", "Jayhawks Logo");
+                    body.appendChild(img2);
+                    text.innerHTML = "Red and Blue Meet"
+                }
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function meets() {
+        fetch("/api/meets").then(function (resMeets) {
+            return resMeets.json();
+        })
+            .then(function (meets) {
+                if (meets[0].year == 2) {
+                    var body = document.getElementById("schedule");
+                    for (var j = 0; j < meets.length; j++) {
+                        var row = document.createElement("tr");
+                        var column = document.createElement("td");
+                        var cell = row.insertCell();
+                        var text = document.createTextNode(column.innerHTML = meets[j].date);
+                        cell.appendChild(text);
+                        var cell = row.insertCell();
+                        var text = document.createTextNode(column.innerHTML = meets[j].location);
+                        cell.appendChild(text);
+                        var cell = row.insertCell();
+                        var text = document.createTextNode(column.innerHTML = meets[j].time);
+                        cell.appendChild(text);
+                        var cell = row.insertCell();
+
+                        // console.log(meets[j].out == null)
+                        if (meets[j].out == null) {
+                            var text = document.createTextNode(column.innerHTML = "");
+                        }
+                        else {
+                            var text = document.createTextNode(column.innerHTML = meets[j].out);
+                        }
+
+                        cell.appendChild(text);
+                        var cell = row.insertCell();
+                        if (meets[j].bus == null) {
+                            var text = document.createTextNode(column.innerHTML = "");
+                        }
+                        else {
+                            var text = document.createTextNode(column.innerHTML = meets[j].bus);
+                        }
+
+                        cell.appendChild(text);
+                        var cell = row.insertCell();
+                        if (meets[j].home == null) {
+                            var text = document.createTextNode(column.innerHTML = "");
+                        }
+                        else {
+                            var text = document.createTextNode(column.innerHTML = meets[j].home);
+                        }
+                        cell.appendChild(text);
+                        body.appendChild(row);
+                    }
+                }
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+        against();
+    }
+</script>
 
 </html>
