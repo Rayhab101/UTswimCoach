@@ -205,6 +205,7 @@
     async function against() {
         var today = new Date();
         var redBlue = new Date(2021, 09, 22)
+        
         fetch("/api/meets").then(function (resMeets) {
             return resMeets.json();
         })
@@ -215,7 +216,8 @@
                 var img2 = document.createElement("img");
                 var img3 = document.createElement("img");
                 var img4 = document.createElement("img");
-                if (meets[0].year == 2) {
+
+                if (meets!="" && meets[0].year == 2) {
                     // console.log(meets[0].school1);
                     let school1 = await fetch('/api/schools/' + meets[0].school1).then(function (responseRelay) {
                         return responseRelay.json();
@@ -225,13 +227,13 @@
                     // console.log(school1[0].photo);
                     // console.log(meets[0].school2);
                     var school2;
-                    if(meets[0].school2!=null){
-                    school2 = await fetch('/api/schools/' + meets[0].school2).then(function (responseRelay) {
-                        return responseRelay.json();
-                    }).catch(function (error) {
-                        console.log("Error: " + error)
-                    });
-                }
+                    if (meets[0].school2 != null) {
+                        school2 = await fetch('/api/schools/' + meets[0].school2).then(function (responseRelay) {
+                            return responseRelay.json();
+                        }).catch(function (error) {
+                            console.log("Error: " + error)
+                        });
+                    }
                     // console.log(school2);
                     // console.log(meets)
                     for (var j = 0; j < meets.length; j++) {
@@ -248,18 +250,18 @@
                             body.appendChild(img);
                             // console.log(school1[0].photo)
                             img2.setAttribute("src", "./images/" + school1[0].photo);
-                                    img2.setAttribute("alt", school1[0].name + " Logo");
-                                    body.appendChild(img2);
-                                    who = "VS " + school1[0].name;
+                            img2.setAttribute("alt", school1[0].name + " Logo");
+                            body.appendChild(img2);
+                            who = "VS " + school1[0].name;
                             img3.setAttribute("src", "./images/JayHawk.png");
                             img3.setAttribute("alt", "Jayhawks Logo");
                             body.appendChild(img3);
-                            if(school2!=undefined){
-                                img4.setAttribute("src", "./images/"+ school2[0].photo);
-                            img4.setAttribute("alt", school2[0].name);
-                            body.appendChild(img4);
-                            who = who+" & "+school2[0].name;
-                            text.innerHTML = who;
+                            if (school2 != undefined) {
+                                img4.setAttribute("src", "./images/" + school2[0].photo);
+                                img4.setAttribute("alt", school2[0].name);
+                                body.appendChild(img4);
+                                who = who + " & " + school2[0].name;
+                                text.innerHTML = who;
                             }
                             break;
                         }
@@ -288,7 +290,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-            meets();
+        meets();
     }
 
     function meets() {
