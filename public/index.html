@@ -106,7 +106,7 @@
     <h3>Welcome to the Ben Lomond and Saint Joseph Swim Team Web Page</h3>
 </div>
 
-<body onload="meets()">
+<body onload="against()">
     <div class="container2">
         <div class="schedule">
             <table id="schedule">
@@ -203,14 +203,8 @@
 <footer id="footer"></footer>
 <script>
     async function against() {
-        // let image = await fetch('/api/schools').then(function (responseRelay) {
-        //     return responseRelay.json();
-        // }).catch(function (error) {
-        //     console.log("Error: " + error)
-        // });
         var today = new Date();
         var redBlue = new Date(2021, 09, 22)
-        // console.log(redBlue - today);
         fetch("/api/meets").then(function (resMeets) {
             return resMeets.json();
         })
@@ -294,6 +288,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+            meets();
     }
 
     function meets() {
@@ -350,7 +345,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-        against();
+        // against();
     }
 </script>
 
