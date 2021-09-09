@@ -237,6 +237,7 @@ module.exports = {
         var idSplit = id.split("&");
         id=idSplit[0];
         var race=idSplit[1];
+        console.log(id)
         const db = req.app.get("db");
         // console.log(id,race);
         db.get_individual_records(id,race).then(school_relays => {
@@ -270,19 +271,21 @@ module.exports = {
         }).catch(err => (res.sendStatus(500)))
     },
     setTimes: (req,res) => {
-        console.log(req.body);
-        console.log(req.params);
-        
-
-       
-        // var idSplit = id.split("_");
-        // id=idSplit[0];
-        // var race=idSplit[1];
-        // const db = req.app.get("db");
-        // console.log(id,race);
-        // db.set_swim_times(id,race).then(times => {
-        //     console.log(times);
-        //     // return res.status(200).send(times)
-        // }).catch(err => (res.sendStatus(500)))
+        var {id}=req.params;
+        var idSplit = id.split(",");
+        var swimmer = idSplit[0];
+        var race = idSplit[1];
+        var time = idSplit[2];
+        var school = idSplit[3];
+        var meet = idSplit[4];
+        var year = idSplit[5];
+        var swim_year = idSplit[6];
+        console.log(meet);
+        const db = req.app.get("db");
+        console.log(swimmer,race,time,school,meet,year,swim_year);
+        db.set_swim_times(swimmer,race,time,school,meet,year,swim_year).then(times => {
+            console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
     }
 }

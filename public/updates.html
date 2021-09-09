@@ -133,7 +133,7 @@
                     // console.log(myJson);
                     for (var i = 0; i < myJson.length; i++) {
                         if (myJson[i].swimmer_id == id) {
-                            console.table(myJson[i]);
+                            // console.table(myJson[i]);
                             var gender = myJson[i].gender;
                             var school = myJson[i].school;
                             var swimYear = myJson[i].year;
@@ -217,18 +217,22 @@
                                 // console.log(swimmer + "," + race + "," + time+","+","+school+","+meet+","+year);
 
                             }
-                            var submitRaces = { swimmer, race, time, school, meet, year };
-                            console.log(JSON.stringify(submitRaces));
+                            var submitRaces = swimmer + "," + race + "," + time+","+school+","+meet+","+year+","+2;
+                            // var submitRaces = { swimmer, race, time, school, meet, year };
+                            // console.log(JSON.stringify(submitRaces));
                             // console.log(submitRaces)
-                            // if(meet!=undefined && swimmer!="" && time!=""){
-                            // fetch("/api/setTimes", {
-                            //     headers: { 'Content-Type': 'application/json' },
-                            //     method: "POST",
-                            //     body: JSON.stringify(submitRaces)
-                            // }).then(response => response.json())
-                            //     .then(json => console.log(json))
-                            //     .catch(err => console.log(err));
-                            // }
+                            if(meet!=undefined && swimmer!="" && time!=""){
+                            fetch("/api/setTimes/"+submitRaces, {
+                                headers: { 'Content-Type': 'application/json' },
+                                method: "POST",
+                                // body: JSON.stringify(submitRaces)
+                            }).then(response => response.json())
+                                .then(json => console.log(json))
+                                .catch(err => console.log(err));
+                            }
+                            else{
+                                console.log("Not Allowed")
+                            }
                         }
 
                         document.getElementById("insert").setAttribute("hidden", true);
