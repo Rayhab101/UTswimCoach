@@ -145,14 +145,6 @@
                         <td></td>
                         <td></td>
                     </strong></tr>
-                <tr><strong>
-                        <td>10/22/2021</td>
-                        <td>Red and Blue Meet</td>
-                        <td>2:30 PM</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </strong></tr>
                 <tr>
                     <th colspan="6"><u>Season Meets:</u></th>
                 </tr>
@@ -245,6 +237,16 @@
                         var nextMeet = new Date(year, month, day);
                         var who;
                         if ((nextMeet - today) > 0) {
+                            if(school1[0].school_id=='6'){
+                                img.setAttribute("src", "./images/BLHS-logo-good.png");
+                            img.setAttribute("alt", "Ben Lomond Logo");
+                            body.appendChild(img);
+                            img2.setAttribute("src", "./images/JayHawk.png");
+                            img2.setAttribute("alt", "Jayhawks Logo");
+                            body.appendChild(img2);
+                            text.innerHTML = "Red and Blue Meet"
+                            break;}
+                            
                             img.setAttribute("src", "./images/BLHS-logo-good.png");
                             img.setAttribute("alt", "Ben Lomond Logo");
                             body.appendChild(img);

@@ -151,8 +151,8 @@
                 return response.json();
             })
             .then(function (record) {
-                console.log(record[0].time)
-                console.log(min)
+                // console.log(record[0].time)
+                // console.log(min)
                 if(record[0].time==min){
                     document.getElementById(cell.id).style.backgroundColor = "LightGreen";
                 }

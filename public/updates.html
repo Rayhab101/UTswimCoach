@@ -11,7 +11,8 @@
         </script>
     <style>
         .swim_info {
-            padding-top: 150px;
+            height:85vh;
+            padding-top: 65px;
         }
 
         table {
@@ -33,6 +34,11 @@
 
         input {
             width: 60px;
+        }
+        .label {
+            color:white;
+            background-color: rgba(0,0,0,.6);
+            text-align: center;
         }
     </style>
     <script>
@@ -57,6 +63,7 @@
 
         function buildDropdown(people) {
             var ddlSwimmers = document.getElementById("ddlSwimmers");
+            
             document.getElementById("insert").setAttribute("hidden", true);
             var head = document.createElement("OPTION");
             head.innerHTML = "Select Swimmer";
@@ -232,10 +239,12 @@
                             }
                             else{
                                 alert("A needed component was not selected/added");
+                                break;
                             }
                         }
 
                         document.getElementById("insert").setAttribute("hidden", true);
+                        window.location.reload();
                     }
                     document.getElementById("insert").setAttribute("hidden", true);
                     buildPage();
@@ -248,10 +257,10 @@
     </script>
 
 </head>
-
+<header id="header"></header>
 <body onload="buildPage()">
-    <header id="header"></header>
     <div class="swim_info">
+        <h4 class="label">INDIVIDUAL EVENTS</h4>
         <table>
             <tr>
                 <td><select id="ddlSwimmers" onchange="nameFill()"></select></td>
@@ -284,7 +293,7 @@
             </tr>
         </table>
     </div>
-    <footer id="footer"></footer>
+    
 </body>
-
+<footer id="footer"></footer>
 </html>

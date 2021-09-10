@@ -217,7 +217,7 @@ module.exports = {
     getRelayTimes: (req,res) => {
         const {id}=req.params;
         const db = req.app.get("db");
-        console.log(id);
+        // console.log(id);
         db.get_relay_times(id).then(school_relays => {
             //console.log(school_relays);
             return res.status(200).send(school_relays)
@@ -226,7 +226,7 @@ module.exports = {
     getSwimmerName: (req,res) => {
         const {id}=req.params;
         const db = req.app.get("db");
-        console.log(id);
+        // console.log(id);
         db.get_swimmer_name(id).then(school_relays => {
             //console.log(school_relays);
             return res.status(200).send(school_relays)
@@ -237,7 +237,7 @@ module.exports = {
         var idSplit = id.split("&");
         id=idSplit[0];
         var race=idSplit[1];
-        console.log(id)
+        // console.log(id)
         const db = req.app.get("db");
         // console.log(id,race);
         db.get_individual_records(id,race).then(school_relays => {
@@ -266,7 +266,7 @@ module.exports = {
         const db = req.app.get("db");
         // console.log(id,race);
         db.get_individual_races(id,race).then(times => {
-            //console.log(school_relays);
+            // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
@@ -280,11 +280,26 @@ module.exports = {
         var meet = idSplit[4];
         var year = idSplit[5];
         var swim_year = idSplit[6];
-        console.log(meet);
+        // console.log(meet);
         const db = req.app.get("db");
         console.log(swimmer,race,time,school,meet,year,swim_year);
         db.set_swim_times(swimmer,race,time,school,meet,year,swim_year).then(times => {
-            console.log(times);
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    updateSchools:(req,res) => {
+        // console.log(req)
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        // console.log(idSplit);
+        var about=idSplit[0];
+        var short=idSplit[1];
+        var newId=idSplit[2];
+        const db = req.app.get("db");
+        console.log(about,short,newId);
+        db.update_school_descriptions(about,short,newId).then(times => {
+            // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     }

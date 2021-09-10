@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team - Archive</title>
+    <title>BL/SJ Swim Team - Test Page</title>
     <link rel="stylesheet" href="swim.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
@@ -32,108 +32,71 @@
     </script>
     <style>
         .container {
-            display: grid;
-            grid-auto-columns: 1fr;
-            grid-auto-rows: 1fr;
-            margin-left: auto;
-            margin-right: auto;
+            display: flex;
+            flex-wrap: wrap;
+            width:90vw;
+            height: 85vh;
         }
 
         #swimmers {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 1;
-            grid-column: 1;
+            height: 20vh;
+            width: 22vw;
         }
 
         #schedule {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 1;
-            grid-column: 2;
+            height: 20vh;
+            width: 22vw;
         }
 
         #meets {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 1;
-            grid-column: 3;
+            height: 20vh;
+            width: 22vw;
 
         }
 
         #home_page {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 2;
-            grid-column: 1;
+            height: 20vh;
+            width: 22vw;
         }
 
         #ben_lomond {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 2;
-            grid-column: 3;
+            height: 20vh;
+            width: 22vw;
         }
 
         #coaches {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 1;
-            grid-column: 4;
+            height: 20vh;
+            width: 22vw;
         }
 
         #nextMeet {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 2;
-            grid-column: 2;
+            height: 20vh;
+            width: 22vw;
         }
 
         #st_josephs {
-            margin-left: auto;
-            margin-right: auto;
             background-color: white;
             border-radius: 5px;
-            height: 50%;
-            width: 100%;
-            grid-row: 2;
-            grid-column: 4;
+            height: 20vh;
+            width: 22vw;
         }
 
         h1 {
             text-align: center;
-        }
-
-        .swim_years {
-            margin-left: 30px;
         }
 
         td {
@@ -143,77 +106,70 @@
     <script>
         function load() {
             document.getElementById('hotKeys').style.display = 'block';
-            document.getElementById('team').style.display = 'none';
-            document.getElementById('newSchedule').style.display = 'none';
-            document.getElementById('meetSetup').style.display = 'none';
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('benLomond').style.display = 'none';
-            document.getElementById('stJosephs').style.display = 'none';
-            document.getElementById('coachChange').style.display = 'none';
         }
-        async function coaches() {
-            var body = document.getElementById('coach');
-            let coach = await fetch('/api/coaches').then(function (responseRelay) {
-                return responseRelay.json();
-            }).catch(function (error) {
-                console.log("Error: " + error)
-            });
-            //console.log(coach)
-            for (var i = 0; i < coach.length; i++) {
-                var person = coach[i].name;
-                person = person.split(" ")
-                var row = document.createElement("tr");
-                row.setAttribute('id', coach[i].coach_id)
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                img = document.createElement("img");
-                img.setAttribute("src", "coaches/" + person[0] + ".jpeg");
-                img.setAttribute("style", "width:50px");
-                img.setAttribute("style", "height:80px")
-                cell.appendChild(img);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                text = document.createTextNode(coach[i].name);
-                cell.appendChild(text);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                text = document.createTextNode(coach[i].email);
-                cell.appendChild(text);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                text = document.createTextNode(coach[i].phone);
-                cell.appendChild(text);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                text = document.createTextNode(coach[i].position);
-                cell.appendChild(text);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                text = document.createTextNode(coach[i].about);
-                cell.appendChild(text);
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                text = document.createElement("button");
-                text.textContent = "Edit";
-                text.setAttribute("style", "background-color: lime");
-                text.setAttribute("onclick", "alert('Edit')");
-                cell.appendChild(text);
-                text = document.createElement("button");
-                text.textContent = "Delete";
-                text.setAttribute("style", "background-color: red");
-                text.setAttribute("onclick", "alert('Delete')");
-                cell.appendChild(text);
-                body.appendChild(row);
-            }
-        }
+
+        // async function coaches() {
+        //     var body = document.getElementById('coach');
+        //     let coach = await fetch('/api/coaches').then(function (responseRelay) {
+        //         return responseRelay.json();
+        //     }).catch(function (error) {
+        //         console.log("Error: " + error)
+        //     });
+        //     //console.log(coach)
+        //     for (var i = 0; i < coach.length; i++) {
+        //         var person = coach[i].name;
+        //         person = person.split(" ")
+        //         var row = document.createElement("tr");
+        //         row.setAttribute('id', coach[i].coach_id)
+        //         var column = document.createElement("td");
+        //         var cell = row.insertCell();
+        //         img = document.createElement("img");
+        //         img.setAttribute("src", "coaches/" + person[0] + ".jpeg");
+        //         img.setAttribute("style", "width:50px");
+        //         img.setAttribute("style", "height:80px")
+        //         cell.appendChild(img);
+        //         var column = document.createElement("td");
+        //         var cell = row.insertCell();
+        //         text = document.createTextNode(coach[i].name);
+        //         cell.appendChild(text);
+        //         var column = document.createElement("td");
+        //         var cell = row.insertCell();
+        //         text = document.createTextNode(coach[i].email);
+        //         cell.appendChild(text);
+        //         var column = document.createElement("td");
+        //         var cell = row.insertCell();
+        //         text = document.createTextNode(coach[i].phone);
+        //         cell.appendChild(text);
+        //         var column = document.createElement("td");
+        //         var cell = row.insertCell();
+        //         text = document.createTextNode(coach[i].position);
+        //         cell.appendChild(text);
+        //         var column = document.createElement("td");
+        //         var cell = row.insertCell();
+        //         text = document.createTextNode(coach[i].about);
+        //         cell.appendChild(text);
+        //         var column = document.createElement("td");
+        //         var cell = row.insertCell();
+        //         text = document.createElement("button");
+        //         text.textContent = "Edit";
+        //         text.setAttribute("style", "background-color: lime");
+        //         text.setAttribute("onclick", "alert('Edit')");
+        //         cell.appendChild(text);
+        //         text = document.createElement("button");
+        //         text.textContent = "Delete";
+        //         text.setAttribute("style", "background-color: red");
+        //         text.setAttribute("onclick", "alert('Delete')");
+        //         cell.appendChild(text);
+        //         body.appendChild(row);
+        //     }
+        // }
     </script>
 </head>
 <header id="header"></header>
 <body onload="load()">
-    
     <main class="swim_info">
         <div id="hotKeys">
-            <div class="container" style="padding-top:120px">
+            <div class="container">
                 <button id="swimmers">
                     <h1>Update Swimmers</h1>
                     <i class="fas fa-swimmer" style="font-size: 2em;"></i>
@@ -227,15 +183,15 @@
                     <i class="fas fa-user-edit" style="font-size: 2em;"></i>
                 </button>
                 <button id="meets">
-                    <h1>Update Meets</h1>
+                    <h1>Meet Results</h1>
                     <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
                 </button>
                 <button id="ben_lomond">
-                    <h1>Update Ben Lomond's About</h1>
+                    <h1>Ben Lomond</h1>
                     <i class="fas fa-address-card" style="font-size: 2em;"></i>
                 </button>
                 <button id="home_page">
-                    <h1>Update Home Page</h1>
+                    <h1>Home Page Blog</h1>
                     <i class="fas fa-window-maximize" style="font-size: 2em;"></i>
                 </button>
                 <button id="nextMeet">
@@ -243,12 +199,12 @@
                     <i class="fas fa-user-check" style="font-size: 2em;"></i>
                 </button>
                 <button id="st_josephs">
-                    <h1 sytle="margin-bottom:0">Update Saint Joseph's About</h1>
+                    <h1 sytle="margin-bottom:0">Saint Joseph</h1>
                     <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
                 </button>
             </div>
         </div>
-        <div id="team">
+         <!--<div id="team">
             <div class="container" style="padding-top:120px">
                 Team
             </div>
@@ -295,7 +251,7 @@
             <div class="container" style="padding-top:120px">
                 St. Joseph's
             </div>
-        </div>
+        </div> -->
     </main>
     
 </body>
@@ -303,81 +259,32 @@
 <script>
     
     $("button").click(function () {
-        alert(this.id); // or alert($(this).attr('id'));
+        //alert(this.id); // or alert($(this).attr('id'));
         document.getElementById('hotKeys').style.display = 'none';
         switch (this.id) {
             case 'swimmers':
-                document.getElementById('team').style.display = 'block';
-                document.getElementById('newSchedule').style.display = 'none';
-                document.getElementById('meetSetup').style.display = 'none';
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('benLomond').style.display = 'none';
-                document.getElementById('stJosephs').style.display = 'none';
-                document.getElementById('coachChange').style.display = 'none';
-                swimmers();
+                window.location.href = "updateSwimmers.html";
                 break;
             case 'schedule':
-                document.getElementById('team').style.display = 'none';
-                document.getElementById('newSchedule').style.display = 'block';
-                document.getElementById('meetSetup').style.display = 'none';
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('benLomond').style.display = 'none';
-                document.getElementById('stJosephs').style.display = 'none';
-                document.getElementById('coachChange').style.display = 'none';
-                schedule();
+            window.location.href = "updateSchedule.html";
                 break;
             case 'meets':
-                document.getElementById('team').style.display = 'none';
-                document.getElementById('newSchedule').style.display = 'none';
-                document.getElementById('meetSetup').style.display = 'block';
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('benLomond').style.display = 'none';
-                document.getElementById('stJosephs').style.display = 'none';
-                document.getElementById('coachChange').style.display = 'none';
-                meets();
+            window.location.href = "updates.html";
                 break;
             case 'coaches':
-                document.getElementById('team').style.display = 'none';
-                document.getElementById('newSchedule').style.display = 'none';
-                document.getElementById('meetSetup').style.display = 'none';
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('benLomond').style.display = 'none';
-                document.getElementById('stJosephs').style.display = 'none';
-                document.getElementById('coachChange').style.display = 'block';
-                coaches();
+            window.location.href = "updateCoaches.html";
                 break;
             case 'home_page':
-                document.getElementById('team').style.display = 'none';
-                document.getElementById('newSchedule').style.display = 'none';
-                document.getElementById('meetSetup').style.display = 'none';
-                document.getElementById('homePage').style.display = 'block';
-                document.getElementById('benLomond').style.display = 'none';
-                document.getElementById('stJosephs').style.display = 'none';
-                document.getElementById('coachChange').style.display = 'none';
-                home();
+            window.location.href = "updateHomePage.html";
                 break;
             case 'ben_lomond':
-                document.getElementById('team').style.display = 'none';
-                document.getElementById('newSchedule').style.display = 'none';
-                document.getElementById('meetSetup').style.display = 'none';
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('benLomond').style.display = 'block';
-                document.getElementById('stJosephs').style.display = 'none';
-                document.getElementById('coachChange').style.display = 'none';
-                benLomond();
+            window.location.href = "updateBenLomond.html";
                 break;
             case 'st_josephs':
-                document.getElementById('team').style.display = 'none';
-                document.getElementById('newSchedule').style.display = 'none';
-                document.getElementById('meetSetup').style.display = 'none';
-                document.getElementById('homePage').style.display = 'none';
-                document.getElementById('benLomond').style.display = 'none';
-                document.getElementById('stJosephs').style.display = 'block';
-                document.getElementById('coachChange').style.display = 'none';
-                stJosephs();
+            window.location.href = "updateSaintJosephs.html";
                 break;
             case 'nextMeet':
-                window.location.href = "https://evening-shore-15119.herokuapp.com/nextMeet.html";
+                window.location.href = "nextMeet.html";
                 break;
         }
     });

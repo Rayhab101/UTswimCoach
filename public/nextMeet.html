@@ -35,6 +35,10 @@
                 })
                 .then(function (myJson) {
                     var body = document.getElementById("meetTable");
+                    // var head = document.createElement('th');
+                    // head.setAttribute("colspan", "12")
+                    // head.innerHTML = ("Ben Lomond & St. Joseph vs");
+                    // body.appendChild(head);
                     for (var i = 0; i < myJson.length; i++) {
                         createTable(myJson[i].name, body);
                     }
@@ -71,26 +75,27 @@
         }
 
         var cutOff = 0
-            fetch("/api/getAllSwimmers")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    for (var i = 0; i < myJson.length; i++) {
-                        if(myJson[i].gender == "F"){cutOff++;}
-                    }
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+        fetch("/api/getAllSwimmers")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                for (var i = 0; i < myJson.length; i++) {
+                    if (myJson[i].gender == "F") { cutOff++; }
+                }
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
     </script>
 </head>
+<header id="header"></header>
 
 <body class="swim_info" onload="meetPull()">
-    <header id="header"></header>
+
     <div class="container" id="table">
         <table id="meetTable">
-            <th colspan="12">Ben Lomond & St. Joseph vs</th>
+            <th colspan="12" id="nextHead">Ben Lomond & St. Joseph vs</th>
             <tr>
                 <td><button onclick="printImage()" id="button">Print</button></td>
                 <td>200 Medley Relay</td>
@@ -107,11 +112,11 @@
             </tr>
         </table>
     </div>
-    <footer id="footer"></footer>
+
     <script>
-        let girls1 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1','B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let girls8 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1','B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let girls11 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1','B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+        let girls1 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+        let girls8 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+        let girls11 = ['SJ-4', 'SJ-3', 'SJ-2', 'SJ-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
         let aTeam1 = 1;
         let aTeam8 = 1;
         let aTeam11 = 1;
@@ -238,10 +243,10 @@
             var column = $(this).parent().children().index($(this));
             var rows = $(this).parent().index();
             var $this = $(this);
-            
+
             if (column != 0) {
                 if (races.includes(column)) {
-                    putRelay($this, column, rows,cutOff);
+                    putRelay($this, column, rows, cutOff);
                 }
                 else {
                     if ($(this).text() != "X") {
@@ -255,5 +260,6 @@
         });
     </script>
 </body>
+<footer id="footer"></footer>
 
 </html>

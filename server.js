@@ -144,6 +144,8 @@ app.get('/api/chartFill/:id', userctrl.chartFill)
 app.get('/api/activeSwimmers', userctrl.getActiveSwimmers)
 
 app.post('/api/setTimes/:id', userctrl.setTimes)
+app.post('/api/updateSchools/:id', userctrl.updateSchools)
+
 
 app.set('port', process.env.PORT || 8080)
 massive({
