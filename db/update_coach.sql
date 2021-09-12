@@ -1,0 +1,1 @@
+UPDATE coaches SET name=$1, email=$2, phone=$3, is_active=$4, position=$5, about=$6 WHERE coach_id=$7;

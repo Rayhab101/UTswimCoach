@@ -92,19 +92,35 @@
                     console.log("Error: " + error);
                 });
         }
-            function updateDescriptions(id) {
-                console.log(id);
-                var description = document.getElementById(id).children[0].innerHTML;
-                var short_description = document.getElementById(id).children[1].innerHTML;
-                var submit = description + "_" + short_description+ "_"+ id;
-                fetch("/api/updateSchools/" + submit, {
-                    headers: { 'Content-Type': 'application/json' },
-                    method: "POST",
-                }).then(response => response.json())
-                    .then(json => console.log(json))
-                    .catch(err => console.log(err));
+        async function updateDescriptions(id) {
+            // console.log(id);
+            var description = document.getElementById(id).children[0].innerHTML;
+            var short_description = document.getElementById(id).children[1].innerHTML;
+            var submit = description + "_" + short_description + "_" + id;
+            var proceed = confirm("Does all of this look correct?", "");
+            if (proceed) {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        flag = true;
+                    }
+                }
+                if (proceed && flag) {
+                    fetch("/api/updateSchools/" + submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
                     window.location.reload();
+                }
+                else {
+                    alert("You don't have access to save changes")
+                }
             }
+        }
     </script>
 
 </head>

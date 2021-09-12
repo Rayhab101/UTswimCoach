@@ -134,6 +134,7 @@ app.get('/api/top100/:id', userctrl.getTop100)
 app.get('/api/stateQualified/:id', userctrl.getStateQualified)
 // Gets relay times
 app.get('/api/relayTimes/:id', userctrl.getRelayTimes)
+app.get('/api/relaysTimes', userctrl.getRelaysTimes)
 //Get Individual Name
 app.get('/api/swimmerName/:id', userctrl.getSwimmerName)
 //Get Individual Times
@@ -144,8 +145,20 @@ app.get('/api/chartFill/:id', userctrl.chartFill)
 app.get('/api/activeSwimmers', userctrl.getActiveSwimmers)
 
 app.post('/api/setTimes/:id', userctrl.setTimes)
+
 app.post('/api/updateSchools/:id', userctrl.updateSchools)
 
+app.post('/api/removeSwimmer/:id', userctrl.removeSwimmer)
+app.post('/api/updateSwimmer/:id', userctrl.updateSwimmer)
+
+app.post('/api/updateMeet/:id', userctrl.updateMeet)
+app.post('/api/removeMeet/:id', userctrl.removeMeet)
+
+app.post('/api/updateCoach/:id', userctrl.updateCoach)
+app.post('/api/removeCoach/:id', userctrl.removeCoach)
+
+app.post('/api/updateRecords/:id', userctrl.updateRecords)
+app.post('/api/updateRelays/:id', userctrl.updateRelays)
 
 app.set('port', process.env.PORT || 8080)
 massive({

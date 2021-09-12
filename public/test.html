@@ -42,21 +42,28 @@
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
         }
 
         #schedule {
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
         }
 
-        #meets {
+        #iResults {
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
+
+        }
+        #rResults {
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
 
         }
 
@@ -64,35 +71,35 @@
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
         }
 
         #ben_lomond {
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
         }
 
         #coaches {
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
         }
 
         #nextMeet {
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
         }
 
         #st_josephs {
             background-color: white;
             border-radius: 5px;
             height: 20vh;
-            width: 22vw;
+            width: 18vw;
         }
 
         h1 {
@@ -107,62 +114,6 @@
         function load() {
             document.getElementById('hotKeys').style.display = 'block';
         }
-
-        // async function coaches() {
-        //     var body = document.getElementById('coach');
-        //     let coach = await fetch('/api/coaches').then(function (responseRelay) {
-        //         return responseRelay.json();
-        //     }).catch(function (error) {
-        //         console.log("Error: " + error)
-        //     });
-        //     //console.log(coach)
-        //     for (var i = 0; i < coach.length; i++) {
-        //         var person = coach[i].name;
-        //         person = person.split(" ")
-        //         var row = document.createElement("tr");
-        //         row.setAttribute('id', coach[i].coach_id)
-        //         var column = document.createElement("td");
-        //         var cell = row.insertCell();
-        //         img = document.createElement("img");
-        //         img.setAttribute("src", "coaches/" + person[0] + ".jpeg");
-        //         img.setAttribute("style", "width:50px");
-        //         img.setAttribute("style", "height:80px")
-        //         cell.appendChild(img);
-        //         var column = document.createElement("td");
-        //         var cell = row.insertCell();
-        //         text = document.createTextNode(coach[i].name);
-        //         cell.appendChild(text);
-        //         var column = document.createElement("td");
-        //         var cell = row.insertCell();
-        //         text = document.createTextNode(coach[i].email);
-        //         cell.appendChild(text);
-        //         var column = document.createElement("td");
-        //         var cell = row.insertCell();
-        //         text = document.createTextNode(coach[i].phone);
-        //         cell.appendChild(text);
-        //         var column = document.createElement("td");
-        //         var cell = row.insertCell();
-        //         text = document.createTextNode(coach[i].position);
-        //         cell.appendChild(text);
-        //         var column = document.createElement("td");
-        //         var cell = row.insertCell();
-        //         text = document.createTextNode(coach[i].about);
-        //         cell.appendChild(text);
-        //         var column = document.createElement("td");
-        //         var cell = row.insertCell();
-        //         text = document.createElement("button");
-        //         text.textContent = "Edit";
-        //         text.setAttribute("style", "background-color: lime");
-        //         text.setAttribute("onclick", "alert('Edit')");
-        //         cell.appendChild(text);
-        //         text = document.createElement("button");
-        //         text.textContent = "Delete";
-        //         text.setAttribute("style", "background-color: red");
-        //         text.setAttribute("onclick", "alert('Delete')");
-        //         cell.appendChild(text);
-        //         body.appendChild(row);
-        //     }
-        // }
     </script>
 </head>
 <header id="header"></header>
@@ -182,13 +133,13 @@
                     <h1>Update Coaches</h1>
                     <i class="fas fa-user-edit" style="font-size: 2em;"></i>
                 </button>
-                <button id="meets">
-                    <h1>Meet Results</h1>
+                <button id="iResults">
+                    <h1>Meet Results - Individuals</h1>
                     <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
                 </button>
-                <button id="ben_lomond">
-                    <h1>Ben Lomond</h1>
-                    <i class="fas fa-address-card" style="font-size: 2em;"></i>
+                <button id="rResults">
+                    <h1>Meet Results - Relays</h1>
+                    <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
                 </button>
                 <button id="home_page">
                     <h1>Home Page Blog</h1>
@@ -198,60 +149,17 @@
                     <h1>Next Meet</h1>
                     <i class="fas fa-user-check" style="font-size: 2em;"></i>
                 </button>
+                <button id="ben_lomond">
+                    <h1>Ben Lomond</h1>
+                    <i class="fas fa-address-card" style="font-size: 2em;"></i>
+                </button>
                 <button id="st_josephs">
                     <h1 sytle="margin-bottom:0">Saint Joseph</h1>
                     <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
                 </button>
+                
             </div>
         </div>
-         <!--<div id="team">
-            <div class="container" style="padding-top:120px">
-                Team
-            </div>
-        </div>
-        <div id="newSchedule">
-            <div class="container" style="padding-top:120px">
-                Schedule
-            </div>
-        </div>
-        <div id="meetSetup">
-            <div class="container" style="padding-top:120px">
-                Meet
-            </div>
-        </div>
-        <div id="coachChange">
-            <div class="container" style="padding-top:120px; justify-content: center;">
-                <table id="coach" style="background-color: white; text-align: center;">
-                    <td colspan="7">Coaches <a href="https://evening-shore-15119.herokuapp.com/test.html"
-                            style="cursor: pointer; background-color:blue; border-radius: 25%; color: white; float: right;">X</a>
-                    </td>
-                    <tr>
-                        <td>Picture</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Phone Number</td>
-                        <td>Position</td>
-                        <td>About</td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div id="homePage">
-            <div class="container" style="padding-top:120px">
-                Home
-            </div>
-        </div>
-        <div id="benLomond">
-            <div class="container" style="padding-top:120px">
-                Ben Lomond
-            </div>
-        </div>
-        <div id="stJosephs">
-            <div class="container" style="padding-top:120px">
-                St. Joseph's
-            </div>
-        </div> -->
     </main>
     
 </body>
@@ -260,7 +168,7 @@
     
     $("button").click(function () {
         //alert(this.id); // or alert($(this).attr('id'));
-        document.getElementById('hotKeys').style.display = 'none';
+        // document.getElementById('hotKeys').style.display = 'none';
         switch (this.id) {
             case 'swimmers':
                 window.location.href = "updateSwimmers.html";
@@ -268,8 +176,11 @@
             case 'schedule':
             window.location.href = "updateSchedule.html";
                 break;
-            case 'meets':
-            window.location.href = "updates.html";
+            case 'iResults':
+            window.location.href = "updateIndividualResults.html";
+                break;
+                case 'rResults':
+            window.location.href = "updateRelayResults.html";
                 break;
             case 'coaches':
             window.location.href = "updateCoaches.html";

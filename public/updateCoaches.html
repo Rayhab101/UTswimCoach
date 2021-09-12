@@ -55,7 +55,7 @@
                     return response.json();
                 })
                 .then(async function (coaches) {
-                    console.log(coaches.length)
+                    // console.log(coaches.length)
                     var body = document.getElementById("coach");
                     for (var i = 0; i < coaches.length; i++) {
                         var row = document.createElement("tr");
@@ -88,149 +88,115 @@
                         var cell = row.insertCell();
                         text = document.createElement("button");
 
-                        text.textContent = "Edit";
+                        text.textContent = "Save";
                         text.setAttribute("style", "background-color: lime");
-                        text.setAttribute("onclick", "alert($(this).closest('tr').attr('id'));");
+                        text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
                         cell.appendChild(text);
                         text = document.createElement("button");
                         text.textContent = "Delete";
                         text.setAttribute("style", "background-color: red");
-                        text.setAttribute("onclick", "alert($(this).closest('tr').attr('id'));");
+                        text.setAttribute("onclick", "remove($(this).closest('tr').attr('id'));");
                         cell.appendChild(text);
                         body.appendChild(row);
+
+                        var table = document.getElementById("coach");
+                        table.addEventListener('click', function (e) {
+
+                            var target = e.target;
+                            //test if clicked element is TD.
+                            if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                                //make cell editable
+                                target.setAttribute('contenteditable', 'true');
+                                //on blur close the editable field and return to normal cell.
+                                target.onblur = function () { this.removeAttribute('contenteditable'); }
+                            }
+
+                        });
                     }
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
         }
+
         function addCoach() {
             alert("Not Available Yet")
         }
-        // function submitTimes(id) {
-        //     fetch("/api/activeSwimmers")
-        //         .then(function (response) {
-        //             return response.json();
-        //         })
-        //         .then(function (myJson) {
-        //             // console.log(myJson);
-        //             for (var i = 0; i < myJson.length; i++) {
-        //                 if (myJson[i].swimmer_id == id) {
-        //                     // console.table(myJson[i]);
-        //                     var gender = myJson[i].gender;
-        //                     var school = myJson[i].school;
-        //                     var swimYear = myJson[i].year;
-        //                 }
-        //             }
-        //             var swimmer = id;
-        //             var checkOption = document.getElementById("ddlMeets");
-        //             var meet = document.getElementById("ddlMeets").options[checkOption.selectedIndex].id;
-        //             meet = meet.split("_");
-        //             meet = meet[1];
-        //             var year = new Date().getFullYear();
-        //             year = parseInt(year);
-        //             if (id != "") {
-        //                 for (var i = 0; i < 8; i++) {
-        //                     var time = document.getElementById("event_" + i).value;
-        //                     if (time != "") {
-        //                         if (gender == "F") {
-        //                             switch (i) {
-        //                                 case 0:
-        //                                     var race = "2";
-        //                                     break;
-        //                                 case 1:
-        //                                     var race = "3";
-        //                                     break;
-        //                                 case 2:
-        //                                     var race = "4";
-        //                                     break;
-        //                                 case 3:
-        //                                     var race = "5";
-        //                                     break;
-        //                                 case 4:
-        //                                     var race = "6";
-        //                                     break;
-        //                                 case 5:
-        //                                     var race = "7";
-        //                                     break;
-        //                                 case 6:
-        //                                     var race = "9";
-        //                                     break;
-        //                                 case 7:
-        //                                     var race = "10";
-        //                                     break;
-        //                                 default:
-        //                                     console.log("How did you get here?: ");
-        //                                     break;
-        //                             }
-        //                         }
-        //                         if (gender == "M") {
-        //                             switch (i) {
-        //                                 case 0:
-        //                                     var race = "13";
-        //                                     break;
-        //                                 case 1:
-        //                                     var race = "14";
-        //                                     break;
-        //                                 case 2:
-        //                                     var race = "15";
-        //                                     break;
-        //                                 case 3:
-        //                                     var race = "16";
-        //                                     break;
-        //                                 case 4:
-        //                                     var race = "17";
-        //                                     break;
-        //                                 case 5:
-        //                                     var race = "18";
-        //                                     break;
-        //                                 case 6:
-        //                                     var race = "20";
-        //                                     break;
-        //                                 case 7:
-        //                                     var race = "21";
-        //                                     break;
-        //                                 default:
-        //                                     console.log("How did you get here?: ");
-        //                                     break;
-        //                             }
-        //                         }
 
-        //                         // var submitRaces = {swimmer,race,time,school,meet,year,2};
-        //                         // console.log(swimmer + "," + race + "," + time+","+","+school+","+meet+","+year);
+        async function remove(id) {
+            var coach = await fetch('/api/coaches/' + id).then(data => data.json())
+            var proceed = confirm("You are about to delete " + coach[0].name + ". Are you sure?");
 
-        //                     }
-        //                     var submitRaces = swimmer + "," + race + "," + time + "," + school + "," + meet + "," + year + "," + 2;
-        //                     // var submitRaces = { swimmer, race, time, school, meet, year };
-        //                     // console.log(JSON.stringify(submitRaces));
-        //                     // console.log(submitRaces)
-        //                     if (meet != undefined && swimmer != "" && time != "") {
-        //                         fetch("/api/setTimes/" + submitRaces, {
-        //                             headers: { 'Content-Type': 'application/json' },
-        //                             method: "POST",
-        //                             // body: JSON.stringify(submitRaces)
-        //                         }).then(response => response.json())
-        //                             .then(json => console.log(json))
-        //                             .catch(err => console.log(err));
-        //                     }
-        //                     else {
-        //                         alert("A needed component was not selected/added");
-        //                         break;
-        //                     }
-        //                 }
+            if (proceed) {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        flag = true;
+                    }
+                }
 
-        //                 document.getElementById("insert").setAttribute("hidden", true);
-        //                 window.location.reload();
-        //             }
-        //             document.getElementById("insert").setAttribute("hidden", true);
-        //             buildPage();
+                if (proceed && flag) {
+                    // console.log(id)
+                    fetch("/api/removeCoach/" + id, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
+                    // alert("Good-bye")
+                }
+                else {
+                    alert("You don't have access to remove this person")
+                }
+            }
 
-        //         })
-        //         .catch(function (error) {
-        //             console.log("Error: " + error);
-        //         });
-        // }
-        
+        }
+
+        async function save(id) {
+            var name = document.getElementById(id).children[0].innerHTML;
+            var email = document.getElementById(id).children[1].innerHTML;
+            var phone = document.getElementById(id).children[2].innerHTML;
+            var is_active = document.getElementById(id).children[3].innerHTML;
+            var position = document.getElementById(id).children[4].innerHTML;
+            var about = document.getElementById(id).children[5].innerHTML;
+            if (is_active == "false") {
+                remove(id);
+            }
+            else {
+                var proceed = confirm("Does all of this look correct? name:" + name + " email:" + email + " phone:" + phone + " Is Active:" + is_active + " position:" + position + " about:" + about);
+                if (proceed) {
+                    var password = prompt("Please Enter your Password", "")
+                    var check = await fetch('/api/coaches/').then(data => data.json())
+                    var flag = false;
+                    for (var i = 0; i < check.length; i++) {
+                        if (check[i].password == password) {
+                            flag = true;
+                        }
+                    }
+                    if (proceed && flag) {
+                        console.log(name,email,phone,is_active,position,about)
+                        // console.log(name+","+gender+","+grade+","+school+","+is_active+","+id);
+                        var submit = name + "_" + email + "_" + phone + "_" + is_active + "_" + position + "_" + about +"_"+id;
+                        fetch("/api/updateCoach/" + submit, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                            // body: JSON.stringify(submitRaces)
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+                        window.location.reload();
+                    }
+                    else {
+                        alert("You don't have access to save changes")
+                    }
+                }
+            }
+        }
+
     </script>
 
 </head>

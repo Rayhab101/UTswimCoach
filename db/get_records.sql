@@ -1,1 +1,1 @@
-SELECT * FROM records;
+SELECT * FROM records WHERE swim_year ='2';

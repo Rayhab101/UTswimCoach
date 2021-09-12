@@ -1,0 +1,1 @@
+UPDATE swimmers SET is_active = FALSE WHERE swimmer_id=$1;
