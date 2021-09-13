@@ -28,14 +28,34 @@
             body.appendChild(row);
         }
 
-        function meetPull() {
+        async function meetPull() {
+            var nextMeet = await fetch('/api/meets').then(data => data.json());
+            var today = new Date();
+            for (var j = 0; j < nextMeet.length; j++) {
+                var date = nextMeet[j].date;
+                var splice = date.split("/");
+                var year = Number(splice[2]);
+                var month = Number(splice[0]) - 1;
+                var day = Number(splice[1]);
+                var meetDate = new Date(year, month, day);
+                var who;
+                if ((meetDate - today) > 0) {
+                    var thisMeet = (nextMeet[j].location);
+                }
+                if(nextMeet[j].location=="Red and Blue"){
+                    var thisMeet = "Each other"
+                }
+            }
             fetch("/api/getAllSwimmers")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
                     var body = document.getElementById("meetTable");
-                    // var head = document.createElement('th');
+
+                    var head = document.getElementById('nextHead');
+                    // var nextMeet = "Hello"
+                    head.innerText = (head.innerText + " " + thisMeet)
                     // head.setAttribute("colspan", "12")
                     // head.innerHTML = ("Ben Lomond & St. Joseph vs");
                     // body.appendChild(head);
