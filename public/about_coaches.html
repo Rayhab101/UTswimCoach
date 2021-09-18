@@ -1,149 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BL/SJ Swim Team - Calendar</title>
     <link rel="stylesheet" href="swim.css">
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
-</script>
-<script> 
-    $(function(){
-      $("#header").load("heading.html"); 
-      $("#footer").load("footing.html");
-    });
-</script> 
-<style>
-    @media screen and (min-width:750px){
-    .container{
-        display:grid;
-    }
-    body{
-    padding-top: 125px;
-}
-    .swim_style{
-        height: 100%;
-    }
-    .picture{
-        width: 220px;
-        height: 250px;
-        padding-bottom: 30px;
-    }
-    .head_coach{
-        grid-row: 1;
-        grid-column: 1;
-    }
-    .assistant_coach1{
-        grid-row: 2;
-        grid-column: 1;
-    }
-    .assistant_coach2{
-        grid-row: 3;
-        grid-column: 1;
-    }
-    .morning_coach{
-        grid-row: 4;
-        grid-column: 1;
-    }
-    .about{
-        padding-left: 25px;
-        padding-right: 50px;
-        grid-column: 2;
-        color:white;
-        background-color: rgba(0,0,0,.5);
-    }
-    h3{
-        color:white;
-    }
-}
-@media screen and (max-width:750px){
-    .container{
-        display:flex;
-        overflow:auto;
-        width: auto;
-        height: 380px;
-    }
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <style>
+        @media screen and (min-width:750px) {
+            .container {
+                display: grid;
+            }
 
-    body{
-    padding-top: 125px;
-}
-    .swim_style{
-        height: 50%;
-    }
-    .picture{
-        width: 110px;
-        height: 125px;
-        justify-items: center;
-        /* padding-bottom: 30px; */
-    }
-    .head_coach{
-        grid-row: 1;
-        grid-column: 1;
-    }
-    .assistant_coach1{
-        grid-row: 2;
-        grid-column: 1;
-    }
-    .assistant_coach2{
-        grid-row: 3;
-        grid-column: 1;
-    }
-    .morning_coach{
-        grid-row: 4;
-        grid-column: 1;
-    }
-    .about{
-        padding-left: auto;
-        padding-right: auto;
-        grid-column: 1;
-        color:white;
-        background-color: rgba(0,0,0,.5);
-    }
-    h3{
-        color:white;
-    }
-}
-</style>
-<script>
-    function open(){
-    fetch('/api/coaches/')
-    .then(function (response) {
-        if (response.status == 200) {
-            return response.json();
+            body {
+                padding-top: 125px;
+            }
+
+            .swim_style {
+                height: 100%;
+            }
+
+            .picture {
+                width: 220px;
+                height: 250px;
+                padding-bottom: 30px;
+            }
+
+            .head_coach {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .assistant_coach1 {
+                grid-row: 2;
+                grid-column: 1;
+            }
+
+            .assistant_coach2 {
+                grid-row: 3;
+                grid-column: 1;
+            }
+
+            .morning_coach {
+                grid-row: 4;
+                grid-column: 1;
+            }
+
+            .about {
+                padding-left: 25px;
+                padding-right: 50px;
+                grid-column: 2;
+                color: white;
+                background-color: rgba(0, 0, 0, .5);
+            }
+
+            h3 {
+                color: white;
+            }
         }
-    }).then(function (coaches) {
-        var body = document.getElementById("container")
-        for(var i=0; i<coaches.length;i++){
-            var div1 = document.createElement('div');
-            div1.setAttribute('class','picSize');
-            var picture = document.createElement('img');
-            picture.setAttribute('class','picture');
-            var about = document.createElement('div');
-            about.setAttribute('class','about');
-            var name = document.createElement('h3');
-            var lastName = coaches[i].name.split(' ');
-            picture.setAttribute('src','coaches/'+lastName[0]+'.jpeg');
-            lastName= lastName[1];
-            name.textContent = 'About Coach '+ lastName;
-            var facts = document.createElement('p');
-            facts.innerHTML = '&emsp;&emsp;'+coaches[i].about;
-            div1.appendChild(picture)
-            body.appendChild(div1)
-            about.appendChild(name)
-            about.appendChild(facts)
-            body.appendChild(about)
-            
+
+        @media screen and (max-width:750px) {
+            .container {
+                display: flex;
+                overflow: auto;
+                width: auto;
+                height: 380px;
+            }
+
+            body {
+                padding-top: 125px;
+            }
+
+            .swim_style {
+                height: 50%;
+            }
+
+            .picture {
+                width: 110px;
+                height: 125px;
+                justify-items: center;
+                /* padding-bottom: 30px; */
+            }
+
+            .head_coach {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .assistant_coach1 {
+                grid-row: 2;
+                grid-column: 1;
+            }
+
+            .assistant_coach2 {
+                grid-row: 3;
+                grid-column: 1;
+            }
+
+            .morning_coach {
+                grid-row: 4;
+                grid-column: 1;
+            }
+
+            .about {
+                padding-left: auto;
+                padding-right: auto;
+                grid-column: 1;
+                color: white;
+                background-color: rgba(0, 0, 0, .5);
+            }
+
+            h3 {
+                color: white;
+            }
         }
-        
-    }).catch(function (error) {
-        console.log("Error: " + error);
-    });
-}
-</script>
+    </style>
+    <script>
+        function open() {
+            fetch('/api/coaches/')
+                .then(function (response) {
+                    if (response.status == 200) {
+                        return response.json();
+                    }
+                }).then(function (coaches) {
+                    var body = document.getElementById("container")
+                    for (var i = 0; i < coaches.length; i++) {
+                        var div1 = document.createElement('div');
+                        div1.setAttribute('class', 'picSize');
+                        var picture = document.createElement('img');
+                        picture.setAttribute('class', 'picture');
+                        var about = document.createElement('div');
+                        about.setAttribute('class', 'about');
+                        var name = document.createElement('h3');
+                        var lastName = coaches[i].name.split(' ');
+                        picture.setAttribute('src', 'coaches/' + lastName[0] + '.jpeg');
+                        lastName = lastName[1];
+                        name.textContent = 'About Coach ' + lastName;
+                        var facts = document.createElement('p');
+                        facts.innerHTML = '&emsp;&emsp;' + coaches[i].about;
+                        div1.appendChild(picture)
+                        body.appendChild(div1)
+                        about.appendChild(name)
+                        about.appendChild(facts)
+                        body.appendChild(about)
+
+                    }
+
+                }).catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+    </script>
 </head>
+
 <body onload="open()">
     <header id="header"></header>
     <main class="swim_style">
@@ -151,4 +169,5 @@
     </main>
     <footer id="footer"></footer>
 </body>
+
 </html>
