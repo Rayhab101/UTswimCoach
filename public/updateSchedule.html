@@ -12,6 +12,7 @@
     <style>
         .swim_info {
             height: 85vh;
+            justify-content: center;
             /* padding-top: 65px; */
         }
 
@@ -41,6 +42,22 @@
             background-color: rgba(0, 0, 0, .6);
             text-align: center;
         }
+        form {
+  padding: 15px;
+  border: 1px solid #666;
+  background: #fff;
+  display: none;
+}
+.form1 {
+    display: flex;
+    justify-content: center;
+}
+
+#formButton {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
     </style>
     <script>
         $(function () {
@@ -56,7 +73,7 @@
                 .then(async function (meets) {
                     var body = document.getElementById("meets");
 
-                    // console.log(meets)
+                    console.log(meets)
                     for (var i = 0; i < meets.length; i++) {
                         var row = document.createElement("tr");
                         row.setAttribute("id", meets[i].meet_id);
@@ -74,7 +91,7 @@
                         cell.appendChild(text);
                         var column = document.createElement("td");
                         var cell = row.insertCell();
-                        var years = "20" + (20+ Number(meets[i].year) - 1) + " - 20" + (20+ Number(meets[i].year));
+                        var years = "20" + (20 + Number(meets[i].year) - 1) + " - 20" + (20 + Number(meets[i].year));
                         text = document.createTextNode(column.innerHTML = years);
                         cell.appendChild(text);
                         var column = document.createElement("td");
@@ -92,7 +109,7 @@
                         var column = document.createElement("td");
                         var cell = row.insertCell();
                         var schools;
-                        if (meets[i].school1 != null) {
+                        if (meets[i].school1 != '-1' && meets[i].school1 != null) {
                             var school1 = await fetch("/api/schools/" + meets[i].school1).then(data => data.json());
                             schools = school1[0].name;
                             if (meets[i].school2 != null) {
@@ -104,7 +121,6 @@
                         else {
                             schools = "More than one school";
                         }
-                        // console.log(schools)
 
                         text = document.createTextNode(column.innerHTML = schools);
                         cell.appendChild(text);
@@ -142,7 +158,33 @@
         }
 
         function addMeet() {
-            alert("Not Available Yet")
+            var location = document.getElementById("meetTitle").value;
+            var date = document.getElementById("meetDate").value;
+            var time = document.getElementById("meetTime").value;
+            var out = document.getElementById("meetOut").value;
+            var bus = document.getElementById("meetBus").value;
+            var home = document.getElementById("meetHome").value;
+            var schools = document.getElementById("schools").value;
+            location = location.replace(/ /g,"-");
+            date = date.replace(/\//g,"&")
+            schools = schools.split(", ");
+            school1=schools[0];
+            school2=schools[1];
+            if(schools[2]!=undefined || schools[0]=="Region" || schools[0]=="Saint Joseph Region" ||schools[0]=="State"){
+                school1=-1;
+                school2=null;
+            }
+            var submit = location+"_"+date+"_"+time+"_"+2+"_"+out+"_"+bus+"_"+home+"_"+school1+"_"+school2;
+            fetch("/api/setMeet/"+ submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                        window.location.reload();
+
+            // alert("Not Available Yet")
         }
 
         async function remove(id) {
@@ -155,6 +197,7 @@
                 var flag = false;
                 for (var i = 0; i < check.length; i++) {
                     if (check[i].password == password) {
+                        var coach = check[i].coach_id;
                         flag = true;
                     }
                 }
@@ -166,6 +209,21 @@
                     }).then(response => response.json())
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
+                        var today = new Date();
+                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date+"_"+coach+"_"+location+"_"+meet[0].location+"_"+"removed";
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
                     window.location.reload();
                 }
                 else {
@@ -182,7 +240,7 @@
             var month = date[0];
             var day = date[1];
             var year = date[2];
-            date = month+"-"+day+"-"+year;
+            date = month + "-" + day + "-" + year;
             var time = document.getElementById(id).children[2].innerHTML;
             var out = document.getElementById(id).children[4].innerHTML;
             var bus = document.getElementById(id).children[5].innerHTML;
@@ -193,29 +251,30 @@
             // console.log(location,date,time,out,bus,home,schools[0],schools[1])
             school1 = schools[0];
             school2 = schools[1].split(" ");
-            school2 = school2[1]+" "+ school2[2];
+            school2 = school2[1] + " " + school2[2];
             // console.log(school_id)
-            for(var i = 0; i<school_id.length;i++){
-                if(school1==school_id[i].name){
+            for (var i = 0; i < school_id.length; i++) {
+                if (school1 == school_id[i].name) {
                     var school1_id = (school_id[i].school_id);
                     break;
                 }
             }
 
-            for(var j = 0; j<school_id.length;j++){
-                if(school2==school_id[j].name){
+            for (var j = 0; j < school_id.length; j++) {
+                if (school2 == school_id[j].name) {
                     var school2_id = (school_id[j].school_id);
                     break;
                 }
             }
 
-            var proceed = confirm("Does all of this look correct? location:" + location + " date:" + date + " time:" + time + " out:" + out + " bus:" + bus +" home:" + home +" School 1:" + school1 +" School 2:" + school2);
+            var proceed = confirm("Does all of this look correct? location:" + location + " date:" + date + " time:" + time + " out:" + out + " bus:" + bus + " home:" + home + " School 1:" + school1 + " School 2:" + school2);
             if (proceed) {
                 var password = prompt("Please Enter your Password", "")
                 var check = await fetch('/api/coaches/').then(data => data.json())
                 var flag = false;
                 for (var i = 0; i < check.length; i++) {
                     if (check[i].password == password) {
+                        var coach = check[i].coach_id;
                         flag = true;
                     }
                 }
@@ -226,11 +285,11 @@
                             break;
                         }
                     }
-                    if(out=="null"){out=null}
-                    if(bus=="null"){bus=null}
-                    if(home=="null"){home=null}
+                    if (out == "null" || out =="") { out = null }
+                    if (bus == "null" || bus =="") { bus = null }
+                    if (home == "null" || home =="") { home = null }
                     // console.log(location,date,time,out,bus,home,school1_id,school2_id);
-                    var submit = location+"_"+date+"_"+time+"_"+out+"_"+bus+"_"+home+"_"+school1_id+"_"+school2_id+"_"+id;
+                    var submit = location + "_" + date + "_" + time + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id + "_" + id;
                     // console.log(submit)
                     fetch("/api/updateMeet/" + submit, {
                         headers: { 'Content-Type': 'application/json' },
@@ -239,6 +298,23 @@
                     }).then(response => response.json())
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
+
+                        submit = submit.replace(/_/g,"&")
+                        var today = new Date();
+                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
                     window.location.reload();
                 }
                 else {
@@ -246,6 +322,13 @@
                 }
             }
         }
+
+        $(document).ready(function() {
+  $("#formButton").click(function() {
+    $("#form1").toggle();
+    $("#meets").toggle();
+  });
+});
     </script>
 
 </head>
@@ -254,10 +337,29 @@
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Current Year's Meets</h4>
+        <form id="form1">
+            <b>Title/Location:</b> <input type="text" id="meetTitle" name="meetTitle">
+            <br><br>
+            <b>Meet Date: </b><input type="text" id="meetDate" name="meetDate" placeholder="mm/dd/yyyy">
+            <br><br>
+            <b>Meet Time: </b><input type="text" id="meetTime" name="meetTime" placeholder="hh:mm(am/pm)">
+            <br><br>
+            <b>Out Time: </b><input type="text" id="meetOut" name="meetOut" placeholder="hh:mm(am/pm)">
+            <br><br>
+            <b>Bus Time: </b><input type="text" id="meetBus" name="meetBus" placeholder="hh:mm(am/pm)">
+            <br><br>
+            <b>Home Time: </b><input type="text" id="meetHome" name="meetHome" placeholder="hh:mm(am/pm)">
+            <br><br>
+            <b>Schools:</b>
+            <br>
+            <textarea name="schools" id="schools" placeholder="school 1, school 2"></textarea>
+            <br><br>
+            <button type="button" id="submit" onclick="addMeet()">Submit</button>
+            <button type="button" id="cancel" onclick="window.location.reload()">Cancel</button>
+          </form>
         <table id="meets">
             <tr>
-                <!-- <td><select id="ddlSwimmers" onchange="nameFill()"></select></td> -->
-                <td>Location</td>
+                <td>Title</td>
                 <td>Date</td>
                 <td>Time</td>
                 <td>Swim Season</td>
@@ -265,8 +367,7 @@
                 <td>Bus Leaving</td>
                 <td>Getting Home @</td>
                 <td>Schools Participating</td>
-                <td rowspan="2"><button onclick="addMeet()">Add
-                        Meet</button></td>
+                <td rowspan="2"><button type="button" id="formButton">Add Meet</button></td>
             </tr>
         </table>
     </div>

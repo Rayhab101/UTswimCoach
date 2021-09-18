@@ -92,6 +92,7 @@
                     console.log("Error: " + error);
                 });
         }
+        
         async function updateDescriptions(id) {
             // console.log(id);
             var description = document.getElementById(id).children[0].innerHTML;
@@ -104,6 +105,7 @@
                 var flag = false;
                 for (var i = 0; i < check.length; i++) {
                     if (check[i].password == password) {
+                        var coach=check[i].coach_id
                         flag = true;
                     }
                 }
@@ -114,6 +116,23 @@
                     }).then(response => response.json())
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
+
+                        submit = submit.replace(/_/g,"&")
+                        var today = new Date();
+                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
                     window.location.reload();
                 }
                 else {

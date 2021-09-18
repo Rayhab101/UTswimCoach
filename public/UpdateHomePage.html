@@ -49,30 +49,27 @@
         });
 
         function buildPage() {
-            fetch("/api/schools/6")
+            fetch("/api/blog")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(async function (bl) {
-                    var body = document.getElementById("meets");
+                    var body = document.getElementById("blog");
                     var row = document.createElement("tr");
-                    row.setAttribute("id", bl[0].school_id);
+                    row.setAttribute('id', 'blog_text');
                     var column = document.createElement("td");
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = bl[0].about);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = bl[0].short_description);
+                    text = document.createTextNode(column.innerHTML = bl[0].blog_text);
                     cell.appendChild(text);
                     var column = document.createElement("td");
                     var cell = row.insertCell();
                     text = document.createElement("button");
                     text.textContent = "Update";
-                    text.setAttribute("onclick", "updateDescriptions($(this).closest('tr').attr('id'))");
+                    text.setAttribute("onclick", "updateBlog($(this).closest('tr'))");
                     cell.appendChild(text);
                     body.appendChild(row);
-                    var table = document.getElementById("meets");
+                    var table = document.getElementById("blog");
+
                     table.addEventListener('click', function (e) {
 
                         var target = e.target;
@@ -90,20 +87,52 @@
                     console.log("Error: " + error);
                 });
         }
-            function updateDescriptions(id) {
-                console.log(id);
-                var description = document.getElementById(id).children[0].innerHTML;
-                var short_description = document.getElementById(id).children[1].innerHTML;
-                var submit = description + "_" + short_description+ "_"+ id;
 
-                fetch("/api/updateSchools/" + submit, {
+        async function updateBlog() {
+            var blog = document.getElementById("blog_text").children[0].innerHTML;
+            blog = blog.replace(/ /g, "_")
+            blog = blog.replace(/,/g, "~")
+            // console.log(blog)
+            var password = prompt("Please Enter your Password", "")
+            var check = await fetch('/api/coaches/').then(data => data.json())
+            var flag = false;
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].password == password) {
+                    var coach = Number(check[i].coach_id);
+                    flag = true;
+                }
+            }
+            if (flag) {
+                fetch("/api/updateBlog/" + blog, {
                     headers: { 'Content-Type': 'application/json' },
                     method: "POST",
                 }).then(response => response.json())
                     .then(json => console.log(json))
                     .catch(err => console.log(err));
-                    window.location.reload();
+                    
+                blog = blog.replace(/_/g,"&")
+                var today = new Date();
+                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                var location = window.location.pathname;
+                location = location.split('/');
+                location = location[1];
+                location = location.split('.html')
+                location = location[0]
+                var changes = date+"_"+coach+"_"+location+"_"+"Blog"+"_"+blog;
+                // console.log(changes)
+                fetch("/api/logChanges/" + changes, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                }).then(response => response.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err));
+                window.location.reload();
             }
+            else {
+                alert("You don't have access to edit this blog")
+            }
+        }
+        
     </script>
 
 </head>
@@ -112,10 +141,9 @@
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Update Coaches Blog</h4>
-        <table id="meets">
+        <table id="blog">
             <tr>
-                <td>Description</td>
-                <td>Short Description</td>
+                <td>Blog</td>
             </tr>
         </table>
     </div>

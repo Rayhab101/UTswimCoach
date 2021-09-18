@@ -122,7 +122,7 @@
                         <td>Home</td>
                     </strong></tr>
                 <tr><strong>
-                        <td>09/27/2021</td>
+                        <td>TBA</td>
                         <td>Swim Meeting @The Pool</td>
                         <td>3:00 PM</td>
                         <td></td>
@@ -130,7 +130,7 @@
                         <td></td>
                     </strong></tr>
                 <tr><strong>
-                        <td>10/04/2021</td>
+                        <td>09/27/2021</td>
                         <td>First Day of Practice</td>
                         <td>2:45 PM</td>
                         <td></td>
@@ -138,7 +138,7 @@
                         <td></td>
                     </strong></tr>
                 <tr><strong>
-                        <td>10/06/2021</td>
+                        <td>TBA</td>
                         <td>Parents Meeting @The Pool</td>
                         <td>6:00 PM</td>
                         <td></td>
@@ -159,8 +159,9 @@
             <div id="nextmeet" class="nextmeet">
             </div>
             <h3 id="meetname" style="color:white; text-align: center;"></h3>
-            <textarea style="height: 30vh; width: 30vw; font-size:medium;resize: none;"
-                readonly>&#13;&#10;Hello swimmers, parents, and other visitors of the Ben Lomond & Saint Joseph Swim Team website. We are excited to start off another great swim season with a lot of new and returning athletes!&#13;&#10;&#13;&#10;As a reminder, please register your athlete and complete the pre-season physical before our first meet (the first week of November). </textarea>
+            <br>
+            <textarea id="blog" style="height: 35vh; width: 30vw; font-size:14px;resize: none;"
+                readonly></textarea>
         </div>
     </div>
     <script>
@@ -171,18 +172,8 @@
             for (i = 0; i < 5; i++) {
                 imgArray[i] = new Image();
                 imgArray[i] = './Gallery/Quote' + i + '.png';
-                // console.log(imgArray[i]);
             }
             var x = document.getElementById("mySlides");
-
-            // console.log(x);
-            // for (var i = 0; i < imgArray.length; i++) {
-            //     console.log(i)
-            //     // x[i].style.display = "none";
-            // }
-
-
-            // console.log(slideIndex,imgArray.length,imgArray[slideIndex]);
             if (slideIndex === imgArray.length) { slideIndex = 0 }
             x.style.display = "block";
             x.src = imgArray[slideIndex].toString();
@@ -194,6 +185,13 @@
 </body>
 <footer id="footer"></footer>
 <script>
+
+    async function blog(){
+        var blog = document.getElementById("blog");
+        var hello = await fetch('/api/blog').then(data => data.json())
+        blog.innerHTML = hello[0].blog_text;
+    }
+
     async function against() {
         var today = new Date();
         // var redBlue = new Date(2021, 09, 22)
@@ -349,7 +347,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-        // against();
+        blog();
     }
 </script>
 

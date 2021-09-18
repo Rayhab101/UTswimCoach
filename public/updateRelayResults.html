@@ -114,7 +114,7 @@
         }
 
         function addNewResults() {
-            alert("Not Available Yet")
+            window.location.href = "addTimes.html";
         }
 
         async function save(id) {
@@ -134,6 +134,7 @@
                     var flag = false;
                     for (var i = 0; i < check.length; i++) {
                         if (check[i].password == password) {
+                            var coach= check[i].coach_id;
                             flag = true;
                         }
                     }
@@ -165,6 +166,23 @@
                         }
                         var submit = relay + "_" + swimmers + "_" + time + "_" + school + "_" + meet+ "_" + id;
                         fetch("/api/updateRelays/" + submit, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+
+                            submit = submit.replace(/_/g,"&")
+                            var today = new Date();
+                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
                             headers: { 'Content-Type': 'application/json' },
                             method: "POST",
                         }).then(response => response.json())

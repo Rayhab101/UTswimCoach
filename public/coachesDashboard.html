@@ -95,6 +95,13 @@
             width: 18vw;
         }
 
+        #addTimes {
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
+        }
+
         #st_josephs {
             background-color: white;
             border-radius: 5px;
@@ -150,6 +157,10 @@
                     <h1>Next Meet</h1>
                     <i class="fas fa-user-check" style="font-size: 2em;"></i>
                 </button>
+                <button id="addTimes">
+                    <h1>Add Times</h1>
+                    <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
+                </button>
                 <button id="ben_lomond">
                     <h1>Ben Lomond</h1>
                     <i class="fas fa-address-card" style="font-size: 2em;"></i>
@@ -180,7 +191,7 @@
             case 'iResults':
             window.location.href = "updateIndividualResults.html";
                 break;
-                case 'rResults':
+            case 'rResults':
             window.location.href = "updateRelayResults.html";
                 break;
             case 'coaches':
@@ -197,6 +208,9 @@
                 break;
             case 'nextMeet':
                 window.location.href = "nextMeet.html";
+                break;
+            case 'addTimes':
+            window.location.href = "addTimes.html";
                 break;
         }
     });

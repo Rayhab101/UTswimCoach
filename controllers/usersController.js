@@ -254,6 +254,16 @@ module.exports = {
             return res.status(200).send(school_relays)
         }).catch(err => (res.sendStatus(500)))
     },
+    getBlog: (req,res) => {
+        const db = req.app.get("db");
+        db.get_blog().then(blog => {
+            //console.log(school_meets);
+            return res.status(200).send(blog)
+        })
+    },
+
+
+
     timeFill: (req,res) => {
         var {id}=req.params;
         var idSplit = id.split("&");
@@ -291,8 +301,32 @@ module.exports = {
         var swim_year = idSplit[6];
         // console.log(meet);
         const db = req.app.get("db");
-        console.log(swimmer,race,time,school,meet,year,swim_year);
+        // console.log(swimmer,race,time,school,meet,year,swim_year);
         db.set_swim_times(swimmer,race,time,school,meet,year,swim_year).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    setMeet: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        var location = idSplit[0].replace(/-/g," ");
+        
+        var date = idSplit[1].replace(/&/g,"/");
+        var time = idSplit[2];
+        var year = idSplit[3];
+        var out = idSplit[4];
+        var bus = idSplit[5];
+        var home = idSplit[6];
+        var school1 = Number(idSplit[7]);
+        var school2 = Number(idSplit[8]);
+        console.log(typeof school2)
+        if(Number.isNaN(school2)){
+            school2=null;
+        }
+        console.log(location,date,time,year,out,bus,home,school1,school2);
+        const db = req.app.get("db");
+        db.set_meet(location,date,time,year,out,bus,home,school1,school2).then(times => {
             // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
@@ -408,6 +442,39 @@ module.exports = {
         const db = req.app.get("db");
         // console.log(location,date,time,out,bus,home,school1,school2,meetId);
         db.update_meet(location,date,time,out,bus,home,school1,school2,meetId).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    updateBlog:(req,res) => {
+        // console.log(req)
+        var {id}=req.params;
+        var idSplit = id.split("_").join(" ");
+        idSplit = idSplit.replace(/~/g,",")
+        // console.log(idSplit);
+
+        const db = req.app.get("db");
+        // console.log(location,date,time,out,bus,home,school1,school2,meetId);
+        db.update_blog(idSplit).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    logChanges:(req,res) => {
+        // console.log(req)
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        // console.log(idSplit);
+        if(idSplit[3]== undefined){
+            changed_id = null;
+            change_to = null;
+        }
+        else{
+            changed_id = idSplit[3];
+            change_to = idSplit[4];
+        }
+        const db = req.app.get("db");
+        db.set_change_log(idSplit[0],idSplit[1],idSplit[2],changed_id,change_to).then(times => {
             // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))

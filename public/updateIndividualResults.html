@@ -111,30 +111,54 @@
         }
 
         function addNewResults() {
-            alert("Not Available Yet")
+            window.location.href = "addTimes.html";
         }
 
         async function save(id) {
+            console.log(id)
             var name = document.getElementById(id).children[0].innerHTML;
             var meet = document.getElementById(id).children[1].innerHTML;
             var race = document.getElementById(id).children[2].innerHTML;
             var time = document.getElementById(id).children[3].innerHTML;
-            // console.log(name,meet,race,time)
-                var proceed = confirm("Does all of this look correct? name:" + name + " meet:" + meet + " race:" + race + " Time:" + time);
+            var isName = await fetch('/api/swimmerName/'+name).then(data => data.json());
+            console.log(isName=="");
+            if(isName!=""){
+                isName=name;
+            }
+                var proceed = confirm("Does all of this look correct? name:" + isName + " meet:" + meet + " race:" + race + " Time:" + time);
                 if (proceed) {
                     var password = prompt("Please Enter your Password", "")
                     var check = await fetch('/api/coaches/').then(data => data.json())
                     var flag = false;
                     for (var i = 0; i < check.length; i++) {
                         if (check[i].password == password) {
+                            var coach = check[i].coach_id
                             flag = true;
                         }
                     }
+
                     if (proceed && flag) {
-                        // console.log(name,meet,race,time,id)
+                        console.log(name,meet,race,time,id)
                         // console.log(name+","+gender+","+grade+","+school+","+is_active+","+id);
                         var submit = name + "_" + meet + "_" + race + "_" + time + "_" + id;
                         fetch("/api/updateRecords/" + submit, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+
+                            submit = submit.replace(/_/g,"&")
+                            var today = new Date();
+                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
                             headers: { 'Content-Type': 'application/json' },
                             method: "POST",
                         }).then(response => response.json())

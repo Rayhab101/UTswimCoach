@@ -144,6 +144,11 @@ app.get('/api/chartFill/:id', userctrl.chartFill)
 //Get active swimmers
 app.get('/api/activeSwimmers', userctrl.getActiveSwimmers)
 
+app.get('/api/blog',userctrl.getBlog)
+
+app.post('/api/setMeet/:id',userctrl.setMeet)
+
+
 app.post('/api/setTimes/:id', userctrl.setTimes)
 
 app.post('/api/updateSchools/:id', userctrl.updateSchools)
@@ -159,6 +164,10 @@ app.post('/api/removeCoach/:id', userctrl.removeCoach)
 
 app.post('/api/updateRecords/:id', userctrl.updateRecords)
 app.post('/api/updateRelays/:id', userctrl.updateRelays)
+
+app.post('/api/updateBlog/:id', userctrl.updateBlog)
+
+app.post('/api/logChanges/:id', userctrl.logChanges)
 
 app.set('port', process.env.PORT || 8080)
 massive({
