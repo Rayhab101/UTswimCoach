@@ -48,45 +48,45 @@
             $("#footer").load("footing.html");
         });
 
-        // function buildPage() {
-        //     fetch("/api/blog")
-        //         .then(function (response) {
-        //             return response.json();
-        //         })
-        //         .then(async function (bl) {
-        //             var body = document.getElementById("blog");
-        //             var row = document.createElement("tr");
-        //             row.setAttribute('id', 'blog_text');
-        //             var column = document.createElement("td");
-        //             var cell = row.insertCell();
-        //             text = document.createTextNode(column.innerHTML = bl[0].blog_text);
-        //             cell.appendChild(text);
-        //             var column = document.createElement("td");
-        //             var cell = row.insertCell();
-        //             text = document.createElement("button");
-        //             text.textContent = "Update";
-        //             text.setAttribute("onclick", "updateBlog($(this).closest('tr'))");
-        //             cell.appendChild(text);
-        //             body.appendChild(row);
-        //             var table = document.getElementById("blog");
+        function buildPage() {
+            fetch("/api/blog")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(async function (bl) {
+                    var body = document.getElementById("blog");
+                    var row = document.createElement("tr");
+                    row.setAttribute('id', 'blog_text');
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = bl[0].blog_text);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createElement("button");
+                    text.textContent = "Update";
+                    text.setAttribute("onclick", "updateBlog($(this).closest('tr'))");
+                    cell.appendChild(text);
+                    body.appendChild(row);
+                    var table = document.getElementById("blog");
 
-        //             table.addEventListener('click', function (e) {
+                    table.addEventListener('click', function (e) {
 
-        //                 var target = e.target;
-        //                 //test if clicked element is TD.
-        //                 if (target && target.tagName && target.tagName.toLowerCase() == "td") {
-        //                     //make cell editable
-        //                     target.setAttribute('contenteditable', 'true');
-        //                     //on blur close the editable field and return to normal cell.
-        //                     target.onblur = function () { this.removeAttribute('contenteditable'); }
-        //                 }
+                        var target = e.target;
+                        //test if clicked element is TD.
+                        if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                            //make cell editable
+                            target.setAttribute('contenteditable', 'true');
+                            //on blur close the editable field and return to normal cell.
+                            target.onblur = function () { this.removeAttribute('contenteditable'); }
+                        }
 
-        //             });
-        //         })
-        //         .catch(function (error) {
-        //             console.log("Error: " + error);
-        //         });
-        // }
+                    });
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
 
         async function updateBlog() {
             var blog = document.getElementById("blog_text").children[0].innerHTML;
