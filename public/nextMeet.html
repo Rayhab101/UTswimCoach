@@ -40,12 +40,13 @@
                 var meetDate = new Date(year, month, day);
                 var who;
                 console.log(meetDate - today)
+                if(nextMeet[j].location=="Red and Blue"){
+                    var thisMeet = "Each other"
+                    break
+                }
                 if ((meetDate - today) > 0) {
                     var thisMeet = (nextMeet[j].location);
                     break;
-                }
-                if(nextMeet[j].location=="Red and Blue"){
-                    var thisMeet = "Each other"
                 }
             }
             fetch("/api/getAllSwimmers")
