@@ -42,22 +42,24 @@
             background-color: rgba(0, 0, 0, .6);
             text-align: center;
         }
-        form {
-  padding: 15px;
-  border: 1px solid #666;
-  background: #fff;
-  display: none;
-}
-.form1 {
-    display: flex;
-    justify-content: center;
-}
 
-#formButton {
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-}
+        form {
+            padding: 15px;
+            border: 1px solid #666;
+            background: #fff;
+            display: none;
+        }
+
+        .form1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        #formButton {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
     </style>
     <script>
         $(function () {
@@ -73,7 +75,7 @@
                 .then(async function (meets) {
                     var body = document.getElementById("meets");
 
-                    console.log(meets)
+                    // console.log(meets)
                     for (var i = 0; i < meets.length; i++) {
                         var row = document.createElement("tr");
                         row.setAttribute("id", meets[i].meet_id);
@@ -165,24 +167,24 @@
             var bus = document.getElementById("meetBus").value;
             var home = document.getElementById("meetHome").value;
             var schools = document.getElementById("schools").value;
-            location = location.replace(/ /g,"-");
-            date = date.replace(/\//g,"&")
+            location = location.replace(/ /g, "-");
+            date = date.replace(/\//g, "&")
             schools = schools.split(", ");
-            school1=schools[0];
-            school2=schools[1];
-            if(schools[2]!=undefined || schools[0]=="Region" || schools[0]=="Saint Joseph Region" ||schools[0]=="State"){
-                school1=-1;
-                school2=null;
+            school1 = schools[0];
+            school2 = schools[1];
+            if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "Saint Joseph Region" || schools[0] == "State") {
+                school1 = -1;
+                school2 = null;
             }
-            var submit = location+"_"+date+"_"+time+"_"+2+"_"+out+"_"+bus+"_"+home+"_"+school1+"_"+school2;
-            fetch("/api/setMeet/"+ submit, {
-                        headers: { 'Content-Type': 'application/json' },
-                        method: "POST",
-                        // body: JSON.stringify(submitRaces)
-                    }).then(response => response.json())
-                        .then(json => console.log(json))
-                        .catch(err => console.log(err));
-                        window.location.reload();
+            var submit = location + "_" + date + "_" + time + "_" + 2 + "_" + out + "_" + bus + "_" + home + "_" + school1 + "_" + school2;
+            fetch("/api/setMeet/" + submit, {
+                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+                // body: JSON.stringify(submitRaces)
+            }).then(response => response.json())
+                .then(json => console.log(json))
+                .catch(err => console.log(err));
+            window.location.reload();
 
             // alert("Not Available Yet")
         }
@@ -209,21 +211,21 @@
                     }).then(response => response.json())
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
-                        var today = new Date();
-                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                        var location = window.location.pathname;
-                        location = location.split('/');
-                        location = location[1];
-                        location = location.split('.html')
-                        location = location[0]
-                        var changes = date+"_"+coach+"_"+location+"_"+meet[0].location+"_"+"removed";
-                        // console.log(changes)
-                        fetch("/api/logChanges/" + changes, {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                        }).then(response => response.json())
-                            .then(json => console.log(json))
-                            .catch(err => console.log(err));
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + meet[0].location + "_" + "removed";
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
                     window.location.reload();
                 }
                 else {
@@ -285,9 +287,9 @@
                             break;
                         }
                     }
-                    if (out == "null" || out =="") { out = null }
-                    if (bus == "null" || bus =="") { bus = null }
-                    if (home == "null" || home =="") { home = null }
+                    if (out == "null" || out == "") { out = null }
+                    if (bus == "null" || bus == "") { bus = null }
+                    if (home == "null" || home == "") { home = null }
                     // console.log(location,date,time,out,bus,home,school1_id,school2_id);
                     var submit = location + "_" + date + "_" + time + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id + "_" + id;
                     // console.log(submit)
@@ -299,22 +301,22 @@
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
 
-                        submit = submit.replace(/_/g,"&")
-                        var today = new Date();
-                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                        var location = window.location.pathname;
-                        location = location.split('/');
-                        location = location[1];
-                        location = location.split('.html')
-                        location = location[0]
-                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
-                        // console.log(changes)
-                        fetch("/api/logChanges/" + changes, {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                        }).then(response => response.json())
-                            .then(json => console.log(json))
-                            .catch(err => console.log(err));
+                    submit = submit.replace(/_/g, "&")
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + id + "_" + submit;
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
                     window.location.reload();
                 }
                 else {
@@ -323,12 +325,12 @@
             }
         }
 
-        $(document).ready(function() {
-  $("#formButton").click(function() {
-    $("#form1").toggle();
-    $("#meets").toggle();
-  });
-});
+        $(document).ready(function () {
+            $("#formButton").click(function () {
+                $("#form1").toggle();
+                $("#meets").toggle();
+            });
+        });
     </script>
 
 </head>
@@ -338,25 +340,25 @@
     <div class="swim_info">
         <h4 class="label">Current Year's Meets</h4>
         <form id="form1">
-            <b>Title/Location:</b> <input type="text" id="meetTitle" name="meetTitle">
+            <b>Title/Location:</b> <input type="text" id="meetTitle" name="meetTitle" required>
             <br><br>
-            <b>Meet Date: </b><input type="text" id="meetDate" name="meetDate" placeholder="mm/dd/yyyy">
+            <b>Meet Date: </b><input type="text" id="meetDate" name="meetDate" placeholder="mm/dd/yyyy" required>
             <br><br>
-            <b>Meet Time: </b><input type="text" id="meetTime" name="meetTime" placeholder="hh:mm(am/pm)">
+            <b>Meet Time: </b><input type="text" id="meetTime" name="meetTime" placeholder="hh:mm(am/pm)" required>
             <br><br>
-            <b>Out Time: </b><input type="text" id="meetOut" name="meetOut" placeholder="hh:mm(am/pm)">
+            <b>Out Time: </b><input type="text" id="meetOut" name="meetOut" placeholder="hh:mm(am/pm)" required>
             <br><br>
-            <b>Bus Time: </b><input type="text" id="meetBus" name="meetBus" placeholder="hh:mm(am/pm)">
+            <b>Bus Time: </b><input type="text" id="meetBus" name="meetBus" placeholder="hh:mm(am/pm)" required>
             <br><br>
-            <b>Home Time: </b><input type="text" id="meetHome" name="meetHome" placeholder="hh:mm(am/pm)">
+            <b>Home Time: </b><input type="text" id="meetHome" name="meetHome" placeholder="hh:mm(am/pm)" required>
             <br><br>
             <b>Schools:</b>
             <br>
-            <textarea name="schools" id="schools" placeholder="school 1, school 2"></textarea>
+            <textarea name="schools" id="schools" placeholder="school 1, school 2" required></textarea>
             <br><br>
             <button type="button" id="submit" onclick="addMeet()">Submit</button>
             <button type="button" id="cancel" onclick="window.location.reload()">Cancel</button>
-          </form>
+        </form>
         <table id="meets">
             <tr>
                 <td>Title</td>

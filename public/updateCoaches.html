@@ -42,6 +42,24 @@
             background-color: rgba(0, 0, 0, .6);
             text-align: center;
         }
+
+        form {
+            padding: 15px;
+            border: 1px solid #666;
+            background: #fff;
+            display: none;
+        }
+
+        .form1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        #formButton {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
     </style>
     <script>
         $(function () {
@@ -120,7 +138,33 @@
         }
 
         function addCoach() {
-            alert("Not Available Yet")
+            var name = document.getElementById("coachName").value;
+            var email = document.getElementById("coachEmail").value;
+            var phone = document.getElementById("coachPhone").value;
+            var position = document.getElementById("coachPosition").value;
+            var about = document.getElementById("coachAbout").value;
+            if (name == "" || email == "" || phone == "" || position == ""|| about == "") {
+                alert("Please make sure all fields are filled")
+            }
+            else {
+                //              INSERT INTO swimmers(name,gender,status_grade,year,school,is_active)
+                //              VALUES('Ryan Lund', 'Male', 'Morning Coach', 6,6, FALSE),
+                var password = name.split(' ');
+                password = password[1]+password[0][0].toLowerCase()+"6&78";
+                name = name.replace(' ', '+');
+                about = about.replace(/ /g, '&');
+                email = email.replace('.', '*')
+                var submit = name + "_" + email + "_" + phone + "_" + true + "_" + position + "_" + password + "_"+about;
+                console.log(submit)
+                fetch("/api/setCoach/" + submit, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                    // body: JSON.stringify(submitRaces)
+                }).then(response => response.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err));
+                window.location.reload();
+            }
         }
 
         async function remove(id) {
@@ -232,6 +276,12 @@
             }
         }
 
+        $(document).ready(function () {
+            $("#formButton").click(function () {
+                $("#form1").toggle();
+                $("#coach").toggle();
+            });
+        });
     </script>
 
 </head>
@@ -240,6 +290,22 @@
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Current Coaches</h4>
+        <form id="form1">
+            <b>Name:</b> <input type="text" id="coachName" name="coachName" required>
+            <br><br>
+            <b>Email: </b><input type="email" id="coachEmail" name="coachEmail" placeholder="example@example.com" required>
+            <br><br>
+            <b>Phone Number: </b><input type="phone" id="coachPhone" name="coachPhone" required>
+            <br><br>
+            <b>Position: </b><input type="text" id="coachPosition" name="coachPosition" required>
+            <br><br>
+            <b>About:</b>
+            <br>
+            <textarea name="coachAbout" id="coachAbout" placeholder="About" required></textarea>
+            <br><br>
+            <button type="button" id="submit" onclick="addCoach()">Submit</button>
+            <button type="button" id="cancel" onclick="window.location.reload()">Cancel</button>
+        </form>
         <table id="coach">
             <tr>
                 <td>Name</td>
@@ -248,8 +314,7 @@
                 <td>Is Active</td>
                 <td>Position</td>
                 <td>About</td>
-                <td rowspan="2"><button onclick="addCoach()">Add
-                        Coach</button></td>
+                <td rowspan="2"><button type="button" id="formButton">Add Coach</button></td>
             </tr>
         </table>
     </div>

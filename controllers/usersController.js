@@ -307,6 +307,39 @@ module.exports = {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
+    setSwimmer: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        var swimmer = idSplit[0].replace('-',' ');
+        var gender = idSplit[1];
+        var grade = idSplit[2];
+        var year = idSplit[3];
+        var school = idSplit[4];
+        var is_active = idSplit[5];
+        const db = req.app.get("db");
+        // console.log(swimmer,gender,grade,year,school,is_active);
+        db.set_swimmer(swimmer,gender,grade,year,school,is_active).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    setCoach: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        var coach = idSplit[0].replace('+',' ');
+        var email = idSplit[1].replace('*','.');
+        var phone = idSplit[2];
+        var is_active = idSplit[3];
+        var title = idSplit[4];
+        var password = idSplit[5];
+        var about = idSplit[6].replace('&'," ");
+        const db = req.app.get("db");
+        // console.log(coach,email,phone,is_active,title,password,about);
+        db.set_coach(coach,email,phone,is_active,title,password,about).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
     setMeet: (req,res) => {
         var {id}=req.params;
         var idSplit = id.split("_");
@@ -324,7 +357,7 @@ module.exports = {
         if(Number.isNaN(school2)){
             school2=null;
         }
-        console.log(location,date,time,year,out,bus,home,school1,school2);
+        // console.log(location,date,time,year,out,bus,home,school1,school2);
         const db = req.app.get("db");
         db.set_meet(location,date,time,year,out,bus,home,school1,school2).then(times => {
             // console.log(times);

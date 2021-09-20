@@ -147,7 +147,8 @@ app.get('/api/activeSwimmers', userctrl.getActiveSwimmers)
 app.get('/api/blog',userctrl.getBlog)
 
 app.post('/api/setMeet/:id',userctrl.setMeet)
-
+app.post('/api/setSwimmer/:id',userctrl.setSwimmer)
+app.post('/api/setCoach/:id', userctrl.setCoach)
 
 app.post('/api/setTimes/:id', userctrl.setTimes)
 
