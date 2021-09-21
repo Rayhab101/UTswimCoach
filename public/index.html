@@ -160,8 +160,7 @@
             </div>
             <h3 id="meetname" style="color:white; text-align: center;"></h3>
             <br>
-            <textarea id="blog" style="height: 35vh; width: 30vw; font-size:14px;resize: none;"
-                readonly></textarea>
+            <textarea id="blog" style="height: 35vh; width: 30vw; font-size:14px;resize: none;" readonly></textarea>
         </div>
     </div>
     <script>
@@ -186,7 +185,7 @@
 <footer id="footer"></footer>
 <script>
 
-    async function blog(){
+    async function blog() {
         var blog = document.getElementById("blog");
         var hello = await fetch('/api/blog').then(data => data.json())
         blog.innerHTML = hello[0].blog_text;
@@ -195,7 +194,7 @@
     async function against() {
         var today = new Date();
         // var redBlue = new Date(2021, 09, 22)
-        
+
         fetch("/api/meets").then(function (resMeets) {
             return resMeets.json();
         })
@@ -206,22 +205,27 @@
                 var img2 = document.createElement("img");
                 var img3 = document.createElement("img");
                 var img4 = document.createElement("img");
-                if (meets!="" && meets[0].year == 2) {
+                if (meets != "" && meets[0].year == 2) {
                     // console.log(meets[0].school1);
-                    let school1 = await fetch('/api/schools/' + meets[0].school1).then(function (responseRelay) {
-                        return responseRelay.json();
-                    }).catch(function (error) {
-                        console.log("Error: " + error)
-                    });
-                    // console.log(school1[0].photo);
-                    // console.log(meets[0].school2);
-                    var school2;
-                    if (meets[0].school2 != null) {
-                        school2 = await fetch('/api/schools/' + meets[0].school2).then(function (responseRelay) {
+                    if (meets[0].school1 != -1) {
+                        let school1 = await fetch('/api/schools/' + meets[0].school1).then(function (responseRelay) {
                             return responseRelay.json();
                         }).catch(function (error) {
                             console.log("Error: " + error)
                         });
+                        // console.log(school1[0].photo);
+                        // console.log(meets[0].school2);
+                        var school2;
+                        if (meets[0].school2 != null) {
+                            school2 = await fetch('/api/schools/' + meets[0].school2).then(function (responseRelay) {
+                                return responseRelay.json();
+                            }).catch(function (error) {
+                                console.log("Error: " + error)
+                            });
+                        }
+                    }
+                    else{
+                        let school1 = {school_id:'-1', name:'Multi Team', photo:'./images/Utah_test.png'}
                     }
                     // console.log(school2);
                     // console.log(meets)
@@ -234,16 +238,17 @@
                         var nextMeet = new Date(year, month, day);
                         var who;
                         if ((nextMeet - today) > 0) {
-                            if(school1[0].school_id=='6'){
+                            if (school1[0].school_id == '6') {
                                 img.setAttribute("src", "./images/BLHS-logo-good.png");
-                            img.setAttribute("alt", "Ben Lomond Logo");
-                            body.appendChild(img);
-                            img2.setAttribute("src", "./images/JayHawk.png");
-                            img2.setAttribute("alt", "Jayhawks Logo");
-                            body.appendChild(img2);
-                            text.innerHTML = "Red and Blue Meet"
-                            break;}
-                            
+                                img.setAttribute("alt", "Ben Lomond Logo");
+                                body.appendChild(img);
+                                img2.setAttribute("src", "./images/JayHawk.png");
+                                img2.setAttribute("alt", "Jayhawks Logo");
+                                body.appendChild(img2);
+                                text.innerHTML = "Red and Blue Meet"
+                                break;
+                            }
+
                             img.setAttribute("src", "./images/BLHS-logo-good.png");
                             img.setAttribute("alt", "Ben Lomond Logo");
                             body.appendChild(img);

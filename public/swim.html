@@ -113,6 +113,8 @@
       var sizeData = dataArray.length;
       for (var i = 0; i < sizeData; i++) {
         var r = dataArray[i].name;
+        r = r.split(" ");
+        r = r[0][0]+". "+r[1];
         var g = dataArray[i].status_grade;
         var year = dataArray[i]["year"];
         if (i % 4 == 0) {
