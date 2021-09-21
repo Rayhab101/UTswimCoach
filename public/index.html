@@ -208,13 +208,11 @@
                 if (meets != "" && meets[0].year == 2) {
                     // console.log(meets[0].school1);
                     if (meets[0].school1 != -1) {
-                        let school1 = await fetch('/api/schools/' + meets[0].school1).then(function (responseRelay) {
+                        var school1 = await fetch('/api/schools/' + meets[0].school1).then(function (responseRelay) {
                             return responseRelay.json();
                         }).catch(function (error) {
                             console.log("Error: " + error)
                         });
-                        // console.log(school1[0].photo);
-                        // console.log(meets[0].school2);
                         var school2;
                         if (meets[0].school2 != null) {
                             school2 = await fetch('/api/schools/' + meets[0].school2).then(function (responseRelay) {
@@ -225,9 +223,11 @@
                         }
                     }
                     else{
-                        let school1 = {school_id:'-1', name:'Multi Team', photo:'./images/Utah_test.png'}
+                        // console.log("Hello")
+                        var school1 = [{school_id:'-1', name:'Multi Team', photo:'./Utah_test.png'}];
+                        
                     }
-                    // console.log(school2);
+                    // console.log(school1);
                     // console.log(meets)
                     for (var j = 0; j < meets.length; j++) {
                         var date = meets[j].date;
@@ -237,6 +237,7 @@
                         var day = Number(splice[1]);
                         var nextMeet = new Date(year, month, day);
                         var who;
+                        
                         if ((nextMeet - today) > 0) {
                             if (school1[0].school_id == '6') {
                                 img.setAttribute("src", "./images/BLHS-logo-good.png");
