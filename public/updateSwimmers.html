@@ -143,45 +143,74 @@
                 alert("Please make sure all fields are filled")
             }
             else {
-                gender = (gender[0] == "F") ? "F" : "M";
-                if (grade == "09" || grade == "9" || grade == "10" || grade == "11" || grade == "12") {
-                    switch (grade) {
-                        case "09":
-                            grade = "Freshman"
-                            break;
-                        case "9":
-                            grade = "Freshman"
-                            break;
-                        case "10":
-                            grade = "Sophomore"
-                            break;
-                        case "11":
-                            grade = "Junior"
-                            break;
-                        case "12":
-                            grade = "Senior"
-                            break;
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        var coach = check[i].coach_id;
+                        flag = true;
                     }
                 }
+                if (flag) {
+                    gender = (gender[0] == "F") ? "F" : "M";
+                    if (grade == "09" || grade == "9" || grade == "10" || grade == "11" || grade == "12") {
+                        switch (grade) {
+                            case "09":
+                                grade = "Freshman"
+                                break;
+                            case "9":
+                                grade = "Freshman"
+                                break;
+                            case "10":
+                                grade = "Sophomore"
+                                break;
+                            case "11":
+                                grade = "Junior"
+                                break;
+                            case "12":
+                                grade = "Senior"
+                                break;
+                        }
+                    }
 
-                var school_id = await fetch('/api/schools/').then(data => data.json())
-                for (var i = 0; i < school_id.length; i++) {
-                    if (school_id[i].name == school) {
-                        school = school_id[i].school_id;
+                    var school_id = await fetch('/api/schools/').then(data => data.json())
+                    for (var i = 0; i < school_id.length; i++) {
+                        if (school_id[i].name == school) {
+                            school = school_id[i].school_id;
+                        }
                     }
+
+                    name = name.replace(' ', '-')
+                    var submit = name + "_" + gender + "_" + grade + "_" + 2 + "_" + school + "_" + true;
+                    fetch("/api/setSwimmer/" + submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + "added" + "_" + submit;
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
                 }
-                //              INSERT INTO swimmers(name,gender,status_grade,year,school,is_active)
-                //              VALUES('Ryan Lund', 'Male', 'Morning Coach', 6,6, FALSE),
-                name = name.replace(' ', '-')
-                var submit = name + "_" + gender + "_" + grade + "_" + 2 + "_" + school + "_" + true;
-                fetch("/api/setSwimmer/" + submit, {
-                    headers: { 'Content-Type': 'application/json' },
-                    method: "POST",
-                    // body: JSON.stringify(submitRaces)
-                }).then(response => response.json())
-                    .then(json => console.log(json))
-                    .catch(err => console.log(err));
-                window.location.reload();
+                else {
+                    alert("You don't have access to add people")
+                }
             }
             // alert("Not Available Yet")
         }

@@ -159,7 +159,7 @@
                 });
         }
 
-        function addMeet() {
+        async function addMeet() {
             var location = document.getElementById("meetTitle").value;
             var date = document.getElementById("meetDate").value;
             var time = document.getElementById("meetTime").value;
@@ -167,25 +167,54 @@
             var bus = document.getElementById("meetBus").value;
             var home = document.getElementById("meetHome").value;
             var schools = document.getElementById("schools").value;
-            location = location.replace(/ /g, "-");
-            date = date.replace(/\//g, "&")
-            schools = schools.split(", ");
-            school1 = schools[0];
-            school2 = schools[1];
-            if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "Saint Joseph Region" || schools[0] == "State") {
-                school1 = -1;
-                school2 = null;
+            var password = prompt("Please Enter your Password", "")
+            var check = await fetch('/api/coaches/').then(data => data.json())
+            var flag = false;
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].password == password) {
+                    var coach = check[i].coach_id;
+                    flag = true;
+                }
             }
-            var submit = location + "_" + date + "_" + time + "_" + 2 + "_" + out + "_" + bus + "_" + home + "_" + school1 + "_" + school2;
-            fetch("/api/setMeet/" + submit, {
-                headers: { 'Content-Type': 'application/json' },
-                method: "POST",
-                // body: JSON.stringify(submitRaces)
-            }).then(response => response.json())
-                .then(json => console.log(json))
-                .catch(err => console.log(err));
-            window.location.reload();
+            if (flag) {
+                location = location.replace(/ /g, "-");
+                date = date.replace(/\//g, "&")
+                schools = schools.split(", ");
+                school1 = schools[0];
+                school2 = schools[1];
+                if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "Saint Joseph Region" || schools[0] == "State") {
+                    school1 = -1;
+                    school2 = null;
+                }
+                var submit = location + "_" + date + "_" + time + "_" + 2 + "_" + out + "_" + bus + "_" + home + "_" + school1 + "_" + school2;
+                fetch("/api/setMeet/" + submit, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                    // body: JSON.stringify(submitRaces)
+                }).then(response => response.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err));
 
+                var today = new Date();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                var location = window.location.pathname;
+                location = location.split('/');
+                location = location[1];
+                location = location.split('.html')
+                location = location[0]
+                var changes = date + "_" + coach + "_" + location + "_" + "added" + "_" + submit;
+                // console.log(changes)
+                fetch("/api/logChanges/" + changes, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                }).then(response => response.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err));
+                window.location.reload();
+            }
+            else {
+                alert("You don't have access to add people")
+            }
             // alert("Not Available Yet")
         }
 
