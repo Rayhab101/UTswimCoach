@@ -4,26 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team - Test Page</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BL/SJ Swim Team- Compare</title>
     <link rel="stylesheet" href="swim.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
-        integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
-
-    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script>
         $(function () {
             $("#header").load("heading.html");
@@ -31,174 +17,449 @@
         });
     </script>
     <style>
+        table{
+            background-color: white;
+            width: 15vw;
+            
+        }
+        td{
+text-align: center;
+height: 20px;
+        }
+        .container{
+            display: flex;
+            align-items: start;
+        }
+
+        /* @media screen and (min-width:750px){
         .container {
             display: flex;
-            flex-wrap: wrap;
-            width:90vw;
-            height: 85vh;
         }
 
-        #swimmers {
+
+        table {
             background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-        }
-
-        #schedule {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-        }
-
-        #iResults {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-
-        }
-        #rResults {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-
-        }
-
-        #home_page {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-        }
-
-        #ben_lomond {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-        }
-
-        #coaches {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-        }
-
-        #nextMeet {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-        }
-
-        #st_josephs {
-            background-color: white;
-            border-radius: 5px;
-            height: 20vh;
-            width: 18vw;
-        }
-
-        h1 {
-            text-align: center;
+            width: 15vw;
         }
 
         td {
-            width: 14%;
+            text-align: center;
+            height: 20px;
         }
+
+    }
+    @media screen and (max-width:750px){
+        .container {
+            display: flex;
+        }
+
+        .swim_style {
+            padding-top: 125px;
+        }
+
+        table {
+            background-color: white;
+            width: 100%;
+            font-size: xx-small;
+        }
+
+        #compare {
+            font-size: xx-small;
+        }
+
+        td {
+            text-align: center;
+            height: 20px;
+        }
+
+        .t2 {
+            display:none;
+        }
+    } */
     </style>
-    <script>
-        function load() {
-            document.getElementById('hotKeys').style.display = 'block';
-        }
-    </script>
+
 </head>
 <header id="header"></header>
-<body onload="load()">
-    <main class="swim_info">
-        <div id="hotKeys">
-            <div class="container">
-                <button id="swimmers">
-                    <h1>Update Swimmers</h1>
-                    <i class="fas fa-swimmer" style="font-size: 2em;"></i>
-                </button>
-                <button id="schedule">
-                    <h1>Update Schedule</h1>
-                    <i class="fas fa-calendar" style="font-size: 2em;"></i>
-                </button>
-                <button id="coaches">
-                    <h1>Update Coaches</h1>
-                    <i class="fas fa-user-edit" style="font-size: 2em;"></i>
-                </button>
-                <button id="iResults">
-                    <h1>Meet Results - Individuals</h1>
-                    <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
-                </button>
-                <button id="rResults">
-                    <h1>Meet Results - Relays</h1>
-                    <i class="fas fa-swimming-pool" style="font-size: 2em;"></i>
-                </button>
-                <button id="home_page">
-                    <h1>Home Page Blog</h1>
-                    <i class="fas fa-window-maximize" style="font-size: 2em;"></i>
-                </button>
-                <button id="nextMeet">
-                    <h1>Next Meet</h1>
-                    <i class="fas fa-user-check" style="font-size: 2em;"></i>
-                </button>
-                <button id="ben_lomond">
-                    <h1>Ben Lomond</h1>
-                    <i class="fas fa-address-card" style="font-size: 2em;"></i>
-                </button>
-                <button id="st_josephs">
-                    <h1 sytle="margin-bottom:0">Saint Joseph</h1>
-                    <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
-                </button>
+<body onload="buildPage()">
+    <div class="swim_style">
+        <div class="container">
+            <table class="t0">
                 
-            </div>
+                <tr>
+                    <th>Races:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>200 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>200 IM:</td>
+                </tr>
+                <tr>
+                    <td>50 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>100 Butterfly:</td>
+                </tr>
+                <tr>
+                    <td>100 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>500 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>100 Backstroke:</td>
+                </tr>
+                <tr>
+                    <td>100 Breaststroke:</td>
+                </tr>
+            </table>
+            <table class="t1" id="individual">
+                <tr>
+                    <th>Name:</th>
+                </tr>
+                <tr>
+                    <td><select id="compare" onchange="nameFill()"></select></td>
+                </tr>
+            </table>
+            <table class="t2" id="compareOther">
+                <tr>
+                    <th>Other Swimmer:</th>
+                </tr>
+                <tr>
+                    <td><select id="other" onchange="otherNameFill()"></select></td>
+                </tr>
+            </table>
+            <table class="t3" id="schoolRecord">
+                <tr>
+                    <th>School</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <table class="t4" id="stateRecord">
+                <tr>
+                    <th>State</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
         </div>
-    </main>
-    
+    </div>
+
 </body>
 <footer id="footer"></footer>
 <script>
-    
-    $("button").click(function () {
-        //alert(this.id); // or alert($(this).attr('id'));
-        // document.getElementById('hotKeys').style.display = 'none';
-        switch (this.id) {
-            case 'swimmers':
-                window.location.href = "updateSwimmers.html";
-                break;
-            case 'schedule':
-            window.location.href = "updateSchedule.html";
-                break;
-            case 'iResults':
-            window.location.href = "updateIndividualResults.html";
-                break;
-                case 'rResults':
-            window.location.href = "updateRelayResults.html";
-                break;
-            case 'coaches':
-            window.location.href = "updateCoaches.html";
-                break;
-            case 'home_page':
-            window.location.href = "updateHomePage.html";
-                break;
-            case 'ben_lomond':
-            window.location.href = "updateBenLomond.html";
-                break;
-            case 'st_josephs':
-            window.location.href = "updateSaintJosephs.html";
-                break;
-            case 'nextMeet':
-                window.location.href = "nextMeet.html";
-                break;
+
+    async function checkSchoolRecord(id,race,min,cell){
+        
+        var swimmerData = await fetch('/api/swimmers/'+id).then(data =>  data.json())
+        var school = swimmerData[0].school;
+        fetch('/api/schoolRecord/'+race+"&"+school)
+        .then(function (response) {
+                return response.json();
+            })
+            .then(function (record) {
+                // console.log(record[0].time)
+                // console.log(min)
+                if(record[0].time==min){
+                    document.getElementById(cell.id).style.backgroundColor = "LightGreen";
+                }
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function buildPage() {
+        var school = location.search.substring(1);
+        school = school.split("=");
+        school = Number(school[1]);
+        fetch("/api/swims/" + school)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                buildDropdown(myJson, school);
+                buildOtherDropdown(myJson, school);
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function buildDropdown(people) {
+        var ddlSwimmers = document.getElementById("compare");
+        // document.getElementById("insert").setAttribute("hidden", true);
+        var head = document.createElement("OPTION");
+        head.innerHTML = "Select Swimmer";
+        ddlSwimmers.options.add(head);
+        for (var i = 0; i < people.length; i++) {
+            var option = document.createElement("OPTION");
+            option.setAttribute("id", i);
+            option.innerHTML = people[i].name;
+            ddlSwimmers.options.add(option);
         }
-    });
+    }
+
+    function buildOtherDropdown(people) {
+        var ddlSwimmers = document.getElementById("other");
+        // document.getElementById("insert").setAttribute("hidden", true);
+        var head = document.createElement("OPTION");
+        head.innerHTML = "Select Swimmer";
+        ddlSwimmers.options.add(head);
+        for (var i = 0; i < people.length; i++) {
+            var option = document.createElement("OPTION");
+            option.setAttribute("id", i);
+            option.innerHTML = people[i].name;
+            ddlSwimmers.options.add(option);
+        }
+    }
+
+    function pullPerson(id, race, body, row, cell) {
+        fetch('/api/individualRecords/' + id + "&" + race)
+            .then(function (response) {
+                if (response.status == 200) {
+                    return response.json();
+                }
+            }).then(function (records) {
+                if (records[0].min === null) {
+                    var text = "";
+                }
+                else {
+                    text = records[0].min;
+                }
+                checkSchoolRecord(id,race,text,cell);
+                document.getElementById(cell.id).innerHTML = text;
+            }).catch(function (error) {
+                console.log("Error: " + error);
+            });
+
+    }
+
+    function recordPull(id, gender) {
+        var relays = [1, 8, 11, 12, 19, 22];
+        if ($('#individual').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("individual").deleteRow(d);
+            }
+        }
+        var body = document.getElementById('individual');
+        if (gender == "M") {
+            for (var j = 12; j < 22; j++) {
+                if (!relays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "u" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
+                }
+
+            }
+        }
+        else {
+            for (var j = 1; j < 12; j++) {
+                if (!relays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "u" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
+                }
+
+            }
+        }
+    }
+
+    function otherRecordPull(id, gender) {
+        var relays = [1, 8, 11, 12, 19, 22];
+
+        if ($('#compareOther').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("compareOther").deleteRow(d);
+            }
+        }
+        var body = document.getElementById('compareOther');
+        if (gender == "M") {
+            for (var j = 12; j < 22; j++) {
+                if (!relays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "o" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
+                }
+            }
+        }
+        else {
+            for (var j = 1; j < 12; j++) {
+                if (!relays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "o" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(id, j, body, row, cell);
+                }
+            }
+        }
+    }
+
+    function schoolPull(school, cell, race){
+        fetch('/api/schoolRecord/'+race+"&"+school)
+        .then(function (response) {
+                return response.json();
+            })
+            .then(function (record) {
+                document.getElementById(cell.id).innerHTML = record[0].time;
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function schoolRecord(school, gender) {
+        if ($('#schoolRecord').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("schoolRecord").deleteRow(d);
+            }
+        }
+        var relays = [1, 8, 11, 12, 19, 22];
+        var body = document.getElementById('schoolRecord');
+        if (gender == "M") {
+            for (var i = 12; i < 22; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "sr" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    schoolPull(school, cell, i)
+                }
+            }
+        }
+        else {
+            for (var i = 1; i < 12; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "sr" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    schoolPull(school, cell, i)
+                }
+            }
+        }
+    }
+
+    function statePull(race,cell){
+        fetch('/api/races/'+race)
+        .then(function (response) {
+                return response.json();
+            })
+            .then(function (state) {
+                document.getElementById(cell.id).innerHTML = state[0].sr_time;
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function stateRecord(gender) {
+        if ($('#stateRecord').children().length > 1) {
+            for (var d = 9; d > 1; d--) {
+                document.getElementById("stateRecord").deleteRow(d);
+            }
+        }
+        var relays = [1, 8, 11, 12, 19, 22];
+        var body = document.getElementById('stateRecord');
+        if (gender == "M") {
+            for (var i = 12; i < 22; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "st" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    statePull(i,cell);
+                }
+            }
+        }
+        else {
+            for (var i = 1; i < 12; i++) {
+                if (!relays.includes(i)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', "st" + i)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    statePull(i,cell);
+                }
+            }
+        }
+    }
+
+    function tableFill(name) {
+        fetch("/api/swimmerName/" + name)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                //console.log(myJson[0].swimmer_id)
+                recordPull(myJson[0].swimmer_id, myJson[0].gender)
+                schoolRecord(myJson[0].school, myJson[0].gender)
+                stateRecord(myJson[0].gender)
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function otherTableFill(name) {
+        //console.log(name)
+        fetch("/api/swimmerName/" + name)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                //console.log(myJson)
+                otherRecordPull(myJson[0].swimmer_id, myJson[0].gender)
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function nameFill() {
+        //document.getElementsById("btn").disabled = false;
+        var checkOption = document.getElementById("compare");
+        var name = checkOption.value;
+        var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
+        if (name != "Select Swimmer") {
+            //console.log(name)
+            tableFill(name);
+        }
+    }
+
+    function otherNameFill() {
+        //document.getElementsById("btn").disabled = false;
+        var checkOption = document.getElementById("other");
+        var name = checkOption.value;
+        var number = document.getElementById("other").options[checkOption.selectedIndex].id;
+        if (name != "Select Swimmer") {
+            otherTableFill(name);
+        }
+    }
+
+
+
 </script>
 
 </html>
