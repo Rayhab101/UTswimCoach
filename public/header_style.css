@@ -210,6 +210,8 @@ hr {
     justify-content: end;
     text-align: right;
     color: white;
+    width:40px;
+    height: 35px;
   }
   .coachBtn {
     display: none;
@@ -233,6 +235,7 @@ hr {
   h3 {
     font-size: 16px;
   }
+
 }
 
 .navbar {
