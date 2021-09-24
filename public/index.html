@@ -25,6 +25,7 @@
             display: flex;
             justify-content: space-evenly;
             flex-wrap: wrap;
+            /* overflow: hidden; */
             /* padding-left: 50px;
             padding-right: 90px; */
         }
@@ -47,19 +48,27 @@
 
         @media only screen and (max-width: 700px) {
             .container2 {
-                /* height: 100%; */
-                width: 100vh;
+                height: 85vh;
+                width: 100vw;
                 /* padding-left: auto; */
-                            display: flex;
-            justify-content: space-evenly;
-            flex-wrap: wrap;
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
 
             }
-
-            body {
+            .welcome {
+            /* padding-top: 100px; */
+            color: white;
+            font-size: larger;
+            background-color: rgba(0, 0, 0, 0.6);
+            text-align: center;
+            width: 100vw;
+            margin-top: 100px;
+        }
+            /* body {
                 height: 50%;
                 width: 50%;
-            }
+            } */
 
             /* .pic {
                 width: 50%;
@@ -79,6 +88,7 @@
 
         table {
             background-color: whitesmoke;
+            visibility: visible;
         }
 
         body {
@@ -125,7 +135,7 @@
                         <td>Home</td>
                     </strong></tr>
                 <tr><strong>
-                        <td>TBA</td>
+                        <td>09/24/2021</td>
                         <td>Swim Meeting @The Pool</td>
                         <td>3:00 PM</td>
                         <td></td>
@@ -141,8 +151,8 @@
                         <td></td>
                     </strong></tr>
                 <tr><strong>
-                        <td>TBA</td>
-                        <td>Parents Meeting @The Pool</td>
+                        <td>09/30/2021</td>
+                        <td>Parents Meeting RM. 311</td>
                         <td>6:00 PM</td>
                         <td></td>
                         <td></td>
@@ -225,10 +235,10 @@
                             });
                         }
                     }
-                    else{
+                    else {
                         // console.log("Hello")
-                        var school1 = [{school_id:'-1', name:'Multi Team', photo:'./Utah_test.png'}];
-                        
+                        var school1 = [{ school_id: '-1', name: 'Multi Team', photo: './Utah_test.png' }];
+
                     }
                     // console.log(school1);
                     // console.log(meets)
@@ -240,7 +250,7 @@
                         var day = Number(splice[1]);
                         var nextMeet = new Date(year, month, day);
                         var who;
-                        
+
                         if ((nextMeet - today) > 0) {
                             if (school1[0].school_id == '6') {
                                 img.setAttribute("src", "./images/BLHS-logo-good.png");
