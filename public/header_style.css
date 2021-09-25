@@ -174,6 +174,11 @@ hr {
     text-align: center;
     font-size: 12px;
   }
+  header img {
+    width: 45px;
+    height: 45px;
+    margin-top: 10px;
+  }
 }
 /*
 @media screen and (max-width:770px) and (min-width: 700px){
