@@ -182,11 +182,31 @@
                 schools = schools.split(", ");
                 school1 = schools[0];
                 school2 = schools[1];
-                if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "Saint Joseph Region" || schools[0] == "State") {
+                if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "State") {
                     school1 = -1;
                     school2 = null;
                 }
-                var submit = location + "_" + date + "_" + time + "_" + 2 + "_" + out + "_" + bus + "_" + home + "_" + school1 + "_" + school2;
+                else {
+                    var school_id = await fetch('/api/schools/').then(data => data.json())
+
+                    for (var i = 0; i < school_id.length; i++) {
+                        if (school1 == school_id[i].name) {
+                            console.log("Hey")
+                            var school1_id = (school_id[i].school_id);
+                            break;
+                        }
+                    }
+
+                    for (var j = 0; j < school_id.length; j++) {
+                        if (school2 == school_id[j].name) {
+                            console.log("Ho")
+                            var school2_id = (school_id[j].school_id);
+                            break;
+                        }
+                    }
+                }
+                var submit = location + "_" + date + "_" + time + "_" + 2 + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id;
+                console.log(submit)
                 fetch("/api/setMeet/" + submit, {
                     headers: { 'Content-Type': 'application/json' },
                     method: "POST",
@@ -203,14 +223,14 @@
                 location = location.split('.html')
                 location = location[0]
                 var changes = date + "_" + coach + "_" + location + "_" + "added" + "_" + submit;
-                // console.log(changes)
+                console.log("1:" + changes)
                 fetch("/api/logChanges/" + changes, {
                     headers: { 'Content-Type': 'application/json' },
                     method: "POST",
                 }).then(response => response.json())
                     .then(json => console.log(json))
                     .catch(err => console.log(err));
-                window.location.reload();
+                // window.location.reload();
             }
             else {
                 alert("You don't have access to add people")

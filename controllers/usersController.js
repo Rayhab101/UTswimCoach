@@ -353,7 +353,7 @@ module.exports = {
         var home = idSplit[6];
         var school1 = Number(idSplit[7]);
         var school2 = Number(idSplit[8]);
-        console.log(typeof school2)
+        // console.log(typeof school2)
         if(Number.isNaN(school2)){
             school2=null;
         }
