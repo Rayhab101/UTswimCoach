@@ -98,15 +98,34 @@
                         cell.appendChild(text);
                         var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meets[i].out);
+                        if(meets[i].out==null || meets[i].out=="null" ){
+                            out="";
+                        }
+                        else{
+                            out = meets[i].out
+                        }
+                        text = document.createTextNode(column.innerHTML = out);
                         cell.appendChild(text);
                         var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meets[i].bus);
+                        console.log(meets[i].bus)
+                        if(meets[i].bus==null || meets[i].bus=="null" ){
+                            bus="";
+                        }
+                        else{
+                            bus = meets[i].bus
+                        }
+                        text = document.createTextNode(column.innerHTML = bus);
                         cell.appendChild(text);
                         var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meets[i].home);
+                        if(meets[i].home==null || meets[i].home=="null" ){
+                            home="";
+                        }
+                        else{
+                            home = meets[i].home
+                        }
+                        text = document.createTextNode(column.innerHTML = home);
                         cell.appendChild(text);
                         var column = document.createElement("td");
                         var cell = row.insertCell();
@@ -182,9 +201,9 @@
                 schools = schools.split(", ");
                 school1 = schools[0];
                 school2 = schools[1];
-                if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "State") {
-                    school1 = -1;
-                    school2 = null;
+                if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "County" || schools[0] == "State") {
+                    school1_id = -1;
+                    school2_id = null;
                 }
                 else {
                     var school_id = await fetch('/api/schools/').then(data => data.json())
