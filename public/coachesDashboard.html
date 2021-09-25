@@ -35,7 +35,7 @@
             display: flex;
             flex-wrap:wrap;
             width:90vw;
-            height: 75vh;
+            height: 55vh;
             justify-content: space-around;
         }
         @media screen and (min-width:750px){
@@ -113,10 +113,16 @@
 
     @media screen and (max-width:750px){
 
+        .container {
+            width:90vw;
+            height: 55vh;
+        }
         .container h1{
             font-size: small;
         }
-
+        .h1{
+            display:none;
+        }
         #swimmers {
             background-color: white;
             border-radius: 5px;
@@ -196,7 +202,7 @@
 <header id="header"></header>
     <body>
     <main class="swim_info">
-        <h1 style="color:white;background-color:rgba(0,0,0,0.6); text-align:center;">WELCOME TO THE COACHES DASHBOARD</h1>
+        <h1 class="h1" style="color:white;background-color:rgba(0,0,0,0.6); text-align:center;">WELCOME TO THE COACHES DASHBOARD</h1>
             <div class="container">
                 <button id="swimmers">
                     <h1>Update Swimmers</h1>
