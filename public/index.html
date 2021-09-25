@@ -333,7 +333,7 @@
                         var cell = row.insertCell();
 
                         // console.log(meets[j].out == null)
-                        if (meets[j].out == null) {
+                        if (meets[j].out == null || meets[j].out == "null") {
                             var text = document.createTextNode(column.innerHTML = "");
                         }
                         else {
@@ -342,7 +342,7 @@
 
                         cell.appendChild(text);
                         var cell = row.insertCell();
-                        if (meets[j].bus == null) {
+                        if (meets[j].bus == null|| meets[j].bus == "null") {
                             var text = document.createTextNode(column.innerHTML = "");
                         }
                         else {
@@ -351,7 +351,7 @@
 
                         cell.appendChild(text);
                         var cell = row.insertCell();
-                        if (meets[j].home == null) {
+                        if (meets[j].home == null || meets[j].home == "null") {
                             var text = document.createTextNode(column.innerHTML = "");
                         }
                         else {
