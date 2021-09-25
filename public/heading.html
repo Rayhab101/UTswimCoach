@@ -104,10 +104,10 @@
 
     function myFunction() {
   var x = document.getElementById("smNav");
-  if (x.style.display === "block") {
+  if (x.style.display === "flex") {
     x.style.display = "none";
   } else {
-    x.style.display = "block";
+    x.style.display = "flex";
   }
 }
 
@@ -164,7 +164,7 @@
             </nav>
             <div class="navbar1">
                 <a style="color:white" href="javascript:void(0);" class="icon" onclick="myFunction()">
-                    <i class="fas fa-water" style="font-size: 4em;"></i>
+                    <i id="water" class="fas fa-water" style="font-size: 3em;"></i>
                   </a>
             </div>
         </header>
@@ -208,27 +208,5 @@
                     </div>
         </div>
     </div>
-    <!-- <div id="abc">
-         Popup Div Starts Here
-        <div id="popupContact">
-            Contact Us Form
-            <form id="form" method="post" name="form">
-                <h2>Coach Sign-In</h2>
-                <hr>
-                <input class="text" id="email" name="email" placeholder="Email" type="text" required>
-                <br>
-                <br>
-                <input class="text" id="password" name="password" placeholder="Password" type="password" required>
-                <br>
-                <br>
-                <div class="btns">
-                    <a href="javascript:%20check_empty(document.getElementById('email'), document.getElementById('password'))"
-                        id="submit">Send</a>
-                    <a href="javascript:%20div_hide()" id="cancel">Cancel</a>
-                </div>
-            </form>
-        </div>
-        Popup Div Ends Here
-    </div> -->
 </body>
 </html>

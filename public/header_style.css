@@ -36,7 +36,7 @@ header h1 {
 header img {
   width: 70px;
   height: 70px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 header nav {
@@ -221,8 +221,9 @@ hr {
     background-color: darkblue;
   }
   .smNav {
-    padding-top: 120px;
+    padding-top: 100px;
   }
+
   .dropdown-content {
     display: none;
     position: absolute;
