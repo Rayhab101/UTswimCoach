@@ -61,36 +61,36 @@
             });
     }
 
-    function check_empty(email, password) {
-        if (email.value == '' || password.value == '') {
-            alert("All fields Required");
-        } 
-        else {
-            //console.log(email.value);
-            fetch("/api/coachLogIn/"+email.value)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
+    // function check_empty(email, password) {
+    //     if (email.value == '' || password.value == '') {
+    //         alert("All fields Required");
+    //     } 
+    //     else {
+    //         //console.log(email.value);
+    //         fetch("/api/coachLogIn/"+email.value)
+    //             .then(function (response) {
+    //                 return response.json();
+    //             })
+    //             .then(function (myJson) {
 
-                    if(myJson.length == 0 || password.value !== myJson[0].password || typeof myJson[0]===undefined){
-                        alert("Username/password is not correct");
-                    }
-                    else{
-                        console.log(myJson);
+    //                 if(myJson.length == 0 || password.value !== myJson[0].password || typeof myJson[0]===undefined){
+    //                     alert("Username/password is not correct");
+    //                 }
+    //                 else{
+    //                     console.log(myJson);
 
-                    //document.getElementById('form').action = "./coachesDashboard.html?coachid="+myJson[0].coach_id;
-                    //location.reload();
-                    document.getElementById('form').submit();
-                    window.location.replace("./coachesDashboard.html?coachid="+myJson[0].coach_id);
-                    //alert("Form Submitted Successfully...");
-                    }
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
-        }
-    }
+    //                 //document.getElementById('form').action = "./coachesDashboard.html?coachid="+myJson[0].coach_id;
+    //                 //location.reload();
+    //                 document.getElementById('form').submit();
+    //                 window.location.replace("./coachesDashboard.html?coachid="+myJson[0].coach_id);
+    //                 //alert("Form Submitted Successfully...");
+    //                 }
+    //             })
+    //             .catch(function (error) {
+    //                 console.log("Error: " + error);
+    //             });
+    //     }
+    // }
 
     // Function To Display Popup
     function div_show() {
@@ -119,8 +119,6 @@
             <a href="index.html" id="headerPhoto"><img id="headingPhoto"></a>
             <!-- <h1>Utah Swim Coaches Association</h1> -->
             <h1 id="headerName">Ben Lomond Swim Team</h1>
-            <!-- <button class="coachBtn" id="coachBtn" onclick="div_show()">Coach Log-in</button> -->
-
             <nav>
                 <div class="navbar">
                     <a href="index.html">Home</a>
