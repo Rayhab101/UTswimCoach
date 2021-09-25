@@ -33,11 +33,11 @@
     <style>
         .container {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap:wrap;
             width:90vw;
             height: 85vh;
         }
-
+        @media screen and (min-width:750px){
         #swimmers {
             background-color: white;
             border-radius: 5px;
@@ -108,23 +108,93 @@
             height: 20vh;
             width: 18vw;
         }
+    }
 
-        h1 {
-            text-align: center;
+    @media screen and (max-width:750px){
+        #swimmers {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
         }
 
-        td {
-            width: 14%;
+        #schedule {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
         }
+
+        #iResults {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+
+        }
+        #rResults {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+
+        }
+
+        #home_page {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+        }
+
+        #ben_lomond {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+        }
+
+        #coaches {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+        }
+
+        #nextMeet {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+        }
+
+        #addTimes {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+        }
+
+        #st_josephs {
+            background-color: white;
+            border-radius: 5px;
+            height: 10vh;
+            width: 36vw;
+        }
+
+    }
+
+
     </style>
-    <script>
+    <!-- <script>
         function load() {
-            document.getElementById('hotKeys').style.display = 'block';
+            document.getElementById('hotKeys').style.display = 'flex';
         }
-    </script>
+    </script> -->
 </head>
 <header id="header"></header>
-<body onload="load()">
+<!-- <body onload="load()"> -->
+    <body>
     <main class="swim_info">
         <h1 style="color:white;background-color:rgba(0,0,0,0.6); text-align:center;">WELCOME TO THE COACHES DASHBOARD</h1>
         <div id="hotKeys">
@@ -169,18 +239,14 @@
                     <h1 sytle="margin-bottom:0">Saint Joseph</h1>
                     <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
                 </button>
-                
             </div>
         </div>
     </main>
-    
 </body>
 <footer id="footer"></footer>
 <script>
     
     $("button").click(function () {
-        //alert(this.id); // or alert($(this).attr('id'));
-        // document.getElementById('hotKeys').style.display = 'none';
         switch (this.id) {
             case 'swimmers':
                 window.location.href = "updateSwimmers.html";
