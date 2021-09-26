@@ -139,11 +139,11 @@
         grid-column: 2;
     }
 
-    .schedule {
+    /* .schedule {
         background-color: transparent;
         grid-row: 1;
         grid-column: 1;
-    }
+    } */
     body {
         padding-top:10vh;
         height:80vh;
@@ -218,12 +218,12 @@
         grid-column: 1;
     }
 
-    .schedule {
+    /* .schedule {
         background-color: transparent;
         grid-row: 2;
         grid-column: 1;
         display:none;
-    }
+    } */
     .jayhawk {
         
         padding-top: 20px;
