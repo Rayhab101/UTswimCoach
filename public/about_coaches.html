@@ -74,49 +74,20 @@
                 flex-wrap: wrap;
                 overflow: scroll;
                 width: 90vw;
-                height: 65vh;
+                height: 75vh;
                 justify-content: center;
+                padding-top: 100px;
             }
 
-            body {
-                padding-top: 125px;
-            }
-
-            .swim_style {
-                height: 50%;
-            }
+            /* body {
+                padding-top: 120px;
+            } */
 
             .picture {
                 width: 45vw;
-                /* height: 125px; */
-                /* justify-items: center; */
-                /* padding-bottom: 30px; */
-            }
-
-            .head_coach {
-                grid-row: 1;
-                grid-column: 1;
-            }
-
-            .assistant_coach1 {
-                grid-row: 2;
-                grid-column: 1;
-            }
-
-            .assistant_coach2 {
-                grid-row: 3;
-                grid-column: 1;
-            }
-
-            .morning_coach {
-                grid-row: 4;
-                grid-column: 1;
             }
 
             .about {
-                padding-left: auto;
-                padding-right: auto;
-                grid-column: 1;
                 color: white;
                 background-color: rgba(0, 0, 0, .5);
             }
@@ -163,13 +134,9 @@
         }
     </script>
 </head>
-
+<header id="header"></header>
 <body onload="open()">
-    <header id="header"></header>
-    <main class="swim_style">
-        <div class="container" id="container"></div>
-    </main>
-    <footer id="footer"></footer>
+    <div class="container" id="container"></div>
 </body>
-
+<footer id="footer"></footer>
 </html>
