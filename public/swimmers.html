@@ -77,6 +77,10 @@
             overflow: auto;
         }
 
+        .swim_info{
+            padding-top:65px;
+        }
+
         .printPage {
             display: none;
         }
@@ -278,18 +282,18 @@
             });
     }
 
-    function getDate(id) {
-        fetch('/api/meets/' + id)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (fecha) {
-                console.log(fecha[0].date)
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
-    }
+    // function getDate(id) {
+    //     fetch('/api/meets/' + id)
+    //         .then(function (response) {
+    //             return response.json();
+    //         })
+    //         .then(function (fecha) {
+    //             console.log(fecha[0].date)
+    //         })
+    //         .catch(function (error) {
+    //             console.log("Error: " + error);
+    //         });
+    // }
 
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
         var minValue = minPull(stateRecord[0].y);
@@ -362,7 +366,7 @@
             })
             .then(function (events) {
                 var hide = document.getElementById(race_id);
-                console.log(events)
+                // console.log(events)
                 if (events.length != 0) {
                     var maxValue = maxPull(events[0].time)
                     var str = []
