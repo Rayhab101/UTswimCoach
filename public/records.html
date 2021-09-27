@@ -80,7 +80,7 @@
             border-radius: 6px;
             -moz-border-radius: 6px;
             font-size: 7px;
-            
+            padding-top: 65px;
         }
 
         table{
@@ -136,7 +136,7 @@
     <script>
         function recordPull(race, cell, school) {
             var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.id[1])
+            // console.log(cell.id[1])
             race = cell.id[1] == "g" ? race : race+11;
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
@@ -150,7 +150,7 @@
                             return response.json();
                         })
                         .then(function (swimmer){
-                            console.log(swimmer)
+                            // console.log(swimmer)
                             document.getElementById(cell.id).innerHTML = swimmer[0].name;
                         })
                     }).catch(function (error) {
@@ -174,7 +174,7 @@
 
         function timePull(race,cell,school){
             var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.id[1])
+            // console.log(cell.id[1])
             race = cell.id[1] == "g" ? race : race+11;
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
@@ -205,7 +205,7 @@
 
         function yearPull(race,cell,school){
             var relays = [1, 8, 11, 12, 19, 22]
-            console.log(cell.id[1])
+            // console.log(cell.id[1])
             race = cell.id[1] == "g" ? race : race+11;
             if (!relays.includes(race)) {
                 fetch('/api/schoolRecord/' + race + "&" + school)
@@ -306,9 +306,9 @@
         }
     </script>
 </head>
-
+<header id="header"></header>
 <body onload="pullSchool()">
-    <header id="header"></header>
+    
     <main class="swim_info">
         <div class="container1" id="container1">
             <table class="swimmer_data1" id="girlRecords">
@@ -339,7 +339,7 @@
             </table>
         </div>
     </main>
-    <footer id="footer"></footer>
+    
 </body>
-
+<footer id="footer"></footer>
 </html>
