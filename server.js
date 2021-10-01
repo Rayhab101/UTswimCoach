@@ -132,7 +132,7 @@ app.get('/api/top50/:id', userctrl.getTop50)
 app.get('/api/top100/:id', userctrl.getTop100)
 // Gets State Qualified of Utah
 app.get('/api/stateQualified/:id', userctrl.getStateQualified)
-app.get('/api/stateQualifiedRelays/:id', userctrl.getStateQualifiedRelays)
+app.get('/api/stateQualifiedRelays', userctrl.getStateQualifiedRelays)
 // Gets relay times
 app.get('/api/relayTimes/:id', userctrl.getRelayTimes)
 app.get('/api/relaysTimes', userctrl.getRelaysTimes)

@@ -217,11 +217,11 @@ module.exports = {
         }).catch(err => (res.sendStatus(500)))
     },
     getStateQualifiedRelays: (req,res) => {
-        const {id}=req.params;
+        // const {id}=req.params;
         const db = req.app.get("db");
-        var newId = id.split("_");
+        // var newId = id.split("_");
         // console.log(id);
-        db.get_topStateQualifiedRelays(newId[0],newId[1]).then(stateQualifed => {
+        db.get_topStateQualifiedRelays().then(stateQualifed => {
             //console.log(school);
             return res.status(200).send(stateQualifed)
         }).catch(err => (res.sendStatus(500)))

@@ -464,6 +464,7 @@
     function t50(i) {
         var r = [1, 8, 11, 12, 19, 22]
         var status = 1;
+        var id=0;
         if (r.includes(i)) {
             fetch("/api/races/" + i)
                 .then(function (responseRelay) {
@@ -477,9 +478,10 @@
                             return responseRace.json();
                         })
                         .then(async function (race) {
-                            var id = i
-                            var state = await fetch("/api/stateQualified/"+id).then(data => data.json());
-                            // console.log(state)
+                            id++
+                            var state = await fetch("/api/stateQualified/"+i).then(data => data.json());
+                            console.log(state);
+                            console.log(id);
                             // if(state[0].race_time == race[j].time){console.log("Hello")}
                             var newLength = race.length>50 ? 50 : race.length;
                             for (var j = 0; j < newLength; j++) {
