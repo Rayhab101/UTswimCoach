@@ -68,7 +68,7 @@
 
         .container {
             width: 1250px;
-            height: 555px;
+            height: 85vh;
             overflow: auto;
         }
     }
@@ -124,7 +124,7 @@
 
         .container {
             width: auto;
-            height: 555px;
+            height: 85vh;
             overflow: auto;
         }
         #topHeader{
@@ -484,8 +484,8 @@
                             var newLength = race.length>50 ? 50 : race.length;
                             for (var j = 0; j < newLength; j++) {
                                 // console.log(state[0].race_time)
-                                // console.log(race[j].time)
-                                // if(state[0].race_time < race[j].time){console.log("Hello")}
+                                // console.log(state[0].race_time <= race[j].time)
+                                // if(state[0].race_time <= race[j].time){console.log("Hello")}
                                 var row = document.createElement("tr");
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
