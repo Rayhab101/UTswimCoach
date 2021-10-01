@@ -476,10 +476,16 @@
                         .then(function (responseRace) {
                             return responseRace.json();
                         })
-                        .then(function (race) {
-                            console.table(race)
+                        .then(async function (race) {
+                            var id = i
+                            var state = await fetch("/api/stateQualified/"+id).then(data => data.json());
+                            // console.log(state)
+                            // if(state[0].race_time == race[j].time){console.log("Hello")}
                             var newLength = race.length>50 ? 50 : race.length;
                             for (var j = 0; j < newLength; j++) {
+                                // console.log(state[0].race_time)
+                                // console.log(race[j].time)
+                                // if(state[0].race_time < race[j].time){console.log("Hello")}
                                 var row = document.createElement("tr");
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
@@ -520,8 +526,10 @@
                         .then(function (responseChart) {
                             return responseChart.json();
                         }) 
-                        .then(function (chart) {
-                            //console.log(chart)
+                        .then(async function (chart) {
+                            var id = i
+                            var state = await fetch("/api/stateQualified/"+id).then(data => data.json());
+                            // console.log(state[0].race_time)
                             var t50 = chart.length;
                             t50 = t50 > 50 ? t50 = 50 : t50 = chart.length;
                             for (var j = 0; j < t50; j++) {

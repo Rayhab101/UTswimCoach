@@ -124,7 +124,7 @@
 
         .container {
             width: auto;
-            height: 555px;
+            height: 85vh;
             overflow: auto;
         }
         #topHeader{
@@ -135,9 +135,8 @@
     }
     </style>
 </head>
-
+<header id="header"></header>
 <body class="swim_info" onload="tops()">
-    <header id="header"></header>
     <div class="container">
         <table id="topHeader">
             <th>Top Swimmers from 2020 - Present</th>
@@ -429,9 +428,8 @@
             <div>&nbsp;</div>
         </div>
     </div>
-    
-    <footer id="footer"></footer>
 </body>
+<footer id="footer"></footer>
 <script>
     function pullSwimmer(name, column, cell) {
         fetch("/api/swim/" + name)

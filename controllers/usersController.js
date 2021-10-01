@@ -209,7 +209,19 @@ module.exports = {
     getStateQualified: (req,res) => {
         const {id}=req.params;
         const db = req.app.get("db");
-        db.get_coach_schools(id).then(stateQualifed => {
+        var newId = id.split("_");
+        // console.log(newId);
+        db.get_topStateQualified(Number(newId[0]),newId[1]).then(stateQualifed => {
+            //console.log(stateQualified);
+            return res.status(200).send(stateQualifed)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    getStateQualifiedRelays: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        var newId = id.split("_");
+        // console.log(id);
+        db.get_topStateQualifiedRelays(newId[0],newId[1]).then(stateQualifed => {
             //console.log(school);
             return res.status(200).send(stateQualifed)
         }).catch(err => (res.sendStatus(500)))
