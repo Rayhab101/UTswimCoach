@@ -19,6 +19,7 @@
         @media only screen and (min-width: 700px) {
         .galleryPic {
             width: 30vw;
+            height: 50vh;
         }
 
         .container2 {
@@ -46,12 +47,6 @@
             font-size: small;
             width: 30vw;
         }
-        /* .schedule {
-            background-color: whitesmoke;
-            text-align: center;
-            font-size: small;
-
-        } */
 
         table {
             background-color: whitesmoke;
@@ -86,6 +81,15 @@
             font-size:14px;
             resize: none;
 
+        }
+        .state{
+            display: flex;
+            text-align: center;
+            width: 29.5vw; ;
+            height:10vh;
+            object-fit: cover;
+            position: relative; 
+            top: -105px;
         }
     }
         @media only screen and (max-width: 700px) {
@@ -152,6 +156,10 @@
             font-size:14px;
             resize: none;
         }
+        .state{
+            display: flex;
+            text-align: center;
+        }
         }
 
 
@@ -209,6 +217,10 @@
 
         <div class="w3-content w3-section">
             <img id="mySlides" class="galleryPic">
+            <div class="state">
+                <a href="./stateQualified.html"> <img src="./images/Utah_test.png" style="width:40%;"></a>
+                <!-- <h3>State Qualified Individuals</h3> -->
+            </div>
         </div>
         <div style="background-color: rgba(0, 0, 0, 0.6)">
             <h1 style="color:white; text-align: center; ">Next Meet</h1>

@@ -198,10 +198,10 @@ module.exports = {
             return res.status(200).send(top50)
         }).catch(err => (res.sendStatus(500)))
     },
-    getTop100: (req,res) => {
+    getState5: (req,res) => {
         const {id}=req.params;
         const db = req.app.get("db");
-        db.get_coach_schools(id).then(top100 => {
+        db.get_state5(id).then(top100 => {
             //console.log(school);
             return res.status(200).send(top100)
         }).catch(err => (res.sendStatus(500)))

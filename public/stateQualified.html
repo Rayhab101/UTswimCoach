@@ -477,17 +477,12 @@
                         .then(function (responseRace) {
                             return responseRace.json();
                         })
-                        .then(async function (race) {
-                            id++
-                            var state = await fetch("/api/stateQualified/"+i).then(data => data.json());
-                            console.log(state);
-                            console.log(id);
-                            // if(state[0].race_time == race[j].time){console.log("Hello")}
+                        .then(async function (race ) {
+                            var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
+                            console.log(document.body.children)
                             var newLength = race.length>50 ? 50 : race.length;
                             for (var j = 0; j < newLength; j++) {
-                                // console.log(state[0].race_time)
-                                // console.log(state[0].race_time <= race[j].time)
-                                // if(state[0].race_time <= race[j].time){console.log("Hello")}
+                                if(race[j].time <= state[i-1].race_time){
                                 var row = document.createElement("tr");
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
@@ -509,6 +504,7 @@
                                 body.appendChild(row);
                                 status++;
                             }
+                            }
                         }).catch(function (error) {
                             console.log("Error: " + error);
                         });
@@ -524,17 +520,17 @@
                 })
                 .then(function (race) {
                     var body = document.getElementById(race[0].title);
-                    fetch("/api/top50/" + i)
+                    fetch("/api/state5/" + i)
                         .then(function (responseChart) {
                             return responseChart.json();
                         }) 
                         .then(async function (chart) {
-                            var id = i
-                            var state = await fetch("/api/stateQualified/"+id).then(data => data.json());
-                            // console.log(state[0].race_time)
+                            var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
+                            // console.log(state[i].race_time)
                             var t50 = chart.length;
                             t50 = t50 > 50 ? t50 = 50 : t50 = chart.length;
                             for (var j = 0; j < t50; j++) {
+                                if(chart[j].time <= state[i-1].race_time){
                                 var row = document.createElement("tr");
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
@@ -551,6 +547,7 @@
                                 text = document.createTextNode(column.innerHTML = chart[j].time);
                                 cell.appendChild(text);
                                 body.appendChild(row);
+                                }
                             }
                         })
                         .catch(function (error) {
