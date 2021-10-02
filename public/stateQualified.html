@@ -470,16 +470,17 @@
                 .then(function (responseRelay) {
                     return responseRelay.json();
                 })
-                .then(function (relay) {
+                .then(async function (relay) {
                     //console.log(i)
                     var body = document.getElementById(relay[0].title);
+                    var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
+                    body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
                     fetch("/api/relayTimes5/" + i)
                         .then(function (responseRace) {
                             return responseRace.json();
                         })
                         .then(async function (race ) {
                             var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
-                            console.log(document.body.children)
                             var newLength = race.length>50 ? 50 : race.length;
                             for (var j = 0; j < newLength; j++) {
                                 if(race[j].time <= state[i-1].race_time){
@@ -518,8 +519,10 @@
                 .then(function (responseRaces) {
                     return responseRaces.json();
                 })
-                .then(function (race) {
+                .then(async function (race) {
                     var body = document.getElementById(race[0].title);
+                    var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
+                    body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
                     fetch("/api/state5/" + i)
                         .then(function (responseChart) {
                             return responseChart.json();
