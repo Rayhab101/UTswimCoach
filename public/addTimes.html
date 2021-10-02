@@ -281,7 +281,6 @@
                                 .catch(err => console.log(err));
                         }
                         else {
-                            console.log(meet,id,time)
                             alert("A needed component was not selected/added");
                             break;
                         }
@@ -304,17 +303,9 @@
             var meet = document.getElementById('meetsRelay').options[document.getElementById('meetsRelay').selectedIndex].id;
             var relay = document.getElementById('ddlEvents').options[document.getElementById('ddlEvents').selectedIndex].id;
             var name1 = document.getElementById('name1').options[document.getElementById('name1').selectedIndex].value;
-            // name1 = name1.split(" ");
-            // name1 = name1[0][0]+". "+name1[1];
             var name2 = document.getElementById('name2').options[document.getElementById('name2').selectedIndex].value;
-            // name2 = name2.split(" ");
-            // name2 = name2[0][0]+". "+name2[1];
             var name3 = document.getElementById('name3').options[document.getElementById('name3').selectedIndex].value;
-            // name3 = name3.split(" ");
-            // name3 = name3[0][0]+". "+name3[1];
             var name4 = document.getElementById('name4').options[document.getElementById('name4').selectedIndex].value;
-            // name4 = name4.split(" ");
-            // name4 = name4[0][0]+". "+name4[1];
             var names = name1+"&"+name2+"&"+name3+"&"+name4;
             names = names.replace(/ /g,'_');
             var time = document.getElementById('relayTime').value;
