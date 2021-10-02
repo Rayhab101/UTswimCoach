@@ -473,7 +473,7 @@
                 .then(function (relay) {
                     //console.log(i)
                     var body = document.getElementById(relay[0].title);
-                    fetch("/api/relayTimes/" + i)
+                    fetch("/api/relayTimes5/" + i)
                         .then(function (responseRace) {
                             return responseRace.json();
                         })
@@ -528,7 +528,7 @@
                             var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
                             // console.log(state[i].race_time)
                             var t50 = chart.length;
-                            t50 = t50 > 50 ? t50 = 50 : t50 = chart.length;
+                            t50 = t50 > 5 ? t50 = 5 : t50 = chart.length;
                             for (var j = 0; j < t50; j++) {
                                 if(chart[j].time <= state[i-1].race_time){
                                 var row = document.createElement("tr");

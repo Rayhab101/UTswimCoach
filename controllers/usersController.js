@@ -235,6 +235,15 @@ module.exports = {
             return res.status(200).send(school_relays)
         })
     },
+    getRelayTimes5: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        // console.log(id);
+        db.get_relay_times5(id).then(school_relays => {
+            //console.log(school_relays);
+            return res.status(200).send(school_relays)
+        })
+    },
     getRelaysTimes: (req,res) => {
         const {id}=req.params;
         const db = req.app.get("db");

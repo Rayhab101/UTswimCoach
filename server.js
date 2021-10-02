@@ -130,6 +130,7 @@ app.get('/api/schoolRecord/:id', userctrl.getRecordSchool)
 app.get('/api/top50/:id', userctrl.getTop50)
 // Gets State 5 of schools
 app.get('/api/state5/:id', userctrl.getState5)
+app.get('/api/relayTimes5/:id', userctrl.getRelayTimes5)
 // Gets State Qualified of Utah
 app.get('/api/stateQualified/:id', userctrl.getStateQualified)
 app.get('/api/stateQualifiedRelays', userctrl.getStateQualifiedRelays)
