@@ -66,6 +66,9 @@
                 })
                 .then(function (myJson) {
                     buildDropdown(myJson);
+                    relayDropdown();
+                    eventDropdown();
+                    nameDropdown(myJson);
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -85,6 +88,21 @@
             }
         }
 
+        function nameDropdown(people) {
+            for(var j=1;j<5;j++){
+                var ddlSwimmers = document.getElementById("name"+j);
+                var head = document.createElement("OPTION");
+                head.innerHTML = "Select Swimmer";
+                ddlSwimmers.options.add(head);
+                for (var i = 0; i < people.length; i++) {
+                    var option = document.createElement("OPTION");
+                    option.setAttribute("id", people[i].swimmer_id);
+                    option.innerHTML = people[i].name;
+                    ddlSwimmers.options.add(option);
+                }
+            }
+        }
+
         function meetDropdown() {
             fetch("/api/meets")
                 .then(function (response) {
@@ -101,6 +119,54 @@
                         option.innerHTML = meets[i].location;
                         ddlMeets.options.add(option);
                     }
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+
+        function relayDropdown() {
+            fetch("/api/meets")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (meets) {
+                    var ddlMeets = document.getElementById("meetsRelay");
+                    var head = document.createElement("OPTION");
+                    head.innerHTML = "Select Meet";
+                    ddlMeets.options.add(head);
+                    for (var i = 0; i < meets.length; i++) {
+                        var option = document.createElement("OPTION");
+                        option.setAttribute("id", meets[i].meet_id);
+                        option.innerHTML = meets[i].location;
+                        ddlMeets.options.add(option);
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+
+        function eventDropdown() {
+            fetch("/api/races")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (events) {
+                    var r =[1, 8, 11, 12, 19, 22]
+                    var ddlMeets = document.getElementById("ddlEvents");
+                            var head = document.createElement("OPTION");
+                            head.innerHTML = "Select Event";
+                            ddlMeets.options.add(head);
+                    for(var i = 0; i< events.length; i++){
+                        if(r.includes(events[i].race_id)){
+                            var option = document.createElement("OPTION");
+                                option.setAttribute("id", events[i].race_id);
+                                option.innerHTML = events[i].title;
+                                ddlMeets.options.add(option);
+                        }
+                    }
+
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -166,6 +232,11 @@
         }
 
         function nameFill() {
+            var row = document.getElementById("insert");
+            // console.log(row)
+            if(row!=null){
+                document.getElementById("individualTable").deleteRow(1);
+            }
             var checkOption = document.getElementById("ddlSwimmers");
             var name = checkOption.value;
             var number = document.getElementById("ddlSwimmers").options[checkOption.selectedIndex].id;
@@ -227,7 +298,65 @@
                 window.location.reload();
             }
         }
-    </script>
+
+        async function submitRelayTimes(){
+            var school = document.getElementById('schools').options[document.getElementById('schools').selectedIndex].id;
+            var meet = document.getElementById('meetsRelay').options[document.getElementById('meetsRelay').selectedIndex].id;
+            var relay = document.getElementById('ddlEvents').options[document.getElementById('ddlEvents').selectedIndex].id;
+            var name1 = document.getElementById('name1').options[document.getElementById('name1').selectedIndex].value;
+            // name1 = name1.split(" ");
+            // name1 = name1[0][0]+". "+name1[1];
+            var name2 = document.getElementById('name2').options[document.getElementById('name2').selectedIndex].value;
+            // name2 = name2.split(" ");
+            // name2 = name2[0][0]+". "+name2[1];
+            var name3 = document.getElementById('name3').options[document.getElementById('name3').selectedIndex].value;
+            // name3 = name3.split(" ");
+            // name3 = name3[0][0]+". "+name3[1];
+            var name4 = document.getElementById('name4').options[document.getElementById('name4').selectedIndex].value;
+            // name4 = name4.split(" ");
+            // name4 = name4[0][0]+". "+name4[1];
+            var names = name1+"&"+name2+"&"+name3+"&"+name4;
+            names = names.replace(/ /g,'_');
+            var time = document.getElementById('relayTime').value;
+            var password = prompt("Please Enter your Password", "")
+            var check = await fetch('/api/coaches/').then(data => data.json())
+            var flag = false;
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].password == password) {
+                    flag = true;
+                }
+            }
+            if (flag) {
+                var year = new Date().getFullYear();
+                // console.log(relay+"-"+names+"-"+time+"-"+school+"-"+year+"-"+meet+"-"+2)
+                    if (time.includes(':')) {
+                        
+                        var submitRaces = relay+"-"+names+"-"+time+"-"+school+"-"+year+"-"+meet+"-"+2;
+                        if (meet != undefined && names != "" && time != "" && relay!= undefined && school!=undefined) {
+                            fetch("/api/setRelayTimes/" + submitRaces, {
+                                headers: { 'Content-Type': 'application/json' },
+                                method: "POST",
+                                // body: JSON.stringify(submitRaces)
+                            }).then(response => response.json())
+                                .then(json => console.log(json))
+                                .catch(err => console.log(err));
+                        }
+                        else {
+                            // console.log(meet,id,time)
+                            alert("A needed component was not selected/added");
+                        }
+                    }
+                    else{
+                        alert("Your time doesn't fit basic time format");
+                    }
+                window.location.reload();
+            }
+            else {
+                var proceed = confirm("You dont have permission to add times into database");
+                window.location.reload();
+            }
+        }
+            </script>
 
 </head>
 <header id="header"></header>
@@ -237,7 +366,7 @@
         <h4 class="label">INDIVIDUAL EVENTS</h4>
         <table id="individualTable">
             <tr>
-                <td><select id="ddlSwimmers" onchange="nameFill()"></select></td>
+                <td><select id="ddlSwimmers" class="ddlSwimmers" onchange="nameFill()"></select></td>
                 <td>Grade</td>
                 <td>Meet</td>
                 <td>200 Freestyle</td>
@@ -251,6 +380,33 @@
                 <td rowspan="2"><button
                         onclick="submitTimes(document.getElementById('ddlSwimmers').options[document.getElementById('ddlSwimmers').selectedIndex].id)">Submit
                         Changes</button></td>
+            </tr>
+        </table>
+        <br><br><br><br><br><br><br><br><br>
+        <h4 class="label">RELAY EVENTS</h4>
+        <table id="relayTable">
+            <tr id="relayInsert">
+                <td>School</td>
+                <td>Meet</td>
+                <td>Event</td>
+                <td>Name 1</td>
+                <td>Name 2</td>
+                <td>Name 3</td>
+                <td>Name 4</td>
+                <td>Time</td>
+            </tr>
+            <tr>
+                <td><select id="schools" style="width: 100%;"><option>Select</option><option id="6">Ben Lomond</option><option id="78">Saint Joesph's</option></select></td>
+                <td><select id="meetsRelay"></select></td>
+                <td><select id="ddlEvents"></select></td>
+                <td><select id="name1" class="name1"></select></td>
+                <td><select id="name2" class="name2"></select></td>
+                <td><select id="name3" class="name3"></select></td>
+                <td><select id="name4" class="name4"></select></td>
+                <td><input id="relayTime" style="width:80%"></td>
+                <td rowspan="2"><button
+                    onclick="submitRelayTimes()">Submit
+                    Changes</button></td>
             </tr>
         </table>
     </div>

@@ -328,6 +328,30 @@ module.exports = {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
+    setRelayTimes: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("-");
+        var relay = idSplit[0];
+        var names = idSplit[1].split('&');
+        var name1 = names[0].split('_');
+        name1 = name1[0][0]+". "+name1[1];
+        var name2 = names[1].split('_');
+        name2 = name2[0][0]+". "+name2[1];
+        var name3 = names[2].split('_');
+        name3 = name3[0][0]+". "+name3[1];
+        var name4 = names[3].split('_');
+        name4 = name4[0][0]+". "+name4[1];
+        names = name1 +" "+name2 +" "+name3+" "+name4;
+        var time = idSplit[2];
+        var school = idSplit[3];
+        var year = idSplit[4];
+        var meet = idSplit[5];
+        var swim_year = idSplit[6];
+        const db = req.app.get("db");
+        db.set_relay_times(relay,names,time,school,year,meet,swim_year).then(times => {
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
     setSwimmer: (req,res) => {
         var {id}=req.params;
         var idSplit = id.split("_");

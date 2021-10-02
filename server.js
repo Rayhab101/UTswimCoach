@@ -153,6 +153,7 @@ app.post('/api/setSwimmer/:id',userctrl.setSwimmer)
 app.post('/api/setCoach/:id', userctrl.setCoach)
 
 app.post('/api/setTimes/:id', userctrl.setTimes)
+app.post('/api/setRelayTimes/:id', userctrl.setRelayTimes)
 
 app.post('/api/updateSchools/:id', userctrl.updateSchools)
 
