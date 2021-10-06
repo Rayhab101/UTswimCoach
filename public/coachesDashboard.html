@@ -35,7 +35,7 @@
             display: flex;
             flex-wrap:wrap;
             width:90vw;
-            height: 55vh;
+            height: 75vh;
             justify-content: space-around;
         }
         @media screen and (min-width:750px){
@@ -109,13 +109,20 @@
             height: 20vh;
             width: 18vw;
         }
+
+        #relay_predict{
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
+        }
     }
 
     @media screen and (max-width:750px){
 
         .container {
             width:90vw;
-            height: 65vh;
+            height: 75vh;
             margin-top: 15vh;
         }
         .container h1{
@@ -194,6 +201,12 @@
             height: 13vh;
             width: 36vw;
         }
+        #relay_predict{
+            background-color: white;
+            border-radius: 5px;
+            height: 13vh;
+            width: 36vw;
+        }
 
     }
 
@@ -245,6 +258,10 @@
                     <h1 sytle="margin-bottom:0">Saint Joseph</h1>
                     <i class="fas fa-address-card" style="font-size: 2em; padding-top:0"></i>
                 </button>
+                <button id="relay_predict">
+                    <h1 sytle="margin-bottom:0">Relay Prediction</h1>
+                    <i class="fas fa-users" style="font-size: 2em; padding-top:0"></i>
+                </button>
             </div>
     </main>
 </body>
@@ -282,6 +299,9 @@
                 break;
             case 'addTimes':
             window.location.href = "addTimes.html";
+                break;
+            case 'relay_predict':
+            window.location.href = "relayPredict.html";
                 break;
         }
     });

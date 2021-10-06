@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BL/SJ Swim Team- Compare</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+
+        function buildPage() {
+            fetch("/api/getAllSwimmers/")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    nameDropdown(myJson);
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+
+        function nameDropdown(people) {
+            for (var j = 1; j < 5; j++) {
+                var ddlSwimmers = document.getElementById("t" + j);
+                var head = document.createElement("OPTION");
+                head.innerHTML = "Select Swimmer";
+                ddlSwimmers.options.add(head);
+                for (var i = 0; i < people.length; i++) {
+                    var option = document.createElement("OPTION");
+                    option.setAttribute("id", people[i].swimmer_id);
+                    option.innerHTML = people[i].name;
+                    ddlSwimmers.options.add(option);
+                }
+            }
+        }
+
+        function nameFill(id, value) {
+            if (id != "Select Swimmer") {
+                tableFill(id, value);
+            }
+            else {
+                console.log("Needs to be built")
+            }
+        }
+    </script>
+    <style>
+        @media screen and (min-width:750px) {
+            .container {
+                display: flex;
+                align-items: start;
+
+            }
+
+
+            table {
+                background-color: white;
+                width: 15vw;
+            }
+
+            td {
+                text-align: center;
+                height: 20px;
+            }
+
+            .swim_style {
+                padding-top: 75px;
+            }
+
+            h3 {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+            }
+
+        }
+
+        @media screen and (max-width:750px) {
+            .container {
+                display: flex;
+                align-items: start;
+
+            }
+
+            .swim_style {
+                padding-top: 125px;
+            }
+
+            table {
+                background-color: white;
+                /* width: 100%; */
+                font-size: xx-small;
+            }
+
+            #compare {
+                font-size: xx-small;
+            }
+
+            td {
+                text-align: center;
+                height: 20px;
+            }
+
+            .t2 {
+                display: none;
+            }
+
+            h3 {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+            }
+        }
+    </style>
+
+</head>
+<header id="header"></header>
+
+<body onload="buildPage()">
+
+    <main class="swim_style">
+        <center>
+            <h3>Compare your times with your fellow swimmers</h3>
+        </center>
+        <div class="container">
+            <table class="t0">
+                <tr>
+                    <th>Races:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>50 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>50 Split Fly:</td>
+                </tr>
+                <tr>
+                    <td>100 Freestyle:</td>
+                </tr>
+                <tr>
+                    <td>50 Split Back:</td>
+                </tr>
+                <tr>
+                    <td>50 Split Breast:</td>
+                </tr>
+            </table>
+            <table id="individual1">
+                <tr>
+                    <th>Lead Name:</th>
+                </tr>
+                <tr>
+                    <td id="t11"><select class="t1" id="t1"
+                            onchange="nameFill('t1',document.getElementById('t1').options[document.getElementById('t1').selectedIndex].value)"></select>
+                    </td>
+                </tr>
+            </table>
+            <table id="individual2">
+                <tr>
+                    <th>Holder Name:</th>
+                </tr>
+                <tr>
+                    <td id="t21"><select class="t2" id="t2"
+                            onchange="nameFill('t2',document.getElementById('t2').options[document.getElementById('t2').selectedIndex].value)"></select>
+                    </td>
+                </tr>
+            </table>
+            <table id="individual3">
+                <tr>
+                    <th>Gainer Name:</th>
+                </tr>
+                <tr>
+                    <td id="t31"><select class="t3" id="t3"
+                            onchange="nameFill('t3',document.getElementById('t3').options[document.getElementById('t3').selectedIndex].value)"></select>
+                    </td>
+                </tr>
+            </table>
+            <table id="individual4">
+                <tr>
+                    <th>Tail Name:</th>
+                </tr>
+                <tr>
+                    <td id="t41"><select class="t4" id="t4"
+                            onchange="nameFill('t4',document.getElementById('t4').options[document.getElementById('t4').selectedIndex].value)"></select>
+                    </td>
+                </tr>
+            </table>
+            <table id="schoolRecord">
+                <tr>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>200 Medley Relay</td>
+                </tr>
+                <tr>
+                    <td id="tot200Medley"></td>
+                </tr>
+                <tr>
+                    <td>200 Free Relay</td>
+                </tr>
+                <tr>
+                    <td id="tot200Free"></td>
+                </tr>
+                <tr>
+                    <td>400 Free Relay</td>
+                </tr>
+                <tr>
+                    <td id="tot400Free"></td>
+                </tr>
+            </table>
+            <!-- <table class="t4" id="stateRecord">
+                <tr>
+                    <th>State</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table> -->
+        </div>
+    </main>
+
+</body>
+<footer id="footer"></footer>
+<script>
+
+    function pullPerson(id, race, body, row, cell) {
+        fetch('/api/individualRecords/' + id + "&" + race)
+            .then(function (response) {
+                if (response.status == 200) {
+                    return response.json();
+                }
+            }).then(function (records) {
+                var r = [5, 9, 10, 16, 20, 21]
+                if (records[0].min === null) {
+                    var text = "";
+                }
+                else {
+                    if (!r.includes(race)) {
+                        text = records[0].min;
+                    }
+                    else {
+
+                        var record = records[0].min.split(":");
+                        record2 = Number(record[1])
+                        record = record[0] * 60
+                        record = (record + record2)
+
+                        text = record * .483;
+                        if(text >= 60){
+                            var min = 1
+                            text = text-60;
+                        }
+                        else{
+                            var min = 0
+                        }
+                        text = min+":" + text.toFixed(2)
+                    }
+
+                }
+                // console.log(id, race, text, cell)
+                // checkSchoolRecord(id,race,text,cell);
+                document.getElementById(cell.id).innerHTML = text;
+                total(id);
+            }).catch(function (error) {
+                console.log("Error: " + error);
+            });
+
+    }
+
+    function total(race) {
+
+        if (race > 11) {
+            //These are for the 200 Free Relay
+            var t150free = $("#t1u15").text()
+            var t250free = $("#t2u15").text()
+            var t350free = $("#t3u15").text()
+            var t450free = $("#t4u15").text()
+            //These are for the 200 Medley Relay
+            var t150back = $("#t1u20").text()
+            var t250breast = $("#t2u21").text()
+            var t350fly = $("#t3u16").text()
+
+            var t1100free = $("#t1u17").text()
+            var t2100free = $("#t2u17").text()
+            var t3100free = $("#t3u17").text()
+            var t4100free = $("#t4u17").text()
+
+            t150free = t150free.split(":");
+            var t1 = Number(t150free[1]);
+            t250free = t250free.split(":");
+            var t2 = Number(t250free[1]);
+            t350free = t350free.split(":");
+            var t3 = Number(t350free[1]);
+            t450free = t450free.split(":");
+            var t4 = Number(t450free[1]);
+            if (!isNaN(t1) && !isNaN(t2) && !isNaN(t3) && !isNaN(t4)) {
+                var times = t1 + t2 + t3 + t4;
+                var minutes = 0;
+                if (times >= 60) {
+                    minutes += 1;
+                    times = times - 60;
+                    if (times >= 60) {
+                        minutes += 1;
+                        times = (times - 60);
+                    }
+                }
+                if (times < 10.00) {
+                    times = "0" + times;
+                }
+
+                var times = "0" + minutes + ":" + times.toFixed(2);
+                document.getElementById('tot200Free').innerHTML = times;
+            }
+
+            t150back = t150back.split(":");
+            var tM1 = Number(t150back[1]);
+            t250breast = t250breast.split(":");
+            var tM2 = Number(t250breast[1]);
+            t350fly = t350fly.split(":");
+            var tM3 = Number(t350fly[1]);
+            if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
+                var time = tM1 + tM2 + tM3 + t4;
+                var minutes =0;
+                if (time >= 60) {
+                    console.log(time)
+                    minutes += 1;
+                    time = time - 60;
+                    if (time >= 60) {
+                        minutes += 1;
+                        time = (time - 60);
+                        if (time >= 60) {
+                        minutes += 1;
+                        time = (time - 60);
+                    }
+                    }
+                }
+                time=time.toFixed(2)
+                if (time < 10.00) {
+                    time = "0" + time;
+                }
+
+                var timeM = "0" + minutes + ":" + time;
+                document.getElementById('tot200Medley').innerHTML = timeM;
+            }
+
+            t1100free = t1100free.split(":");
+            t2100free = t2100free.split(":");
+            t3100free = t3100free.split(":");
+            t4100free = t4100free.split(":");
+            if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
+                var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
+                var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
+                if (newSeconds >= 60) {
+                    newMinutes += 1;
+                    newSeconds = newSeconds - 60;
+                    if (newSeconds >= 60) {
+                        newMinutes += 1;
+                        newSeconds = (newSeconds - 60);
+                    }
+                }
+                newSeconds = newSeconds.toFixed(2)
+                if (newSeconds < 10.00) {
+                    newSeconds = "0" + newSeconds;
+                }
+                document.getElementById('tot400Free').innerHTML = newMinutes + ":" + newSeconds;
+            }
+        }
+        else{
+            //These are for the 200 Free Relay
+            var t150free = $("#t1u4").text()
+            var t250free = $("#t2u4").text()
+            var t350free = $("#t3u4").text()
+            var t450free = $("#t4u4").text()
+            //These are for the 200 Medley Relay
+            var t150back = $("#t1u9").text()
+            var t250breast = $("#t2u10").text()
+            var t350fly = $("#t3u5").text()
+
+            var t1100free = $("#t1u6").text()
+            var t2100free = $("#t2u6").text()
+            var t3100free = $("#t3u6").text()
+            var t4100free = $("#t4u6").text()
+
+            t150free = t150free.split(":");
+            var t1 = Number(t150free[1]);
+            t250free = t250free.split(":");
+            var t2 = Number(t250free[1]);
+            t350free = t350free.split(":");
+            var t3 = Number(t350free[1]);
+            t450free = t450free.split(":");
+            var t4 = Number(t450free[1]);
+            if (!isNaN(t1) && !isNaN(t2) && !isNaN(t3) && !isNaN(t4)) {
+                var times = t1 + t2 + t3 + t4;
+                var minutes = 0;
+                if (times >= 60) {
+                    minutes += 1;
+                    times = times - 60;
+                    if (times >= 60) {
+                        minutes += 1;
+                        times = (times - 60);
+                    }
+                }
+                if (times < 10.00) {
+                    times = "0" + times;
+                }
+
+                var times = "0" + minutes + ":" + times.toFixed(2);
+                document.getElementById('tot200Free').innerHTML = times;
+            }
+
+            t150back = t150back.split(":");
+            var tM1 = Number(t150back[1]);
+            t250breast = t250breast.split(":");
+            var tM2 = Number(t250breast[1]);
+            t350fly = t350fly.split(":");
+            var tM3 = Number(t350fly[1]);
+            if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
+                var time = tM1 + tM2 + tM3 + t4;
+                var minutes =0;
+                if (time >= 60) {
+                    console.log(time)
+                    minutes += 1;
+                    time = time - 60;
+                    if (time >= 60) {
+                        minutes += 1;
+                        time = (time - 60);
+                        if (time >= 60) {
+                        minutes += 1;
+                        time = (time - 60);
+                    }
+                    }
+                }
+                time=time.toFixed(2)
+                if (time < 10.00) {
+                    time = "0" + time;
+                }
+
+                var timeM = "0" + minutes + ":" + time;
+                document.getElementById('tot200Medley').innerHTML = timeM;
+            }
+
+            t1100free = t1100free.split(":");
+            t2100free = t2100free.split(":");
+            t3100free = t3100free.split(":");
+            t4100free = t4100free.split(":");
+            if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
+                var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
+                var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
+                if (newSeconds >= 60) {
+                    newMinutes += 1;
+                    newSeconds = newSeconds - 60;
+                    if (newSeconds >= 60) {
+                        newMinutes += 1;
+                        newSeconds = (newSeconds - 60);
+                    }
+                }
+                newSeconds = newSeconds.toFixed(2)
+                if (newSeconds < 10.00) {
+                    newSeconds = "0" + newSeconds;
+                }
+                document.getElementById('tot400Free').innerHTML = newMinutes + ":" + newSeconds;
+            }
+        }
+    }
+
+    function recordPull(person, gender, id) {
+        newId = id[1];
+        if ($("#individual" + newId).children().length > 1) {
+            for (var d = 6; d > 1; d--) {
+                document.getElementById("individual" + newId).deleteRow(d);
+            }
+        }
+        var body = document.getElementById("individual" + newId);
+        if (gender == "M") {
+            for (var j = 12; j < 22; j++) {
+                var forRelays = [15, 16, 17, 20, 21];
+                if (forRelays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', id + "u" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(person, j, body, row, cell);
+                }
+            }
+        }
+        else {
+            for (var j = 1; j < 12; j++) {
+                var forRelays = [4, 5, 6, 9, 10];
+                if (forRelays.includes(j)) {
+                    var row = document.createElement('tr');
+                    var cell = row.insertCell();
+                    cell.setAttribute('id', id + "u" + j)
+                    row.appendChild(cell);
+                    body.appendChild(row);
+                    pullPerson(person, j, body, row, cell);
+                }
+            }
+        }
+    }
+
+    function tableFill(id, name) {
+        fetch("/api/swimmerName/" + name)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                recordPull(myJson[0].swimmer_id, myJson[0].gender, id)
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+
+</script>
+
+</html>

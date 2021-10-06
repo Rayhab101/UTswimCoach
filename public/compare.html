@@ -415,7 +415,7 @@
                 return response.json();
             })
             .then(function (myJson) {
-                //console.log(myJson[0].swimmer_id)
+                // console.log(myJson[0].swimmer_id, myJson[0].gender)
                 recordPull(myJson[0].swimmer_id, myJson[0].gender)
                 schoolRecord(myJson[0].school, myJson[0].gender)
                 stateRecord(myJson[0].gender)
