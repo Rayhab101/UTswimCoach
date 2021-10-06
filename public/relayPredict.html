@@ -244,31 +244,34 @@
                 }
                 else {
                     if (!r.includes(race)) {
-                        text = records[0].min;
+                        text = (records[0].min);
                     }
                     else {
 
                         var record = records[0].min.split(":");
                         record2 = Number(record[1])
-                        record = record[0] * 60
+                        record = Number(record[0]) * 60
                         record = (record + record2)
-
-                        text = record * .483;
-                        if(text >= 60){
-                            var min = 1
+                        text = (record * .483).toFixed(2);
+                        var min = 0
+                        while(text >= 60){
+                            min += 1;
                             text = text-60;
+                            text.toFixed(2);
+                        }
+                        if(Number(text) <10.00){
+                            text = text.toFixed(2)
+                            text = "0"+text;
                         }
                         else{
-                            var min = 0
+                            text = Number(text).toFixed(2)
                         }
-                        text = min+":" + text.toFixed(2)
+                        text = min+":" + text;
                     }
 
                 }
-                // console.log(id, race, text, cell)
-                // checkSchoolRecord(id,race,text,cell);
                 document.getElementById(cell.id).innerHTML = text;
-                total(id);
+                total(race);
             }).catch(function (error) {
                 console.log("Error: " + error);
             });
@@ -276,7 +279,7 @@
     }
 
     function total(race) {
-
+        //This is for the Boys
         if (race > 11) {
             //These are for the 200 Free Relay
             var t150free = $("#t1u15").text()
@@ -287,7 +290,7 @@
             var t150back = $("#t1u20").text()
             var t250breast = $("#t2u21").text()
             var t350fly = $("#t3u16").text()
-
+            //These are for the 400 Free Relay
             var t1100free = $("#t1u17").text()
             var t2100free = $("#t2u17").text()
             var t3100free = $("#t3u17").text()
@@ -373,6 +376,7 @@
                 document.getElementById('tot400Free').innerHTML = newMinutes + ":" + newSeconds;
             }
         }
+        //This is for the girls
         else{
             //These are for the 200 Free Relay
             var t150free = $("#t1u4").text()
@@ -408,6 +412,7 @@
                         times = (times - 60);
                     }
                 }
+                
                 if (times < 10.00) {
                     times = "0" + times;
                 }
@@ -418,15 +423,17 @@
 
             t150back = t150back.split(":");
             var tM1 = Number(t150back[1]);
+            if(Number(t150back[0]>0)){tM1=tM1+60}
             t250breast = t250breast.split(":");
             var tM2 = Number(t250breast[1]);
+            if(Number(t250breast[0]>0)){tM2=tM2+60}
             t350fly = t350fly.split(":");
             var tM3 = Number(t350fly[1]);
+            if(Number(t350fly[0]>0)){tM3=tM3+60}
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
                 var time = tM1 + tM2 + tM3 + t4;
                 var minutes =0;
                 if (time >= 60) {
-                    console.log(time)
                     minutes += 1;
                     time = time - 60;
                     if (time >= 60) {
@@ -439,10 +446,10 @@
                     }
                 }
                 time=time.toFixed(2)
+
                 if (time < 10.00) {
                     time = "0" + time;
                 }
-
                 var timeM = "0" + minutes + ":" + time;
                 document.getElementById('tot200Medley').innerHTML = timeM;
             }
@@ -463,6 +470,7 @@
                     }
                 }
                 newSeconds = newSeconds.toFixed(2)
+                
                 if (newSeconds < 10.00) {
                     newSeconds = "0" + newSeconds;
                 }
