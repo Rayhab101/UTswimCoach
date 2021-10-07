@@ -538,6 +538,33 @@ module.exports = {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
+    getState:(req,res) => {
+        // console.log(req)
+        // var {id}=req.params;
+        // var idSplit = id.split("_").join(" ");
+        // idSplit = idSplit.replace(/~/g,",")
+        // console.log(idSplit);
+
+        const db = req.app.get("db");
+        // console.log(location,date,time,out,bus,home,school1,school2,meetId);
+        db.get_state().then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    updateState:(req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        var id = Number(idSplit[0]);
+        var time = idSplit[1];
+console.log(id,time)
+        const db = req.app.get("db");
+        // console.log(location,date,time,out,bus,home,school1,school2,meetId);
+        db.update_state_times(time,id).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
     logChanges:(req,res) => {
         // console.log(req)
         var {id}=req.params;

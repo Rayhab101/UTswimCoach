@@ -104,6 +104,7 @@ app.get('/api/meets/:id', userctrl.getMeet)
 // Gets Races & State Records
 app.get('/api/races', userctrl.getRaces)
 app.get('/api/races/:id', userctrl.getRace)
+app.get('/api/state', userctrl.getState)
 // Gets Individual Records
 app.get('/api/records', userctrl.getRecords)
 app.get('/api/records/:id', userctrl.getRecord)
@@ -172,6 +173,7 @@ app.post('/api/updateRelays/:id', userctrl.updateRelays)
 app.post('/api/updateBlog/:id', userctrl.updateBlog)
 
 app.post('/api/logChanges/:id', userctrl.logChanges)
+app.post('/api/updateState/:id', userctrl.updateState)
 
 app.set('port', process.env.PORT || 8080)
 massive({

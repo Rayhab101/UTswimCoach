@@ -1,0 +1,1 @@
+UPDATE state set race_time=$1 where race_id=$2;

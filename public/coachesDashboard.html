@@ -116,6 +116,13 @@
             height: 20vh;
             width: 18vw;
         }
+
+        #state_fix{
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
+        }
     }
 
     @media screen and (max-width:750px){
@@ -207,6 +214,12 @@
             height: 13vh;
             width: 36vw;
         }
+        #state_fix{
+            background-color: white;
+            border-radius: 5px;
+            height: 13vh;
+            width: 36vw;
+        }
 
     }
 
@@ -262,6 +275,10 @@
                     <h1 sytle="margin-bottom:0">Relay Prediction</h1>
                     <i class="fas fa-users" style="font-size: 2em; padding-top:0"></i>
                 </button>
+                <button id="state_fix">
+                    <h1 sytle="margin-bottom:0">Fix State Times</h1>
+                    <i class="fas fa-list" style="font-size: 2em; padding-top:0"></i>
+                </button>
             </div>
     </main>
 </body>
@@ -302,6 +319,9 @@
                 break;
             case 'relay_predict':
             window.location.href = "relayPredict.html";
+                break;
+            case 'state_fix':
+            window.location.href = "updateStateTimes.html";
                 break;
         }
     });
