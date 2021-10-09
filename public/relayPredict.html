@@ -247,12 +247,10 @@
                         text = (records[0].min);
                     }
                     else {
-
                         var record = records[0].min.split(":");
                         record2 = Number(record[1])
                         record = Number(record[0]) * 60
                         record = (record + record2)
-                        console.log(race)
                         switch(race){
                             case 5:
                             text = (record * .472).toFixed(2);
@@ -276,7 +274,7 @@
                             text = (record * .486).toFixed(2);
                                 break;
                         }
-                        text = (record * .486).toFixed(2);
+                        // text = (record * .486).toFixed(2);
                         var min = 0
                         while(text >= 60){
                             min += 1;
@@ -336,14 +334,20 @@
                     times = times - 60;
                     if (times >= 60) {
                         minutes += 1;
-                        times = (times - 60);
+                        times = (times - 60).toFixed(2);
                     }
                 }
                 if (times < 10.00) {
-                    times = "0" + times;
+                    if(times>1.00){
+                        times = "0" + times;
+                        times = Number(times).toFixed(2);
+                    }
+                    else{
+                        times = "0" + times;
+                    }
                 }
 
-                var times = "0" + minutes + ":" + times.toFixed(2);
+                var times = "0" + minutes + ":" + times;
                 document.getElementById('tot200Free').innerHTML = times;
             }
 
@@ -411,12 +415,13 @@
             var t150back = $("#t1u9").text()
             var t250breast = $("#t2u10").text()
             var t350fly = $("#t3u5").text()
-
+            //These are for the 400 Free Relay
             var t1100free = $("#t1u6").text()
             var t2100free = $("#t2u6").text()
             var t3100free = $("#t3u6").text()
             var t4100free = $("#t4u6").text()
 
+            //Calculate 200 Free Relay Times
             t150free = t150free.split(":");
             var t1 = Number(t150free[1]);
             t250free = t250free.split(":");
@@ -433,18 +438,23 @@
                     times = times - 60;
                     if (times >= 60) {
                         minutes += 1;
-                        times = (times - 60);
+                        times = (times - 60).toFixed(2);
                     }
                 }
-                
                 if (times < 10.00) {
-                    times = "0" + times;
+                    if(times>1.00){
+                        times = "0" + times;
+                        times = Number(times).toFixed(2);
+                    }
+                    else{
+                        times = "0" + times;
+                    }
                 }
 
-                var times = "0" + minutes + ":" + times.toFixed(2);
+                var times = "0" + minutes + ":" + times;
                 document.getElementById('tot200Free').innerHTML = times;
             }
-
+            //Calculate 200 Medley Relay Times
             t150back = t150back.split(":");
             var tM1 = Number(t150back[1]);
             if(Number(t150back[0]>0)){tM1=tM1+60}
