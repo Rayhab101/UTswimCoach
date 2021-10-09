@@ -329,25 +329,25 @@
             if (!isNaN(t1) && !isNaN(t2) && !isNaN(t3) && !isNaN(t4)) {
                 var times = t1 + t2 + t3 + t4;
                 var minutes = 0;
-                if (times >= 60) {
+                // times = rTimes.toFixed(2);
+                if (times >= 60.00) {
                     minutes += 1;
-                    times = times - 60;
-                    if (times >= 60) {
+                    times -= 60;
+                    if (times >= 60.00) {
                         minutes += 1;
-                        times = (times - 60).toFixed(2);
+                        times -=  60;
                     }
                 }
                 if (times < 10.00) {
                     if(times>1.00){
                         times = "0" + times;
-                        times = Number(times).toFixed(2);
+                        times = Number(times);
                     }
                     else{
                         times = "0" + times;
                     }
                 }
-
-                var times = "0" + minutes + ":" + times;
+                var times = "0" + minutes + ":" + times.toFixed(2);
                 document.getElementById('tot200Free').innerHTML = times;
             }
 
@@ -361,7 +361,6 @@
                 var time = tM1 + tM2 + tM3 + t4;
                 var minutes =0;
                 if (time >= 60) {
-                    console.log(time)
                     minutes += 1;
                     time = time - 60;
                     if (time >= 60) {
@@ -420,8 +419,7 @@
             var t2100free = $("#t2u6").text()
             var t3100free = $("#t3u6").text()
             var t4100free = $("#t4u6").text()
-
-            //Calculate 200 Free Relay Times
+//#region 200 Free Relay Times
             t150free = t150free.split(":");
             var t1 = Number(t150free[1]);
             t250free = t250free.split(":");
@@ -440,6 +438,13 @@
                         minutes += 1;
                         times = (times - 60).toFixed(2);
                     }
+                    else{
+                        times = times.toFixed(2);
+                    }
+
+                }
+                else{
+                    times = times.toFixed(2);
                 }
                 if (times < 10.00) {
                     if(times>1.00){
@@ -449,12 +454,19 @@
                     else{
                         times = "0" + times;
                     }
+
+                }
+                else{
+                    times = Number(times).toFixed(2)
+
                 }
 
                 var times = "0" + minutes + ":" + times;
                 document.getElementById('tot200Free').innerHTML = times;
             }
-            //Calculate 200 Medley Relay Times
+            //#endregion
+
+            //#region 200 Medley Relay Times
             t150back = t150back.split(":");
             var tM1 = Number(t150back[1]);
             if(Number(t150back[0]>0)){tM1=tM1+60}
