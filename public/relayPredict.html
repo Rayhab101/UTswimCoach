@@ -252,7 +252,31 @@
                         record2 = Number(record[1])
                         record = Number(record[0]) * 60
                         record = (record + record2)
-                        text = (record * .483).toFixed(2);
+                        console.log(race)
+                        switch(race){
+                            case 5:
+                            text = (record * .472).toFixed(2);
+                                break;
+                            case 9:
+                            text = (record * .484).toFixed(2);
+                                break;
+                            case 10:
+                            text = (record * .478).toFixed(2);
+                                break;
+                            case 16:
+                            text = (record * .471).toFixed(2);
+                                break;
+                            case 20:
+                            text = (record * .484).toFixed(2);
+                                break;
+                            case 21:
+                            text = (record * .477).toFixed(2);
+                                break;  
+                            default:
+                            text = (record * .486).toFixed(2);
+                                break;
+                        }
+                        text = (record * .486).toFixed(2);
                         var min = 0
                         while(text >= 60){
                             min += 1;
