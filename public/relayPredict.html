@@ -86,6 +86,7 @@
         @media screen and (max-width:750px) {
             .container {
                 display: flex;
+                flex-wrap: wrap;
                 align-items: start;
 
             }
@@ -109,7 +110,7 @@
                 height: 20px;
             }
 
-            .t2 {
+            .t0 {
                 display: none;
             }
 
@@ -341,15 +342,19 @@
                 if (times < 10.00) {
                     if(times>1.00){
                         times = "0" + times;
-                        times = Number(times);
+                        times = Number(times).toFixed(2);
                     }
                     else{
-                        times = "0" + times;
+                        times = "0" + times.toFixed(2);
                     }
                 }
-                var times = "0" + minutes + ":" + times.toFixed(2);
+                else{
+                    times = times.toFixed(2);
+                }
+                var times = "0" + minutes + ":" + times;
                 document.getElementById('tot200Free').innerHTML = times;
             }
+
 
             t150back = t150back.split(":");
             var tM1 = Number(t150back[1]);
@@ -358,6 +363,7 @@
             t350fly = t350fly.split(":");
             var tM3 = Number(t350fly[1]);
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
+                console.log("Hit Here")
                 var time = tM1 + tM2 + tM3 + t4;
                 var minutes =0;
                 if (time >= 60) {
@@ -380,12 +386,13 @@
                 var timeM = "0" + minutes + ":" + time;
                 document.getElementById('tot200Medley').innerHTML = timeM;
             }
-
+            
             t1100free = t1100free.split(":");
             t2100free = t2100free.split(":");
             t3100free = t3100free.split(":");
             t4100free = t4100free.split(":");
             if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
+                console.log("Hit Here too")
                 var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
                 var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
                 if (newSeconds >= 60) {
