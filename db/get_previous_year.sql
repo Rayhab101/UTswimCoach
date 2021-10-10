@@ -1,0 +1,1 @@
+SELECT DISTINCT(swim_year) FROM records WHERE swimmer=$1;

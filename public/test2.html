@@ -4,310 +4,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team- Next Meet</title>
-    <link rel="stylesheet" href="nextMeet.css">
+    <title>BL/SJ Swim Team- Swimmer Info</title>
+    <link rel="stylesheet" href="swim.css" media="all">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+
     <script>
         $(function () {
             $("#header").load("heading.html");
             $("#footer").load("footing.html");
         });
+    </script>
+</head>
 
-        function createTable(swimmers, id, school, body) {
-            var row = document.createElement("tr");
-            var column = document.createElement("td");
-            row.setAttribute("id", id + "_" + school)
-            var cell = row.insertCell();
-            text = document.createTextNode(swimmers);
+<style>
+    @media screen and (min-width:750px) {
+
+
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 100%;
+        }
+
+        th {
+            text-align: center;
+            font-size: 24px;
+        }
+    }
+
+    @media screen and (max-width:750px) {
+
+
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 100%;
+
+        }
+
+        th {
+            text-align: center;
+            font-size: 12px;
+            width: 100%
+        }
+
+        td {
+            font-size: 6px;
+        }
+
+        .container {
+            width: auto;
+            height: 555px;
+            overflow: auto;
+        }
+
+        .swim_info{
+            padding-top:65px;
+        }
+
+        .printPage {
+            display: none;
+        }
+    }
+</style>
+    <header id="header"></header>
+<body onload="tableLoad()">
+
+    <div class="swim_info" id="swim_info">
+        <button onclick="window.history.go(-1)">Go Back</button>
+        <button class="printPage" id="printPage"
+            style="font-size: 12px; border-radius: 10%; background-color: white; font-weight: bold;"
+            onclick="printImage()">Print Swimmer
+            Data</button>
+        <div class="container" id="container">
+            <div id="testTable" printable>
+                <table class="swimmer_data" id="swimmer_data">
+                    <!-- <th id="swimmer_name"></th> -->
+                    <!-- <tr>
+                        <td></td>
+                        <td>200 Freestyle</td>
+                        <td>200 IM</td>
+                        <td>50 Freestyle</td>
+                        <td>100 Butterfly</td>
+                        <td>100 Freestyle</td>
+                        <td>500 Freestyle</td>
+                        <td>100 Backstroke</td>
+                        <td>100 Breaststroke</td>
+                    </tr> -->
+                </table>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="canvasContainer" id="canvasContainer">
+                <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100fl" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="500fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100bk" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="100br" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
+                <canvas id="blank" style="display:none"></canvas>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+        </div>
+
+    </div>
+</body>  
+<footer id="footer"></footer>
+
+<script type="text/javascript">
+    const events = ["", "200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
+
+    async function timesPull(id, column, cell, row, body) {
+        var meet = cell.id.split("_")
+        console.log(meet)
+        var pull = id + "&" + meet[1] + "&" + meet[0];
+        fetch('/api/timeFill/' + pull)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (races) {
+                if (races.length != 0) {
+                    var sending = races[0].time;
+                    document.getElementById(cell.id).innerHTML = sending;
+                }
+            });
+    }
+
+    async function pastTimesPull(id, column, cell, row, body) {
+        var meet = cell.id.split("_")
+        var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
+        const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
+        if(individualRecord[0].min != null){
+            document.getElementById(cell.id).innerHTML =individualRecord[0].min
+        }
+    }
+
+    function maxPull(time) {
+        if (time != "") {
+            var check = time.split(".");
+            var doubleCheck = check[0].split(":");
+            var maybe = Number(doubleCheck[1]);
+            maybe += 15;
+            var minute = maybe > 59 ? Number(doubleCheck[0]) + 1 : doubleCheck[0];
+            maybe = maybe > 59 ? maybe - 50 : maybe;
+            var maxValue = minute + ":" + maybe + "." + check[1];
+        }
+        return maxValue;
+    }
+
+    function minPull(time) {
+        if (time != "") {
+            var check = time.split(".");
+            var doubleCheck = check[0].split(":");
+            var maybe = Number(doubleCheck[1]);
+            maybe -= 5;
+            var minute = maybe < 0 ? Number(doubleCheck[0]) - 1 : doubleCheck[0];
+            maybe = maybe < 0 ? maybe + 50 : maybe;
+            var minValue = minute + ":" + maybe + "." + check[1];
+        }
+        return minValue;
+    }
+
+    async function getSwimData(tableData) {
+        var name = tableData["name"];
+        var headGrade = tableData["status_grade"];
+        var body = document.getElementById("swimmer_data");
+        var head = document.createElement("th");
+        head.setAttribute("id", "swimmer_name")
+        // var head = document.getElementById("swimmer_name");
+        head.innerHTML = (name + " - " + headGrade);
+        head.setAttribute("colspan", 9);
+        body.appendChild(head);
+        var meets = [];
+        var row = document.createElement("tr");
+        var column = document.createElement("td");
+        for (var i = 0; i < events.length; i++) {
+            cell = row.insertCell();
+            text = document.createTextNode(column.innerHTML = events[i]);
             cell.appendChild(text);
-            for (var j = 0; j < 11; j++) {
-                column.setAttribute("style", "width:100%; white-space:nowrap;");
-                var cell = row.insertCell();
-            }
-            body.appendChild(row);
         }
-
-        async function meetPull() {
-            var nextMeet = await fetch('/api/meets').then(data => data.json());
-            var today = new Date();
-            for (var j = 0; j < nextMeet.length; j++) {
-                var date = nextMeet[j].date;
-                var splice = date.split("/");
-                var year = Number(splice[2]);
-                var month = Number(splice[0]) - 1;
-                var day = Number(splice[1]);
-                var meetDate = new Date(year, month, day);
-                var who;
-                // console.log(meetDate - today)
-                if (nextMeet[j].location == "Red and Blue") {
-                    var thisMeet = "Each other"
-                    break
+        body.appendChild(row);
+        var meet = await fetch('/api/meets').then(data => data.json());
+        var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
+        if(previous.length > 0){
+            // console.log(previous)
+            var t=previous.length;
+            for(var t=previous.length; t!=0; t--){
+                var year = 2019+Number(previous[t-1].swim_year)
+                row = document.createElement("tr");
+                var column = document.createElement("td");
+                cell = row.insertCell();
+                cell.setAttribute("id", year);
+                cell.setAttribute("style", "width: 20%");
+                var otherYear = Number(year)+1;
+                text = document.createTextNode(column.innerHTML = year +"-"+ otherYear);
+                cell.appendChild(text);
+                
+                if (tableData["gender"] == "F") {
+                    var to = 12
+                    var from = 1
                 }
-                if ((meetDate - today) > 0) {
-                    var thisMeet = (nextMeet[j].location);
-                    break;
+                else {
+                    var from = 12
+                    var to = 22
                 }
-            }
-            fetch("/api/getAllSwimmers")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    var body = document.getElementById("meetTable");
-
-                    var head = document.getElementById('nextHead');
-                    // var nextMeet = "Hello"
-                    head.innerText = (head.innerText + " " + thisMeet)
-                    // head.setAttribute("colspan", "12")
-                    // head.innerHTML = ("Ben Lomond & St. Joseph vs");
-                    // body.appendChild(head);
-                    for (var i = 0; i < myJson.length; i++) {
-                        // console.log(myJson[i])
-                        createTable(myJson[i].name, myJson[i].swimmer_id, myJson[i].school, body);
+                for (var k = from; k < to; k++) {
+                    // var at = meet[a].meet_id;
+                    relays = [1, 8, 11, 12, 19, 22]
+                    if (!relays.includes(k)) {
+                        cell = row.insertCell();
+                        cell.setAttribute("id", year + "_" + k)
+                        pastTimesPull(tableData.swimmer_id, column, cell, row, body)
                     }
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+                }
+                body.appendChild(row);
+            }
+
         }
 
-        function printImage() {
-            var table = document.getElementById("table");
-            var button = document.getElementById("button");
-            button.setAttribute("style", "display: none");
-            table.setAttribute("style", "font-size:11px");
-            var windowContent = '<!DOCTYPE html>';
-            windowContent += '<html>';
-            windowContent += '<head><style> table, tr{ background-color: rgba(255, 255, 255, .95);text-align: center;width: 100%;margin: 0 0 0 0; border: solid 1px black} td {width:9.5%; border: solid 1px black; font-weight: bold}th {text-align: center;font-size: 18px; width: 100%;} input{width:20px; height: 10px; border-left: solid 1px black; border-right: solid 1px black} td:first-child{width:17%}</style></head>';
-            windowContent += '<main>';
-            windowContent += table.outerHTML;
-            windowContent += '</main>';
-            windowContent += '</html>';
-            const printWin = window.open('');
-            printWin.document.open();
-            printWin.document.write(windowContent);
-            printWin.document.addEventListener('load', function () {
-                printWin.focus();
-                printWin.print();
-                printWin.document.close();
-                printWin.close();
-                window.location.reload();
-            }, true);
-            table.removeAttribute("style");
-            button.removeAttribute("style");
-        }
-
-        var cutOff = 0
-        fetch("/api/getAllSwimmers")
+        fetch('/api/meets')
             .then(function (response) {
                 return response.json();
             })
-            .then(function (myJson) {
-                for (var i = 0; i < myJson.length; i++) {
-                    if (myJson[i].gender == "F") { cutOff++; }
+            .then(function (meet) {
+                for (var i = 0; i < meet.length; i++) {
+                    meets[i] = meet[i].location
+                }
+                var a = 0;
+                for (var j = 0; j < meets.length; j++) {
+                        row = document.createElement("tr");
+                        var column = document.createElement("td");
+                        cell = row.insertCell();
+                        cell.setAttribute("id", j);
+                        cell.setAttribute("style", "width: 20%");
+                        text = document.createTextNode(column.innerHTML = meets[j]);
+                        cell.appendChild(text);
+                        if (tableData["gender"] == "F") {
+                            var to = 12
+                            var from = 1
+                        }
+                        else {
+                            var from = 12
+                            var to = 22
+                        }
+                        for (var k = from; k < to; k++) {
+                            var at = meet[a].meet_id;
+                            relays = [1, 8, 11, 12, 19, 22]
+                            if (!relays.includes(k)) {
+                                cell = row.insertCell();
+                                cell.setAttribute("id", at + "_" + k)
+                                timesPull(tableData.swimmer_id, column, cell, row, body)
+                            }
+                        }
+                        body.appendChild(row);
+                        a++;
+
                 }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
             });
-    </script>
-</head>
-<header id="header"></header>
 
-<body class="swim_info" onload="meetPull()">
+        //     var check = ['0:24.33','0:24.00'];
+        // if(check[0]<check[1]){
+        //     console.log(check[0]+" is less than "+ check[1]);
+        // }
+        // else{
+        //     console.log(check[0]+" is not less than "+ check[1]);
+        // }
+    }
 
-    <div class="container" id="table">
-        <table id="meetTable">
-            <th colspan="12" id="nextHead">Ben Lomond & St. Joseph vs</th>
-            <tr>
-                <td><button onclick="printImage()" id="button">Print</button></td>
-                <td>200 Medley Relay</td>
-                <td>200 Freestyle</td>
-                <td>200 I. M.</td>
-                <td>50 Freestyle</td>
-                <td>100 Butterfly</td>
-                <td>100 Freestyle</td>
-                <td>500 Freestyle</td>
-                <td>200 Freestyle Relay</td>
-                <td>100 Backstroke</td>
-                <td>100 Breaststroke</td>
-                <td>400 Freestyle Relay</td>
-            </tr>
-        </table>
-    </div>
+    function tableLoad() {
+        var pullperson = location.search.substring(1);
+        pullperson = pullperson.split("=");
+        pullperson = Number(pullperson[1]);
+        fetch("/api/swim/" + pullperson)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson[0]);
+                getSwimData(myJson[0])
+                fr200(myJson[0])
+                im200(myJson[0])
+                fr50(myJson[0])
+                fl100(myJson[0])
+                fr100(myJson[0])
+                fr500(myJson[0])
+                bk100(myJson[0])
+                br100(myJson[0])
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
 
-    <script>
-        let bl1 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let bl8 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let bl11 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let sj1 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let sj8 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let sj11 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
+    function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
+        var minValue = minPull(stateRecord[0].y);
+        var ctx = document.getElementById(race_id);
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: pushDate,
+                datasets: [{
+                    label: title + " Times",
+                    data: testChartData,
+                    fill: false,
+                    pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                    pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    borderColor: "rgba(0, 0, 0, 0.9)"
+                },
+                {
+                    label: "School Record",
+                    data: schoolRecord,
+                    fill: true,
+                    pointBorderColor: 'rgba(0, 0, 255, 0.9)',
+                    pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
+                    borderColor: "rgba(0, 0, 255, 0.9)"
+                },
+                {
+                    label: "State Record",
+                    data: stateRecord,
+                    fill: true,
+                    pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                    pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
+                    borderColor: "rgba(255, 0, 0, 0.9)"
+                }
+                ],
 
-        let bl12 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let bl19 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let bl22 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let sj12 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let sj19 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-        let sj22 = ['C-4', 'C-3', 'C-2', 'C-1', 'B-4', 'B-3', 'B-2', 'B-1', 'A-4', 'A-3', 'A-2', 'A-1'];
-
-        function putRelay($this, relay, person, cutOff, school) {
-            if (school == '6') {
-                if (person <= cutOff) {
-                    switch (relay) {
-                        case 1:
-                            if ($this.text() == "") {
-                                $this.text(bl1.pop());
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        type: 'time',
+                        time: {
+                            parser: 'm:ss.SS',
+                            unit: 'seconds',
+                            unitStepSize: 10,
+                            min: minValue,
+                            max: maxValue,
+                            displayFormats: {
+                                'seconds': 'm:ss.SS'
                             }
-                            else {
-                                bl1.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 8:
-                            if ($this.text() == "") {
-                                $this.text(bl8.pop());
-                            }
-                            else {
-                                bl8.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 11:
-                            if ($this.text() == "") {
-                                $this.text(bl11.pop());
-                            }
-                            else {
-                                bl11.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                    }
-                }
-                else {
-                    console.log(relay)
-                    switch (relay) {
-                        case 1:
-                            if ($this.text() == "") {
-                                $this.text(bl12.pop());
-                            }
-                            else {
-                                bl12.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 8:
-                            if ($this.text() == "") {
-                                $this.text(bl19.pop());
-                            }
-                            else {
-                                bl19.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 11:
-                            if ($this.text() == "") {
-                                $this.text(bl22.pop());
-                            }
-                            else {
-                                bl22.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                    }
-                }
-            }
-            else if (school = '78') {
-                if (person <= cutOff) {
-                    switch (relay) {
-                        case 1:
-                            if ($this.text() == "") {
-                                $this.text(sj1.pop());
-                            }
-                            else {
-                                sj1.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 8:
-                            if ($this.text() == "") {
-                                $this.text(sj8.pop());
-                            }
-                            else {
-                                sj8.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 11:
-                            if ($this.text() == "") {
-                                $this.text(sj11.pop());
-                            }
-                            else {
-                                sj11.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                    }
-                }
-                else {
-                    switch (relay) {
-                        case 1:
-                            if ($this.text() == "") {
-                                $this.text(sj12.pop());
-                            }
-                            else {
-                                sj12.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 8:
-                            if ($this.text() == "") {
-                                $this.text(sj19.pop());
-                            }
-                            else {
-                                sj19.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                        case 11:
-                            if ($this.text() == "") {
-                                $this.text(sj22.pop());
-                            }
-                            else {
-                                sj22.push($this.text())
-                                $this.text("");
-                            }
-                            break;
-                    }
-                }
-            }
-        }
-
-        $("#meetTable").on("click", "td", function () {
-            var races = [1, 8, 11]
-            var column = $(this).parent().children().index($(this));
-            var rows = $(this).parent().index();
-            var $this = $(this);
-            var school = $this.closest('tr').attr('id').split('_')
-            school = school[1];
-            if (column != 0) {
-                if (races.includes(column)) {
-                    putRelay($this, column, rows, cutOff, school);
-                }
-                else {
-                    if ($(this).text() != "X") {
-                        $(this).text("X")
-                    }
-                    else {
-                        $(this).text("")
-                    }
-                }
+                        },
+                        ticks: { reverse: true }
+                    }]
+                },
             }
         });
-    </script>
-</body>
-<footer id="footer"></footer>
+        myChart.render();
+    }
+
+    var stuff = 0;
+    async function lookForRace(id, event, race_id, school_id) {
+        var race = ["200 Free", "200 IM", "50 Free", "100 Fly", "100 Free", "500 Free", "100 Backstroke", "100 Breaststroke"]
+        var title = race[stuff]
+        const meetInfo = await fetch("/api/meets").then(data => data.json())
+        const schoolRecord = await fetch("/api/schoolRecord/" + event + "&" + school_id).then(school => school.json())
+        const stateRecord = await fetch("/api/races/" + event).then(state => state.json())
+        // const individualRecord = await fetch("/api/individualRecords/" + id + "&" + event).then(state => state.json())
+        // console.table(individualRecord)
+        fetch("/api/chartFill/" + id + "&" + event)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (events) {
+                var hide = document.getElementById(race_id);
+                // console.log(events)
+                if (events.length != 0) {
+                    var maxValue = maxPull(events[0].time)
+                    var str = []
+                    var scr = []
+                    var j = 1
+                    var newChartData = []
+                    var testChartData = []
+                    var dates = []
+
+                    for (var i = 0; i < events.length; i++) {
+                        newChartData[j] = events[i].time;
+                        for (var k = 0; k < meetInfo.length; k++) {
+                            if (events[i].meet == meetInfo[k].meet_id) {
+                                dates.push(meetInfo[k].date);
+                                str[i] = { y: stateRecord[0].sr_time, x: dates, indexLabel: stateRecord[0].sr_time }
+                                scr[i] = { y: schoolRecord[0].time, x: dates, indexLabel: schoolRecord[0].time }
+                            }
+                        }
+                        testChartData[j - 1] = { y: newChartData[j], x: dates[j - 1], indexLabel: newChartData[j] };
+                        j++;
+                    }
+                    makeChart(race_id, dates, testChartData, scr, str, maxValue, title);
+                }
+                else {
+                    hide.setAttribute("style", "display:none");
+                }
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+    }
+
+    function fr200(chartData) {
+        var races = chartData.gender == "F" ? 2 : 13;
+        var race_id = "200fr";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    function im200(chartData) {
+        var races = chartData.gender == "F" ? 3 : 14;
+        var race_id = "200IM";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    function fr50(chartData) {
+        var races = chartData.gender == "F" ? 4 : 15;
+        var race_id = "50fr";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    function fl100(chartData) {
+        var races = chartData.gender == "F" ? 5 : 16;
+        var race_id = "100fl";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    function fr100(chartData) {
+        var races = chartData.gender == "F" ? 6 : 17;
+        var race_id = "100fr";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    function fr500(chartData) {
+        var races = chartData.gender == "F" ? 7 : 18;
+        var race_id = "500fr";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    function bk100(chartData) {
+        var races = chartData.gender == "F" ? 9 : 20;
+        var race_id = "100bk";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    function br100(chartData) {
+        var races = chartData.gender == "F" ? 10 : 21;
+        var race_id = "100br";
+        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
+        stuff++;
+    }
+
+    const races = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
+    var a = ""
+
+
+    function printImage() {
+        var table = document.getElementById("swimmer_data");
+        table.setAttribute("style", "font-size:12px");
+        var windowContent = '<!DOCTYPE html>';
+        windowContent += '<html>';
+        windowContent += '<head><style> table {text-align: center; border: solid black 3px}tr,td {border: solid black 1px; text-align: center}th {text-align: center;}</style></head>';
+        windowContent += '<body">';
+        windowContent += table.outerHTML;
+        windowContent += '<br>'
+        for (var i = 0; i < races.length; i++) {
+            var dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
+            a = document.getElementById(races[i]).getAttribute('style')
+            if (a != 'display:none') {
+                windowContent += '<img src="' + dataUrl + '" style="width:50%">';
+            }
+        }
+        windowContent += '</body>';
+        windowContent += '</html>';
+        const printWin = window.open('', '_blank');
+
+        printWin.document.open();
+        printWin.document.write(windowContent);
+        printWin.document.addEventListener('load', function () {
+            printWin.focus();
+            printWin.print();
+            printWin.document.close();
+            printWin.close();
+        }, true);
+        table.removeAttribute("style");
+        //self.opener.location.reload();
+        document.location.reload(true);
+    }
+
+</script>
 
 </html>

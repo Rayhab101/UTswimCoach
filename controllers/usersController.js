@@ -275,6 +275,20 @@ module.exports = {
             return res.status(200).send(school_relays)
         }).catch(err => (res.sendStatus(500)))
     },
+    getPastIndividualRecord: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("&");
+        id=idSplit[0];
+        var race=idSplit[1];
+        var year=idSplit[2]
+        // console.log(id)
+        const db = req.app.get("db");
+        // console.log(id,race);
+        db.get_individual_records(id,race,year).then(school_relays => {
+            //console.log(school_relays);
+            return res.status(200).send(school_relays)
+        }).catch(err => (res.sendStatus(500)))
+    },
     getBlog: (req,res) => {
         const db = req.app.get("db");
         db.get_blog().then(blog => {
@@ -282,7 +296,15 @@ module.exports = {
             return res.status(200).send(blog)
         })
     },
-
+    previousYear: (req,res) => {
+        var {id}=req.params;
+        // console.log(id)
+        const db = req.app.get("db");
+        db.get_previous_year(id).then(blog => {
+            //console.log(school_meets);
+            return res.status(200).send(blog)
+        })
+    },
 
 
     timeFill: (req,res) => {

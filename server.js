@@ -142,12 +142,16 @@ app.get('/api/relaysTimes', userctrl.getRelaysTimes)
 app.get('/api/swimmerName/:id', userctrl.getSwimmerName)
 //Get Individual Times
 app.get('/api/individualRecords/:id', userctrl.getIndividualRecord)
+app.get('/api/pastIndividualRecords/:id', userctrl.getPastIndividualRecord)
+
 app.get('/api/timeFill/:id', userctrl.timeFill)
 app.get('/api/chartFill/:id', userctrl.chartFill)
 //Get active swimmers
 app.get('/api/activeSwimmers', userctrl.getActiveSwimmers)
 
 app.get('/api/blog',userctrl.getBlog)
+
+app.get('/api/previousYear/:id', userctrl.previousYear)
 
 app.post('/api/setMeet/:id',userctrl.setMeet)
 app.post('/api/setSwimmer/:id',userctrl.setSwimmer)
