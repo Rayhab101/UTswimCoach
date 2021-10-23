@@ -40,15 +40,22 @@
                 var day = Number(splice[1]);
                 var meetDate = new Date(year, month, day);
                 var who;
-                // console.log(meetDate - today)
-                if (nextMeet[j].location == "Red and Blue") {
-                    var thisMeet = "Each other"
-                    break
-                }
-                if ((meetDate - today) > 0) {
+                console.log(meetDate-today)
+                if(meetDate-today >0){
                     var thisMeet = (nextMeet[j].location);
                     break;
                 }
+                // console.log(nextMeet[j].location)
+                // if ((meetDate - today) > 0) {
+                //     var thisMeet = (nextMeet[j].location);
+                //     break;
+                // }
+                // // console.log(meetDate - today)
+                // if (nextMeet[j].location == "Red and Blue") {
+                //     var thisMeet = "Each other"
+                //     break
+                // }
+
             }
             fetch("/api/getAllSwimmers")
                 .then(function (response) {

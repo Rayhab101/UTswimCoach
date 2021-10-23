@@ -278,14 +278,14 @@ module.exports = {
     getPastIndividualRecord: (req,res) => {
         var {id}=req.params;
         var idSplit = id.split("&");
-        id=idSplit[0];
-        var race=idSplit[1];
-        var year=idSplit[2]
-        // console.log(id)
+        id=Number(idSplit[0]);
+        var race=Number(idSplit[1]);
+        var year=idSplit[2];
+        // console.log(id,race,year)
         const db = req.app.get("db");
         // console.log(id,race);
-        db.get_individual_records(id,race,year).then(school_relays => {
-            //console.log(school_relays);
+        db.get_past_individual_records(id,race,year).then(school_relays => {
+            // console.log(school_relays);
             return res.status(200).send(school_relays)
         }).catch(err => (res.sendStatus(500)))
     },

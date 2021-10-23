@@ -146,7 +146,6 @@
 
     async function timesPull(id, column, cell, row, body) {
         var meet = cell.id.split("_")
-        console.log(meet)
         var pull = id + "&" + meet[1] + "&" + meet[0];
         fetch('/api/timeFill/' + pull)
             .then(function (response) {
@@ -163,6 +162,7 @@
     async function pastTimesPull(id, column, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
+        // console.log(pull)
         const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
         if(individualRecord[0].min != null){
             document.getElementById(cell.id).innerHTML =individualRecord[0].min
@@ -219,7 +219,7 @@
         if(previous.length > 0){
             // console.log(previous)
             var t=previous.length;
-            for(var t=previous.length; t!=0; t--){
+            for(var t=previous.length-1; t!=0; t--){
                 var year = 2019+Number(previous[t-1].swim_year)
                 row = document.createElement("tr");
                 var column = document.createElement("td");
@@ -313,7 +313,6 @@
                 return response.json();
             })
             .then(function (myJson) {
-                console.log(myJson[0]);
                 getSwimData(myJson[0])
                 fr200(myJson[0])
                 im200(myJson[0])

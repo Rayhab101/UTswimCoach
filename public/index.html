@@ -17,152 +17,157 @@
     </script>
     <style>
         @media only screen and (min-width: 700px) {
-        .galleryPic {
-            width: 30vw;
-            height: 50vh;
-        }
+            .galleryPic {
+                width: 30vw;
+                height: 50vh;
+            }
 
-        .container2 {
-            width: 100vw;
-            display: flex;
-            justify-content: space-evenly;
-            flex-wrap: wrap;
-            /* overflow: hidden; */
-            /* padding-left: 50px;
+            .container2 {
+                width: 100vw;
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                /* overflow: hidden; */
+                /* padding-left: 50px;
             padding-right: 90px; */
+            }
+
+            .welcome {
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 100vw;
+            }
+
+            .schedule {
+                /* background-color: whitesmoke; */
+                text-align: center;
+                font-size: small;
+                width: 30vw;
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            .nextmeet {
+                background-image: url(vs_blpool.jpeg);
+                display: flex;
+                width: 30vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .nextmeet img {
+                width: 40%;
+                height: 40%;
+            }
+
+            #blog {
+                height: 30vh;
+                width: 29.5vw;
+                font-size: 14px;
+                resize: none;
+
+            }
+
+            .state {
+                display: flex;
+                text-align: center;
+                width: 29.5vw;
+                ;
+                height: 10vh;
+                object-fit: cover;
+                position: relative;
+                top: -105px;
+            }
         }
 
-        .welcome {
-            /* padding-top: 100px; */
-            color: white;
-            font-size: larger;
-            background-color: rgba(0, 0, 0, 0.6);
-            text-align: center;
-            width: 100vw;
-        }
-
-        .schedule {
-            /* background-color: whitesmoke; */
-            text-align: center;
-            font-size: small;
-            width: 30vw;
-        }
-
-        table {
-            background-color: whitesmoke;
-            visibility: visible;
-        }
-
-        body {
-            height: 85vh;
-            width: 100vw;
-        }
-
-        .nextmeet {
-            background-image: url(vs_blpool.jpeg);
-            display: flex;
-            width: 30vw;
-            object-fit: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nextmeet img {
-            width: 40%;
-            height: 40%;
-        }
-
-        #blog{
-            height: 30vh; 
-            width: 29.5vw; 
-            font-size:14px;
-            resize: none;
-
-        }
-        .state{
-            display: flex;
-            text-align: center;
-            width: 29.5vw; ;
-            height:10vh;
-            object-fit: cover;
-            position: relative; 
-            top: -105px;
-        }
-    }
         @media only screen and (max-width: 700px) {
             .galleryPic {
-            width: 90vw;
-        }
+                width: 90vw;
+            }
+
             .container2 {
                 height: 85vh;
                 width: 100vw;
                 /* padding-left: auto; */
                 display: flex;
                 justify-content: space-evenly;
-                flex-wrap:wrap;
+                flex-wrap: wrap;
                 overflow: auto;
 
             }
+
             .welcome {
-            /* padding-top: 100px; */
-            color: white;
-            font-size: larger;
-            background-color: rgba(0, 0, 0, 0.6);
-            text-align: center;
-            width: 90vw;
-            margin-top: 100px;
-        }
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 90vw;
+                margin-top: 100px;
+            }
+
             .schedule {
-            /* background-color: whitesmoke; */
-            text-align: center;
-            font-size: small;
-            width: 90vw;
+                /* background-color: whitesmoke; */
+                text-align: center;
+                font-size: small;
+                width: 90vw;
 
-        }
+            }
 
-        table {
-            background-color: whitesmoke;
-            visibility: visible;
-        }
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
 
-        body {
-            height: 85vh;
-            width: 100vw;
-        }
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
 
-        .nextmeet {
-            background-image: url(vs_blpool.jpeg);
-            display: flex;
-            width: 90vw;
-            object-fit: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+            .nextmeet {
+                background-image: url(vs_blpool.jpeg);
+                display: flex;
+                width: 90vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
 
-        .nextmeet img {
-            width: 40%;
-            height: 40%;
-        }
+            .nextmeet img {
+                width: 40%;
+                height: 40%;
+            }
 
-        #blog{
-            height: 100%; 
-            width: 90vw; 
-            font-size:14px;
-            resize: none;
-        }
-        .state{
-            display: flex;
-            text-align: center;
-        }
-        }
+            #blog {
+                height: 100%;
+                width: 90vw;
+                font-size: 14px;
+                resize: none;
+            }
 
-
+            .state {
+                display: flex;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <header id="header"></header>
@@ -273,84 +278,41 @@
                 var img2 = document.createElement("img");
                 var img3 = document.createElement("img");
                 var img4 = document.createElement("img");
-                if (meets != "" && meets[0].year == 2) {
-                    // console.log(meets[0].school1);
-                    if (meets[0].school1 != -1) {
-                        var school1 = await fetch('/api/schools/' + meets[0].school1).then(function (responseRelay) {
-                            return responseRelay.json();
-                        }).catch(function (error) {
-                            console.log("Error: " + error)
-                        });
-                        var school2;
-                        if (meets[0].school2 != null) {
-                            school2 = await fetch('/api/schools/' + meets[0].school2).then(function (responseRelay) {
+                for (var j = 0; j < meets.length; j++) {
+                    var date = meets[j].date;
+                    var splice = date.split("/");
+                    var year = Number(splice[2]);
+                    var month = Number(splice[0]) - 1;
+                    var day = Number(splice[1]);
+                    var nextMeet = new Date(year, month, day);
+                    var who;
+                    if (nextMeet - today > 0) {
+                        console.log(meets[j].school1);
+                        if (meets[j].school1 != -1) {
+                            var school1 = await fetch('/api/schools/' + meets[j].school1).then(function (responseRelay) {
                                 return responseRelay.json();
                             }).catch(function (error) {
                                 console.log("Error: " + error)
                             });
-                        }
-                    }
-                    else {
-                        // console.log("Hello")
-                        var school1 = [{ school_id: '-1', name: 'Multi Team', photo: './Utah_test.png' }];
-
-                    }
-                    // console.log(school1);
-                    // console.log(meets)
-                    for (var j = 0; j < meets.length; j++) {
-                        var date = meets[j].date;
-                        var splice = date.split("/");
-                        var year = Number(splice[2]);
-                        var month = Number(splice[0]) - 1;
-                        var day = Number(splice[1]);
-                        var nextMeet = new Date(year, month, day);
-                        var who;
-
-                        if ((nextMeet - today) > 0) {
-                            if (school1[0].school_id == '6') {
-                                img.setAttribute("src", "./images/BLHS-logo-good.png");
-                                img.setAttribute("alt", "Ben Lomond Logo");
-                                body.appendChild(img);
-                                img2.setAttribute("src", "./images/JayHawk.png");
-                                img2.setAttribute("alt", "Jayhawks Logo");
-                                body.appendChild(img2);
-                                text.innerHTML = "Red and Blue Meet"
-                                break;
+                            var school2;
+                            if (meets[j].school2 != null) {
+                                school2 = await fetch('/api/schools/' + meets[j].school2).then(function (responseRelay) {
+                                    return responseRelay.json();
+                                }).catch(function (error) {
+                                    console.log("Error: " + error)
+                                });
                             }
-
-                            img.setAttribute("src", "./images/BLHS-logo-good.png");
-                            img.setAttribute("alt", "Ben Lomond Logo");
-                            body.appendChild(img);
-                            // console.log(school1[0].photo)
-                            img2.setAttribute("src", "./images/" + school1[0].photo);
-                            img2.setAttribute("alt", school1[0].name + " Logo");
-                            body.appendChild(img2);
-                            who = "VS " + school1[0].name;
-                            img3.setAttribute("src", "./images/JayHawk.png");
-                            img3.setAttribute("alt", "Jayhawks Logo");
-                            body.appendChild(img3);
-                            if (school2 != undefined) {
-                                img4.setAttribute("src", "./images/" + school2[0].photo);
-                                img4.setAttribute("alt", school2[0].name);
-                                body.appendChild(img4);
-                                who = who + " & " + school2[0].name;
-                                text.innerHTML = who;
-                            }
-                            break;
                         }
                         else {
-                            img.setAttribute("src", "./images/BLHS-logo-good.png");
-                            img.setAttribute("alt", "Ben Lomond Logo");
-                            body.appendChild(img);
-                            img2.setAttribute("src", "./images/JayHawk.png");
-                            img2.setAttribute("alt", "Jayhawks Logo");
-                            body.appendChild(img2);
-                            text.innerHTML = "Red and Blue Meet"
+                            console.log("Hello")
+                            var school1 = [{ school_id: '-1', name: meets[j].location, photo: './Utah_test.png' }];
+
                             break;
                         }
                     }
                 }
-                else {
+                console.log(school1)
+                if (school1[0].school_id == 6) {
                     img.setAttribute("src", "./images/BLHS-logo-good.png");
                     img.setAttribute("alt", "Ben Lomond Logo");
                     body.appendChild(img);
@@ -358,7 +320,54 @@
                     img2.setAttribute("alt", "Jayhawks Logo");
                     body.appendChild(img2);
                     text.innerHTML = "Red and Blue Meet"
+                    // break;
                 }
+                else {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    // console.log(school1[0].photo)
+                    img2.setAttribute("src", "./images/" + school1[0].photo);
+                    img2.setAttribute("alt", school1[0].name + " Logo");
+                    body.appendChild(img2);
+                    console.log(school1[0].name)
+                    who = "VS " + school1[0].name;
+                    img3.setAttribute("src", "./images/JayHawk.png");
+                    img3.setAttribute("alt", "Jayhawks Logo");
+                    body.appendChild(img3);
+                    if (school2 != undefined) {
+                        img4.setAttribute("src", "./images/" + school2[0].photo);
+                        img4.setAttribute("alt", school2[0].name);
+                        body.appendChild(img4);
+                        who = who + " & " + school2[0].name;
+                        text.innerHTML = who;
+                    }
+                    else{
+                        text.innerHTML = who;
+                    }
+                    // break;
+                }
+                //     else {
+                //         img.setAttribute("src", "./images/BLHS-logo-good.png");
+                //         img.setAttribute("alt", "Ben Lomond Logo");
+                //         body.appendChild(img);
+                //         img2.setAttribute("src", "./images/JayHawk.png");
+                //         img2.setAttribute("alt", "Jayhawks Logo");
+                //         body.appendChild(img2);
+                //         text.innerHTML = "Red and Blue Meet"
+                //         break;
+                //     }
+                // }
+                // }
+                // else {
+                //     img.setAttribute("src", "./images/BLHS-logo-good.png");
+                //     img.setAttribute("alt", "Ben Lomond Logo");
+                //     body.appendChild(img);
+                //     img2.setAttribute("src", "./images/JayHawk.png");
+                //     img2.setAttribute("alt", "Jayhawks Logo");
+                //     body.appendChild(img2);
+                //     text.innerHTML = "Red and Blue Meet"
+                // }
             })
             .catch(function (error) {
                 console.log("Error: " + error);
@@ -397,7 +406,7 @@
 
                         cell.appendChild(text);
                         var cell = row.insertCell();
-                        if (meets[j].bus == null|| meets[j].bus == "null") {
+                        if (meets[j].bus == null || meets[j].bus == "null") {
                             var text = document.createTextNode(column.innerHTML = "");
                         }
                         else {
