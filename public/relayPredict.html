@@ -341,10 +341,11 @@
                 }
                 if (times < 10.00) {
                     if(times>1.00){
-                        times = "0" + times;
                         times = Number(times).toFixed(2);
+                        times = "0" + times;
                     }
                     else{
+                        console.log("Under 1")
                         times = "0" + times.toFixed(2);
                     }
                 }
@@ -363,7 +364,6 @@
             t350fly = t350fly.split(":");
             var tM3 = Number(t350fly[1]);
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
-                console.log("Hit Here")
                 var time = tM1 + tM2 + tM3 + t4;
                 var minutes =0;
                 if (time >= 60) {
@@ -392,7 +392,6 @@
             t3100free = t3100free.split(":");
             t4100free = t4100free.split(":");
             if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
-                console.log("Hit Here too")
                 var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
                 var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
                 if (newSeconds >= 60) {

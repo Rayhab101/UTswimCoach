@@ -529,7 +529,7 @@
                         }) 
                         .then(async function (chart) {
                             var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
-                            // console.log(state[i].race_time)
+                            console.log(state[i].race_time)
                             var t50 = chart.length;
                             t50 = t50 > 5 ? t50 = 5 : t50 = chart.length;
                             for (var j = 0; j < t50; j++) {
