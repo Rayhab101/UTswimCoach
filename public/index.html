@@ -287,7 +287,6 @@
                     var nextMeet = new Date(year, month, day);
                     var who;
                     if (nextMeet - today > 0) {
-                        console.log(meets[j].school1);
                         if (meets[j].school1 != -1) {
                             var school1 = await fetch('/api/schools/' + meets[j].school1).then(function (responseRelay) {
                                 return responseRelay.json();
@@ -302,6 +301,7 @@
                                     console.log("Error: " + error)
                                 });
                             }
+                            break;
                         }
                         else {
                             console.log("Hello")
@@ -330,10 +330,10 @@
                     img2.setAttribute("src", "./images/" + school1[0].photo);
                     img2.setAttribute("alt", school1[0].name + " Logo");
                     body.appendChild(img2);
-                    console.log(school1[0].name)
                     who = "VS " + school1[0].name;
                     img3.setAttribute("src", "./images/JayHawk.png");
                     img3.setAttribute("alt", "Jayhawks Logo");
+                    img3.setAttribute("style","transform: scaleX(-1)")
                     body.appendChild(img3);
                     if (school2 != undefined) {
                         img4.setAttribute("src", "./images/" + school2[0].photo);

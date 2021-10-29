@@ -361,8 +361,14 @@
             var tM1 = Number(t150back[1]);
             t250breast = t250breast.split(":");
             var tM2 = Number(t250breast[1]);
+            if(Number(t250breast[0]) > 0){
+                tM2 += 60;
+            }
             t350fly = t350fly.split(":");
             var tM3 = Number(t350fly[1]);
+            if(Number(t350fly[0]) > 0){
+                tM3 += 60;
+            }
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
                 var time = tM1 + tM2 + tM3 + t4;
                 var minutes =0;
