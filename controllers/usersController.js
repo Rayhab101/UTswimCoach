@@ -564,9 +564,9 @@ module.exports = {
         var school = Number(idSplit[3]);
         var id = Number(idSplit[4]);
         const db = req.app.get("db");
-        console.log(swimmer,time,year,id,school)
+        console.log(swimmer,time,year,school,id)
         // console.log(typeof swimmer,typeof swimmer,typeof time,typeof year,typeof id);
-        db.update_school_relay_records(swimmer,time,year,id,school).then(times => {
+        db.update_school_relay_records(swimmer,time,year,school,id).then(times => {
             // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
