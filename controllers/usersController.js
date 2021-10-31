@@ -557,14 +557,15 @@ module.exports = {
     updateSchoolRelayRecord:(req,res) => {
         var {id}=req.params;
         var idSplit = id.split("_");
-        // console.log(idSplit);
+        console.log(idSplit);
         var swimmer = idSplit[0];
-        var school = idSplit[1];
-        var time = idSplit[2];
-        var year = Number(idSplit[3]);
+        var time = idSplit[1];
+        var year = idSplit[2];
+        var school = Number(idSplit[3]);
         var id = Number(idSplit[4]);
         const db = req.app.get("db");
-        // console.log(typeof school,typeof swimmer,typeof time,typeof year,typeof id);
+        console.log(swimmer,time,year,id,school)
+        // console.log(typeof swimmer,typeof swimmer,typeof time,typeof year,typeof id);
         db.update_school_relay_records(swimmer,time,year,id,school).then(times => {
             // console.log(times);
             return res.status(200).send(times)

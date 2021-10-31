@@ -162,7 +162,7 @@
             var swimmers = document.getElementById(id).children[1].innerHTML;
             var time = document.getElementById(id).children[2].innerHTML;
             var year = document.getElementById(id).children[3].innerHTML;
-            var getSwimmer = await fetch('/api/swimmerName/'+swimmers)
+            // var getSwimmer = await fetch('/api/swimmerName/'+swimmers)
             var proceed = confirm("Does all of this look correct? name:" + swimmers + " race:" + race + " Time:" + time + " Year:" + year);
             if (proceed) {
                 var password = prompt("Please Enter your Password", "")
