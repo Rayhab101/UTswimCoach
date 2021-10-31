@@ -123,6 +123,24 @@
             height: 20vh;
             width: 18vw;
         }
+        #bl_records{
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
+        }
+        #sj_records{
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
+        }
+        #state_records{
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
+        }
     }
 
     @media screen and (max-width:750px){
@@ -220,7 +238,24 @@
             height: 13vh;
             width: 36vw;
         }
-
+        #bl_records{
+            background-color: white;
+            border-radius: 5px;
+            height: 13vh;
+            width: 36vw;
+        }
+        #sj_records{
+            background-color: white;
+            border-radius: 5px;
+            height: 13vh;
+            width: 36vw;
+        }
+        #state_records{
+            background-color: white;
+            border-radius: 5px;
+            height: 13vh;
+            width: 36vw;
+        }
     }
 
 
@@ -279,6 +314,18 @@
                     <h1 sytle="margin-bottom:0">Fix State Times</h1>
                     <i class="fas fa-list" style="font-size: 2em; padding-top:0"></i>
                 </button>
+                <button id="bl_records">
+                    <h1 sytle="margin-bottom:0">Fix BL Records</h1>
+                    <i class="fas fa-trophy" style="font-size: 2em; padding-top:0"></i>
+                </button>
+                <button id="sj_records">
+                    <h1 sytle="margin-bottom:0">Fix SJ Records</h1>
+                    <i class="fas fa-trophy" style="font-size: 2em; padding-top:0"></i>
+                </button>
+                <button id="state_records">
+                    <h1 sytle="margin-bottom:0">Fix State Records</h1>
+                    <i class="fas fa-trophy" style="font-size: 2em; padding-top:0"></i>
+                </button>
             </div>
     </main>
 </body>
@@ -322,6 +369,15 @@
                 break;
             case 'state_fix':
             window.location.href = "updateStateTimes.html";
+                break;
+            case 'bl_records':
+            window.location.href = "updateBLRecords.html";
+                break;
+            case 'sj_records':
+            window.location.href = "updateSJRecords.html";
+                break;
+            case 'state_records':
+            window.location.href = "updateStateRecords.html";
                 break;
         }
     });

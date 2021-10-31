@@ -179,6 +179,8 @@ app.post('/api/updateBlog/:id', userctrl.updateBlog)
 app.post('/api/logChanges/:id', userctrl.logChanges)
 app.post('/api/updateState/:id', userctrl.updateState)
 
+app.post('/api/updateStateRecord/:id', userctrl.updateStateRecord)
+
 app.set('port', process.env.PORT || 8080)
 massive({
     connectionString: CONNECTION_STRING,

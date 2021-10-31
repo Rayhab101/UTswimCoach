@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Updates</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <style>
+        .swim_info {
+            height: 84vh;
+            /* padding-top: 65px; */
+            overflow: auto;
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        td {
+            width: 7.7%;
+        }
+
+        input {
+            width: 80%;
+        }
+
+        .label {
+            color: white;
+            background-color: rgba(0, 0, 0, .6);
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+
+        async function buildPage() {
+            var body = document.getElementById("record");
+            var race = await fetch('/api/races').then(data => data.json());
+            for(var i = 0; i < race.length; i++){
+                // console.log(race[i])
+                var row = document.createElement("tr");
+                row.setAttribute("id", race[i].race_id);
+                var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = race[i].title);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = race[i].sr_swimmer);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = race[i].sr_location);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = race[i].sr_time);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = race[i].sr_year);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createElement("button");
+                    text.textContent = "Save";
+                    text.setAttribute("style", "background-color: lime");
+                    text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                    cell.appendChild(text);
+                    body.appendChild(row);
+                    var table = document.getElementById("record");
+                    table.addEventListener('click', function (e) {
+                        var target = e.target;
+                        //test if clicked element is TD.
+                        if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                            //make cell editable
+                            target.setAttribute('contenteditable', 'true');
+                            //on blur close the editable field and return to normal cell.
+                            target.onblur = function () { this.removeAttribute('contenteditable'); }
+                        }
+
+                    });
+            }
+        }
+
+        async function save(id) {
+            // console.log(id)
+            var name = document.getElementById(id).children[1].innerHTML;
+            var school = document.getElementById(id).children[2].innerHTML;
+            var race = document.getElementById(id).children[3].innerHTML;
+            var time = document.getElementById(id).children[4].innerHTML;
+            // console.log(name,school,race,time)
+            var isName = await fetch('/api/swimmerName/'+name).then(data => data.json());
+            // console.log(isName=="");
+            if(isName!=""){
+                isName=name;
+            }
+                var proceed = confirm("Does all of this look correct?");
+                if (proceed) {
+                    var password = prompt("Please Enter your Password", "")
+                    var check = await fetch('/api/coaches/').then(data => data.json())
+                    var flag = false;
+                    for (var i = 0; i < check.length; i++) {
+                        if (check[i].password == password) {
+                            var coach = check[i].coach_id
+                            flag = true;
+                        }
+                    }
+
+                    if (proceed && flag) {
+                        // console.log(name,meet,race,time,id)
+                        // console.log(name+","+school+","+race+","+time+","+id);
+                        // name = name.replace(/ /g,'&');
+                        // name = name.replace(/\./g,'-')
+                        console.log(name)
+                        var submit = name + "_" + school + "_" + race + "_" + time + "_" + id;
+                        console.log("Here")
+                        fetch("/api/updateStateRecord/" + submit, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+
+                            submit = submit.replace(/_/g,"&")
+                            var today = new Date();
+                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+                        // window.location.reload();
+                    }
+                    else {
+                        alert("You don't have access to save changes")
+                    }
+                    
+                }
+        }
+
+    </script>
+
+</head>
+<header id="header"></header>
+
+<body onload="buildPage()">
+    <div class="swim_info">
+        <h4 class="label">Update State Records</h4>
+        <table id="record">
+            <tr>
+                <td>Race</td>
+                <td>Name</td>
+                <td>School</td>
+                <td>Time</td>
+                <td>Year</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+<footer id="footer"></footer>
+
+</html>

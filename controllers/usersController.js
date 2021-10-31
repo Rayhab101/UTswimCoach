@@ -504,6 +504,7 @@ module.exports = {
         // console.log(req)
         var {id}=req.params;
         var idSplit = id.split("_");
+        console.log(idSplit)
         var relay = idSplit[0];//currently is text not number
         var names = idSplit[1];
         var newTime = idSplit[2];
@@ -516,6 +517,22 @@ module.exports = {
         // console.log(relay,names,newTime,school,meet,relayNumber,schoolNumber,meetNumber,oldTime);
         const db = req.app.get("db");
         db.update_relay_records(relay,names,newTime,school,meet,relayNumber,schoolNumber,meetNumber,oldTime).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    updateStateRecord:(req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        console.log(idSplit);
+        var swimmer = idSplit[0];
+        var school = idSplit[1];
+        var time = idSplit[2];
+        var year = Number(idSplit[3]);
+        var id = Number(idSplit[4]);
+        const db = req.app.get("db");
+        // console.log(typeof school,typeof swimmer,typeof time,typeof year,typeof id);
+        db.update_state_records(school,swimmer,time,year,id).then(times => {
             // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
@@ -606,6 +623,7 @@ console.log(id,time)
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
+
     //REMOVE SECTION
     removeSwimmer:(req,res) => {
         var {id}=req.params;

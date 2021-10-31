@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Updates</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <style>
+        .swim_info {
+            height: 84vh;
+            /* padding-top: 65px; */
+            overflow: auto;
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        td {
+            width: 7.7%;
+        }
+
+        input {
+            width: 80%;
+        }
+
+        .label {
+            color: white;
+            background-color: rgba(0, 0, 0, .6);
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+
+        async function buildPage() {
+            var r= [1, 8, 11, 12, 19, 22];
+            var body = document.getElementById("record");
+            for(var i = 1; i < 23; i++){
+                
+                if(!r.includes(i)){
+                    var record = await fetch("/api/schoolRecord/"+i+"&6").then(data => data.json());
+                    var race = await fetch('/api/races/'+record[0].race_id).then(data => data.json());
+                    var person = await fetch('/api/swim/'+record[0].swimmer_id).then(data => data.json());
+                    // console.log(record[0].school_id+"_"+record[0].race_id+"_"+record[0].swimmer_id)
+                    var row = document.createElement("tr");
+                    row.setAttribute("id", record[0].school_id+"_"+record[0].race_id+"_"+record[0].swimmer_id);
+                    
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = race[0].title);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = person[0].name);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = record[0].time);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = record[0].year);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+
+                    text = document.createElement("button");
+                    text.textContent = "Save";
+                    text.setAttribute("style", "background-color: lime");
+                    text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                    cell.appendChild(text);
+                    body.appendChild(row);
+
+                    var table = document.getElementById("record");
+                    table.addEventListener('click', function (e) {
+
+                        var target = e.target;
+                        //test if clicked element is TD.
+                        if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                            //make cell editable
+                            target.setAttribute('contenteditable', 'true');
+                            //on blur close the editable field and return to normal cell.
+                            target.onblur = function () { this.removeAttribute('contenteditable'); }
+                        }
+
+                    });
+                }
+                else{
+                    var relayRecord = await fetch("/api/relayRecord/"+i+"&6").then(data => data.json());
+                    var race = await fetch('/api/races/'+relayRecord[0].race).then(data => data.json());
+                    var row = document.createElement("tr");
+                    row.setAttribute("id", relayRecord[0].school_id+"_"+relayRecord[0].race);
+                    
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = race[0].title);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = relayRecord[0].swimmers);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = relayRecord[0].time);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = relayRecord[0].year);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+
+                    text = document.createElement("button");
+                    text.textContent = "Save";
+                    text.setAttribute("style", "background-color: lime");
+                    text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                    cell.appendChild(text);
+                    body.appendChild(row);
+
+                    var table = document.getElementById("record");
+                    table.addEventListener('click', function (e) {
+
+                        var target = e.target;
+                        //test if clicked element is TD.
+                        if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                            //make cell editable
+                            target.setAttribute('contenteditable', 'true');
+                            //on blur close the editable field and return to normal cell.
+                            target.onblur = function () { this.removeAttribute('contenteditable'); }
+                        }
+
+                    });
+                }
+            }
+            // fetch("/api/records")
+            //     .then(function (response) {
+            //         return response.json();
+            //     })
+            //     .then(async function (records) {
+
+            //         // console.log(records.length)
+            //         var body = document.getElementById("record");
+            //         for (var i = 0; i < records.length; i++) {
+            //             var person = await fetch('/api/swim/'+records[i].swimmer).then(data => data.json());
+            //             var meet = await fetch('/api/meets/'+records[i].meet).then(data => data.json());
+            //             var race = await fetch('/api/races/'+records[i].race).then(data => data.json());
+            //             var row = document.createElement("tr");
+            //             row.setAttribute("id", records[i].swimmer+'_'+records[i].meet+'_'+records[i].race);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = person[0].name);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = meet[0].location);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = race[0].title);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = records[i].time);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+
+            //             text = document.createElement("button");
+            //             text.textContent = "Save";
+            //             text.setAttribute("style", "background-color: lime");
+            //             text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+            //             cell.appendChild(text);
+            //             body.appendChild(row);
+
+            //             var table = document.getElementById("record");
+            //             table.addEventListener('click', function (e) {
+
+            //                 var target = e.target;
+            //                 //test if clicked element is TD.
+            //                 if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+            //                     //make cell editable
+            //                     target.setAttribute('contenteditable', 'true');
+            //                     //on blur close the editable field and return to normal cell.
+            //                     target.onblur = function () { this.removeAttribute('contenteditable'); }
+            //                 }
+
+            //             });
+            //         }
+            //     })
+            //     .catch(function (error) {
+            //         console.log("Error: " + error);
+            //     });
+        }
+
+        function addNewResults() {
+            window.location.href = "addTimes.html";
+        }
+
+        async function save(id) {
+            console.log(id)
+            var name = document.getElementById(id).children[0].innerHTML;
+            var meet = document.getElementById(id).children[1].innerHTML;
+            var race = document.getElementById(id).children[2].innerHTML;
+            var time = document.getElementById(id).children[3].innerHTML;
+            var isName = await fetch('/api/swimmerName/'+name).then(data => data.json());
+            console.log(isName=="");
+            if(isName!=""){
+                isName=name;
+            }
+                var proceed = confirm("Does all of this look correct? name:" + isName + " meet:" + meet + " race:" + race + " Time:" + time);
+                if (proceed) {
+                    var password = prompt("Please Enter your Password", "")
+                    var check = await fetch('/api/coaches/').then(data => data.json())
+                    var flag = false;
+                    for (var i = 0; i < check.length; i++) {
+                        if (check[i].password == password) {
+                            var coach = check[i].coach_id
+                            flag = true;
+                        }
+                    }
+
+                    if (proceed && flag) {
+                        // console.log(name,meet,race,time,id)
+                        // console.log(name+","+gender+","+grade+","+school+","+is_active+","+id);
+                        var submit = name + "_" + meet + "_" + race + "_" + time + "_" + id;
+                        fetch("/api/updateRecords/" + submit, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+
+                            submit = submit.replace(/_/g,"&")
+                            var today = new Date();
+                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+                        window.location.reload();
+                    }
+                    else {
+                        alert("You don't have access to save changes")
+                    }
+                }
+        }
+
+    </script>
+
+</head>
+<header id="header"></header>
+
+<body onload="buildPage()">
+    <div class="swim_info">
+        <h4 class="label">Update Ben Lomond School Records</h4>
+        <table id="record">
+            <tr>
+                <td>Race</td>
+                <td>Name</td>
+                <td>Time</td>
+                <td>Year</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+<footer id="footer"></footer>
+
+</html>

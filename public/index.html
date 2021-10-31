@@ -283,7 +283,7 @@
                     var splice = date.split("/");
                     var year = Number(splice[2]);
                     var month = Number(splice[0]) - 1;
-                    var day = Number(splice[1]);
+                    var day = Number(splice[1])+1;
                     var nextMeet = new Date(year, month, day);
                     var who;
                     if (nextMeet - today > 0) {
@@ -389,7 +389,7 @@
                     var splice = date.split("/");
                     var year = Number(splice[2]);
                     var month = Number(splice[0]) - 1;
-                    var day = Number(splice[1]);
+                    var day = Number(splice[1])+1;
                     var nextMeet = new Date(year, month, day);
                         var row = document.createElement("tr");
                         var column = document.createElement("td");
