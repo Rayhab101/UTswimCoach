@@ -1,0 +1,1 @@
+UPDATE records_school SET swimmer_id=$1, time=$2, year=$3 WHERE race_id=$4 and school_id=$5 and swimmer_id=$6;

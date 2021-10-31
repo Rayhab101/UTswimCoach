@@ -504,7 +504,7 @@ module.exports = {
         // console.log(req)
         var {id}=req.params;
         var idSplit = id.split("_");
-        console.log(idSplit)
+        // console.log(idSplit)
         var relay = idSplit[0];//currently is text not number
         var names = idSplit[1];
         var newTime = idSplit[2];
@@ -521,10 +521,10 @@ module.exports = {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
-    updateStateRecord:(req,res) => {
+    updateStateRecords:(req,res) => {
         var {id}=req.params;
         var idSplit = id.split("_");
-        console.log(idSplit);
+        // console.log(idSplit);
         var swimmer = idSplit[0];
         var school = idSplit[1];
         var time = idSplit[2];
@@ -532,7 +532,40 @@ module.exports = {
         var id = Number(idSplit[4]);
         const db = req.app.get("db");
         // console.log(typeof school,typeof swimmer,typeof time,typeof year,typeof id);
-        db.update_state_records(school,swimmer,time,year,id).then(times => {
+        db.update_state_records(swimmer,time,year,school,id).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    updateSchoolRecord:(req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        // console.log(idSplit);
+        var swimmer = idSplit[0];
+        var time = idSplit[1];
+        var year = Number(idSplit[2]);
+        var school = Number(idSplit[3]);
+        var race = Number(idSplit[4]);
+        var oldSwimmerId=Number(idSplit[5]);
+        const db = req.app.get("db");
+        // console.log(typeof school,typeof swimmer,typeof time,typeof year,typeof id);
+        db.update_school_records(swimmer,time,year,race,school,oldSwimmerId).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    updateSchoolRelayRecord:(req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        // console.log(idSplit);
+        var swimmer = idSplit[0];
+        var school = idSplit[1];
+        var time = idSplit[2];
+        var year = Number(idSplit[3]);
+        var id = Number(idSplit[4]);
+        const db = req.app.get("db");
+        // console.log(typeof school,typeof swimmer,typeof time,typeof year,typeof id);
+        db.update_school_relay_records(swimmer,time,year,id,school).then(times => {
             // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))

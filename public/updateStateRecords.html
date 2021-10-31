@@ -124,17 +124,13 @@
                     }
 
                     if (proceed && flag) {
-                        // console.log(name,meet,race,time,id)
-                        // console.log(name+","+school+","+race+","+time+","+id);
-                        // name = name.replace(/ /g,'&');
-                        // name = name.replace(/\./g,'-')
-                        console.log(name)
+                        // console.log(name)
                         var submit = name + "_" + school + "_" + race + "_" + time + "_" + id;
-                        console.log("Here")
-                        fetch("/api/updateStateRecord/" + submit, {
+                        // console.log(submit)
+                        fetch("/api/updateStateRecords/" + submit, {
                             headers: { 'Content-Type': 'application/json' },
                             method: "POST",
-                        }).then(response => response.json())
+                        }).then(response => response.text())
                             .then(json => console.log(json))
                             .catch(err => console.log(err));
 
@@ -154,7 +150,7 @@
                         }).then(response => response.json())
                             .then(json => console.log(json))
                             .catch(err => console.log(err));
-                        // window.location.reload();
+                        window.location.reload();
                     }
                     else {
                         alert("You don't have access to save changes")
