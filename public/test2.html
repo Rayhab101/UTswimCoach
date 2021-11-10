@@ -216,6 +216,7 @@
         body.appendChild(row);
         var meet = await fetch('/api/meets').then(data => data.json());
         var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
+        console.log(previous)
         if(previous.length > 0){
             // console.log(previous)
             var t=previous.length;
