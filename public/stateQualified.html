@@ -433,13 +433,14 @@
     <footer id="footer"></footer>
 </body>
 <script>
-    function pullSwimmer(name, column, cell) {
-        fetch("/api/swim/" + name)
+    async function pullSwimmer(name, column, cell) {
+        // console.log(name)
+        await fetch("/api/swim/" + name)
             .then(function (responseRelay) {
                 return responseRelay.json();
             })
             .then(function (swimmer) {
-                // console.log(swimmer[0].is_active);
+                // console.log(swimmer[0]);
                 text = document.createTextNode(column.innerHTML = swimmer[0].name);
                 cell.appendChild(text);
             })
@@ -447,8 +448,8 @@
                 console.log("Error: " + error)
             });
     }
-    function pullSchool(school, column, cell) {
-        fetch("/api/schools/" + school)
+    async function pullSchool(school, column, cell) {
+        await fetch("/api/schools/" + school)
             .then(function (responseRelay) {
                 return responseRelay.json();
             })
@@ -461,12 +462,12 @@
                 console.log("Error: " + error)
             });
     }
-    function t50(i) {
+    async function t50(i) {
         var r = [1, 8, 11, 12, 19, 22]
         var status = 1;
         var id=0;
         if (r.includes(i)) {
-            fetch("/api/races/" + i)
+            await fetch("/api/races/" + i)
                 .then(function (responseRelay) {
                     return responseRelay.json();
                 })
@@ -475,7 +476,7 @@
                     var body = document.getElementById(relay[0].title);
                     var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
                     body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
-                    fetch("/api/relayTimes5/" + i)
+                    await fetch("/api/relayTimes5/" + i)
                         .then(function (responseRace) {
                             return responseRace.json();
                         })
@@ -515,7 +516,7 @@
                 });
         }
         else {
-            fetch("/api/races/" + i)
+            await fetch("/api/races/" + i)
                 .then(function (responseRaces) {
                     return responseRaces.json();
                 })
@@ -523,13 +524,13 @@
                     var body = document.getElementById(race[0].title);
                     var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
                     body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
-                    fetch("/api/state5/" + i)
+                    await fetch("/api/state5/" + i)
                         .then(function (responseChart) {
                             return responseChart.json();
                         }) 
                         .then(async function (chart) {
                             var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
-                            console.log(state[i].race_time)
+                            // console.log(i, chart[i])
                             var t50 = chart.length;
                             t50 = t50 > 5 ? t50 = 5 : t50 = chart.length;
                             for (var j = 0; j < t50; j++) {
@@ -541,6 +542,7 @@
                                 var active = cell.appendChild(text);
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
+                                // console.log(chart[j].swimmer)
                                 pullSwimmer(chart[j].swimmer, column, cell)
                                 var column = document.createElement("td");
                                 var cell = row.insertCell();
