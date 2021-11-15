@@ -1,1 +1,1 @@
-SELECT DISTINCT(swim_year) FROM records WHERE swimmer=$1;
+SELECT MAX(swim_year) FROM records WHERE swimmer=$1;

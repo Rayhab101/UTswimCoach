@@ -147,9 +147,6 @@
     async function timesPull(id, column, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + meet[0];
-        // console.log(id, column, cell, row, body,meet,pull)
-        // const individualRecord = await fetch("/api/individualRecords/"+ id + "&" + meet[1]).then(state => state.json());
-        // console.table(individualRecord)
         fetch('/api/timeFill/' + pull)
             .then(function (response) {
                 return response.json()
@@ -160,6 +157,16 @@
                     document.getElementById(cell.id).innerHTML = sending;
                 }
             });
+    }
+
+    async function pastTimesPull(id, column, cell, row, body) {
+        var meet = cell.id.split("_")
+        var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
+        // console.log(pull)
+        const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
+        if(individualRecord[0].min != null){
+            document.getElementById(cell.id).innerHTML =individualRecord[0].min
+        }
     }
 
     function maxPull(time) {
@@ -188,7 +195,7 @@
         return minValue;
     }
 
-    function getSwimData(tableData) {
+    async function getSwimData(tableData) {
         var name = tableData["name"];
         var headGrade = tableData["status_grade"];
         var body = document.getElementById("swimmer_data");
@@ -207,6 +214,45 @@
             cell.appendChild(text);
         }
         body.appendChild(row);
+        var meet = await fetch('/api/meets').then(data => data.json());
+        var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
+        console.log(previous[0].max-1)
+        if(previous.length > 0){
+            // var t=previous[0].max-1;
+            for(var t=previous[0].max-1; t>0; t--){
+                console.log(previous[0].max-1 + " - "+ t);
+                var year = 2019+Number(previous[0].max-1);
+                row = document.createElement("tr");
+                var column = document.createElement("td");
+                cell = row.insertCell();
+                cell.setAttribute("id", year);
+                cell.setAttribute("style", "width: 20%");
+                var otherYear = Number(year)+1;
+                text = document.createTextNode(column.innerHTML = year +"-"+ otherYear);
+                cell.appendChild(text);
+                
+                if (tableData["gender"] == "F") {
+                    var to = 12
+                    var from = 1
+                }
+                else {
+                    var from = 12
+                    var to = 22
+                }
+                for (var k = from; k < to; k++) {
+                    // var at = meet[a].meet_id;
+                    relays = [1, 8, 11, 12, 19, 22]
+                    if (!relays.includes(k)) {
+                        cell = row.insertCell();
+                        cell.setAttribute("id", year + "_" + k)
+                        pastTimesPull(tableData.swimmer_id, column, cell, row, body)
+                    }
+                }
+                body.appendChild(row);
+            }
+
+        }
+
         fetch('/api/meets')
             .then(function (response) {
                 return response.json();
@@ -249,6 +295,7 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+
         //     var check = ['0:24.33','0:24.00'];
         // if(check[0]<check[1]){
         //     console.log(check[0]+" is less than "+ check[1]);
@@ -281,19 +328,6 @@
                 console.log("Error: " + error);
             });
     }
-
-    // function getDate(id) {
-    //     fetch('/api/meets/' + id)
-    //         .then(function (response) {
-    //             return response.json();
-    //         })
-    //         .then(function (fecha) {
-    //             console.log(fecha[0].date)
-    //         })
-    //         .catch(function (error) {
-    //             console.log("Error: " + error);
-    //         });
-    // }
 
     function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
         var minValue = minPull(stateRecord[0].y);
@@ -457,6 +491,8 @@
 
     const races = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
     var a = ""
+
+
     function printImage() {
         var table = document.getElementById("swimmer_data");
         table.setAttribute("style", "font-size:12px");
