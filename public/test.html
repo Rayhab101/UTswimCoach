@@ -62,13 +62,22 @@
 <header id="header"></header>
 
 <body>
-    <div style="padding-top:50px">
+    <script>
+        fetch('https://utswimcoach.com/2a3a2122.htm', {
+  method: "GET",
+  headers: {"Content-type": "application/json;charset=UTF-8"}
+})
+.then(response => response.json()) 
+.then(json => console.log(json))
+.catch(err => console.log(err));
+    </script>
+    <!-- <div style="padding-top:50px">
     <input
     type="hidden"
     role="uploadcare-uploader"
     data-public-key="6254816fe24d6f7518f5"
     name="my_file_input" />
-</div>
+</div> -->
 </body>
 <footer id="footer"></footer>
 
