@@ -381,7 +381,7 @@
                         if (time >= 60) {
                         minutes += 1;
                         time = (time - 60);
-                    }
+                        }
                     }
                 }
                 time=time.toFixed(2)
@@ -443,25 +443,16 @@
             if (!isNaN(t1) && !isNaN(t2) && !isNaN(t3) && !isNaN(t4)) {
                 var times = t1 + t2 + t3 + t4;
                 var minutes = 0;
-                if (times >= 60) {
+                while(times >=60)
+                {
                     minutes += 1;
-                    times = times - 60;
-                    if (times >= 60) {
-                        minutes += 1;
-                        times = (times - 60).toFixed(2);
-                    }
-                    else{
-                        times = times.toFixed(2);
-                    }
-
-                }
-                else{
-                    times = times.toFixed(2);
+                    times = (times - 60).toFixed(2);
                 }
                 if (times < 10.00) {
+                    
                     if(times>1.00){
-                        times = "0" + times;
                         times = Number(times).toFixed(2);
+                        times = "0" + times;
                     }
                     else{
                         times = "0" + times;
@@ -472,6 +463,10 @@
                     times = Number(times).toFixed(2)
 
                 }
+                // console.log("1:"+times)
+                //     times = times.toFixed(2);
+                
+
 
                 var times = "0" + minutes + ":" + times;
                 document.getElementById('tot200Free').innerHTML = times;
@@ -491,17 +486,9 @@
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
                 var time = tM1 + tM2 + tM3 + t4;
                 var minutes =0;
-                if (time >= 60) {
-                    minutes += 1;
+                while(time >= 60){
+                    minutes+=1;
                     time = time - 60;
-                    if (time >= 60) {
-                        minutes += 1;
-                        time = (time - 60);
-                        if (time >= 60) {
-                        minutes += 1;
-                        time = (time - 60);
-                    }
-                    }
                 }
                 time=time.toFixed(2)
 
@@ -519,13 +506,9 @@
             if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
                 var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
                 var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
-                if (newSeconds >= 60) {
+                while(newSeconds >= 60){
                     newMinutes += 1;
                     newSeconds = newSeconds - 60;
-                    if (newSeconds >= 60) {
-                        newMinutes += 1;
-                        newSeconds = (newSeconds - 60);
-                    }
                 }
                 newSeconds = newSeconds.toFixed(2)
                 
