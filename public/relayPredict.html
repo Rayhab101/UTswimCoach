@@ -331,14 +331,11 @@
                 var times = t1 + t2 + t3 + t4;
                 var minutes = 0;
                 // times = rTimes.toFixed(2);
-                if (times >= 60.00) {
+                while(times >= 60){
                     minutes += 1;
                     times -= 60;
-                    if (times >= 60.00) {
-                        minutes += 1;
-                        times -=  60;
-                    }
                 }
+                
                 if (times < 10.00) {
                     if(times>1.00){
                         times = Number(times).toFixed(2);
@@ -372,17 +369,9 @@
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
                 var time = tM1 + tM2 + tM3 + t4;
                 var minutes =0;
-                if (time >= 60) {
-                    minutes += 1;
-                    time = time - 60;
-                    if (time >= 60) {
-                        minutes += 1;
-                        time = (time - 60);
-                        if (time >= 60) {
-                        minutes += 1;
-                        time = (time - 60);
-                        }
-                    }
+                while(time >=60){
+                    minutes+= 1;
+                    time = (time - 60);
                 }
                 time=time.toFixed(2)
                 if (time < 10.00) {
@@ -400,14 +389,11 @@
             if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
                 var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
                 var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
-                if (newSeconds >= 60) {
+                while(newSeconds >= 60){
                     newMinutes += 1;
                     newSeconds = newSeconds - 60;
-                    if (newSeconds >= 60) {
-                        newMinutes += 1;
-                        newSeconds = (newSeconds - 60);
-                    }
                 }
+
                 newSeconds = newSeconds.toFixed(2)
                 if (newSeconds < 10.00) {
                     newSeconds = "0" + newSeconds;

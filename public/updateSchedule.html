@@ -108,7 +108,7 @@
                         cell.appendChild(text);
                         var column = document.createElement("td");
                         var cell = row.insertCell();
-                        console.log(meets[i].bus)
+                        //console.log(meets[i].bus)
                         if(meets[i].bus==null || meets[i].bus=="null" ){
                             bus="";
                         }
@@ -319,10 +319,17 @@
             var school_id = await fetch('/api/schools/').then(data => data.json())
             schools = schools.split(',');
             // console.log(location,date,time,out,bus,home,schools[0],schools[1])
+            var hasComma = schools.includes(',');
+            console.log(hasComma);
             school1 = schools[0];
+            if(hasComma){
             school2 = schools[1].split(" ");
             school2 = school2[1] + " " + school2[2];
-            // console.log(school_id)
+            }
+            else{
+                school2 = "";
+            }
+            
             for (var i = 0; i < school_id.length; i++) {
                 if (school1 == school_id[i].name) {
                     var school1_id = (school_id[i].school_id);
