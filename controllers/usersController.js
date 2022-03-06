@@ -444,10 +444,16 @@ module.exports = {
         // console.log(idSplit);
         var about=idSplit[0];
         var short=idSplit[1];
-        var newId=idSplit[2];
+        var goldf=idSplit[2];
+        var silverf=idSplit[3];
+        var bronzef=idSplit[4];
+        var goldm = idSplit[5];
+        var silverm = idSplit[6];
+        var bronzem = idSplit[7];
+        var newId=idSplit[8];
         const db = req.app.get("db");
         // console.log(about,short,newId);
-        db.update_school_descriptions(about,short,newId).then(times => {
+        db.update_school_descriptions(about,short,goldf,silverf,bronzef,goldm,silverm,bronzem,newId).then(times => {
             // console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
