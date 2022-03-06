@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BL/SJ Swim Team - About SJ</title>
+    <link rel="stylesheet" href="aboutTeam.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add a gray background color with some padding */
+        body {
+            font-family: Arial;
+            padding: 20px;
+            /* background: #f1f1f1; */
+            height: 35vh
+        }
+
+        /* Header/Blog Title */
+        .schoolName {
+            padding: 5px;
+            font-size: 30px;
+            text-align: center;
+            /* background: white; */
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        /* Left column */
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+
+        /* Right column */
+        .rightcolumn {
+            float: left;
+            width: 25%;
+            padding-left: 20px;
+        }
+
+        /* Fake image */
+        .img {
+            background-color: #aaa;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Add a card effect for articles */
+        .card {
+            background-color: rgba(255, 255, 255, .90);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Footer */
+        /* .footer {
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+            margin-top: 20px;
+        } */
+        image {
+            size: 10%;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 800px) {
+
+            .leftcolumn,
+            .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header"></header>
+    <div class="schoolName">
+        <h3 style="background-color: rgba(255, 255, 255, .90);"><image class=".img" src="ST._Joseph_Catholic_High_School_Logo_Jayhawk.png" style="width: 5%"/> Saint Joseph's Swim Team</h3>
+    </div>
+
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <h3>About The Team</h3>
+                
+                <p id="about">The Saint Josephs Catholic High School swim team is ready for this great 6th season swimming with the Ben Lomond High School team. While the student population of the school is small itself, the team is going to have the largest student presence it has had in the history of the program (20).</p>
+
+            </div>
+            <div class="card">
+                <h3>Word from the Coaches</h3>
+                <p>Welcome all the new Saint Joseph swimmers to the best sport you could participate in. We, the coaching staff, are very excited to help each and every one of you progress in and out of the pool. Also, Congratulations to Will Jones for breaking the 2A State Record for the 200 yd Free with a time of 1:43.16 and the 100 yd Backstroke with a time of 0:51.50.</p>
+            </div>
+        </div>
+        <div class="rightcolumn">
+
+            <div class="card">
+                <h3>Female Podium 2021-2022</h3>
+                <p id="goldf">Gold Medal: Lola B.</p>
+                <p id="silverf">Silver Medal: Savannah S.</p>
+                <p id="bronzef">Bronze Medal: Mady Y.</p>
+            </div>
+            <div class="card">
+                <h3>Male Podium 2021-2022</h3>
+                <p id="goldm">Gold Medal: Will J.</p>
+                <p id="silverm">Silver Medal: Matt G.</p>
+                <p id="bronzem">Bronze Medal: Michael M.</p>
+            </div>
+        </div>
+    </div>
+    <footer id="footer"></footer>
+</body>
+
+</html>

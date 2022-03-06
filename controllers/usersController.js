@@ -115,6 +115,12 @@ module.exports = {
             return res.status(200).send(swimmers)
         })
     },
+    getSwimmersArchive: (req,res) => {
+        const db = req.app.get("db");
+        db.get_swimmer_archive().then(swimmers => {
+            return res.status(200).send(swimmers)
+        })
+    },
     getSwimmers: (req,res) => {
         //console.log(req.params)
         const {id}=req.params;

@@ -98,18 +98,6 @@
         <div class="container" id="container">
             <div id="testTable" printable>
                 <table class="swimmer_data" id="swimmer_data">
-                    <!-- <th id="swimmer_name"></th> -->
-                    <!-- <tr>
-                        <td></td>
-                        <td>200 Freestyle</td>
-                        <td>200 IM</td>
-                        <td>50 Freestyle</td>
-                        <td>100 Butterfly</td>
-                        <td>100 Freestyle</td>
-                        <td>500 Freestyle</td>
-                        <td>100 Backstroke</td>
-                        <td>100 Breaststroke</td>
-                    </tr> -->
                 </table>
             </div>
             <br>
@@ -346,6 +334,14 @@
                     pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
                     borderColor: "rgba(0, 0, 0, 0.9)"
                 },
+                // {
+                //     label: title + " Times2",
+                //     data: testChartData,
+                //     fill: false,
+                //     pointBorderColor: 'rgba(0, 0, 0, 0.9)',
+                //     pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+                //     borderColor: "rgba(0, 0, 0, 0.9)"
+                // },
                 {
                     label: "School Record",
                     data: schoolRecord,
@@ -402,7 +398,7 @@
             })
             .then(function (events) {
                 var hide = document.getElementById(race_id);
-                // console.log(events)
+                //console.log(events)
                 if (events.length != 0) {
                     var maxValue = maxPull(events[0].time)
                     var str = []
@@ -411,9 +407,10 @@
                     var newChartData = []
                     var testChartData = []
                     var dates = []
-
+                    
                     for (var i = 0; i < events.length; i++) {
                         newChartData[j] = events[i].time;
+                        //console.log("Hello")
                         for (var k = 0; k < meetInfo.length; k++) {
                             if (events[i].meet == meetInfo[k].meet_id) {
                                 dates.push(meetInfo[k].date);
