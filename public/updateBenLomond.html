@@ -68,6 +68,30 @@
                     cell.appendChild(text);
                     var column = document.createElement("td");
                     var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = bl[0].goldf);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = bl[0].silverf);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = bl[0].bronzef);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = bl[0].goldm);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = bl[0].silverm);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
+                    text = document.createTextNode(column.innerHTML = bl[0].bronzem);
+                    cell.appendChild(text);
+                    var column = document.createElement("td");
+                    var cell = row.insertCell();
                     text = document.createElement("button");
                     text.textContent = "Update";
                     text.setAttribute("onclick", "updateDescriptions($(this).closest('tr').attr('id'))");
@@ -92,10 +116,23 @@
                 });
         }
         async function updateDescriptions(id) {
-            // console.log(id);
             var description = document.getElementById(id).children[0].innerHTML;
             var short_description = document.getElementById(id).children[1].innerHTML;
-            var submit = description + "_" + short_description + "_" + id;
+            var goldf=document.getElementById(id).children[2].innerHTML;
+            var silverf=document.getElementById(id).children[3].innerHTML;
+            var bronzef=document.getElementById(id).children[4].innerHTML;
+            var goldm=document.getElementById(id).children[5].innerHTML;
+            var silverm=document.getElementById(id).children[6].innerHTML;
+            var bronzem=document.getElementById(id).children[7].innerHTML;
+            var submit = description + "_" 
+            + short_description + "_" 
+            + goldf + "_"
+            + silverf + "_"
+            + bronzef + "_"
+            + goldm + "_"
+            + silverm + "_"
+            + bronzem + "_"
+            + id;
             var proceed = confirm("Does all of this look correct?", "");
             if (proceed) {
                 var password = prompt("Please Enter your Password", "")
@@ -150,6 +187,12 @@
             <tr>
                 <td>Description</td>
                 <td>Short Description</td>
+                <td>Gold (Female)</td>
+                <td>Silver (Female)</td>
+                <td>Bronze (Female)</td>
+                <td>Gold (Male)</td>
+                <td>Silver (Male)</td>
+                <td>Bronze (Male)</td>
                 <!-- <td rowspan="2"><button onclick="updateDescriptions()">Update</button></td> -->
             </tr>
         </table>
