@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BL/SJ Swim Team - About SJ</title>
+    <link rel="stylesheet" href="aboutTeam.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add a gray background color with some padding */
+        body {
+            font-family: Arial;
+            padding: 20px;
+            /* background: #f1f1f1; */
+            height: 35vh
+        }
+
+        /* Header/Blog Title */
+        .schoolName {
+            /* padding: 5px; */
+            font-size: 34px;
+            text-align: center;
+            display:flex;
+            margin-left:auto;
+            /* flex-direction:row-reverse; */
+            justify-content:space-around;
+            /* justify-content:space-evenly; */
+            background: rgba(255, 255, 255, .90);
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        /* Left column */
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+
+        /* Right column */
+        .rightcolumn {
+            float: left;
+            width: 25%;
+            padding-left: 20px;
+        }
+
+        /* image */
+        .image {
+            /* background-color: #aaa; */
+            width: 10%;
+            /* padding: 20px; */
+        }
+
+        /* Add a card effect for articles */
+        .card {
+            background-color: rgba(255, 255, 255, .90);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 800px) {
+
+            .leftcolumn,
+            .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<script>
+    async function pullText() {
+        var url = location.search.substring(1);
+        school = url.split("=")[1];
+        var about = await fetch('/api/schools/'+school).then(data => data.json())
+ 
+        if(about[0].school_id==6){
+            document.getElementById("image").src = '/images/BLHS-logo-good.png';
+            document.getElementById("goldf").textContent = "Gold Medal: Megan G.";
+            document.getElementById("silverf").textContent = "Silver Medal: Ane R.";
+            document.getElementById("bronzef").textContent = "Bronze Medal: Crystal H.";
+            document.getElementById("goldm").textContent = "Gold Medal: Easton J.";
+            document.getElementById("silverm").textContent = "Silver Medal: Gunder A.";
+            document.getElementById("bronzem").textContent = "Bronze Medal: Benson K.";
+        }
+        else if(about[0].school_id==78){
+            document.getElementById("image").src = '/images/JayHawk.png';
+            document.getElementById("goldf").textContent = "Gold Medal: Lola B.";
+            document.getElementById("silverf").textContent = "Silver Medal: Savannah S.";
+            document.getElementById("bronzef").textContent = "Bronze Medal: Mady Y.";
+            document.getElementById("goldm").textContent = "Gold Medal: Will J.";
+            document.getElementById("silverm").textContent = "Silver Medal: Matt G.";
+            document.getElementById("bronzem").textContent = "Bronze Medal: Michael M.";
+        }
+        else{
+            document.getElementById("image").src = '/images/'+ about[0].photo;
+        }
+        document.getElementById('name').textContent = about[0].name + "'s Swim Team";
+        document.getElementById('school').textContent = about[0].short_description;
+        document.getElementById('about').textContent = about[0].about;
+    }
+</script>
+<body onload="pullText()" class="container">
+    <header id="header"></header>
+    <div class="schoolName">
+        <image id="image" class="image"/>
+        <h3 id="name"></h3>
+    </div>
+
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <h3>About The Team</h3>
+                <p id="about"></p>
+            </div>
+            <div class="card">
+                <h3>Word from the Coaches</h3>
+                <p id="school"></p>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="card">
+                <h3>Female Podium 2021-2022</h3>
+                <p id="goldf"></p>
+                <p id="silverf"></p>
+                <p id="bronzef"></p>
+            </div>
+            <div class="card">
+                <h3>Male Podium 2021-2022</h3>
+                <p id="goldm"></p>
+                <p id="silverm"></p>
+                <p id="bronzem"></p>
+            </div>
+        </div>
+    </div>
+    <footer id="footer"></footer>
+</body>
+
+</html>

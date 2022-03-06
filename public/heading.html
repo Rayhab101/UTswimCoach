@@ -59,37 +59,6 @@
             });
     }
 
-    // function check_empty(email, password) {
-    //     if (email.value == '' || password.value == '') {
-    //         alert("All fields Required");
-    //     } 
-    //     else {
-    //         //console.log(email.value);
-    //         fetch("/api/coachLogIn/"+email.value)
-    //             .then(function (response) {
-    //                 return response.json();
-    //             })
-    //             .then(function (myJson) {
-
-    //                 if(myJson.length == 0 || password.value !== myJson[0].password || typeof myJson[0]===undefined){
-    //                     alert("Username/password is not correct");
-    //                 }
-    //                 else{
-    //                     console.log(myJson);
-
-    //                 //document.getElementById('form').action = "./coachesDashboard.html?coachid="+myJson[0].coach_id;
-    //                 //location.reload();
-    //                 document.getElementById('form').submit();
-    //                 window.location.replace("./coachesDashboard.html?coachid="+myJson[0].coach_id);
-    //                 //alert("Form Submitted Successfully...");
-    //                 }
-    //             })
-    //             .catch(function (error) {
-    //                 console.log("Error: " + error);
-    //             });
-    //     }
-    // }
-
     // Function To Display Popup
     function div_show() {
         document.getElementById('abc').style.display = "block";
@@ -129,7 +98,7 @@
                             <a href="swim.html?school=6">Swimmers</a>
                             <a href="records.html?school=6">Records</a>
                             <a href="compare.html?school=6">Compare</a>
-                            <a href="about_ben_lomond.html">Ben Lomond's Program</a>
+                            <a href="about_team.html?school=6">Ben Lomond's Program</a>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -140,7 +109,7 @@
                             <a href="swim.html?school=78">Swimmers</a>
                             <a href="records.html?school=78">Records</a>
                             <a href="compare.html?school=78">Compare</a>
-                            <a href="about_saint_joseph.html">St Joseph's Program</a>
+                            <a href="about_team.html?school=78">St Joseph's Program</a>
                         </div>
                     </div>
                     <div class="dropdown">
