@@ -10,6 +10,39 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
     <style>
+        #FlyLoad{
+  animation: run ease 5s infinite;
+  -webkit-animation: run ease 5s infinite;
+  -moz-animation: run ease 5s infinite;
+  -o-animation: run ease 5s infinite;
+  -ms-animation: run ease 5s infinite;
+  -webkit-user-select: none;
+}   
+
+@keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-moz-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-webkit-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-o-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-ms-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
         .swim_info {
             height: 84vh;
             /* padding-top: 65px; */
@@ -50,6 +83,8 @@
         });
 
         async function buildPage() {
+            document.getElementById("record").style.display = "none";
+            document.getElementById("FlyLoad").style.display = "block";
             fetch("/api/records")
                 .then(function (response) {
                     return response.json();
@@ -62,25 +97,25 @@
                         var person = await fetch('/api/swim/'+records[i].swimmer).then(data => data.json());
                         var meet = await fetch('/api/meets/'+records[i].meet).then(data => data.json());
                         var race = await fetch('/api/races/'+records[i].race).then(data => data.json());
-                        var row = document.createElement("tr");
+                        var row = body.insertRow(i);
                         row.setAttribute("id", records[i].swimmer+'_'+records[i].meet+'_'+records[i].race);
-                        var column = document.createElement("td");
+                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = person[0].name);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        // text = document.createTextNode(column);
+                        cell.innerHTML = person[0].name;
+                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meet[0].location);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        // text = document.createTextNode(column);
+                        cell.innerHTML = meet[0].location;
+                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = race[0].title);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        // text = document.createTextNode(column);
+                        cell.innerHTML = race[0].title;
+                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = records[i].time);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        // text = document.createTextNode(column);
+                        cell.innerHTML = records[i].time;
+                        // var column = document.createElement("td");
                         var cell = row.insertCell();
 
                         text = document.createElement("button");
@@ -104,6 +139,8 @@
 
                         });
                     }
+                    document.getElementById("FlyLoad").style.display = "none";
+                    document.getElementById("record").style.display = "table";
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -175,11 +212,13 @@
     </script>
 
 </head>
+
 <header id="header"></header>
 
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Current Year Results - Individual</h4>
+        <image src="/images/LoadButterfly.gif" id="FlyLoad"></image>
         <table id="record">
             <tr>
                 <td>Name</td>

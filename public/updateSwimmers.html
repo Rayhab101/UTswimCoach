@@ -10,6 +10,38 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
     <style>
+#FlyLoad{
+  animation: run ease 6s;
+  -webkit-animation: run ease 6s infinite;
+  -moz-animation: run ease 6s;
+  -o-animation: run ease 6s;
+  -ms-animation: run ease 6s;
+}   
+
+@keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-moz-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-webkit-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-o-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-ms-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
         .swim_info {
             height: 84vh;
             /* padding-top: 65px; */
@@ -53,6 +85,7 @@
         .form1 {
             display: flex;
             justify-content: center;
+            margin-left: auto;
         }
 
         #formButton {
@@ -66,8 +99,10 @@
             $("#header").load("heading.html");
             $("#footer").load("footing.html");
         });
-
+        
         function buildPage() {
+            document.getElementById("swimmer").style.display = "none";
+            document.getElementById("FlyLoad").style.display = "block";
             fetch("/api/getAllSwimmers")
                 .then(function (response) {
                     return response.json();
@@ -75,31 +110,20 @@
                 .then(async function (swimmers) {
                     var body = document.getElementById("swimmer");
                     for (var i = 0; i < swimmers.length; i++) {
-                        var row = document.createElement("tr");
+                        var row = body.insertRow(i);
                         row.setAttribute("id", swimmers[i].swimmer_id);
-                        var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = swimmers[i].name);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = swimmers[i].name;
                         var cell = row.insertCell();
                         var gender = swimmers[i].gender == 'F' ? "Female" : "Male";
-                        text = document.createTextNode(column.innerHTML = gender);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = gender;
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = swimmers[i].status_grade);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = swimmers[i].status_grade;
                         var cell = row.insertCell();
                         var school = await fetch("/api/schools/" + swimmers[i].school).then(data => data.json());
-                        text = document.createTextNode(column.innerHTML = school[0].name);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = school[0].name;
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = swimmers[i].is_active);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML =swimmers[i].is_active;
                         var cell = row.insertCell();
                         text = document.createElement("button");
 
@@ -127,10 +151,13 @@
 
                         });
                     }
+                    document.getElementById("FlyLoad").style.display = "none";
+                    document.getElementById("swimmer").style.display = "table";
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
+                
 
         }
 
@@ -345,6 +372,8 @@
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Current Year's Swimmers</h4>
+        <image src="/images/LoadButterfly.gif" id="FlyLoad"></image>
+        
         <form id="form1">
             <b>Name:</b> <input type="text" id="swimName" name="swimName" required>
             <br><br>

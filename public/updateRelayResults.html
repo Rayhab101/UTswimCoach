@@ -50,6 +50,8 @@
         });
 
         async function buildPage() {
+            document.getElementById("record").style.display = "none";
+            document.getElementById("starts").style.display = "block";
             fetch("/api/relaysTimes")
                 .then(function (response) {
                     return response.json();
@@ -61,29 +63,18 @@
                         var school = await fetch('/api/schools/'+records[i].school).then(data => data.json());
                         var meet = await fetch('/api/meets/'+records[i].meet).then(data => data.json());
                         var race = await fetch('/api/races/'+records[i].race).then(data => data.json());
-                        var row = document.createElement("tr");
+                        var row = body.insertRow(i);
                         row.setAttribute("id", records[i].race+'_'+records[i].school+'_'+records[i].meet+'_'+records[i].time);
-                        var column = document.createElement("td");
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = race[0].title);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = race[0].title;
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = records[i].swimmers);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = records[i].swimmers;
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = records[i].time);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = records[i].time;
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = school[0].name);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = school[0].name;
                         var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meet[0].location);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
+                        cell.innerHTML = meet[0].location;
                         var cell = row.insertCell();
 
                         text = document.createElement("button");
@@ -107,6 +98,8 @@
 
                         });
                     }
+                    document.getElementById("starts").style.display = "none";
+                    document.getElementById("record").style.display = "table";
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -204,6 +197,7 @@
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Current Year Results - Relays</h4>
+        <image src="/images/Starts.gif" id="starts"></image>
         <table id="record">
             <tr>
                 <td>Race</td>
