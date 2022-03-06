@@ -76,9 +76,10 @@
             }
 
             #blog {
-                height: 30vh;
+                height: 90%;
                 width: 30vw;
                 font-size: 17px;
+                text-align: center;
                 resize: none;
 
             }
@@ -234,7 +235,7 @@
             <h3 id="meetname" style="color:white; text-align: center;"></h3>
             <!-- <br> -->
             
-            <div style="background-color:white" id="blog" readonly></div>
+            <div style="background-color:white" id="blog"></div>
         
         </div>
     </div>
@@ -313,7 +314,16 @@
                         }
                     }
                 }
-                // console.log(school1)
+                console.log(!school1)
+                if(!school1){
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("alt", "Jayhawks Logo");
+                    body.appendChild(img2);
+                    text.innerHTML = "Red and Blue Meet"
+                }
                 if (school1[0].school_id == 6) {
                     img.setAttribute("src", "./images/BLHS-logo-good.png");
                     img.setAttribute("alt", "Ben Lomond Logo");
@@ -335,7 +345,7 @@
                     who = "VS " + school1[0].name;
                     img3.setAttribute("src", "./images/JayHawk.png");
                     img3.setAttribute("alt", "Jayhawks Logo");
-                    img3.setAttribute("style","transform: scaleX(-1)")
+                    // img3.setAttribute("style","transform: scaleX(-1)")
                     body.appendChild(img3);
                     if (school2 != undefined) {
                         img4.setAttribute("src", "./images/" + school2[0].photo);
