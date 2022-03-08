@@ -64,7 +64,7 @@ function updateGrade() {
         }
     })
 }
-const date = new Date(2022, 7, 24, 0, 10, 0);
+const date = new Date(2023, 7, 24, 0, 10, 0);
 var j = schedule.scheduleJob(date, function () {
     updateGrade();
 });
