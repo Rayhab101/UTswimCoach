@@ -172,9 +172,6 @@
     </style>
 </head>
 <header id="header"></header>
-<div class="welcome">
-    <h3>Welcome to the Ben Lomond and Saint Joseph Swim Team Web Page</h3>
-</div>
 
 <body onload="against()">
     <div class="container2">
@@ -192,9 +189,17 @@
                         <td>Home</td>
                     </strong></tr>
                 <tr><strong>
-                        <td>09/23/2022</td>
-                        <td>Swim Meeting @The Pool</td>
-                        <td>3:00pm</td>
+                        <td>09/12/2022</td>
+                        <td>Swim Meeting Gym #311</td>
+                        <td>5:00pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                    <tr><strong>
+                        <td>09/19/2022</td>
+                        <td>Parents Meeting Gym #311</td>
+                        <td>6:00pm</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -207,10 +212,10 @@
                         <td></td>
                         <td></td>
                     </strong></tr>
-                <tr><strong>
-                        <td>09/29/2022</td>
-                        <td>Parents Meeting RM. 311</td>
-                        <td>6:00pm</td>
+                    <tr><strong>
+                        <td>10/20/2022</td>
+                        <td>Time Trials</td>
+                        <td>2:45pm</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -225,7 +230,6 @@
             <img id="mySlides" class="galleryPic">
             <div class="state">
                 <a href="./stateQualified.html"> <img src="./images/Utah_test.png" style="width:40%;"></a>
-                <!-- <h3>State Qualified Individuals</h3> -->
             </div>
         </div>
         <div style="background-color: rgba(0, 0, 0, 0.6)">
@@ -233,7 +237,6 @@
             <div id="nextmeet" class="nextmeet">
             </div>
             <h3 id="meetname" style="color:white; text-align: center;"></h3>
-            <!-- <br> -->
             
             <div style="background-color:white" id="blog"></div>
         
@@ -269,7 +272,6 @@
 
     async function against() {
         var today = new Date();
-        // var redBlue = new Date(2021, 09, 22)
 
         fetch("/api/meets").then(function (resMeets) {
             return resMeets.json();
@@ -357,29 +359,7 @@
                     else{
                         text.innerHTML = who;
                     }
-                    // break;
                 }
-                //     else {
-                //         img.setAttribute("src", "./images/BLHS-logo-good.png");
-                //         img.setAttribute("alt", "Ben Lomond Logo");
-                //         body.appendChild(img);
-                //         img2.setAttribute("src", "./images/JayHawk.png");
-                //         img2.setAttribute("alt", "Jayhawks Logo");
-                //         body.appendChild(img2);
-                //         text.innerHTML = "Red and Blue Meet"
-                //         break;
-                //     }
-                // }
-                // }
-                // else {
-                //     img.setAttribute("src", "./images/BLHS-logo-good.png");
-                //     img.setAttribute("alt", "Ben Lomond Logo");
-                //     body.appendChild(img);
-                //     img2.setAttribute("src", "./images/JayHawk.png");
-                //     img2.setAttribute("alt", "Jayhawks Logo");
-                //     body.appendChild(img2);
-                //     text.innerHTML = "Red and Blue Meet"
-                // }
             })
             .catch(function (error) {
                 console.log("Error: " + error);

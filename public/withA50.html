@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BL/SJ Swim Team- Compare</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <style>
+        @media screen and (min-width:750px) {
+            .container {
+                display: flex;
+                align-items: start;
+
+            }
+
+
+            table {
+                background-color: white;
+                width: 15vw;
+            }
+
+            td {
+                text-align: center;
+                height: 20px;
+            }
+
+            .swim_style {
+                padding-top: 75px;
+            }
+
+            h3 {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+            }
+
+        }
+
+        @media screen and (max-width:750px) {
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: start;
+
+            }
+
+            .swim_style {
+                padding-top: 125px;
+            }
+
+            table {
+                background-color: white;
+                /* width: 100%; */
+                font-size: xx-small;
+            }
+
+            #compare {
+                font-size: xx-small;
+            }
+
+            td {
+                text-align: center;
+                height: 20px;
+            }
+
+            .t0 {
+                display: none;
+            }
+
+            h3 {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+            }
+        }
+    </style>
+
+</head>
+<header id="header"></header>
+
+<body>
+    <main class="swim_style">
+        <center>
+            <h3>Create Goals With Current 50 Times</h3>
+        </center>
+        <div class="container">
+            <table id="individual">
+                <tr>
+                    <td id="t11"><button onclick="calculate()">Calculate</button>
+                    </td>
+                </tr>
+            </table>
+            <table id="fifty">
+                <tr>
+                    <th>Fifty's</th>
+                </tr>
+                <tr>
+                    <td>50 yd Freestyle</td>
+                </tr>
+                <tr>
+                    <td><input id="free50"></td>
+                </tr>
+                <tr>
+                    <td>50 yd Backstroke</td>
+                </tr>
+                <tr>
+                    <td><input id="back50"></td>
+                </tr>
+                <tr>
+                    <td>50 yd Breaststroke</td>
+                </tr>
+                <tr>
+                    <td><input id="breast50"></td>
+                </tr>
+                <tr>
+                    <td>50 yd Butterfly</td>
+                </tr>
+                <tr>
+                    <td><input id="fly50"></td>
+                </tr>
+            </table>
+            <table id="one-hundred">
+                <tr>
+                    <th>One Hundred's</th>
+                </tr>
+                <tr>
+                    <td>100 yd Freestyle</td>
+                </tr>
+                <tr>
+                    <td id="free100"></td>
+                </tr>
+                <tr>
+                    <td>100 yd Backstroke</td>
+                </tr>
+                <tr>
+                    <td id="back100"></td>
+                </tr>
+                <tr>
+                    <td>100 yd Breaststroke</td>
+                </tr>
+                <tr>
+                    <td id="breast100"></td>
+                </tr>
+                <tr>
+                    <td>100 yd Butterfly</td>
+                </tr>
+                <tr>
+                    <td id="fly100"></td>
+                </tr>
+            </table>
+            <table id="two-hundred">
+                <tr>
+                    <th>Two Hundred's</th>
+                </tr>
+                <tr>
+                    <td>200 yd Freestyle</td>
+                </tr>
+                <tr>
+                    <td id="free200"></td>
+                </tr>
+                <tr>
+                    <td>200 yd Backstroke</td>
+                </tr>
+                <tr>
+                    <td id="back200"></td>
+                </tr>
+                <tr>
+                    <td>200 yd Breaststroke</td>
+                </tr>
+                <tr>
+                    <td id="breast200"></td>
+                </tr>
+                <tr>
+                    <td>200 yd Butterfly</td>
+                </tr>
+                <tr>
+                    <td id="fly200"></td>
+                </tr>
+            </table>
+            <table id="two-hundred-im">
+                <tr>
+                    <th>Medley's</th>
+                </tr>
+                <tr>
+                    <td>100 yd I.M.</td>
+                </tr>
+                <tr>
+                    <td id="im100"></td>
+                </tr>
+                <tr>
+                    <td>200 yd I.M.</td>
+                </tr>
+                <tr>
+                    <td id="im200"></td>
+                </tr>
+                <tr>
+                    <td>400 yd I.M.</td>
+                </tr>
+                <tr>
+                    <td id="im400"></td>
+                </tr>
+            </table>
+            <table id="distance">
+                <tr>
+                    <th>Distance</th>
+                </tr>
+                <tr>
+                    <td>500 yd Freestyle</td>
+                </tr>
+                <tr>
+                    <td id="free500"></td>
+                </tr>
+                <tr>
+                    <td>1650 yd Freestyle</td>
+                </tr>
+                <tr>
+                    <td id="mile"></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+<footer id="footer"></footer>
+<script>
+    function calculate() {
+        var free = document.getElementById("free50").value;
+        free = extend(free, 0);
+        var back = document.getElementById("back50").value;
+        back = extend(back, 1);
+        var breast = document.getElementById("breast50").value;
+        breast = extend(breast, 2);
+        var fly = document.getElementById("fly50").value;
+        fly = extend(fly, 3);
+    }
+
+    function extend(times, race) {
+        if (times) {
+            var time = times.split(":");
+            var minutes = Number(time[0]);
+            var seconds = Number(time[1]);
+            var minute = 0
+            minutes *= 60;
+            time = minutes + seconds
+        }
+        switch (race) {
+            case 0:
+                if (!time) {
+                    break;
+                }
+                var one = (time / .4852)
+                while (one >= 60) {
+                    minute++;
+                    one = one - 60;
+                }
+                one = (one.toFixed(2) < 10) ? "0" + one.toFixed(2) : one.toFixed(2);
+                one = minute + ":" + one;
+                document.getElementById("free100").innerHTML = one;
+                minute = 0;
+                var two = (time / .224);
+                while (two >= 60) {
+                    minute++;
+                    two = two - 60;
+                }
+                two = (two.toFixed(2) < 10) ? "0" + two.toFixed(2) : two.toFixed(2);
+                two = minute + ":" + two;
+                document.getElementById("free200").innerHTML = two;
+                minute = 0;
+                var five = time / .088;
+                while (five >= 60) {
+                    minute++;
+                    five = five - 60;
+                }
+                five = (five.toFixed(2) < 10) ? "0" + five.toFixed(2) : five.toFixed(2);
+                five = minute + ":" + five;
+                document.getElementById("free500").innerHTML = five;
+                minute = 0;
+                var mile = time / .025;
+
+                while (mile >= 60) {
+                    minute++;
+                    mile = mile - 60;
+                }
+                mile = (mile.toFixed(2) < 10) ? "0" + mile.toFixed(2) : mile.toFixed(2);
+                mile = minute + ":" + mile;
+                document.getElementById("mile").innerHTML = mile;
+                minute = 0;
+                break;
+            case 1:
+                if (!time) {
+                    break;
+                }
+                var one = (time / .484)
+                while (one >= 60) {
+                    minute++;
+                    one = one - 60;
+                }
+                one = (one.toFixed(2) < 10) ? "0" + one.toFixed(2) : one.toFixed(2);
+                one = minute + ":" + one;
+                document.getElementById("back100").innerHTML = one;
+                minute = 0;
+                var two = (time / .238);
+                while (two >= 60) {
+                    minute++;
+                    two = two - 60;
+                }
+                two = (two.toFixed(2) < 10) ? "0" + two.toFixed(2) : two.toFixed(2);
+                two = minute + ":" + two;
+                document.getElementById("back200").innerHTML = two;
+                minute = 0;
+                break;
+            case 2:
+                if (!time) {
+                    break;
+                }
+                var one = (time / .4659)
+                while (one >= 60) {
+                    minute++;
+                    one = one - 60;
+                }
+                one = (one.toFixed(2) < 10) ? "0" + one.toFixed(2) : one.toFixed(2);
+                one = minute + ":" + one;
+                document.getElementById("breast100").innerHTML = one;
+                minute = 0;
+                var two = (time / .231);
+                while (two >= 60) {
+                    minute++;
+                    two = two - 60;
+                }
+                two = (two.toFixed(2) < 10) ? "0" + two.toFixed(2) : two.toFixed(2);
+                two = minute + ":" + two;
+                document.getElementById("breast200").innerHTML = two;
+                minute = 0;
+                break;
+            case 3:
+                if (!time) {
+                    break;
+                }
+                var one = (time / .459)
+                while (one >= 60) {
+                    minute++;
+                    one = one - 60;
+                }
+                one = (one.toFixed(2) < 10) ? "0" + one.toFixed(2) : one.toFixed(2);
+                one = minute + ":" + one;
+                document.getElementById("fly100").innerHTML = one;
+                minute = 0;
+                var two = (time / .215);
+                while (two >= 60) {
+                    minute++;
+                    two = two - 60;
+                }
+                two = (two.toFixed(2) < 10) ? "0" + two.toFixed(2) : two.toFixed(2);
+                two = minute + ":" + two;
+                document.getElementById("fly200").innerHTML = two;
+                minute = 0;
+                break;
+            default:
+                break;
+
+        }
+    }
+
+</script>
+
+</html>
