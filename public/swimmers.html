@@ -9,12 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
@@ -28,8 +23,6 @@
 
 <style>
     @media screen and (min-width:750px) {
-
-
         table {
             background-color: rgba(255, 255, 255, .95);
             border-collapse: separate;
@@ -47,8 +40,6 @@
     }
 
     @media screen and (max-width:750px) {
-
-
         table {
             background-color: rgba(255, 255, 255, .95);
             border-collapse: separate;
@@ -57,7 +48,6 @@
             -moz-border-radius: 6px;
             text-align: center;
             width: 100%;
-
         }
 
         th {
@@ -87,7 +77,6 @@
 </style>
     <header id="header"></header>
 <body onload="tableLoad()">
-
     <div class="swim_info" id="swim_info">
         <button onclick="window.history.go(-1)">Go Back</button>
         <button class="printPage" id="printPage"
@@ -101,7 +90,6 @@
             </div>
             <br>
             <br>
-            <br>
             <div class="canvasContainer" id="canvasContainer">
                 <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
@@ -113,6 +101,7 @@
                 <canvas id="100br" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
                 <canvas id="blank" style="display:none"></canvas>
             </div>
+            <!-- <div>&nbsp;</div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
@@ -120,12 +109,12 @@
             <div>&nbsp;</div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
+            <div>&nbsp;</div> -->
         </div>
 
     </div>
 </body>  
+
 <footer id="footer"></footer>
 
 <script type="text/javascript">
@@ -149,7 +138,7 @@
     async function pastTimesPull(id, column, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
-        // console.log(pull)
+        //console.log(cell.id)
         const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
         // console.log(individualRecord[0].min,cell.id)
         if(individualRecord[0].min != null){
@@ -202,48 +191,51 @@
             cell.appendChild(text);
         }
         body.appendChild(row);
+        var current_year = await fetch("/api/ano").then(year => year.json());
+        //console.log(year[0]);
         var meet = await fetch('/api/meets').then(data => data.json());
         var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
-        // var count = await fetch('/api/countYears/'+tableData.swimmer_id).then(data => data.json());
-        // console.log(tableData)
-        // console.log(meet)
-        // console.log(previous)
-        // console.log(count)
-        // if(count[0].count > 0){
-        //     // var t=previous[0].max-1;
-        //     for(var t=Number(count[0].count) ; t>0; t--){
-        //         // console.log(previous[0].max-1 + " - "+ t);
-        //         var year = 2019+Number(t);
-        //         row = document.createElement("tr");
-        //         var column = document.createElement("td");
-        //         cell = row.insertCell();
-        //         cell.setAttribute("id", year);
-        //         cell.setAttribute("style", "width: 20%");
-        //         var otherYear = Number(year)+1;
-        //         text = document.createTextNode(column.innerHTML = year +"-"+ otherYear);
-        //         cell.appendChild(text);
-                
-        //         if (tableData["gender"] == "F") {
-        //             var to = 12
-        //             var from = 1
-        //         }
-        //         else {
-        //             var from = 12
-        //             var to = 22
-        //         }
-        //         for (var k = from; k < to; k++) {
-        //             // var at = meet[a].meet_id;
-        //             relays = [1, 8, 11, 12, 19, 22]
-        //             if (!relays.includes(k)) {
-        //                 cell = row.insertCell();
-        //                 cell.setAttribute("id", year + "_" + k)
-        //                 pastTimesPull(tableData.swimmer_id, column, cell, row, body)
-        //             }
-        //         }
-        //         body.appendChild(row);
-        //     }
+        //console.log(previous[0]);
+        var count = await fetch('/api/countYears/'+tableData.swimmer_id).then(data => data.json());
 
-        // }
+        console.log(count);
+        if(count[0].count > 0){
+            //var t=previous[0].max-1;
+            for(var t=Number(count[0].count) ; t>0; t--){
+            //     console.log(previous[0].max-1 + " - "+ t);
+                var year = current_year[0].current_year-t;
+                console.log(year)
+                row = document.createElement("tr");
+                var column = document.createElement("td");
+                cell = row.insertCell();
+                cell.setAttribute("id", year);
+                cell.setAttribute("style", "width: 20%");
+                var otherYear = Number(year)+1;
+                //console.log(otherYear)
+                text = document.createTextNode(column.innerHTML = year +"-"+ otherYear);
+                cell.appendChild(text);
+                
+                if (tableData["gender"] == "F") {
+                    var to = 12
+                    var from = 1
+                }
+                else {
+                    var from = 12
+                    var to = 22
+                }
+                for (var k = from; k < to; k++) {
+                    // var at = meet[a].meet_id;
+                    relays = [1, 8, 11, 12, 19, 22]
+                    if (!relays.includes(k)) {
+                        cell = row.insertCell();
+                        cell.setAttribute("id", year + "_" + k)
+                        pastTimesPull(tableData.swimmer_id, column, cell, row, body)
+                    }
+                }
+                body.appendChild(row);
+            }
+
+        }
 
         fetch('/api/meets')
             .then(function (response) {
