@@ -172,6 +172,13 @@ module.exports = {
             return res.status(200).send(school_meets)
         })
     },
+    getYear: (req,res) => {
+        const db = req.app.get("db");
+        db.get_year().then(year => {
+            //console.log(school_meets);
+            return res.status(200).send(year)
+        })
+    },
     getSchoolMeet: (req,res) => {
         const {id}=req.params;
         const db = req.app.get("db");
@@ -311,7 +318,15 @@ module.exports = {
             return res.status(200).send(blog)
         })
     },
-
+    countYears: (req,res) => {
+        var {id}=req.params;
+        // console.log(id)
+        const db = req.app.get("db");
+        db.get_how_many_years(id).then(blog => {
+            //console.log(school_meets);
+            return res.status(200).send(blog)
+        })
+    },
 
     timeFill: (req,res) => {
         var {id}=req.params;
