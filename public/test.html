@@ -6,18 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BL/SJ Swim Team- Updates</title>
     <link rel="stylesheet" href="swim.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
-        <script
-        src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js">
-      </script>
     <style>
+#FlyLoad{
+  animation: run ease 6s;
+  -webkit-animation: run ease 6s infinite;
+  -moz-animation: run ease 6s;
+  -o-animation: run ease 6s;
+  -ms-animation: run ease 6s;
+}   
+
+@keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-moz-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-webkit-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-o-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
+
+@-ms-keyframes run {
+  0% { margin-left: -98%;}
+  100%{ margin-left: 110%;}
+}
         .swim_info {
-            height: 85vh;
-            padding-top: 35px;
-            overflow: scroll;
+            height: 84vh;
+            /* padding-top: 65px; */
+            overflow: auto;
         }
 
         table {
@@ -27,7 +55,7 @@
             border-radius: 6px;
             -moz-border-radius: 6px;
             text-align: center;
-            width: 100vw;
+            width: 100%;
             margin-left: auto;
             margin-right: auto;
 
@@ -38,7 +66,7 @@
         }
 
         input {
-            width: 60px;
+            width: 80%;
         }
 
         .label {
@@ -47,9 +75,23 @@
             text-align: center;
         }
 
-        body {
-            height: 85vh;
-            width: 100vw;
+        form {
+            padding: 15px;
+            border: 1px solid #666;
+            background: #fff;
+            display: none;
+        }
+
+        .form1 {
+            display: flex;
+            justify-content: center;
+            margin-left: auto;
+        }
+
+        #formButton {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
         }
     </style>
     <script>
@@ -57,28 +99,301 @@
             $("#header").load("heading.html");
             $("#footer").load("footing.html");
         });
-</script>
+        
+        async function buildPage() {
+            document.getElementById("swimmer").style.display = "none";
+            document.getElementById("FlyLoad").style.display = "block";
+            var response = await fetch("/api/getAllSwimmers");
+            var data = await response.json();
+            var body = document.getElementById("swimmer");
+            data.forEach(element => {
+                var row = body.insertRow();
+                row.setAttribute("id", element.swimmer_id);
+                var cell = row.insertCell();
+                cell.innerHTML = element.name;
+                var cell = row.insertCell();
+                var gender = element.gender == 'F' ? "Female" : "Male";
+                cell.innerHTML = gender;
+                var cell = row.insertCell();
+                cell.innerHTML = element.status_grade;
+                var cell = row.insertCell();
+                if(element.school == 6){
+                    cell.innerHTML = "Ben Lomond";
+                }
+                else{
+                    cell.innerHTML = "Saint Joseph";
+                }
+                var cell = row.insertCell();
+                cell.innerHTML =element.is_active;
+                var cell = row.insertCell();
+                text = document.createElement("button");
+
+                text.textContent = "Save";
+                text.setAttribute("style", "background-color: lime; border-radius: 25%");
+                text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                cell.appendChild(text);
+                text = document.createElement("button");
+                text.textContent = "Delete";
+                text.setAttribute("style", "background-color: red; border-radius: 25%");
+                text.setAttribute("onclick", "remove($(this).closest('tr').attr('id'));");
+                cell.appendChild(text);
+                body.appendChild(row);
+                var table = document.getElementById("swimmer");
+                table.addEventListener('click', function (e) {
+                    var target = e.target;
+                    //test if clicked element is TD.
+                    if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                        //make cell editable
+                        target.setAttribute('contenteditable', 'true');
+                        //on blur close the editable field and return to normal cell.
+                        target.onblur = function () { this.removeAttribute('contenteditable'); }
+                    }
+                });
+            });
+            document.getElementById("FlyLoad").style.display = "none";
+            document.getElementById("swimmer").style.display = "table";
+        }
+
+        async function addSwimmer() {
+            var name = document.getElementById("swimName").value;
+            var gender = document.getElementById("swimGender").value;
+            var grade = document.getElementById("swimGrade").value;
+            var school = document.getElementById("swimSchool").value;
+            if (name == "" || gender == "" || grade == "" || school == "") {
+                alert("Please make sure all fields are filled")
+            }
+            else {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        var coach = check[i].coach_id;
+                        flag = true;
+                    }
+                }
+                if (flag) {
+                    gender = (gender[0] == "F") ? "F" : "M";
+                    if (grade == "09" || grade == "9" || grade == "10" || grade == "11" || grade == "12") {
+                        switch (grade) {
+                            case "09":
+                                grade = "Freshman"
+                                break;
+                            case "9":
+                                grade = "Freshman"
+                                break;
+                            case "10":
+                                grade = "Sophomore"
+                                break;
+                            case "11":
+                                grade = "Junior"
+                                break;
+                            case "12":
+                                grade = "Senior"
+                                break;
+                        }
+                    }
+
+                    var school_id = await fetch('/api/schools/').then(data => data.json())
+                    for (var i = 0; i < school_id.length; i++) {
+                        if (school_id[i].name == school) {
+                            school = school_id[i].school_id;
+                        }
+                    }
+
+                    name = name.replace(' ', '-')
+                    var submit = name + "_" + gender + "_" + grade + "_" + 2 + "_" + school + "_" + true;
+                    fetch("/api/setSwimmer/" + submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + "added" + "_" + submit;
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
+                }
+                else {
+                    alert("You don't have access to add people")
+                }
+            }
+            // alert("Not Available Yet")
+        }
+
+        async function remove(id) {
+            var person = await fetch('/api/swim/' + id).then(data => data.json())
+            var proceed = confirm("You are about to delete " + person[0].name + ". Are you sure?");
+
+            if (proceed) {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        var coach = check[i].coach_id;
+                        flag = true;
+                    }
+                }
+
+                if (proceed && flag) {
+                    // console.log(id)
+                    fetch("/api/removeSwimmer/" + id, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+
+                    // submit = submit.replace(/_/g,"&");
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + id + "_" + "removed";
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
+                    // alert("Good-bye")
+                }
+                else {
+                    alert("You don't have access to remove this person")
+                }
+            }
+
+        }
+
+        async function save(id) {
+            var name = document.getElementById(id).children[0].innerHTML;
+            var gender = document.getElementById(id).children[1].innerHTML;
+            var grade = document.getElementById(id).children[2].innerHTML;
+            var school = document.getElementById(id).children[3].innerHTML;
+            var is_active = document.getElementById(id).children[4].innerHTML;
+            if (is_active == "false") {
+                remove(id);
+            }
+            else {
+                var school_id = await fetch('/api/schools/').then(data => data.json())
+                var proceed = confirm("Does all of this look correct? name:" + name + " gender:" + gender + " grade:" + grade + " school:" + school + "");
+                if (proceed) {
+                    var password = prompt("Please Enter your Password", "")
+                    var check = await fetch('/api/coaches/').then(data => data.json())
+                    var flag = false;
+                    for (var i = 0; i < check.length; i++) {
+                        if (check[i].password == password) {
+                            var coach = check[i].coach_id;
+                            flag = true;
+                        }
+                    }
+                    if (proceed && flag) {
+                        for (var i = 0; i < school_id.length; i++) {
+                            if (school_id[i].name == school) {
+                                school = school_id[i].school_id;
+                                break;
+                            }
+                        }
+
+                        // console.log(name+","+gender+","+grade+","+school+","+is_active+","+id);
+                        var submit = name + "_" + gender + "_" + grade + "_" + school + "_" + is_active + "_" + id;
+                        fetch("/api/updateSwimmer/" + submit, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                            // body: JSON.stringify(submitRaces)
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+
+                        submit = submit.replace(/_/g, "&");
+                        var today = new Date();
+                        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                        var location = window.location.pathname;
+                        location = location.split('/');
+                        location = location[1];
+                        location = location.split('.html')
+                        location = location[0]
+                        var changes = date + "_" + coach + "_" + location + "_" + id + "_" + submit;
+                        // console.log(changes)
+                        fetch("/api/logChanges/" + changes, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+                        window.location.reload();
+                    }
+                    else {
+                        alert("You don't have access to save changes")
+                    }
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            $("#formButton").click(function () {
+                $("#form1").toggle();
+                $("#swimmer").toggle();
+            });
+        });
+    </script>
 
 </head>
 <header id="header"></header>
 
-<body>
-    <script>
-        fetch('https://utswimcoach.com/2a3a2122.htm', {
-  method: "GET",
-  headers: {"Content-type": "application/json;charset=UTF-8"}
-})
-.then(response => response.json()) 
-.then(json => console.log(json))
-.catch(err => console.log(err));
-    </script>
-    <!-- <div style="padding-top:50px">
-    <input
-    type="hidden"
-    role="uploadcare-uploader"
-    data-public-key="6254816fe24d6f7518f5"
-    name="my_file_input" />
-</div> -->
+<body onload="buildPage()">
+    <div class="swim_info">
+        <h4 class="label">Current Year's Swimmers</h4>
+        <image src="/images/LoadButterfly.gif" id="FlyLoad"></image>
+        
+        <form id="form1">
+            <b>Name:</b> <input type="text" id="swimName" name="swimName" required>
+            <br><br>
+            <b>Gender: </b><input type="text" id="swimGender" name="swimGender" placeholder="M/F" required>
+            <br><br>
+            <b>Grade: </b><input type="text" id="swimGrade" name="swimGrade"
+                placeholder="Freshman,Sophomore,Junior,Senior" required>
+            <br><br>
+            <b>School: </b><input type="text" id="swimSchool" name="swimSchool" placeholder="Ben Lomond/Saint Joseph"
+                required>
+            <br><br>
+
+            <button type="button" id="submit" onclick="addSwimmer()">Submit</button>
+            <button type="button" id="cancel" onclick="window.location.reload()">Cancel</button>
+        </form>
+        <table id="swimmer">
+            <tr>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>Grade</td>
+                <td>School</td>
+                <td>Is Active</td>
+                <td rowspan="2"><button type="button" id="formButton">Add Swimmer</button></td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 <footer id="footer"></footer>
 
