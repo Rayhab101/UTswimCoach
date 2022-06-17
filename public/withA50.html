@@ -231,6 +231,8 @@
 </body>
 <footer id="footer"></footer>
 <script>
+    //var Im2=0, Im4 = 0, newerMinute = 0, newMinute = 0;
+    
     function calculate() {
         var free = document.getElementById("free50").value;
         free = extend(free, 0);
@@ -243,6 +245,7 @@
     }
 
     function extend(times, race) {
+        var Im2=0, Im4 = 0, newerMinute = 0, newMinute = 0;
         if (times) {
             var time = times.split(":");
             var minutes = Number(time[0]);
@@ -250,6 +253,7 @@
             var minute = 0
             minutes *= 60;
             time = minutes + seconds
+            Im2 +=time;
         }
         switch (race) {
             case 0:
@@ -274,7 +278,7 @@
                 two = minute + ":" + two;
                 document.getElementById("free200").innerHTML = two;
                 minute = 0;
-                var five = time / .088;
+                var five = time / .091;
                 while (five >= 60) {
                     minute++;
                     five = five - 60;
@@ -344,16 +348,56 @@
                 if (!time) {
                     break;
                 }
-                var one = (time / .459)
+                if(time < 20){
+                    var im1 = (time / .2)
+                    var thisMinute = 0;
+                    while(im1 >= 60){
+                        thisMinute++;
+                        im1 = im1-60;
+                    }
+                    im1 = (im1.toFixed(2) < 10) ? "0" + im1.toFixed(2) : im1.toFixed(2);
+                    im1 = thisMinute + ":" + im1;
+                    document.getElementById("im100").innerHTML = im1;
+                    break;
+                }
+                else{
+                    var im1 = (time / 2);
+                    var im1 = (im1 / .2)
+                    var thisMinute = 0;
+                    while(im1 >= 60){
+                        thisMinute++;
+                        im1 = im1-60;
+                    }
+                    im1 = (im1.toFixed(2) < 10) ? "0" + im1.toFixed(2) : im1.toFixed(2);
+                    im1 = thisMinute + ":" + im1;
+                    document.getElementById("im100").innerHTML = im1;
+                }
+                var one = (time / .462)
+                var im2 = (time / .215)
+                var im4 = (time / .1)
+                while(im4 >= 60){
+                    newerMinute++;
+                    im4 = im4-60
+                }
+                while(im2 >= 60){
+                    newMinute++;
+                    im2 = im2-60
+                }
                 while (one >= 60) {
                     minute++;
                     one = one - 60;
                 }
                 one = (one.toFixed(2) < 10) ? "0" + one.toFixed(2) : one.toFixed(2);
+                im2 = (im2.toFixed(2) < 10) ? "0" + im2.toFixed(2) : im2.toFixed(2);
+                im4 = (im4.toFixed(2) < 10) ? "0" + im4.toFixed(2) : im4.toFixed(2);
                 one = minute + ":" + one;
+                im2 = newMinute + ":" + im2;
+                im4 = newerMinute + ":" + im4;
                 document.getElementById("fly100").innerHTML = one;
+                document.getElementById("im200").innerHTML = im2;
+                document.getElementById("im400").innerHTML = im4;
                 minute = 0;
-                var two = (time / .215);
+                var two = (time / .222);
                 while (two >= 60) {
                     minute++;
                     two = two - 60;
@@ -365,7 +409,7 @@
                 break;
             default:
                 break;
-
+            
         }
     }
 
