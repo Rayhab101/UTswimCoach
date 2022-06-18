@@ -4,258 +4,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team- Records</title>
+    <title>BL/SJ Swim Team- Updates</title>
     <link rel="stylesheet" href="swim.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
-    <script>
-        $(function () {
-            $("#header").load("heading.html");
-            $("footer").load("footing.html");
-        });
-    </script>
     <style>
-        @media screen and (min-width:750px) {
+        .swim_info {
+            height: 85vh;
+            justify-content: center;
+            overflow: scroll;
 
-            .container1 {
-                display: grid;
-                height: 75vh;
-                background-color: white;
-                border-radius: 6px;
-                -moz-border-radius: 6px;
-            }
-
-            table {
-                background-color: rgba(255, 255, 255, .95);
-                border-collapse: separate;
-                border: solid white 1px;
-                border-radius: 6px;
-                -moz-border-radius: 6px;
-                text-align: center;
-                width: 90%;
-                margin-left: auto;
-                margin-right: auto;
-
-            }
-
-            td {
-                /* height: 25px; */
-                border-collapse: separate;
-                border: solid white 1px;
-                border-radius: 6px;
-                -moz-border-radius: 6px;
-            }
-
-            th {
-                text-align: center;
-                font-size: 24px;
-            }
-
-            button {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .swimmer_data1 {
-                grid-row: 1;
-                grid-column: 1;
-            }
-
-            .swimmer_data2 {
-                grid-row: 1;
-                grid-column: 2;
-            }
-
-            .swimmer_data3 {
-                grid-row: 1;
-                grid-column: 3;
-            }
-
-            .head {
-                border-top: solid black 1px;
-                border-bottom: solid black 1px;
-            }
         }
 
-        @media screen and (max-width:750px) {
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-            .container1 {
-                display: grid;
-                height: 500px;
-                background-color: white;
-                border-radius: 6px;
-                -moz-border-radius: 6px;
-                font-size: 7px;
-                padding-top: 65px;
-            }
+        td {
+            width: 7.7%;
+        }
 
-            table {
-                background-color: rgba(255, 255, 255, .95);
-                border-collapse: separate;
-                border: solid white 1px;
-                border-radius: 6px;
-                -moz-border-radius: 6px;
-                text-align: center;
-                width: 90%;
-                margin-left: auto;
-                margin-right: auto;
+        input {
+            width: 80%;
+        }
 
-            }
+        .label {
+            color: white;
+            background-color: rgba(0, 0, 0, .6);
+            text-align: center;
+        }
 
-            td {
-                /* height: 25px; */
-                border-collapse: separate;
-                border: solid white 1px;
-                border-radius: 6px;
-                -moz-border-radius: 6px;
-            }
+        form {
+            padding: 15px;
+            border: 1px solid #666;
+            background: #fff;
+            display: none;
+        }
 
-            th {
-                text-align: center;
-                font-size: 24px;
-            }
+        .form1 {
+            display: flex;
+            justify-content: center;
+        }
 
-            button {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .swimmer_data1 {
-                grid-row: 1;
-                grid-column: 1;
-            }
-
-            .swimmer_data2 {
-                grid-row: 1;
-                grid-column: 2;
-            }
-
-            .swimmer_data3 {
-                grid-row: 1;
-                grid-column: 3;
-            }
-
-            .head {
-                border-top: solid black 1px;
-                border-bottom: solid black 1px;
-            }
-
-            .top {
-                display: none;
-            }
+        #formButton {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
         }
     </style>
     <script>
-        async function namePull(race, cell,time,year, school) {
-            var relays = [1, 8, 11, 12, 19, 22]
-            race = cell.id[1] == "g" ? race : race + 11;
-            if (!relays.includes(race)) {
-                var record = await fetch('/api/schoolRecord/' + race + "&" + school);
-                var data = await record.json();
-                var name = await fetch('/api/swim/' + data[0].swimmer_id);
-                var swimmer = await name.json();
-                document.getElementById(cell.id).innerHTML = swimmer[0].name;
-                document.getElementById(time.id).innerHTML = data[0].time;
-                document.getElementById(year.id).innerHTML = data[0].year;
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+
+        async function grabSchools(schools, school1, school2,cell){
+            var grab = await fetch("/api/schools/" + school1)
+            var data = await grab.json();
+            schools = data[0].name;
+            if(school2 != null){
+                var nextGrab = await fetch("/api/schools/" + school2); 
+                var nextData = await nextGrab.json();
+                schools +=", " + nextData[0].name;
+            }
+            console.log(schools);
+            cell.innerHTML = schools;
+        }
+
+        async function buildPage() {
+            var response = await fetch("/api/meets");
+            var data = await response.json();
+
+            var body = document.getElementById("meets");
+            data.forEach(elements => {
+                //console.log(elements)
+                var row = document.createElement("tr");
+                row.setAttribute("id", elements.meet_id);
+                var cell = row.insertCell();
+                cell.innerHTML = elements.location;
+                var cell = row.insertCell();
+                cell.innerHTML = elements.date;
+                var cell = row.insertCell();
+                cell.innerHTML = elements.time;
+                var cell = row.insertCell();
+                var years = "20" + (20 + Number(elements.year) - 1) + " - 20" + (20 + Number(elements.year));
+                cell.innerHTML = years;
+                var cell = row.insertCell();
+                if (elements.out == null || elements.out == "null") {
+                    out = "";
+                }
+                else {
+                    out = elements.out
+                }
+                cell.innerHTML = out;
+                var cell = row.insertCell();
+                //console.log(meets[i].bus)
+                if (elements.bus == null || elements.bus == "null") {
+                    bus = "";
+                }
+                else {
+                    bus = elements.bus
+                }
+                cell.innerHTML = bus;
+                var cell = row.insertCell();
+                if (elements.home == null || elements.home == "null") {
+                    home = "";
+                }
+                else {
+                    home = elements.home
+                }
+                cell.innerHTML = home;
+                var cell = row.insertCell();
+                var schools = "";
+                if (elements.school1 != '-1' && elements.school1 != null) {
+                    schools = grabSchools(schools, elements.school1, elements.school2,cell);
+                }
+                else {
+                    schools = "More than one school";
+                    cell.innerHTML = schools;
+                }
+                var cell = row.insertCell();
+                text = document.createElement("button");
+                text.textContent = "Save";
+                text.setAttribute("style", "background-color: lime");
+                text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                cell.appendChild(text);
+                text = document.createElement("button");
+                text.textContent = "Delete";
+                text.setAttribute("style", "background-color: red");
+                text.setAttribute("onclick", "remove($(this).closest('tr').attr('id'));");
+                cell.appendChild(text);
+                body.appendChild(row);
+                var table = document.getElementById("meets");
+                table.addEventListener('click', function (e) {
+
+                    var target = e.target;
+                    //test if clicked element is TD.
+                    if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                        //make cell editable
+                        target.setAttribute('contenteditable', 'true');
+                        //on blur close the editable field and return to normal cell.
+                        target.onblur = function () { this.removeAttribute('contenteditable'); }
+                    }
+
+                });
+            });
+            // fetch("/api/meets")
+            //     .then(function (response) {
+            //         return response.json();
+            //     })
+            //     .then(async function (meets) {
+
+            //         // console.log(meets)
+            //         for (var i = 0; i < meets.length; i++) {
+            //             var row = document.createElement("tr");
+            //             row.setAttribute("id", meets[i].meet_id);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = meets[i].location);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = meets[i].date);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = meets[i].time);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             var years = "20" + (20 + Number(meets[i].year) - 1) + " - 20" + (20 + Number(meets[i].year));
+            //             text = document.createTextNode(column.innerHTML = years);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             if(meets[i].out==null || meets[i].out=="null" ){
+            //                 out="";
+            //             }
+            //             else{
+            //                 out = meets[i].out
+            //             }
+            //             text = document.createTextNode(column.innerHTML = out);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             //console.log(meets[i].bus)
+            //             if(meets[i].bus==null || meets[i].bus=="null" ){
+            //                 bus="";
+            //             }
+            //             else{
+            //                 bus = meets[i].bus
+            //             }
+            //             text = document.createTextNode(column.innerHTML = bus);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             if(meets[i].home==null || meets[i].home=="null" ){
+            //                 home="";
+            //             }
+            //             else{
+            //                 home = meets[i].home
+            //             }
+            //             text = document.createTextNode(column.innerHTML = home);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             var schools;
+            //             if (meets[i].school1 != '-1' && meets[i].school1 != null) {
+            //                 var school1 = await fetch("/api/schools/" + meets[i].school1).then(data => data.json());
+            //                 schools = school1[0].name;
+            //                 if (meets[i].school2 != null) {
+            //                     var school2 = await fetch("/api/schools/" + meets[i].school2).then(data => data.json());
+            //                     schools += ", " + school2[0].name;
+            //                 }
+            //             }
+
+            //             else {
+            //                 schools = "More than one school";
+            //             }
+
+            //             text = document.createTextNode(column.innerHTML = schools);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createElement("button");
+            //             text.textContent = "Save";
+            //             text.setAttribute("style", "background-color: lime");
+            //             text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+            //             cell.appendChild(text);
+            //             text = document.createElement("button");
+            //             text.textContent = "Delete";
+            //             text.setAttribute("style", "background-color: red");
+            //             text.setAttribute("onclick", "remove($(this).closest('tr').attr('id'));");
+            //             cell.appendChild(text);
+            //             body.appendChild(row);
+            //             var table = document.getElementById("meets");
+            //             table.addEventListener('click', function (e) {
+
+            //                 var target = e.target;
+            //                 //test if clicked element is TD.
+            //                 if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+            //                     //make cell editable
+            //                     target.setAttribute('contenteditable', 'true');
+            //                     //on blur close the editable field and return to normal cell.
+            //                     target.onblur = function () { this.removeAttribute('contenteditable'); }
+            //                 }
+
+            //             });
+            //         }
+            //     })
+            //     .catch(function (error) {
+            //         console.log("Error: " + error);
+            //     });
+        }
+
+        async function addMeet() {
+            var location = document.getElementById("meetTitle").value;
+            var date = document.getElementById("meetDate").value;
+            var time = document.getElementById("meetTime").value;
+            var out = document.getElementById("meetOut").value;
+            var bus = document.getElementById("meetBus").value;
+            var home = document.getElementById("meetHome").value;
+            var schools = document.getElementById("schools").value;
+            var password = prompt("Please Enter your Password", "")
+            var check = await fetch('/api/coaches/').then(data => data.json())
+            var flag = false;
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].password == password) {
+                    var coach = check[i].coach_id;
+                    flag = true;
+                }
+            }
+            if (flag) {
+                location = location.replace(/ /g, "-");
+                date = date.replace(/\//g, "&")
+                schools = schools.split(", ");
+                school1 = schools[0];
+                school2 = schools[1];
+                if (schools[2] != undefined || schools[0] == "Region" || schools[0] == "County" || schools[0] == "State") {
+                    school1_id = -1;
+                    school2_id = null;
+                }
+                else {
+                    var school_id = await fetch('/api/schools/').then(data => data.json())
+
+                    for (var i = 0; i < school_id.length; i++) {
+                        if (school1 == school_id[i].name) {
+                            console.log("Hey")
+                            var school1_id = (school_id[i].school_id);
+                            break;
+                        }
+                    }
+
+                    for (var j = 0; j < school_id.length; j++) {
+                        if (school2 == school_id[j].name) {
+                            console.log("Ho")
+                            var school2_id = (school_id[j].school_id);
+                            break;
+                        }
+                    }
+                }
+                var submit = location + "_" + date + "_" + time + "_" + 3 + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id;
+                console.log(submit)
+                fetch("/api/setMeet/" + submit, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                    // body: JSON.stringify(submitRaces)
+                }).then(response => response.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err));
+
+                var today = new Date();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                var location = window.location.pathname;
+                location = location.split('/');
+                location = location[1];
+                location = location.split('.html')
+                location = location[0]
+                var changes = date + "_" + coach + "_" + location + "_" + "added" + "_" + submit;
+                console.log("1:" + changes)
+                fetch("/api/logChanges/" + changes, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                }).then(response => response.json())
+                    .then(json => console.log(json))
+                    .catch(err => console.log(err));
+                window.location.reload();
             }
             else {
-                var data = await fetch("/api/relayRecord/" + race + "&" + school)
-                var relay = await data.json();
-                document.getElementById(cell.id).innerHTML = relay[0].swimmers;
-                document.getElementById(time.id).innerHTML = relay[0].time;
-                document.getElementById(year.id).innerHTML = relay[0].year;
+                alert("You don't have access to add people")
+            }
+            // alert("Not Available Yet")
+        }
+
+        async function remove(id) {
+            var meet = await fetch('/api/meets/' + id).then(data => data.json())
+            var proceed = confirm("You are about to delete the " + meet[0].location + " Meet. Are you sure?");
+
+            if (proceed) {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        var coach = check[i].coach_id;
+                        flag = true;
+                    }
+                }
+
+                if (proceed && flag) {
+                    fetch("/api/removeMeet/" + id, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + meet[0].location + "_" + "removed";
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
+                }
+                else {
+                    alert("You don't have access to remove this Meet")
+                }
+            }
+
+        }
+
+        async function save(id) {
+            var location = document.getElementById(id).children[0].innerHTML;
+            var date = document.getElementById(id).children[1].innerHTML;
+            date = date.split('/');
+            var month = date[0];
+            var day = date[1];
+            var year = date[2];
+            date = month + "-" + day + "-" + year;
+            var time = document.getElementById(id).children[2].innerHTML;
+            var out = document.getElementById(id).children[4].innerHTML;
+            var bus = document.getElementById(id).children[5].innerHTML;
+            var home = document.getElementById(id).children[6].innerHTML;
+            var schools = document.getElementById(id).children[7].innerHTML;
+            var school_id = await fetch('/api/schools/').then(data => data.json())
+            schools = schools.split(',');
+            // console.log(location,date,time,out,bus,home,schools[0],schools[1])
+            var hasComma = schools.includes(',');
+            console.log(hasComma);
+            school1 = schools[0];
+            if (hasComma) {
+                school2 = schools[1].split(" ");
+                school2 = school2[1] + " " + school2[2];
+            }
+            else {
+                school2 = "";
+            }
+
+            for (var i = 0; i < school_id.length; i++) {
+                if (school1 == school_id[i].name) {
+                    var school1_id = (school_id[i].school_id);
+                    break;
+                }
+            }
+
+            for (var j = 0; j < school_id.length; j++) {
+                if (school2 == school_id[j].name) {
+                    var school2_id = (school_id[j].school_id);
+                    break;
+                }
+            }
+
+            var proceed = confirm("Does all of this look correct? location:" + location + " date:" + date + " time:" + time + " out:" + out + " bus:" + bus + " home:" + home + " School 1:" + school1 + " School 2:" + school2);
+            if (proceed) {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        var coach = check[i].coach_id;
+                        flag = true;
+                    }
+                }
+                if (proceed && flag) {
+                    for (var i = 0; i < school_id.length; i++) {
+                        if (school_id[i].name == school) {
+                            school = school_id[i].school_id;
+                            break;
+                        }
+                    }
+                    if (out == "null" || out == "") { out = null }
+                    if (bus == "null" || bus == "") { bus = null }
+                    if (home == "null" || home == "") { home = null }
+                    // console.log(location,date,time,out,bus,home,school1_id,school2_id);
+                    var submit = location + "_" + date + "_" + time + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id + "_" + id;
+                    // console.log(submit)
+                    fetch("/api/updateMeet/" + submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+
+                    submit = submit.replace(/_/g, "&")
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + id + "_" + submit;
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
+                }
+                else {
+                    alert("You don't have access to save changes")
+                }
             }
         }
 
-        async function pullSchool() {
-            var school = location.search.substring(1);
-            school = school.split("=");
-            school = Number(school[1]);
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("girlRecords");
-                var row = document.createElement('tr');
-                var name = row.insertCell();
-                var time = row.insertCell();
-                var year = row.insertCell();
-                name.setAttribute('id', 'rg' + i);
-                time.setAttribute('id', 'rgt' + i);
-                year.setAttribute('id', 'rgy' + i);
-                namePull(i, name,time,year,school);
-                body.appendChild(row);
-                
-            }
-            var races = ["", "200 Medley Relay", "200 Freestyle", "200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("races");
-                var row = document.createElement('tr');
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.innerHTML = races[i]
-                row.appendChild(cell);
-                body.appendChild(row);
-            }
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("boyRecords");
-                var row = document.createElement('tr');
-                var name = row.insertCell();
-                var time = row.insertCell();
-                var year = row.insertCell();
-                name.setAttribute('id', 'rb' + i);
-                time.setAttribute('id', 'rbt' + i);
-                year.setAttribute('id', 'rby' + i);
-                namePull(i, name,time, year, school);
-                body.appendChild(row);
-            }
-        }
+        $(document).ready(function () {
+            $("#formButton").click(function () {
+                $("#form1").toggle();
+                $("#meets").toggle();
+            });
+        });
     </script>
+
 </head>
 <header id="header"></header>
 
-<body onload="pullSchool()">
-
-    <main class="swim_info">
-        <div class="container1" id="container1">
-            <table class="swimmer_data1" id="girlRecords">
-                <tr class="top">
-                    <td></td>
-                </tr>
-
-                <tr class="head">
-                    <td>RECORDS WOMEN:</td>
-                    <td>TIME</td>
-                    <td>YEAR</td>
-                </tr>
-                <tr class="top">
-                    <td></td>
-                </tr>
-            </table>
-            <table class="swimmer_data2" id="races">
-                <tr class="top">
-                    <td></td>
-                </tr>
-                <tr class="head">
-                    <td>RACE</td>
-                </tr>
-                <tr class="top">
-                    <td></td>
-                </tr>
-            </table>
-            <table class="swimmer_data3" id="boyRecords">
-                <tr class="top">
-                    <td></td>
-                </tr>
-                <tr class="head">
-                    <td>RECORDS MEN:</td>
-                    <td>TIME</td>
-                    <td>YEAR</td>
-                </tr>
-                <tr class="top">
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </main>
+<body onload="buildPage()">
+    <div class="swim_info">
+        <h4 class="label">Current Year's Meets</h4>
+        <form id="form1">
+            <b>Title/Location:</b> <input type="text" id="meetTitle" name="meetTitle" required>
+            <br><br>
+            <b>Meet Date: </b><input type="text" id="meetDate" name="meetDate" placeholder="mm/dd/yyyy" required>
+            <br><br>
+            <b>Meet Time: </b><input type="text" id="meetTime" name="meetTime" placeholder="hh:mm(am/pm)" required>
+            <br><br>
+            <b>Out Time: </b><input type="text" id="meetOut" name="meetOut" placeholder="hh:mm(am/pm)" required>
+            <br><br>
+            <b>Bus Time: </b><input type="text" id="meetBus" name="meetBus" placeholder="hh:mm(am/pm)" required>
+            <br><br>
+            <b>Home Time: </b><input type="text" id="meetHome" name="meetHome" placeholder="hh:mm(am/pm)" required>
+            <br><br>
+            <b>Schools:</b>
+            <br>
+            <textarea name="schools" id="schools" placeholder="school 1, school 2" required></textarea>
+            <br><br>
+            <button type="button" id="submit" onclick="addMeet()">Submit</button>
+            <button type="button" id="cancel" onclick="window.location.reload()">Cancel</button>
+        </form>
+        <table id="meets">
+            <tr>
+                <td>Title</td>
+                <td>Date</td>
+                <td>Time</td>
+                <td>Swim Season</td>
+                <td>Out Time</td>
+                <td>Bus Leaving</td>
+                <td>Getting Home @</td>
+                <td>Schools Participating</td>
+                <td rowspan="2"><button type="button" id="formButton">Add Meet</button></td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 <footer id="footer"></footer>

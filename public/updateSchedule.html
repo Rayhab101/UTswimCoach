@@ -67,115 +67,204 @@
             $("#footer").load("footing.html");
         });
 
-        function buildPage() {
-            fetch("/api/meets")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(async function (meets) {
-                    var body = document.getElementById("meets");
+        async function grabSchools(schools, school1, school2,cell){
+            var grab = await fetch("/api/schools/" + school1)
+            var data = await grab.json();
+            schools = data[0].name;
+            if(school2 != null){
+                var nextGrab = await fetch("/api/schools/" + school2); 
+                var nextData = await nextGrab.json();
+                schools +=", " + nextData[0].name;
+            }
+            console.log(schools);
+            cell.innerHTML = schools;
+        }
 
-                    // console.log(meets)
-                    for (var i = 0; i < meets.length; i++) {
-                        var row = document.createElement("tr");
-                        row.setAttribute("id", meets[i].meet_id);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meets[i].location);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meets[i].date);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        text = document.createTextNode(column.innerHTML = meets[i].time);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        var years = "20" + (20 + Number(meets[i].year) - 1) + " - 20" + (20 + Number(meets[i].year));
-                        text = document.createTextNode(column.innerHTML = years);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        if(meets[i].out==null || meets[i].out=="null" ){
-                            out="";
-                        }
-                        else{
-                            out = meets[i].out
-                        }
-                        text = document.createTextNode(column.innerHTML = out);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        //console.log(meets[i].bus)
-                        if(meets[i].bus==null || meets[i].bus=="null" ){
-                            bus="";
-                        }
-                        else{
-                            bus = meets[i].bus
-                        }
-                        text = document.createTextNode(column.innerHTML = bus);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        if(meets[i].home==null || meets[i].home=="null" ){
-                            home="";
-                        }
-                        else{
-                            home = meets[i].home
-                        }
-                        text = document.createTextNode(column.innerHTML = home);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        var schools;
-                        if (meets[i].school1 != '-1' && meets[i].school1 != null) {
-                            var school1 = await fetch("/api/schools/" + meets[i].school1).then(data => data.json());
-                            schools = school1[0].name;
-                            if (meets[i].school2 != null) {
-                                var school2 = await fetch("/api/schools/" + meets[i].school2).then(data => data.json());
-                                schools += ", " + school2[0].name;
-                            }
-                        }
+        async function buildPage() {
+            var response = await fetch("/api/meets");
+            var data = await response.json();
 
-                        else {
-                            schools = "More than one school";
-                        }
+            var body = document.getElementById("meets");
+            data.forEach(elements => {
+                //console.log(elements)
+                var row = document.createElement("tr");
+                row.setAttribute("id", elements.meet_id);
+                var cell = row.insertCell();
+                cell.innerHTML = elements.location;
+                var cell = row.insertCell();
+                cell.innerHTML = elements.date;
+                var cell = row.insertCell();
+                cell.innerHTML = elements.time;
+                var cell = row.insertCell();
+                var years = "20" + (20 + Number(elements.year) - 1) + " - 20" + (20 + Number(elements.year));
+                cell.innerHTML = years;
+                var cell = row.insertCell();
+                if (elements.out == null || elements.out == "null") {
+                    out = "";
+                }
+                else {
+                    out = elements.out
+                }
+                cell.innerHTML = out;
+                var cell = row.insertCell();
+                //console.log(meets[i].bus)
+                if (elements.bus == null || elements.bus == "null") {
+                    bus = "";
+                }
+                else {
+                    bus = elements.bus
+                }
+                cell.innerHTML = bus;
+                var cell = row.insertCell();
+                if (elements.home == null || elements.home == "null") {
+                    home = "";
+                }
+                else {
+                    home = elements.home
+                }
+                cell.innerHTML = home;
+                var cell = row.insertCell();
+                var schools = "";
+                if (elements.school1 != '-1' && elements.school1 != null) {
+                    schools = grabSchools(schools, elements.school1, elements.school2,cell);
+                }
+                else {
+                    schools = "More than one school";
+                    cell.innerHTML = schools;
+                }
+                var cell = row.insertCell();
+                text = document.createElement("button");
+                text.textContent = "Save";
+                text.setAttribute("style", "background-color: lime");
+                text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                cell.appendChild(text);
+                text = document.createElement("button");
+                text.textContent = "Delete";
+                text.setAttribute("style", "background-color: red");
+                text.setAttribute("onclick", "remove($(this).closest('tr').attr('id'));");
+                cell.appendChild(text);
+                body.appendChild(row);
+                var table = document.getElementById("meets");
+                table.addEventListener('click', function (e) {
 
-                        text = document.createTextNode(column.innerHTML = schools);
-                        cell.appendChild(text);
-                        var column = document.createElement("td");
-                        var cell = row.insertCell();
-                        text = document.createElement("button");
-                        text.textContent = "Save";
-                        text.setAttribute("style", "background-color: lime");
-                        text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
-                        cell.appendChild(text);
-                        text = document.createElement("button");
-                        text.textContent = "Delete";
-                        text.setAttribute("style", "background-color: red");
-                        text.setAttribute("onclick", "remove($(this).closest('tr').attr('id'));");
-                        cell.appendChild(text);
-                        body.appendChild(row);
-                        var table = document.getElementById("meets");
-                        table.addEventListener('click', function (e) {
-
-                            var target = e.target;
-                            //test if clicked element is TD.
-                            if (target && target.tagName && target.tagName.toLowerCase() == "td") {
-                                //make cell editable
-                                target.setAttribute('contenteditable', 'true');
-                                //on blur close the editable field and return to normal cell.
-                                target.onblur = function () { this.removeAttribute('contenteditable'); }
-                            }
-
-                        });
+                    var target = e.target;
+                    //test if clicked element is TD.
+                    if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                        //make cell editable
+                        target.setAttribute('contenteditable', 'true');
+                        //on blur close the editable field and return to normal cell.
+                        target.onblur = function () { this.removeAttribute('contenteditable'); }
                     }
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
+
                 });
+            });
+            // fetch("/api/meets")
+            //     .then(function (response) {
+            //         return response.json();
+            //     })
+            //     .then(async function (meets) {
+
+            //         // console.log(meets)
+            //         for (var i = 0; i < meets.length; i++) {
+            //             var row = document.createElement("tr");
+            //             row.setAttribute("id", meets[i].meet_id);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = meets[i].location);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = meets[i].date);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createTextNode(column.innerHTML = meets[i].time);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             var years = "20" + (20 + Number(meets[i].year) - 1) + " - 20" + (20 + Number(meets[i].year));
+            //             text = document.createTextNode(column.innerHTML = years);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             if(meets[i].out==null || meets[i].out=="null" ){
+            //                 out="";
+            //             }
+            //             else{
+            //                 out = meets[i].out
+            //             }
+            //             text = document.createTextNode(column.innerHTML = out);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             //console.log(meets[i].bus)
+            //             if(meets[i].bus==null || meets[i].bus=="null" ){
+            //                 bus="";
+            //             }
+            //             else{
+            //                 bus = meets[i].bus
+            //             }
+            //             text = document.createTextNode(column.innerHTML = bus);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             if(meets[i].home==null || meets[i].home=="null" ){
+            //                 home="";
+            //             }
+            //             else{
+            //                 home = meets[i].home
+            //             }
+            //             text = document.createTextNode(column.innerHTML = home);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             var schools;
+            //             if (meets[i].school1 != '-1' && meets[i].school1 != null) {
+            //                 var school1 = await fetch("/api/schools/" + meets[i].school1).then(data => data.json());
+            //                 schools = school1[0].name;
+            //                 if (meets[i].school2 != null) {
+            //                     var school2 = await fetch("/api/schools/" + meets[i].school2).then(data => data.json());
+            //                     schools += ", " + school2[0].name;
+            //                 }
+            //             }
+
+            //             else {
+            //                 schools = "More than one school";
+            //             }
+
+            //             text = document.createTextNode(column.innerHTML = schools);
+            //             cell.appendChild(text);
+            //             var column = document.createElement("td");
+            //             var cell = row.insertCell();
+            //             text = document.createElement("button");
+            //             text.textContent = "Save";
+            //             text.setAttribute("style", "background-color: lime");
+            //             text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+            //             cell.appendChild(text);
+            //             text = document.createElement("button");
+            //             text.textContent = "Delete";
+            //             text.setAttribute("style", "background-color: red");
+            //             text.setAttribute("onclick", "remove($(this).closest('tr').attr('id'));");
+            //             cell.appendChild(text);
+            //             body.appendChild(row);
+            //             var table = document.getElementById("meets");
+            //             table.addEventListener('click', function (e) {
+
+            //                 var target = e.target;
+            //                 //test if clicked element is TD.
+            //                 if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+            //                     //make cell editable
+            //                     target.setAttribute('contenteditable', 'true');
+            //                     //on blur close the editable field and return to normal cell.
+            //                     target.onblur = function () { this.removeAttribute('contenteditable'); }
+            //                 }
+
+            //             });
+            //         }
+            //     })
+            //     .catch(function (error) {
+            //         console.log("Error: " + error);
+            //     });
         }
 
         async function addMeet() {
@@ -322,14 +411,14 @@
             var hasComma = schools.includes(',');
             console.log(hasComma);
             school1 = schools[0];
-            if(hasComma){
-            school2 = schools[1].split(" ");
-            school2 = school2[1] + " " + school2[2];
+            if (hasComma) {
+                school2 = schools[1].split(" ");
+                school2 = school2[1] + " " + school2[2];
             }
-            else{
+            else {
                 school2 = "";
             }
-            
+
             for (var i = 0; i < school_id.length; i++) {
                 if (school1 == school_id[i].name) {
                     var school1_id = (school_id[i].school_id);
