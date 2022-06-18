@@ -127,13 +127,9 @@
             var body = document.getElementById("swimmers"); 
             var row;           
             dataArray.forEach(element => {
-                console.log(count)
-
-                // console.log(count%6==0)
                 if (count % 5 == 0) {
                     row = document.createElement("div");
                     row.setAttribute("class", "row");
-                    console.log("Check " + count)
                 }
                 var col = document.createElement("div");
                 col.setAttribute("class", "column");
@@ -148,12 +144,6 @@
                 cardName.setAttribute("font-weight", "bold");
                 var cardGrade = document.createElement("h3");
                 cardGrade.innerHTML = element.status_grade;
-                console.log(cardName);
-                console.log(cardGrade);
-                console.log(carred);
-                console.log(a);
-                console.log(col);
-                console.log(row);
                 carred.appendChild(cardName);
                 carred.appendChild(cardGrade);
                 a.appendChild(carred);

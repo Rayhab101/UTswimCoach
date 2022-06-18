@@ -431,125 +431,55 @@
 </body>
 <footer id="footer"></footer>
 <script>
-    function pullSwimmer(name, column, cell) {
-        fetch("/api/swim/" + name)
-            .then(function (responseRelay) {
-                return responseRelay.json();
-            })
-            .then(function (swimmer) {
-                // console.log(swimmer[0].is_active);
-                text = document.createTextNode(column.innerHTML = swimmer[0].name);
-                cell.appendChild(text);
-            })
-            .catch(function (error) {
-                console.log("Error: " + error)
-            });
+
+    async function pullSwimmer(name, cell) {
+        var response = await fetch("/api/swim/" + name);
+        var data = await response.json();
+        cell.innerHTML = data[0].name;
     }
-    function pullSchool(school, column, cell) {
-        fetch("/api/schools/" + school)
-            .then(function (responseRelay) {
-                return responseRelay.json();
-            })
-            .then(function (school) {
-                //console.log(school[0].name);
-                text = document.createTextNode(column.innerHTML = school[0].name);
-                cell.appendChild(text);
-            })
-            .catch(function (error) {
-                console.log("Error: " + error)
-            });
-    }
-    function t50(i) {
+
+    async function t50(i) {
         var r = [1, 8, 11, 12, 19, 22]
         var status = 1;
+        var response = await fetch("/api/races/"+i);
+        var data = await response.json();
         if (r.includes(i)) {
-            fetch("/api/races/" + i)
-                .then(function (responseRelay) {
-                    return responseRelay.json();
-                })
-                .then(function (relay) {
-                    //console.log(i)
-                    var body = document.getElementById(relay[0].title);
-                    fetch("/api/relayTimes/" + i)
-                        .then(function (responseRace) {
-                            return responseRace.json();
-                        })
-                        .then(function (race) {
-                            // console.table(race.length)
-                            var newLength = race.length>50 ? 50 : race.length;
-                            for (var j = 0; j < newLength; j++) {
-                                var row = document.createElement("tr");
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = status);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = race[j].swimmers);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                pullSchool(race[j].school, column, cell)
-                                // text = document.createTextNode(column.innerHTML = race[0].school);
-                                // cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = race[j].time);
-                                cell.appendChild(text);
-                                body.appendChild(row);
-                                status++;
-                            }
-                        }).catch(function (error) {
-                            console.log("Error: " + error);
-                        });
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+            var body = document.getElementById(data[0].title);
+            var newResponse = await fetch("/api/relayTimes/"+i);
+            var raceData = await newResponse.json();
+            raceData.forEach(swimmers =>{
+                var row = document.createElement("tr")
+                var cell = row.insertCell();
+                cell.innerHTML = status;
+                cell = row.insertCell();
+                cell.innerHTML = swimmers.swimmers;
+                cell = row.insertCell();
+                cell.innerHTML = (swimmers.school==6) ? "Ben Lomond" : "Saint Joseph";
+                cell = row.insertCell();
+                cell.innerHTML = swimmers.time;
+                body.appendChild(row);
+                status++;
+            })
         }
         else {
-            fetch("/api/races/" + i)
-                .then(function (responseRaces) {
-                    return responseRaces.json();
-                })
-                .then(function (race) {
-                    var body = document.getElementById(race[0].title);
-                    fetch("/api/top50/" + i)
-                        .then(function (responseChart) {
-                            return responseChart.json();
-                        }) 
-                        .then(function (chart) {
-                            //console.log(chart)
-                            var t50 = chart.length;
-                            t50 = t50 > 50 ? t50 = 50 : t50 = chart.length;
-                            for (var j = 0; j < t50; j++) {
-                                var row = document.createElement("tr");
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = j + 1);
-                                var active = cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                pullSwimmer(chart[j].swimmer, column, cell)
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                pullSchool(chart[j].school, column, cell)
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = chart[j].time);
-                                cell.appendChild(text);
-                                body.appendChild(row);
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log("Error: " + error);
-                        });
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+            var body = document.getElementById(data[0].title);
+            var newResponse = await fetch("/api/top50/"+i);
+            var raceData = await newResponse.json();
+            raceData.forEach(swimmer => {
+                console.log(swimmer)
+                var row = document.createElement("tr");
+                var cell = row.insertCell();
+                cell.innerHTML = status;
+                cell = row.insertCell();
+                pullSwimmer(swimmer.swimmer,cell)
+                cell = row.insertCell();
+                cell.innerHTML = (swimmer.school == 6) ? "Ben Lomond" : "Saint Joseph";
+                cell = row.insertCell();
+                cell.innerHTML = swimmer.time;
+                body.appendChild(row);
+                status++;
+            });
         }
-
     }
     function tops() {
         for (var i = 1; i <= 22; i++) {
