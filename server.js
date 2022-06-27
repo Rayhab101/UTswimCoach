@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express');
-const swimmers = require('./public/swimmers.json');
+//const swimmers = require('./public/swimmers.json');
 const fs = require('fs');
 const app = express();
 const cors = require('cors');

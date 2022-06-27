@@ -4,488 +4,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team- Top Swimmers</title>
+    <title>BL/SJ Swim Team- Home</title>
     <link rel="stylesheet" href="swim.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
     </script>
-<script>
-    $(function () {
-        $("#header").load("heading.html");
-        $("#footer").load("footing.html");
-    });
-</script>
     <style>
-        @media screen and (min-width:750px){
-        .swim_info {
-            padding-top: 90px;
+        @media only screen and (min-width: 700px) {
+            .galleryPic {
+                width: 30vw;
+                height: 50vh;
+            }
+
+            .container2 {
+                width: 100vw;
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                /* overflow: hidden; */
+                /* padding-left: 50px;
+            padding-right: 90px; */
+            }
+
+            .welcome {
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 100vw;
+            }
+
+            .schedule {
+                /* background-color: whitesmoke; */
+                text-align: center;
+                font-size: small;
+                width: 30vw;
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            .nextmeet {
+                background-image: url(vs_blpool.jpeg);
+                display: flex;
+                width: 30vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .nextmeet img {
+                width: 35%;
+                height: 35%;
+            }
+
+            #blog {
+                height: 90%;
+                width: 30vw;
+                font-size: 17px;
+                text-align: center;
+                resize: none;
+
+            }
+
+            .state {
+                display: flex;
+                text-align: center;
+                width: 29.5vw;
+                ;
+                height: 10vh;
+                object-fit: cover;
+                position: relative;
+                top: -105px;
+            }
         }
 
-        table,
-        tr {
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid black 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
-            width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+        @media only screen and (max-width: 700px) {
+            .galleryPic {
+                width: 90vw;
+            }
 
-        }
-        td {
-            font-size: small;
-        }
-        th {
-            text-align: center;
-            font-size: 24px;
-        }
+            .container2 {
+                height: 85vh;
+                width: 100vw;
+                /* padding-left: auto; */
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                overflow: auto;
 
-        button {
-            margin-left: auto;
-            margin-right: auto;
-        }
+            }
 
-        .contain {
-            display: grid;
-        }
+            .welcome {
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 90vw;
+                margin-top: 100px;
+            }
 
-        .even {
-            grid-row: 1;
-            grid-column: 1;
-        }
+            .schedule {
+                /* background-color: whitesmoke; */
+                text-align: center;
+                font-size: small;
+                width: 90vw;
 
-        .odd {
-            grid-row: 1;
-            grid-column: 2;
-        }
+            }
 
-        .scrollable {
-            overflow:
-                auto;
-        }
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
 
-        .container {
-            width: 1250px;
-            height: 85vh;
-            overflow: auto;
-        }
-    }
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
 
-    @media screen and (max-width:750px){
-        .swim_info {
-            padding-top: 90px;
-        }
+            .nextmeet {
+                background-image: url(vs_blpool.jpeg);
+                display: flex;
+                width: 90vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
 
-        table,
-        tr {
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid black 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
+            .nextmeet img {
+                width: 35%;
+                height: 35%;
+            }
 
-        }
+            #blog {
+                height: 100%;
+                width: 90vw;
+                font-size: 14px;
+                resize: none;
+            }
 
-        th {
-            text-align: center;
-            font-size: 16px;
+            .state {
+                display: flex;
+                text-align: center;
+            }
         }
-
-        button {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contain {
-            display: grid;
-            font-size: xx-small;
-        }
-
-        .even {
-            grid-row: 1;
-            grid-column: 1;
-        }
-
-        .odd {
-            padding-top: 5px;
-            grid-row: 2;
-            grid-column: 1;
-        }
-
-        .scrollable {
-            overflow: auto;
-        }
-
-        .container {
-            width: auto;
-            height: 85vh;
-            overflow: auto;
-        }
-        #topHeader{
-            padding-top:50px;
-            background-color: transparent;
-            border: none;
-        }
-    }
     </style>
 </head>
 <header id="header"></header>
-<body class="swim_info" onload="tops()">
-    <div class="container">
-        <table id="topHeader">
-            <th>Top Swimmers from 2020 - Present</th>
-        </table>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 200 Medley Relay">
-                    <td colspan="4">Womens 200 Medley Relay</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
+
+<body onload="against()">
+    <div class="container2">
+        <div class="schedule">
+            <table id="schedule">
+                <tr>
+                    <th colspan="6"><u>2021-2022 Swim Schedule</u></th>
+                </tr>
+                <tr><strong>
+                        <td>Date/Day</td>
+                        <td>Event</td>
                         <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 200 Medley Relay">
-                    <td colspan="4">Mens 200 Medley Relay</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
+                        <td>Out</td>
+                        <td>Bus</td>
+                        <td>Home</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/12/2022</td>
+                        <td>Swim Meeting Gym #311</td>
+                        <td>5:00pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/19/2022</td>
+                        <td>Parents Meeting Gym #311</td>
+                        <td>6:00pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/26/2022</td>
+                        <td>First Day of Practice</td>
+                        <td>2:45pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>10/20/2022</td>
+                        <td>Time Trials</td>
+                        <td>2:45pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr>
+                    <th colspan="6"><u>Season Meets:</u></th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="w3-content w3-section">
+            <img id="mySlides" class="galleryPic">
+            <div class="state">
+                <a href="./stateQualified.html"> <img src="./images/Utah_test.png" style="width:40%;"></a>
             </div>
         </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 200 free">
-                    <td colspan="4">Womens 200 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
+        <div style="background-color: rgba(0, 0, 0, 0.6)">
+            <h3 style="color:white; text-align: center; ">Next Meet</h3>
+            <div id="nextmeet" class="nextmeet">
             </div>
-            <div class="odd">
-                <table id="Mens 200 free">
-                    <td colspan="4">Mens 200 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 200 IM">
-                    <td colspan="4">Womens 200 IM</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 200 IM">
-                    <td colspan="4">Mens 200 IM</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 50 free">
-                    <td colspan="4">Womens 50 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 50 free">
-                    <td colspan="4">Mens 50 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 fly">
-                    <td colspan="4">Womens 100 Fly</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 fly">
-                    <td colspan="4">Mens 100 Fly</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 free">
-                    <td colspan="4">Womens 100 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 free">
-                    <td colspan="4">Mens 100 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 500 free">
-                    <td colspan="4">Womens 500 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 500 free">
-                    <td colspan="4">Mens 500 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 200 Free Relay">
-                    <td colspan="4">Womens 200 Free Relay</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 200 Free Relay">
-                    <td colspan="4">Mens 200 Free Relay</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 back">
-                    <td colspan="4">Womens 100 Back</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 back">
-                    <td colspan="4">Mens 100 Back</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 breast">
-                    <td colspan="4">Womens 100 Breast</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 breast">
-                    <td colspan="4">Mens 100 Breast</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 400 Free Relay">
-                    <td colspan="4">Womens 400 Free Relay</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 400 Free Relay">
-                    <td colspan="4">Mens 400 Free Relay</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Time</td>
-                    </tr>
-                </table>
-            </div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
+            <h3 id="meetname" style="color:white; text-align: center;"></h3>
+
+            <div style="background-color:white" id="blog"></div>
+
         </div>
     </div>
+    <script>
+        var slideIndex = 0;
+        carousel();
+        function carousel() {
+            var imgArray = [];
+            for (i = 0; i < 6; i++) {
+                imgArray[i] = new Image();
+                imgArray[i] = './Gallery/Quote' + i + '.png';
+            }
+            var x = document.getElementById("mySlides");
+            if (slideIndex === imgArray.length) { slideIndex = 0 }
+            x.style.display = "block";
+            x.src = imgArray[slideIndex].toString();
+            slideIndex++;
+            setTimeout(carousel, 10000); // Change image every 10 seconds
+        }
+    </script>
 </body>
 <footer id="footer"></footer>
 <script>
 
-    async function pullSwimmer(name, cell) {
-        var response = await fetch("/api/swim/" + name);
-        var data = await response.json();
-        cell.innerHTML = data[0].name;
+    async function blog() {
+        var blog = document.getElementById("blog");
+        var hello = await fetch('/api/blog').then(data => data.json())
+        blog.innerHTML = hello[0].blog_text;
     }
 
-    async function t50(i) {
-        var r = [1, 8, 11, 12, 19, 22]
-        var status = 1;
-        var response = await fetch("/api/races/"+i);
-        var data = await response.json();
-        if (r.includes(i)) {
-            var body = document.getElementById(data[0].title);
-            var newResponse = await fetch("/api/relayTimes/"+i);
-            var raceData = await newResponse.json();
-            raceData.forEach(swimmers =>{
-                var row = document.createElement("tr")
-                var cell = row.insertCell();
-                cell.innerHTML = status;
-                cell = row.insertCell();
-                cell.innerHTML = swimmers.swimmers;
-                cell = row.insertCell();
-                cell.innerHTML = (swimmers.school==6) ? "Ben Lomond" : "Saint Joseph";
-                cell = row.insertCell();
-                cell.innerHTML = swimmers.time;
-                body.appendChild(row);
-                status++;
+    async function against() {
+        var today = new Date();
+        fetch("/api/meets").then(function (resMeets) {
+            return resMeets.json();
+        })
+            .then(async function (meets) {
+                var body = document.getElementById("nextmeet");
+                var text = document.getElementById("meetname")
+                var img = document.createElement("img");
+                var img2 = document.createElement("img");
+                var img3 = document.createElement("img");
+                var img4 = document.createElement("img");
+                for (var j = 0; j < meets.length; j++) {
+                    var date = meets[j].date;
+                    var splice = date.split("/");
+                    var year = Number(splice[2]);
+                    var month = Number(splice[0]) - 1;
+                    var day = Number(splice[1]) + 1;
+                    var nextMeet = new Date(year, month, day);
+                    var who;
+                    if (nextMeet - today > 0) {
+                        if (meets[j].school1 != -1) {
+                            var school1 = await fetch('/api/schools/' + meets[j].school1).then(function (responseRelay) {
+                                return responseRelay.json();
+                            }).catch(function (error) {
+                                console.log("Error: " + error)
+                            });
+                            var school2;
+                            if (meets[j].school2 != null) {
+                                school2 = await fetch('/api/schools/' + meets[j].school2).then(function (responseRelay) {
+                                    return responseRelay.json();
+                                }).catch(function (error) {
+                                    console.log("Error: " + error)
+                                });
+                            }
+                            break;
+                        }
+                        else {
+                            var school1 = [{ school_id: '-1', name: meets[j].location, photo: './Utah_test.png' }];
+                            break;
+                        }
+                    }
+                }
+                if (!school1) {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("alt", "Jayhawks Logo");
+                    body.appendChild(img2);
+                    text.innerHTML = "Red and Blue Meet"
+                }
+                if (school1[0].school_id == 6) {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("alt", "Jayhawks Logo");
+                    body.appendChild(img2);
+                    text.innerHTML = "Red and Blue Meet"
+                    // break;
+                }
+                else {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    // console.log(school1[0].photo)
+                    img2.setAttribute("src", "./images/" + school1[0].photo);
+                    img2.setAttribute("alt", school1[0].name + " Logo");
+                    body.appendChild(img2);
+                    who = "VS " + school1[0].name;
+                    img3.setAttribute("src", "./images/JayHawk.png");
+                    img3.setAttribute("alt", "Jayhawks Logo");
+                    // img3.setAttribute("style","transform: scaleX(-1)")
+                    body.appendChild(img3);
+                    if (school2 != undefined) {
+                        img4.setAttribute("src", "./images/" + school2[0].photo);
+                        img4.setAttribute("alt", school2[0].name);
+                        body.appendChild(img4);
+                        who = who + " & " + school2[0].name;
+                        text.innerHTML = who;
+                    }
+                    else {
+                        text.innerHTML = who;
+                    }
+                }
             })
-        }
-        else {
-            var body = document.getElementById(data[0].title);
-            var newResponse = await fetch("/api/top50/"+i);
-            var raceData = await newResponse.json();
-            raceData.forEach(swimmer => {
-                console.log(swimmer)
-                var row = document.createElement("tr");
-                var cell = row.insertCell();
-                cell.innerHTML = status;
-                cell = row.insertCell();
-                pullSwimmer(swimmer.swimmer,cell)
-                cell = row.insertCell();
-                cell.innerHTML = (swimmer.school == 6) ? "Ben Lomond" : "Saint Joseph";
-                cell = row.insertCell();
-                cell.innerHTML = swimmer.time;
-                body.appendChild(row);
-                status++;
+            .catch(function (error) {
+                console.log("Error: " + error);
             });
-        }
+        meets();
     }
-    function tops() {
-        for (var i = 1; i <= 22; i++) {
-            t50(i)
-        }
+
+    async function meets() {
+        var today = new Date();
+        var response = await fetch("/api/meets");
+        var data = await response.json();
+        var body = document.getElementById("schedule");
+        data.forEach(meet => {
+            console.log(meet)
+            var date = meet.date;
+            var splice = date.split("/");
+            var year = Number(splice[2]);
+            var month = Number(splice[0]) - 1;
+            var day = Number(splice[1]) + 1;
+            var nextMeet = new Date(year, month, day);
+            var row = document.createElement("tr");
+            var cell = row.insertCell();
+            cell.innerHTML = meet.date;
+            var cell = row.insertCell();
+            if (nextMeet - today > 0) {
+                cell.innerHTML = meet.location;
+            }
+            else {
+                cell.innerHTML = meet.location;
+                cell.setAttribute("style", "text-decoration: line-through")
+            }
+            var cell = row.insertCell();
+            cell.innerHTML = meet.time;
+            var cell = row.insertCell();
+            if (meet.out == null || meet.out == "null") {
+                cell.innerHTML = "";
+            }
+            else {
+                cell.innerHTML = meet.out;
+            }
+            var cell = row.insertCell();
+            if (meet.bus == null || meet.bus == "null") {
+                cell.innerHTML = "";
+            }
+            else {
+                cell.innerHTML = meet.bus;
+            }
+            var cell = row.insertCell();
+            if (meet.home == null || meet.home == "null") {
+                cell.innerHTML = "";
+            }
+            else {
+                cell.innerHTML = meet.home;
+            }
+            body.appendChild(row);
+        });
+        blog();
     }
 </script>
-
 </html>
+<!-- 443 -->
