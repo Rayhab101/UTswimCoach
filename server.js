@@ -12,29 +12,10 @@ var schedule = require('node-schedule');
 const { getSwimmerhs } = require('./controllers/usersController');
 const { query } = require('express');
 var port = process.env.PORT || 8080;
+// app.listen(port, "0.0.0.0", function() {
+//     console.log("Listening on Port 8080");
+//     });
 console.log(port);
-// const pdfparse=require('pdf-parse');
-// const { timeStamp } = require('console');
-// const pdffile=fs.readFileSync('meetResults.pdf')
-// pdfparse(pdffile).then(function(data){
-//     var meet = data.text.split("\n")
-//     for(var i=0;i<meet.length;i++){
-//         if(meet[i]===''||meet[i]==='\n'||meet[i]===' '){continue}
-//         if(meet[i].includes('Ben Lomond')){continue}
-//         if(meet[i].includes('Team')){continue}
-//         if(meet[i].includes('Results')){continue}
-//         if(meet[i].includes('#')){
-//             var races = meet[i].split('  '); 
-//             var race = races[1]
-//             var raceId = races[0].split("#");
-//             var toDB = raceId[1]
-//             console.log(race)
-//         }
-
-//         console.log(meet[i].split(/^\d{2}/))
-
-//     }
-// })
 
 function updateGrade() {
     const db = app.get("db");
@@ -80,17 +61,6 @@ app.get('/',(req,res) =>
     //res.render("index")
     res.status(200).send(swimmers)
 )
-
-// console.log(app.get('/api/swimmers', (req, res) => {
-//     console.log("HIT HERE");
-//     res.status(200).send(swimmers)
-// }))
-// app.post('/api/swimmers', (req, res) => {
-//     console.log("HIT HERE TOO")
-//     //console.log(req.body)
-//     res.status(200).send(swimmers)
-//     fse.outputJsonSync('./public/swimmers.json', req.body)
-// })
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)
