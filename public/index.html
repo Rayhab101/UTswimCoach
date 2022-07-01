@@ -267,7 +267,7 @@
     async function blog() {
         var blog = document.getElementById("blog");
         var hello = await fetch('/api/blog').then(data => data.json())
-        blog.innerHTML = hello[0].blog_text;
+        blog.innerHTML = hello[0].blog;
     }
 
     async function against() {

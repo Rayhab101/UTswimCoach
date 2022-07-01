@@ -1,6 +1,6 @@
 CREATE TABLE schools(
 school_id SERIAL PRIMARY KEY,
-name VARCHAR
+name VARCHAR, school_code VARCHAR
 );
 
 CREATE TABLE swimmers(

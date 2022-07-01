@@ -57,11 +57,8 @@
                     var body = document.getElementById("blog");
                     var row = document.createElement("tr");
                     row.setAttribute('id', 'blog_text');
-                    var column = document.createElement("td");
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = bl[0].blog_text);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = bl[0].blog;
                     var cell = row.insertCell();
                     text = document.createElement("button");
                     text.textContent = "Update";
@@ -71,7 +68,6 @@
                     var table = document.getElementById("blog");
 
                     table.addEventListener('click', function (e) {
-
                         var target = e.target;
                         //test if clicked element is TD.
                         if (target && target.tagName && target.tagName.toLowerCase() == "td") {
@@ -80,7 +76,6 @@
                             //on blur close the editable field and return to normal cell.
                             target.onblur = function () { this.removeAttribute('contenteditable'); }
                         }
-
                     });
                 })
                 .catch(function (error) {
@@ -109,16 +104,16 @@
                 }).then(response => response.json())
                     .then(json => console.log(json))
                     .catch(err => console.log(err));
-                    
-                blog = blog.replace(/_/g,"&")
+
+                blog = blog.replace(/_/g, "&")
                 var today = new Date();
-                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
                 var location = window.location.pathname;
                 location = location.split('/');
                 location = location[1];
                 location = location.split('.html')
                 location = location[0]
-                var changes = date+"_"+coach+"_"+location+"_"+"Blog"+"_"+blog;
+                var changes = date + "_" + coach + "_" + location + "_" + "Blog" + "_" + blog;
                 // console.log(changes)
                 fetch("/api/logChanges/" + changes, {
                     headers: { 'Content-Type': 'application/json' },
@@ -132,7 +127,7 @@
                 alert("You don't have access to edit this blog")
             }
         }
-        
+
     </script>
 
 </head>
@@ -143,7 +138,6 @@
         <h4 class="label">Update Coaches Blog</h4>
         <table id="blog"></table>
     </div>
-
 </body>
 <footer id="footer"></footer>
 

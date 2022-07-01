@@ -1,1 +1,1 @@
-UPDATE blog SET blog_text=$1
+UPDATE blog SET blog=$1
