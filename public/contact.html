@@ -11,12 +11,8 @@
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous">
 </script>
-
-    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script>
         $(function () {
@@ -44,6 +40,8 @@
         height:85vh;
     }
     .coach{
+        padding-top: 100px;
+
         text-align: center;
         /* margin-left: auto;
         margin-right: auto; */
@@ -80,6 +78,7 @@
         margin-top: 69px;
     }
     .coach{
+        padding-top: 50px;
         text-align: center;
         overflow:scroll;
     }
@@ -98,7 +97,6 @@
 </style>
 <script>
     function pullPerson() {
-        
             fetch("/api/coaches")
                 .then(function (response) {
                     return response.json();
@@ -115,7 +113,7 @@
                         var coachPosition = check[i].position;
                         var coachEmail = 'mailto:' + check[i].email;
                         var coachPhone = check[i].phone;
-                        if(coachPhone==''){
+                        if(coachPhone=='' || coachPosition!='Head Coach'){
                             coachPhone='not available'
                         }
                         var image = new Image();
@@ -163,12 +161,10 @@
 </script>
 <header id="header"></header>
 <body onload="pullPerson()">
-    
     <main class="swim_info">
         <div class="container" id="container">
         </div>
     </main>
-    
     <script>
         $(document).on('click', '.emailMe', function () {
             emailCoach(this.parentNode.children[2].id);

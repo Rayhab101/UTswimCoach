@@ -56,26 +56,32 @@
                 })
                 .then(async function (sj) {
 
-                    var body = document.getElementById("meets");
+                    var body = document.getElementById("aboutPage");
                     var row = document.createElement("tr");
                     row.setAttribute("id", sj[0].school_id);
-                    var column = document.createElement("td");
                     var cell = row.insertCell();
-
-                    text = document.createTextNode(column.innerHTML = sj[0].about);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = sj[0].about;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = sj[0].short_description);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = sj[0].short_description;
+                    var cell = row.insertCell();
+                    cell.innerHTML = sj[0].goldm;
+                    var cell = row.insertCell();
+                    cell.innerHTML = sj[0].silverm;
+                    var cell = row.insertCell();
+                    cell.innerHTML = sj[0].bronzem;
+                    var cell = row.insertCell();
+                    cell.innerHTML = sj[0].goldf;
+                    var cell = row.insertCell();
+                    cell.innerHTML = sj[0].silverf;
+                    var cell = row.insertCell();
+                    cell.innerHTML = sj[0].bronzef;
                     var cell = row.insertCell();
                     text = document.createElement("button");
                     text.textContent = "Update";
                     text.setAttribute("onclick", "updateDescriptions($(this).closest('tr').attr('id'))");
                     cell.appendChild(text);
                     body.appendChild(row);
-                    var table = document.getElementById("meets");
+                    var table = document.getElementById("aboutPage");
                     table.addEventListener('click', function (e) {
 
                         var target = e.target;
@@ -98,7 +104,13 @@
             // console.log(id);
             var description = document.getElementById(id).children[0].innerHTML;
             var short_description = document.getElementById(id).children[1].innerHTML;
-            var submit = description + "_" + short_description + "_" + id;
+            var goldm = document.getElementById(id).children[2].innerHTML;
+            var silverm = document.getElementById(id).children[3].innerHTML;
+            var bronzem = document.getElementById(id).children[4].innerHTML;
+            var goldf = document.getElementById(id).children[5].innerHTML;
+            var silverf = document.getElementById(id).children[6].innerHTML;
+            var bronzef = document.getElementById(id).children[7].innerHTML;
+            var submit = description + "_" + short_description + "_"+ goldm + "_"+ silverm + "_"+ bronzem + "_"+ goldf + "_"+ silverf + "_"+ bronzef + "_" + id;
             var proceed = confirm("Does all of this look correct?", "");
             if (proceed) {
                 var password = prompt("Please Enter your Password", "")
@@ -149,10 +161,16 @@
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Update Saint Joseph's Description and Short Description</h4>
-        <table id="meets">
+        <table id="aboutPage">
             <tr>
                 <td>Description</td>
                 <td>Short Description</td>
+                <td>Male Gold</td>
+                <td>Male Silver</td>
+                <td>Male Bronze</td>
+                <td>Female Gold</td>
+                <td>Female Silver</td>
+                <td>Female Bronze</td>
             </tr>
         </table>
     </div>

@@ -309,48 +309,47 @@
                             break;
                         }
                         else {
-                            console.log("Hello")
+                            //console.log("Hello")
                             var school1 = [{ school_id: '-1', name: meets[j].location, photo: './Utah_test.png' }];
 
                             break;
                         }
                     }
                 }
-                console.log(!school1)
                 if(!school1){
-                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("src", "./images/BLHS.png");
                     img.setAttribute("alt", "Ben Lomond Logo");
                     body.appendChild(img);
-                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("src", "./images/SJCHS.png");
                     img2.setAttribute("alt", "Jayhawks Logo");
                     body.appendChild(img2);
                     text.innerHTML = "Red and Blue Meet"
                 }
                 if (school1[0].school_id == 6) {
-                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("src", "./images/BLHS.png");
                     img.setAttribute("alt", "Ben Lomond Logo");
                     body.appendChild(img);
-                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("src", "./images/SJCHS.png");
                     img2.setAttribute("alt", "Jayhawks Logo");
                     body.appendChild(img2);
                     text.innerHTML = "Red and Blue Meet"
                     // break;
                 }
                 else {
-                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("src", "./images/BLHS.png");
                     img.setAttribute("alt", "Ben Lomond Logo");
                     body.appendChild(img);
                     // console.log(school1[0].photo)
-                    img2.setAttribute("src", "./images/" + school1[0].photo);
+                    img2.setAttribute("src", "./images/" + school1[0].school_code+".png");
                     img2.setAttribute("alt", school1[0].name + " Logo");
                     body.appendChild(img2);
                     who = "VS " + school1[0].name;
-                    img3.setAttribute("src", "./images/JayHawk.png");
+                    img3.setAttribute("src", "./images/SJCHS.png");
                     img3.setAttribute("alt", "Jayhawks Logo");
                     // img3.setAttribute("style","transform: scaleX(-1)")
                     body.appendChild(img3);
                     if (school2 != undefined) {
-                        img4.setAttribute("src", "./images/" + school2[0].photo);
+                        img4.setAttribute("src", "./images/" + school2[0].school_code+".png");
                         img4.setAttribute("alt", school2[0].name);
                         body.appendChild(img4);
                         who = who + " & " + school2[0].name;
@@ -373,7 +372,7 @@
             return resMeets.json();
         })
             .then(function (meets) {
-                console.log(meets[0].year)
+                //console.log(meets[0].year)
                 if (meets[0].year == 3) {
                     var body = document.getElementById("schedule");
                     for (var j = 0; j < meets.length; j++) {

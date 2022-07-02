@@ -100,7 +100,7 @@
         var about = await fetch('/api/schools/'+school).then(data => data.json())
  
         if(about[0].school_id==6){
-            document.getElementById("image").src = '/images/BLHS-logo-good.png';
+            document.getElementById("image").src = '/images/BLHS.png';
             document.getElementById("goldf").textContent = "Gold Medal: "+about[0].goldf;
             document.getElementById("silverf").textContent = "Silver Medal: "+about[0].silverf;
             document.getElementById("bronzef").textContent = "Bronze Medal: "+about[0].bronzef;
@@ -109,7 +109,7 @@
             document.getElementById("bronzem").textContent = "Bronze Medal: "+about[0].bronzem;
         }
         else if(about[0].school_id==78){
-            document.getElementById("image").src = '/images/JayHawk.png';
+            document.getElementById("image").src = '/images/SJCHS.png';
             document.getElementById("goldf").textContent = "Gold Medal: "+about[0].goldf;
             document.getElementById("silverf").textContent = "Silver Medal: "+about[0].silverf;
             document.getElementById("bronzef").textContent = "Bronze Medal: "+about[0].bronzef;

@@ -159,6 +159,7 @@ module.exports = {
         var idSplit = id.split("&");
         id=idSplit[0];
         var school=idSplit[1];
+        //console.log(id,school);
         const db = req.app.get("db");
         db.get_relay_record(id,school).then(relay_record => {
             //console.log(relay_record);

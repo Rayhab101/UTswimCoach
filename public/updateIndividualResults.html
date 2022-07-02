@@ -99,23 +99,14 @@
                         var race = await fetch('/api/races/'+records[i].race).then(data => data.json());
                         var row = body.insertRow(i);
                         row.setAttribute("id", records[i].swimmer+'_'+records[i].meet+'_'+records[i].race);
-                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        // text = document.createTextNode(column);
                         cell.innerHTML = person[0].name;
-                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        // text = document.createTextNode(column);
                         cell.innerHTML = meet[0].location;
-                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        // text = document.createTextNode(column);
                         cell.innerHTML = race[0].title;
-                        // var column = document.createElement("td");
                         var cell = row.insertCell();
-                        // text = document.createTextNode(column);
                         cell.innerHTML = records[i].time;
-                        // var column = document.createElement("td");
                         var cell = row.insertCell();
 
                         text = document.createElement("button");

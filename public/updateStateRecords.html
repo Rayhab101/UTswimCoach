@@ -52,39 +52,39 @@
         async function buildPage() {
             var body = document.getElementById("record");
             var race = await fetch('/api/races').then(data => data.json());
-            for(var i = 0; i < race.length; i++){
+            for (var i = 0; i < race.length; i++) {
                 // console.log(race[i])
                 var row = document.createElement("tr");
                 row.setAttribute("id", race[i].race_id);
-                    var cell = row.insertCell();
-                    cell.innerHTML = race[i].title;
-                    var cell = row.insertCell();
-                    cell.innerHTML = race[i].sr_swimmer;
-                    var cell = row.insertCell();
-                    cell.innerHTML = race[i].sr_location;
-                    var cell = row.insertCell();
-                    cell.innerHTML = race[i].sr_time;
-                    var cell = row.insertCell();
-                    cell.innerHTML = race[i].sr_year;
-                    var cell = row.insertCell();
-                    text = document.createElement("button");
-                    text.textContent = "Save";
-                    text.setAttribute("style", "background-color: lime");
-                    text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
-                    cell.appendChild(text);
-                    body.appendChild(row);
-                    var table = document.getElementById("record");
-                    table.addEventListener('click', function (e) {
-                        var target = e.target;
-                        //test if clicked element is TD.
-                        if (target && target.tagName && target.tagName.toLowerCase() == "td") {
-                            //make cell editable
-                            target.setAttribute('contenteditable', 'true');
-                            //on blur close the editable field and return to normal cell.
-                            target.onblur = function () { this.removeAttribute('contenteditable'); }
-                        }
+                var cell = row.insertCell();
+                cell.innerHTML = race[i].title;
+                var cell = row.insertCell();
+                cell.innerHTML = race[i].sr_swimmer;
+                var cell = row.insertCell();
+                cell.innerHTML = race[i].sr_location;
+                var cell = row.insertCell();
+                cell.innerHTML = race[i].sr_time;
+                var cell = row.insertCell();
+                cell.innerHTML = race[i].sr_year;
+                var cell = row.insertCell();
+                text = document.createElement("button");
+                text.textContent = "Save";
+                text.setAttribute("style", "background-color: lime");
+                text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                cell.appendChild(text);
+                body.appendChild(row);
+                var table = document.getElementById("record");
+                table.addEventListener('click', function (e) {
+                    var target = e.target;
+                    //test if clicked element is TD.
+                    if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                        //make cell editable
+                        target.setAttribute('contenteditable', 'true');
+                        //on blur close the editable field and return to normal cell.
+                        target.onblur = function () { this.removeAttribute('contenteditable'); }
+                    }
 
-                    });
+                });
             }
         }
 
@@ -95,59 +95,52 @@
             var race = document.getElementById(id).children[3].innerHTML;
             var time = document.getElementById(id).children[4].innerHTML;
             //console.log(name,school,race,time)
-                var proceed = confirm("Does all of this look correct?");
-                if (proceed && name!="" && school != "" && race!="" && time!="") {
-                    var password = prompt("Please Enter your Password", "")
-                    var check = await fetch('/api/coaches/').then(data => data.json())
-                    var flag = false;
-                    for (var i = 0; i < check.length; i++) {
-                        if (check[i].password == password) {
-                            var coach = check[i].coach_id
-                            flag = true;
-                        }
+            var proceed = confirm("Does all of this look correct?");
+            if (proceed && name != "" && school != "" && race != "" && time != "") {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        var coach = check[i].coach_id
+                        flag = true;
                     }
-
-                    if (proceed && flag) {
-                        // console.log(name)
-                        var submit = name + "_" + school + "_" + race + "_" + time + "_" + id;
-                        // console.log(submit)
-                        fetch("/api/updateStateRecords/" + submit, {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                        }).then(response => response.text())
-                            .then(json => console.log(json))
-                            .catch(err => console.log(err));
-
-                            submit = submit.replace(/_/g,"&")
-                            var today = new Date();
-                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                        var location = window.location.pathname;
-                        location = location.split('/');
-                        location = location[1];
-                        location = location.split('.html')
-                        location = location[0]
-                        var changes = date+"_"+coach+"_"+location+"_"+id+"_"+submit;
-                        // console.log(changes)
-                        fetch("/api/logChanges/" + changes, {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                        }).then(response => response.json())
-                            .then(json => console.log(json))
-                            .catch(err => console.log(err));
-                        window.location.reload();
-                    }
-                    else {
-                        alert("You don't have access to save changes")
-                    }
-                    
                 }
+
+                if (proceed && flag) {
+                    var submit = name + "_" + school + "_" + race + "_" + time + "_" + id;
+                    fetch("/api/updateStateRecords/" + submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.text())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    submit = submit.replace(/_/g, "&")
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var location = window.location.pathname;
+                    location = location.split('/');
+                    location = location[1];
+                    location = location.split('.html')
+                    location = location[0]
+                    var changes = date + "_" + coach + "_" + location + "_" + id + "_" + submit;
+                    // console.log(changes)
+                    fetch("/api/logChanges/" + changes, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
+                }
+                else {
+                    alert("You don't have access to save changes")
+                }
+            }
         }
-
     </script>
-
 </head>
 <header id="header"></header>
-
 <body onload="buildPage()">
     <div class="swim_info">
         <h4 class="label">Update State Records</h4>
@@ -161,8 +154,6 @@
             </tr>
         </table>
     </div>
-
 </body>
 <footer id="footer"></footer>
-
 </html>
