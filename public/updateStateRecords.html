@@ -56,27 +56,16 @@
                 // console.log(race[i])
                 var row = document.createElement("tr");
                 row.setAttribute("id", race[i].race_id);
-                var column = document.createElement("td");
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[i].title);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[i].title;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[i].sr_swimmer);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[i].sr_swimmer;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[i].sr_location);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[i].sr_location;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[i].sr_time);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[i].sr_time;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[i].sr_year);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[i].sr_year;
                     var cell = row.insertCell();
                     text = document.createElement("button");
                     text.textContent = "Save";
@@ -100,19 +89,14 @@
         }
 
         async function save(id) {
-            // console.log(id)
+            //console.log(id)
             var name = document.getElementById(id).children[1].innerHTML;
             var school = document.getElementById(id).children[2].innerHTML;
             var race = document.getElementById(id).children[3].innerHTML;
             var time = document.getElementById(id).children[4].innerHTML;
-            // console.log(name,school,race,time)
-            var isName = await fetch('/api/swimmerName/'+name).then(data => data.json());
-            // console.log(isName=="");
-            if(isName!=""){
-                isName=name;
-            }
+            //console.log(name,school,race,time)
                 var proceed = confirm("Does all of this look correct?");
-                if (proceed) {
+                if (proceed && name!="" && school != "" && race!="" && time!="") {
                     var password = prompt("Please Enter your Password", "")
                     var check = await fetch('/api/coaches/').then(data => data.json())
                     var flag = false;
