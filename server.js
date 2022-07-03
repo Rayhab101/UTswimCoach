@@ -58,8 +58,8 @@ app.use(express.static(__dirname + "/public"));
 //console.log(swimmers)
 
 app.get('/',(req,res) => 
-    //res.render("index")
-    res.status(200).send(swimmers)
+    res.render("index")
+    //res.status(200).send(swimmers)
 )
 
 app.get('/api/swims/:id', userctrl.getSwimmers)

@@ -3,8 +3,10 @@
 
 <head>
     <link rel="stylesheet" href="header_style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>.</title>
@@ -15,25 +17,52 @@
     school = location.href;
     school = school.split("_");
     //console.log(county)
-    if (county=='') {
-            document.getElementById("headingPhoto").src = '/images/BLHS.png'
-            document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
+    if (county == '') {
+        document.getElementById("headingPhoto").src = '/images/BLHS.png'
+        document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
     }
     else {
-        //console.log(county[1])
-        fetch("/api/schools/" + Number(county[1]))
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (schools) {
-                //console.log(schools[0].name)
-                document.getElementById("headingPhoto").src = "/images/" + schools[0].school_code+".png";
-                document.getElementById("headerName").innerHTML = schools[0].name + " Swim Team";
-            })
-            .catch(function (error) {
-                //location.reload();
-                console.log("Error: " + error);
-            });
+        //console.log(county[0])
+        if (county[0] != "swimmerid") {
+            fetch("/api/schools/" + Number(county[1]))
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (schools) {
+                    //console.log(schools[0].name)
+                    document.getElementById("headingPhoto").src = "/images/" + schools[0].school_code + ".png";
+                    document.getElementById("headerName").innerHTML = schools[0].name + " Swim Team";
+                })
+                .catch(function (error) {
+                    //location.reload();
+                    console.log("Error: " + error);
+                });
+        }
+        else {
+            fetch("/api/swim/" + Number(county[1]))
+                .then(function (data) {
+                    return data.json();
+                })
+                .then(function (person) {
+                    fetch("/api/schools/" + Number(person[0].school))
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (schools) {
+                            //console.log(schools[0].name)
+                            document.getElementById("headingPhoto").src = "/images/" + schools[0].school_code + ".png";
+                            document.getElementById("headerName").innerHTML = schools[0].name + " Swim Team";
+                        })
+                        .catch(function (error) {
+                            //location.reload();
+                            console.log("Error: " + error);
+                        });
+                })
+                .catch(function (error) {
+                    //location.reload();
+                    console.log("Error: " + error);
+                });
+        }
     }
 
     // Function To Display Popup
@@ -47,14 +76,14 @@
     }
 
     function myFunction() {
-  var x = document.getElementById("smNav");
-  if (x.style.display === "flex") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "flex";
-    x.style.backgroundColor = "rgba(0,0,255,0.5)";
-  }
-}
+        var x = document.getElementById("smNav");
+        if (x.style.display === "flex") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "flex";
+            x.style.backgroundColor = "rgba(0,0,255,0.5)";
+        }
+    }
 
 </script>
 
@@ -95,9 +124,11 @@
                         </button>
                         <div class="dropdown-content">
                             <!-- <a href="video.html">Live Feed</a> -->
-                            <a href="topTimes.html">Top Times</a><a href="https://new.berecruited.com/login" target="_blank">Be Recruited</a>
+                            <a href="topTimes.html">Top Times</a><a href="https://new.berecruited.com/login"
+                                target="_blank">Be Recruited</a>
                             <a href="https://www.registermyathlete.com/login" target="_blank">Register My Athlete</a>
-                            <a href="https://www.yourswimlog.com/dryland-workouts-for-swimmers/" target="_blank">Dry Land Workouts</a>
+                            <a href="https://www.yourswimlog.com/dryland-workouts-for-swimmers/" target="_blank">Dry
+                                Land Workouts</a>
                             <a href="https://www.swimoutlet.com/" target="_blank">Shop Swim Gear</a>
                             <a href="https://utswimcoach.com/" target="_blank">UT Swim Coach</a>
                             <a href="about_coaches.html">About the Coaches</a>
@@ -110,49 +141,52 @@
             <div class="navbar1">
                 <a style="color:white" href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i id="water" class="fas fa-water" style="font-size: 2em;"></i>
-                  </a>
+                </a>
             </div>
         </header>
         <div class="smNav" id="smNav">
-                    <div class="dropdown">
-                        <button class="dropbtn">BL Swimmers
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="swim.html?school=6">Swimmers</a>
-                            <a href="records.html?school=6">Records</a>
-                            <a href="compare.html?school=6">Compare</a>
-                            <a href="about_team.html?school=6">Ben Lomond's Program</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="dropbtn">SJ Swimmers
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="swim.html?school=78">Swimmers</a>
-                            <a href="records.html?school=78">Records</a>
-                            <a href="compare.html?school=78">Compare</a>
-                            <a href="about_team.html?school=78">St Joseph's Program</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="dropbtn">More
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <!-- <a href="video.html">Live Feed</a> -->
-                            <a href="topTimes.html">Top Times</a><a href="https://new.berecruited.com/login" target="_blank">Be Recruited</a>
-                            <a href="https://www.registermyathlete.com/login" target="_blank">Register My Athlete</a>
-                            <a href="https://www.yourswimlog.com/dryland-workouts-for-swimmers/" target="_blank">Dry Land Workouts</a>
-                            <a href="https://www.swimoutlet.com/" target="_blank">Shop Swim Gear</a>
-                            <a href="https://utswimcoach.com/" target="_blank">UT Swim Coach</a>
-                            <a href="about_coaches.html">About the Coaches</a>
-                            <a href="contact.html">Contact</a>
-                            <a href="calendar.html">Calendar</a>
-                        </div>
-                    </div>
+            <div class="dropdown">
+                <button class="dropbtn">BL Swimmers
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="swim.html?school=6">Swimmers</a>
+                    <a href="records.html?school=6">Records</a>
+                    <a href="compare.html?school=6">Compare</a>
+                    <a href="about_team.html?school=6">Ben Lomond's Program</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">SJ Swimmers
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="swim.html?school=78">Swimmers</a>
+                    <a href="records.html?school=78">Records</a>
+                    <a href="compare.html?school=78">Compare</a>
+                    <a href="about_team.html?school=78">St Joseph's Program</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">More
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <!-- <a href="video.html">Live Feed</a> -->
+                    <a href="topTimes.html">Top Times</a><a href="https://new.berecruited.com/login" target="_blank">Be
+                        Recruited</a>
+                    <a href="https://www.registermyathlete.com/login" target="_blank">Register My Athlete</a>
+                    <a href="https://www.yourswimlog.com/dryland-workouts-for-swimmers/" target="_blank">Dry Land
+                        Workouts</a>
+                    <a href="https://www.swimoutlet.com/" target="_blank">Shop Swim Gear</a>
+                    <a href="https://utswimcoach.com/" target="_blank">UT Swim Coach</a>
+                    <a href="about_coaches.html">About the Coaches</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="calendar.html">Calendar</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
 </html>

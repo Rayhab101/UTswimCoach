@@ -61,26 +61,15 @@
                     // console.log(record[0].school_id+"_"+record[0].race_id+"_"+record[0].swimmer_id)
                     var row = document.createElement("tr");
                     row.setAttribute("id", record[0].school_id + "_" + record[0].race_id + "_" + record[0].swimmer_id);
-
-                    var column = document.createElement("td");
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[0].title);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[0].title;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = person[0].name);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = person[0].name;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = record[0].time);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = record[0].time;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = record[0].year);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = record[0].year;
                     var cell = row.insertCell();
-
                     text = document.createElement("button");
                     text.textContent = "Save";
                     text.setAttribute("style", "background-color: lime");
@@ -108,23 +97,14 @@
                     var row = document.createElement("tr");
                     row.setAttribute("id", relayRecord[0].school_id + "_" + relayRecord[0].race);
 
-                    var column = document.createElement("td");
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[0].title);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[0].title;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = relayRecord[0].swimmers);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = relayRecord[0].swimmers;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = relayRecord[0].time);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = relayRecord[0].time;
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = relayRecord[0].year);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = relayRecord[0].year;
                     var cell = row.insertCell();
 
                     text = document.createElement("button");

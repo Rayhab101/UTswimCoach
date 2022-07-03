@@ -201,7 +201,7 @@
         //console.log(previous[0]);
         var count = await fetch('/api/countYears/'+tableData.swimmer_id).then(data => data.json());
 
-        console.log(count);
+        //console.log(count);
         if(count[0].count > 0){
             //var t=previous[0].max-1;
             for(var t=Number(count[0].count) ; t>0; t--){
@@ -240,7 +240,7 @@
 
         }
 
-        fetch('/api/meets')
+        await fetch('/api/meets')
             .then(function (response) {
                 return response.json();
             })
@@ -292,11 +292,11 @@
         // }
     }
 
-    function tableLoad() {
+    async function tableLoad() {
         var pullperson = location.search.substring(1);
         pullperson = pullperson.split("=");
         pullperson = Number(pullperson[1]);
-        fetch("/api/swim/" + pullperson)
+        await fetch("/api/swim/" + pullperson)
             .then(function (response) {
                 return response.json();
             })
@@ -316,7 +316,7 @@
             });
     }
 
-    function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
+    async function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
         var minValue = minPull(stateRecord[0].y);
         var ctx = document.getElementById(race_id);
         var myChart = new Chart(ctx, {
@@ -389,7 +389,7 @@
         const stateRecord = await fetch("/api/races/" + event).then(state => state.json())
         // const individualRecord = await fetch("/api/individualRecords/" + id + "&" + event).then(state => state.json())
         // console.table(individualRecord)
-        fetch("/api/chartFill/" + id + "&" + event)
+        await fetch("/api/chartFill/" + id + "&" + event)
             .then(function (response) {
                 return response.json()
             })

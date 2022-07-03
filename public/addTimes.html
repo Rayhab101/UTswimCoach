@@ -266,12 +266,12 @@
                 var year = new Date().getFullYear();
                 for (var j = 3; j < 11; j++) {
                     var time = document.getElementById("insert").children[j].children[0].value;
-                    console.log(time);
+                    //console.log(time);
                     if (time.includes(':')) {
                         var race = document.getElementById("insert").children[j].children[0].id;
                         race = race.split("_");
                         race = race[1];
-                        var submitRaces = id + "," + race + "," + time + "," + school + "," + meet + "," + year + "," + 2;
+                        var submitRaces = id + "," + race + "," + time + "," + school + "," + meet + "," + year + "," + 3;
                         if (meet != undefined && id != "" && time != "") {
                             fetch("/api/setTimes/" + submitRaces, {
                                 headers: { 'Content-Type': 'application/json' },

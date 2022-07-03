@@ -476,8 +476,8 @@
                     var body = document.getElementById(relay[0].title);
                     var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
                     body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
-                    await fetch("/api/relayTimes5/" + i)
-                        .then(function (responseRace) {
+                    await fetch("/api/relayTimes5/" + i-1)
+                        .then(async function (responseRace) {
                             return responseRace.json();
                         })
                         .then(async function (race ) {
@@ -486,23 +486,14 @@
                             for (var j = 0; j < newLength; j++) {
                                 if(race[j].time <= state[i-1].race_time){
                                 var row = document.createElement("tr");
-                                var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = status);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
+                                cell.innerHTML = status;
                                 var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = race[j].swimmers);
-                                cell.appendChild(text);
-                                var column = document.createElement("td");
+                                cell.innerHTML = race[j].swimmers;
                                 var cell = row.insertCell();
                                 pullSchool(race[j].school, column, cell)
-                                // text = document.createTextNode(column.innerHTML = race[0].school);
-                                // cell.appendChild(text);
-                                var column = document.createElement("td");
                                 var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = race[j].time);
-                                cell.appendChild(text);
+                                cell.innerHTML = race[j].time;
                                 body.appendChild(row);
                                 status++;
                             }
@@ -521,9 +512,11 @@
                     return responseRaces.json();
                 })
                 .then(async function (race) {
+                    
                     var body = document.getElementById(race[0].title);
                     var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
                     body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
+                    //console.log(i)
                     await fetch("/api/state5/" + i)
                         .then(function (responseChart) {
                             return responseChart.json();
