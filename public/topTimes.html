@@ -466,7 +466,7 @@
             var newResponse = await fetch("/api/top50/"+i);
             var raceData = await newResponse.json();
             raceData.forEach(swimmer => {
-                console.log(swimmer)
+                //console.log(swimmer)
                 var row = document.createElement("tr");
                 var cell = row.insertCell();
                 cell.innerHTML = status;

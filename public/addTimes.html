@@ -131,6 +131,7 @@
                     return response.json();
                 })
                 .then(function (meets) {
+                    //console.log(meets)
                     var ddlMeets = document.getElementById("meetsRelay");
                     var head = document.createElement("OPTION");
                     head.innerHTML = "Select Meet";

@@ -126,24 +126,20 @@
     async function timesPull(id, column, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + meet[0];
-        fetch('/api/timeFill/' + pull)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (races) {
-                if (races.length != 0) {
-                    var sending = races[0].time;
-                    document.getElementById(cell.id).innerHTML = sending;
-                }
-            });
+        var raceFetch = await fetch('/api/timeFill/' + pull);
+        var races = await raceFetch.json();
+        if(races.length !=0){
+            var sending = races[0].time;
+            document.getElementById(cell.id).innerHTML = sending;
+        }
     }
 
-    async function pastTimesPull(id, column, cell, row, body) {
+    async function pastTimesPull(id, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
-        //console.log(cell.id)
+        //console.log(pull)
         const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
-        // console.log(individualRecord[0].min,cell.id)
+        //console.log(individualRecord[0].min,cell.id)
         if(individualRecord[0].min != null){
             document.getElementById(cell.id).innerHTML =individualRecord[0].min;
         }
@@ -195,28 +191,19 @@
         }
         body.appendChild(row);
         var current_year = await fetch("/api/ano").then(year => year.json());
-        //console.log(year[0]);
         var meet = await fetch('/api/meets').then(data => data.json());
         var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
-        //console.log(previous[0]);
         var count = await fetch('/api/countYears/'+tableData.swimmer_id).then(data => data.json());
 
-        //console.log(count);
         if(count[0].count > 0){
-            //var t=previous[0].max-1;
             for(var t=Number(count[0].count) ; t>0; t--){
-            //     console.log(previous[0].max-1 + " - "+ t);
-                var year = current_year[0].current_year-t;
-                console.log(year)
+                var year = new Date().getFullYear()-(t);
                 row = document.createElement("tr");
-                var column = document.createElement("td");
                 cell = row.insertCell();
                 cell.setAttribute("id", year);
                 cell.setAttribute("style", "width: 20%");
                 var otherYear = Number(year)+1;
-                //console.log(otherYear)
-                text = document.createTextNode(column.innerHTML = year +"-"+ otherYear);
-                cell.appendChild(text);
+                cell.innerHTML = year +"-"+ otherYear;
                 
                 if (tableData["gender"] == "F") {
                     var to = 12
@@ -227,17 +214,15 @@
                     var to = 22
                 }
                 for (var k = from; k < to; k++) {
-                    // var at = meet[a].meet_id;
                     relays = [1, 8, 11, 12, 19, 22]
                     if (!relays.includes(k)) {
                         cell = row.insertCell();
                         cell.setAttribute("id", year + "_" + k)
-                        pastTimesPull(tableData.swimmer_id, column, cell, row, body)
+                        pastTimesPull(tableData.swimmer_id, cell, row, body)
                     }
                 }
                 body.appendChild(row);
             }
-
         }
 
         await fetch('/api/meets')
