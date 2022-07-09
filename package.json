@@ -2,6 +2,9 @@
     "name": "swimteam",
     "version": "1.0.0",
     "main": "server.js",
+    "engines": {
+        "node": "18.0.0"
+    },
     "scripts": {
         "start": "node server.js"
     },
@@ -14,8 +17,5 @@
         "massive": "^6.6.2",
         "node-schedule": "^1.3.2"
     },
-    "author": "Ryan Lund",
-    "engines": {
-        "node": "18.0.0"
-    }
+    "author": "Ryan Lund"
 }

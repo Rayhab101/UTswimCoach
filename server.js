@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express');
-const swimmers = require('./public/swimmers.json');
+//const swimmers = require('./public/swimmers.json');
 const fs = require('fs');
 const app = express();
 const cors = require('cors');
@@ -15,7 +15,7 @@ var port = process.env.PORT || 8080;
 // app.listen(port, "0.0.0.0", function() {
 //     console.log("Listening on Port 8080");
 //     });
-console.log(port);
+//console.log(port);
 
 function updateGrade() {
     const db = app.get("db");
@@ -57,8 +57,8 @@ app.use(cors())
 app.use(express.static(__dirname + "/public"));
 
 app.get('/',(req,res) => 
-    //res.render("index")
-    res.status(200).send(swimmers)
+    res.render("index")
+    //res.status(200).send(swimmers)
 )
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
@@ -158,7 +158,7 @@ app.post('/api/updateSchoolRecord/:id', userctrl.updateSchoolRecord)
 app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 
-app.set('port', process.env.PORT || 35171)
+app.set('port', process.env.PORT || 8080)
 massive({
     connectionString: CONNECTION_STRING,
     ssl: { rejectUnauthorized: false }
