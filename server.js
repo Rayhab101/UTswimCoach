@@ -11,9 +11,9 @@ const userctrl = require('./controllers/usersController');
 var schedule = require('node-schedule');
 const { getSwimmerhs } = require('./controllers/usersController');
 const { query } = require('express');
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 5050;
 // app.listen(port, "0.0.0.0", function() {
-//     console.log("Listening on Port 8080");
+//     console.log("Listening on Port 5050");
 //     });
 //console.log(port);
 
@@ -158,7 +158,7 @@ app.post('/api/updateSchoolRecord/:id', userctrl.updateSchoolRecord)
 app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 
-app.set('port', process.env.PORT || 8080)
+app.set('port', process.env.PORT || 5050)
 massive({
     connectionString: DATABASE_URL,
     ssl: { rejectUnauthorized: false }
