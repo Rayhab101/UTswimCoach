@@ -55,13 +55,11 @@ var j = schedule.scheduleJob(date, function () {
 
 app.use(cors())
 app.use(express.static(__dirname + "/public"));
-console.log("Here")
 
-app.get('/',(req,res) => 
-    res.render("index")
-    //res.status(200).send(swimmers)
+app.get('/index',(req,res) => 
+    //res.render("index")
+    res.status(200).send(swimmers)
 )
-console.log("There")
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)
