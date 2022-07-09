@@ -11,11 +11,11 @@ const userctrl = require('./controllers/usersController');
 var schedule = require('node-schedule');
 const { getSwimmerhs } = require('./controllers/usersController');
 const { query } = require('express');
-var port = process.env.PORT || 5050;
+var port = process.env.PORT || 8080;
 // app.listen(port, "0.0.0.0", function() {
-//     console.log("Listening on Port 5050");
+//     console.log("Listening on Port 8080");
 //     });
-//console.log(port);
+console.log(port);
 
 function updateGrade() {
     const db = app.get("db");
@@ -158,7 +158,7 @@ app.post('/api/updateSchoolRecord/:id', userctrl.updateSchoolRecord)
 app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 
-app.set('port', process.env.PORT || 5050)
+app.set('port', process.env.PORT || 8080)
 massive({
     connectionString: DATABASE_URL,
     ssl: { rejectUnauthorized: false }

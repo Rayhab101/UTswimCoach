@@ -109,7 +109,7 @@
             county = county.split("=");
             county = county[1];
             console.log(county);
-            fetch("http://localhost:5050/api/county/" + county)
+            fetch("http://localhost:8080/api/county/" + county)
                 .then(function (response) {
                     return response.json();
                 })
