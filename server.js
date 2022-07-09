@@ -160,7 +160,7 @@ app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 app.set('port', process.env.PORT || 8080)
 massive({
-    connectionString: CONNECTION_STRING,
+    connectionString: DATABASE_URL,
     ssl: { rejectUnauthorized: false }
 }).then(db => {
     app.set('db', db)
