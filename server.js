@@ -1,57 +1,57 @@
-require('dotenv').config()
-const express = require('express');
-//const swimmers = require('./public/swimmers.json');
-const fs = require('fs');
-const app = express();
-const cors = require('cors');
-const fse = require('fs-extra');
-const massive = require('massive');
-const { CONNECTION_STRING } = process.env;
-const userctrl = require('./controllers/usersController');
-var schedule = require('node-schedule');
-const { getSwimmerhs } = require('./controllers/usersController');
-const { query } = require('express');
-var port = process.env.PORT || 8080;
-// app.listen(port, "0.0.0.0", function() {
-//     console.log("Listening on Port 8080");
-//     });
-//console.log(port);
+// require('dotenv').config()
+// const express = require('express');
+// //const swimmers = require('./public/swimmers.json');
+// const fs = require('fs');
+// const app = express();
+// const cors = require('cors');
+// const fse = require('fs-extra');
+// const massive = require('massive');
+// const { CONNECTION_STRING } = process.env;
+// const userctrl = require('./controllers/usersController');
+// var schedule = require('node-schedule');
+// const { getSwimmerhs } = require('./controllers/usersController');
+// const { query } = require('express');
+// var port = process.env.PORT || 8080;
+// // app.listen(port, "0.0.0.0", function() {
+// //     console.log("Listening on Port 8080");
+// //     });
+// //console.log(port);
 
-function updateGrade() {
-    const db = app.get("db");
-    db.update_grade().then(swimmers => {
-        for (var i = 0; i < swimmers.length; i++) {
-            var year = swimmers[i].year;
-            console.log("Update Grade changed on " + new Date());
-            switch (swimmers[i].status_grade) {
-                case "Graduated":
-                    db.update_school_grade('Graduated', swimmers[i].swimmer_id, 0, false)
-                    break;
-                case "Senior":
-                    db.update_school_grade('Graduated', swimmers[i].swimmer_id, 0, false)
-                    break;
-                case "Junior":
-                    db.update_school_grade('Senior', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
-                    break;
-                case "Sophomore":
-                    db.update_school_grade('Junior', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
-                    break;
-                case "Freshman":
-                    db.update_school_grade('Sophomore', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
-                    break;
-                default:
-                    break
-            }
-        }
-    })
-}
-const date = new Date(2023, 7, 10, 0, 9, 0);
-//console.log(date)
-var j = schedule.scheduleJob(date, function () {
-    updateGrade();
-});
+// function updateGrade() {
+//     const db = app.get("db");
+//     db.update_grade().then(swimmers => {
+//         for (var i = 0; i < swimmers.length; i++) {
+//             var year = swimmers[i].year;
+//             console.log("Update Grade changed on " + new Date());
+//             switch (swimmers[i].status_grade) {
+//                 case "Graduated":
+//                     db.update_school_grade('Graduated', swimmers[i].swimmer_id, 0, false)
+//                     break;
+//                 case "Senior":
+//                     db.update_school_grade('Graduated', swimmers[i].swimmer_id, 0, false)
+//                     break;
+//                 case "Junior":
+//                     db.update_school_grade('Senior', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
+//                     break;
+//                 case "Sophomore":
+//                     db.update_school_grade('Junior', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
+//                     break;
+//                 case "Freshman":
+//                     db.update_school_grade('Sophomore', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
+//                     break;
+//                 default:
+//                     break
+//             }
+//         }
+//     })
+// }
+// const date = new Date(2023, 7, 10, 0, 9, 0);
+// //console.log(date)
+// var j = schedule.scheduleJob(date, function () {
+//     updateGrade();
+// });
 
-// app.set('view-engine','ejs')
+// // app.set('view-engine','ejs')
 
 // app.use(cors())
 // app.use(express.static(__dirname + "/public"));
@@ -158,13 +158,13 @@ var j = schedule.scheduleJob(date, function () {
 // app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 
-app.set('port', process.env.PORT || 8080)
-massive({
-    connectionString: DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
-}).then(db => {
-    app.set('db', db)
-    console.log('DB CONNECTED')
-    app.listen(port, () => console.log(`We're running!`))
-}).catch(err => console.log(err))
+// app.set('port', process.env.PORT || 8080)
+// massive({
+//     connectionString: DATABASE_URL,
+//     ssl: { rejectUnauthorized: false }
+// }).then(db => {
+//     app.set('db', db)
+//     console.log('DB CONNECTED')
+//     app.listen(port, () => console.log(`We're running!`))
+// }).catch(err => console.log(err))
 
