@@ -56,7 +56,7 @@ var j = schedule.scheduleJob(date, function () {
 app.use(cors())
 app.use(express.static(__dirname + "/public"));
 
-app.get('/index',(req,res) => 
+app.get('/',(req,res) => 
     //res.render("index")
     res.status(200).send(swimmers)
 )
@@ -158,7 +158,7 @@ app.post('/api/updateSchoolRecord/:id', userctrl.updateSchoolRecord)
 app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 
-app.set('port', process.env.PORT || 8080)
+app.set('port', process.env.PORT || 35171)
 massive({
     connectionString: CONNECTION_STRING,
     ssl: { rejectUnauthorized: false }
