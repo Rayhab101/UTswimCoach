@@ -1,17 +1,17 @@
-// require('dotenv').config()
-// const express = require('express');
-// //const swimmers = require('./public/swimmers.json');
-// const fs = require('fs');
-// const app = express();
-// const cors = require('cors');
-// const fse = require('fs-extra');
-// const massive = require('massive');
-// const { CONNECTION_STRING } = process.env;
-// const userctrl = require('./controllers/usersController');
-// var schedule = require('node-schedule');
-// const { getSwimmerhs } = require('./controllers/usersController');
-// const { query } = require('express');
-// var port = process.env.PORT || 8080;
+require('dotenv').config()
+const express = require('express');
+//const swimmers = require('./public/swimmers.json');
+const fs = require('fs');
+const app = express();
+const cors = require('cors');
+const fse = require('fs-extra');
+const massive = require('massive');
+const { CONNECTION_STRING } = process.env;
+const userctrl = require('./controllers/usersController');
+var schedule = require('node-schedule');
+const { getSwimmerhs } = require('./controllers/usersController');
+const { query } = require('express');
+var port = process.env.PORT || 8080;
 // app.listen(port, "0.0.0.0", function() {
 //     console.log("Listening on Port 8080");
 //     });
