@@ -587,15 +587,18 @@ module.exports = {
         var idSplit = id.split("_");
         // console.log(idSplit);
         var swimmer = idSplit[0];
+        // swimmer = swimmer.replace(/-/g, " ")
+        // swimmer = swimmer.replace(/&/g, ",")
+        //swimmer = swimmer.replace(/!/g, ".")
         var time = idSplit[1];
         var year = idSplit[2];
         var school = Number(idSplit[3]);
-        var oldId = Number(idSplit[4]);
+        var race = Number(idSplit[4]);
         const db = req.app.get("db");
-        // console.log(swimmer,time,year,school,id)
-        // console.log(typeof swimmer,typeof swimmer,typeof time,typeof year,typeof id);
-        db.update_school_relay_records(swimmer,time,year,school,oldId).then(times => {
-            // console.log(times);
+        //console.log(swimmer,time,year,school,race)
+        // console.log(typeof swimmer,typeof time,typeof year,typeof school,typeof race);
+        db.update_school_relay_records(swimmer,time,year,school,race).then(times => {
+            console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },

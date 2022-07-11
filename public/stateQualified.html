@@ -434,7 +434,10 @@
 </body>
 <script>
     async function pullSwimmer(name, column, cell) {
-        // console.log(name)
+        // var newName = await fetch("/api/swim/" + name)
+        // var text = await newName.json();
+
+        // cell.innerHTML = text.name;
         await fetch("/api/swim/" + name)
             .then(function (responseRelay) {
                 return responseRelay.json();
@@ -449,6 +452,9 @@
             });
     }
     async function pullSchool(school, column, cell) {
+        // var newSchool = await fetch("/api/schools/" + school)
+        // var data = await newSchool.json();
+        // cell.innerHTML = data.name;
         await fetch("/api/schools/" + school)
             .then(function (responseRelay) {
                 return responseRelay.json();

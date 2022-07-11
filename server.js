@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express');
-//const swimmers = require('./public/swimmers.json');
 const fs = require('fs');
 const app = express();
 const cors = require('cors');
@@ -12,9 +11,7 @@ var schedule = require('node-schedule');
 const { getSwimmerhs } = require('./controllers/usersController');
 const { query } = require('express');
 var port = process.env.PORT || 8080;
-// app.listen(port, "0.0.0.0", function() {
-//     console.log("Listening on Port 8080");
-//     });
+
 console.log(port);
 
 function updateGrade() {

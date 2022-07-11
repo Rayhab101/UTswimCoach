@@ -53,7 +53,6 @@
             var r = [1, 8, 11, 12, 19, 22];
             var body = document.getElementById("record");
             for (var i = 1; i < 23; i++) {
-
                 if (!r.includes(i)) {
                     var record = await fetch("/api/schoolRecord/" + i + "&78").then(data => data.json());
                     var race = await fetch('/api/races/' + record[0].race_id).then(data => data.json());
@@ -62,25 +61,19 @@
                     var row = document.createElement("tr");
                     row.setAttribute("id", record[0].school_id + "_" + record[0].race_id + "_" + record[0].swimmer_id);
 
-                    var column = document.createElement("td");
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[0].title);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = person[0].name);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = record[0].time);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = record[0].year);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
-                    var cell = row.insertCell();
+                    cell.innerHTML = race[0].title;
 
+                    var cell = row.insertCell();
+                    cell.innerHTML = person[0].name;
+                    
+                    var cell = row.insertCell();
+                    cell.innerHTML = record[0].time;
+
+                    var cell = row.insertCell();
+                    cell.innerHTML = record[0].year;
+                    
+                    var cell = row.insertCell();
                     text = document.createElement("button");
                     text.textContent = "Save";
                     text.setAttribute("style", "background-color: lime");
@@ -90,7 +83,6 @@
 
                     var table = document.getElementById("record");
                     table.addEventListener('click', function (e) {
-
                         var target = e.target;
                         //test if clicked element is TD.
                         if (target && target.tagName && target.tagName.toLowerCase() == "td") {
@@ -99,32 +91,26 @@
                             //on blur close the editable field and return to normal cell.
                             target.onblur = function () { this.removeAttribute('contenteditable'); }
                         }
-
                     });
                 }
                 else {
                     var relayRecord = await fetch("/api/relayRecord/" + i + "&78").then(data => data.json());
                     var race = await fetch('/api/races/' + relayRecord[0].race).then(data => data.json());
                     var row = document.createElement("tr");
-                    row.setAttribute("id", relayRecord[0].school_id + "_" + relayRecord[0].race);
+                    row.setAttribute("id", relayRecord[0].school + "_" + relayRecord[0].race);
 
-                    var column = document.createElement("td");
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = race[0].title);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = race[0].title;
+
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = relayRecord[0].swimmers);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = relayRecord[0].swimmers;
+
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = relayRecord[0].time);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = relayRecord[0].time;
+                    
                     var cell = row.insertCell();
-                    text = document.createTextNode(column.innerHTML = relayRecord[0].year);
-                    cell.appendChild(text);
-                    var column = document.createElement("td");
+                    cell.innerHTML = relayRecord[0].year;
+
                     var cell = row.insertCell();
 
                     text = document.createElement("button");
@@ -138,21 +124,15 @@
                     table.addEventListener('click', function (e) {
 
                         var target = e.target;
-                        //test if clicked element is TD.
                         if (target && target.tagName && target.tagName.toLowerCase() == "td") {
                             //make cell editable
                             target.setAttribute('contenteditable', 'true');
                             //on blur close the editable field and return to normal cell.
                             target.onblur = function () { this.removeAttribute('contenteditable'); }
                         }
-
                     });
                 }
             }
-        }
-
-        function addNewResults() {
-            window.location.href = "addTimes.html";
         }
 
         async function save(id) {
@@ -177,7 +157,11 @@
                 var checkRace = id.split("_");
                 if (proceed && flag) {
                     if (r.includes(Number(checkRace[1]))) {
-                        var submit = swimmers + "_" + time + "_" + year + "_" + id;
+                        // swimmers = swimmers.replace(/ /g, "-")
+                        // swimmers = swimmers.replace(/,/g, "&")
+                        //swimmers = swimmers.replace(/./g, "!")
+                        //console.log(swimmers)
+                        var submit = swimmers + "_" + time + "_" + year  + "_" + id;
                         fetch("/api/updateSchoolRelayRecord/" + submit, {
                             headers: { 'Content-Type': 'application/json' },
                             method: "POST",
@@ -214,7 +198,7 @@
                     }).then(response => response.json())
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
-                    window.location.reload();
+                    //window.location.reload();
                 }
                 else {
                     alert("You don't have access to save changes")
