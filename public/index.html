@@ -244,6 +244,7 @@
     <script>
         var slideIndex = 0;
         carousel();
+
         function carousel() {
             var imgArray = [];
             for (i = 0; i < 6; i++) {
@@ -256,7 +257,6 @@
             x.src = imgArray[slideIndex].toString();
             slideIndex++;
             setTimeout(carousel, 10000); // Change image every 10 seconds
-
         }
     </script>
 </body>

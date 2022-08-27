@@ -633,6 +633,7 @@ module.exports = {
         var {id}=req.params;
         var idSplit = id.split("_").join(" ");
         idSplit = idSplit.replace(/~/g,",")
+        idSplit = idSplit.replace("'","`")
         // console.log(idSplit);
 
         const db = req.app.get("db");

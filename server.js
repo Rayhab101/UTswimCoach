@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 const fse = require('fs-extra');
 const massive = require('massive');
-const { DATABASE_URL } = process.env;
+const { DATABASE } = process.env;
 const userctrl = require('./controllers/usersController');
 var schedule = require('node-schedule');
 const { getSwimmerhs } = require('./controllers/usersController');
@@ -157,7 +157,7 @@ app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 app.set('port', process.env.PORT || 8080)
 massive({
-    connectionString: DATABASE_URL,
+    connectionString: DATABASE,
     ssl: { rejectUnauthorized: false }
 }).then(db => {
     app.set('db', db)
