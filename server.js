@@ -162,7 +162,6 @@ massive({
 }).then(db => {
     app.set('db', db)
     console.log('DB CONNECTED')
-    console.log(DATABASE_URL)
     app.listen(port, () => console.log(`We're running!`))
 }).catch(err => console.log(err))
 

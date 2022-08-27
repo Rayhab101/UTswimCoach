@@ -155,6 +155,8 @@
         }
 
         async function addSwimmer() {
+            var checkers = await fetch("/api/ano");
+            var year = await checkers.json()
             var name = document.getElementById("swimName").value;
             var gender = document.getElementById("swimGender").value;
             var grade = document.getElementById("swimGrade").value;
@@ -200,9 +202,9 @@
                             school = school_id[i].school_id;
                         }
                     }
-
+                    
                     name = name.replace(' ', '-')
-                    var submit = name + "_" + gender + "_" + grade + "_" + 2 + "_" + school + "_" + true;
+                    var submit = name + "_" + gender + "_" + grade + "_" + year[0].current_year + "_" + school + "_" + true;
                     fetch("/api/setSwimmer/" + submit, {
                         headers: { 'Content-Type': 'application/json' },
                         method: "POST",
