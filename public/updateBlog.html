@@ -97,30 +97,31 @@
                     flag = true;
                 }
             }
+            console.log(flag)
             if (flag) {
-                fetch("/api/updateBlog/" + blog, {
+                await fetch("/api/updateBlog/" + blog, {
                     headers: { 'Content-Type': 'application/json' },
                     method: "POST",
                 }).then(response => response.json())
                     .then(json => console.log(json))
                     .catch(err => console.log(err));
 
-                blog = blog.replace(/_/g, "&")
-                var today = new Date();
-                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-                var location = window.location.pathname;
-                location = location.split('/');
-                location = location[1];
-                location = location.split('.html')
-                location = location[0]
-                var changes = date + "_" + coach + "_" + location + "_" + "Blog" + "_" + blog;
+                // blog = blog.replace(/_/g, "&")
+                // var today = new Date();
+                // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                // var location = window.location.pathname;
+                // location = location.split('/');
+                // location = location[1];
+                // location = location.split('.html')
+                // location = location[0]
+                // var changes = date + "_" + coach + "_" + location + "_" + "Blog" + "_" + blog;
                 // console.log(changes)
-                fetch("/api/logChanges/" + changes, {
-                    headers: { 'Content-Type': 'application/json' },
-                    method: "POST",
-                }).then(response => response.json())
-                    .then(json => console.log(json))
-                    .catch(err => console.log(err));
+                // fetch("/api/logChanges/" + changes, {
+                //     headers: { 'Content-Type': 'application/json' },
+                //     method: "POST",
+                // }).then(response => response.json())
+                //     .then(json => console.log(json))
+                //     .catch(err => console.log(err));
                 window.location.reload();
             }
             else {
