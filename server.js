@@ -54,7 +54,7 @@ app.use(cors())
 app.use(express.static(__dirname + "/public"));
 
 app.get('/',(req,res) => 
-    res.render("index")
+    res.render("index.html")
     //res.status(200).send(swimmers)
 )
 
