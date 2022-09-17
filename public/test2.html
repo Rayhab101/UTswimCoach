@@ -4,528 +4,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BL/SJ Swim Team- Swimmer Info</title>
-    <link rel="stylesheet" href="swim.css" media="all">
+    <title>BL/SJ Swim Team- Records</title>
+    <link rel="stylesheet" href="swim.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-        </script>
-
     <script>
         $(function () {
             $("#header").load("heading.html");
-            $("#footer").load("footing.html");
+            $("footer").load("footing.html");
         });
     </script>
-</head>
+    <style>
+        @media screen and (min-width:750px) {
 
-<style>
-    @media screen and (min-width:750px) {
+            .container1 {
+                display: grid;
+                height: 75vh;
+                background-color: white;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
 
+            table {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
 
-        table {
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid black 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
-            width: 100%;
+            }
+
+            td {
+                /* height: 25px; */
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
+
+            th {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .swimmer_data1 {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .swimmer_data2 {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            .swimmer_data3 {
+                grid-row: 1;
+                grid-column: 3;
+            }
+
+            .head {
+                border-top: solid black 1px;
+                border-bottom: solid black 1px;
+            }
+
+            .shield {
+                position: relative;
+                width: 140px;
+                height: 125px;
+                background-color: green;
+                border-radius: 0 0 140px 140px;
+                display: inline-block;
+                text-align: center;
+            }
+
+            .shield:before,
+            .shield:after {
+                position: absolute;
+                margin-top: 50px;
+                content: "";
+                left: 70px;
+                top: 0;
+                width: 70px;
+                height: 85px;
+                background: green;
+                border-radius: 100px 100px 0 0;
+                -webkit-transform: rotate(-60deg);
+                -moz-transform: rotate(-60deg);
+                -ms-transform: rotate(-60deg);
+                -o-transform: rotate(-60deg);
+                transform: rotate(-60deg);
+                -webkit-transform-origin: 0 100%;
+                -moz-transform-origin: 0 100%;
+                -ms-transform-origin: 0 100%;
+                -o-transform-origin: 0 100%;
+                transform-origin: 0 100%;
+                z-index: -1;
+            }
+
+            .shield:after {
+                background-color: green;
+                left: 0;
+                -webkit-transform: rotate(60deg);
+                -moz-transform: rotate(60deg);
+                -ms-transform: rotate(60deg);
+                -o-transform: rotate(60deg);
+                transform: rotate(60deg);
+                -webkit-transform-origin: 100% 100%;
+                -moz-transform-origin: 100% 100%;
+                -ms-transform-origin: 100% 100%;
+                -o-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+                z-index: -1;
+            }
         }
 
-        th {
-            text-align: center;
-            font-size: 24px;
+        @media screen and (max-width:750px) {
+
+            .container1 {
+                display: grid;
+                height: 500px;
+                background-color: white;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                font-size: 7px;
+                padding-top: 65px;
+            }
+
+            table {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            td {
+                /* height: 25px; */
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
+
+            th {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .swimmer_data1 {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .swimmer_data2 {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            .swimmer_data3 {
+                grid-row: 1;
+                grid-column: 3;
+            }
+
+            .head {
+                border-top: solid black 1px;
+                border-bottom: solid black 1px;
+            }
+
+            .top {
+                display: none;
+            }
         }
-    }
-
-    @media screen and (max-width:750px) {
-
-
-        table {
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid black 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
-            width: 100%;
-
-        }
-
-        th {
-            text-align: center;
-            font-size: 12px;
-            width: 100%
-        }
-
-        td {
-            font-size: 6px;
-        }
-
-        .container {
-            width: auto;
-            height: 555px;
-            overflow: auto;
-        }
-
-        .swim_info{
-            padding-top:65px;
-        }
-
-        .printPage {
-            display: none;
-        }
-    }
-</style>
-    <header id="header"></header>
-<body onload="tableLoad()">
-
-    <div class="swim_info" id="swim_info">
-        <button onclick="window.history.go(-1)">Go Back</button>
-        <button class="printPage" id="printPage"
-            style="font-size: 12px; border-radius: 10%; background-color: white; font-weight: bold;"
-            onclick="printImage()">Print Swimmer
-            Data</button>
-        <div class="container" id="container">
-            <div id="testTable" printable>
-                <table class="swimmer_data" id="swimmer_data">
-                    <!-- <th id="swimmer_name"></th> -->
-                    <!-- <tr>
-                        <td></td>
-                        <td>200 Freestyle</td>
-                        <td>200 IM</td>
-                        <td>50 Freestyle</td>
-                        <td>100 Butterfly</td>
-                        <td>100 Freestyle</td>
-                        <td>500 Freestyle</td>
-                        <td>100 Backstroke</td>
-                        <td>100 Breaststroke</td>
-                    </tr> -->
-                </table>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="canvasContainer" id="canvasContainer">
-                <canvas id="200fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="200IM" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="50fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100fl" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="500fr" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100bk" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="100br" style="height: 300px; width: 100%; background-color: white;"></canvas><br>
-                <canvas id="blank" style="display:none"></canvas>
-            </div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-        </div>
-
-    </div>
-</body>  
-<footer id="footer"></footer>
-
-<script type="text/javascript">
-    const events = ["", "200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
-
-    async function timesPull(id, column, cell, row, body) {
-        var meet = cell.id.split("_")
-        var pull = id + "&" + meet[1] + "&" + meet[0];
-        fetch('/api/timeFill/' + pull)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (races) {
-                if (races.length != 0) {
-                    var sending = races[0].time;
-                    document.getElementById(cell.id).innerHTML = sending;
+    </style>
+    <script>
+        async function cardCreate() {
+            var count = 0;
+            var body = document.getElementById("swimmers");
+            var row;
+            dataArray.forEach(element => {
+                if (count % 3 == 0) {
+                    row = document.createElement("div");
+                    row.setAttribute("class", "row");
                 }
+                var col = document.createElement("div");
+                col.setAttribute("class", "column");
+                var a = document.createElement("a");
+                a.setAttribute("href", "./swimmers.html?swimmerid=" + element.swimmer_id);
+                a.setAttribute("style", "text-decoration: none; color: black;");
+                var carred = document.createElement("div");
+                carred.setAttribute("class", "shield");
+                carred.setAttribute('id', element.swimmer_id);
+                var cardName = document.createElement("h3");
+                cardName.innerHTML = element.name[0] + ". " + element.name.split(" ")[1];;
+                cardName.setAttribute("font-weight", "bold");
+                var cardGrade = document.createElement("h3");
+                cardGrade.innerHTML = element.status_grade;
+                carred.appendChild(cardName);
+                carred.appendChild(cardGrade);
+                a.appendChild(carred);
+                col.appendChild(a);
+                row.appendChild(col);
+                body.appendChild(row);
+                count = count + 1;
             });
-    }
-
-    async function pastTimesPull(id, column, cell, row, body) {
-        var meet = cell.id.split("_")
-        var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
-        // console.log(pull)
-        const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
-        if(individualRecord[0].min != null){
-            document.getElementById(cell.id).innerHTML =individualRecord[0].min
         }
-    }
 
-    function maxPull(time) {
-        if (time != "") {
-            var check = time.split(".");
-            var doubleCheck = check[0].split(":");
-            var maybe = Number(doubleCheck[1]);
-            maybe += 15;
-            var minute = maybe > 59 ? Number(doubleCheck[0]) + 1 : doubleCheck[0];
-            maybe = maybe > 59 ? maybe - 50 : maybe;
-            var maxValue = minute + ":" + maybe + "." + check[1];
+        async function namePull(race, cell, time, year, school) {
+            var relays = [1, 8, 11, 12, 19, 22]
+            race = cell.id[1] == "g" ? race : race + 11;
+            if (!relays.includes(race)) {
+                var record = await fetch('/api/schoolRecord/' + race + "&" + school);
+                var data = await record.json();
+                var name = await fetch('/api/swim/' + data[0].swimmer_id);
+                var swimmer = await name.json();
+                document.getElementById(cell.id).innerHTML = swimmer[0].name;
+                document.getElementById(time.id).innerHTML = data[0].time;
+                document.getElementById(year.id).innerHTML = data[0].year;
+                cardCreate();
+            }
+            else {
+                var data = await fetch("/api/relayRecord/" + race + "&" + school)
+                var relay = await data.json();
+                document.getElementById(cell.id).innerHTML = relay[0].swimmers;
+                document.getElementById(time.id).innerHTML = relay[0].time;
+                document.getElementById(year.id).innerHTML = relay[0].year;
+            }
         }
-        return maxValue;
-    }
 
-    function minPull(time) {
-        if (time != "") {
-            var check = time.split(".");
-            var doubleCheck = check[0].split(":");
-            var maybe = Number(doubleCheck[1]);
-            maybe -= 5;
-            var minute = maybe < 0 ? Number(doubleCheck[0]) - 1 : doubleCheck[0];
-            maybe = maybe < 0 ? maybe + 50 : maybe;
-            var minValue = minute + ":" + maybe + "." + check[1];
-        }
-        return minValue;
-    }
-
-    async function getSwimData(tableData) {
-        var name = tableData["name"];
-        var headGrade = tableData["status_grade"];
-        var body = document.getElementById("swimmer_data");
-        var head = document.createElement("th");
-        head.setAttribute("id", "swimmer_name")
-        // var head = document.getElementById("swimmer_name");
-        head.innerHTML = (name + " - " + headGrade);
-        head.setAttribute("colspan", 9);
-        body.appendChild(head);
-        var meets = [];
-        var row = document.createElement("tr");
-        var column = document.createElement("td");
-        for (var i = 0; i < events.length; i++) {
-            cell = row.insertCell();
-            text = document.createTextNode(column.innerHTML = events[i]);
-            cell.appendChild(text);
-        }
-        body.appendChild(row);
-        var meet = await fetch('/api/meets').then(data => data.json());
-        var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
-        console.log(previous[0].max-1)
-        if(previous.length > 1){
-            // var t=previous[0].max-1;
-            for(var t=previous[0].max-1; t>0; t--){
-                console.log(previous[0].max-1 + " - "+ t);
-                var year = 2019+Number(previous[0].max-1);
-                row = document.createElement("tr");
-                var column = document.createElement("td");
-                cell = row.insertCell();
-                cell.setAttribute("id", year);
-                cell.setAttribute("style", "width: 20%");
-                var otherYear = Number(year)+1;
-                text = document.createTextNode(column.innerHTML = year +"-"+ otherYear);
-                cell.appendChild(text);
-                
-                if (tableData["gender"] == "F") {
-                    var to = 12
-                    var from = 1
-                }
-                else {
-                    var from = 12
-                    var to = 22
-                }
-                for (var k = from; k < to; k++) {
-                    // var at = meet[a].meet_id;
-                    relays = [1, 8, 11, 12, 19, 22]
-                    if (!relays.includes(k)) {
-                        cell = row.insertCell();
-                        cell.setAttribute("id", year + "_" + k)
-                        pastTimesPull(tableData.swimmer_id, column, cell, row, body)
-                    }
-                }
+        async function pullSchool() {
+            var school = location.search.substring(1);
+            school = school.split("=");
+            school = Number(school[1]);
+            for (var i = 1; i < 12; i++) {
+                var body = document.getElementById("girlRecords");
+                var row = document.createElement('tr');
+                var name = row.insertCell();
+                var time = row.insertCell();
+                var year = row.insertCell();
+                name.setAttribute('id', 'rg' + i);
+                time.setAttribute('id', 'rgt' + i);
+                year.setAttribute('id', 'rgy' + i);
+                namePull(i, name, time, year, school);
                 body.appendChild(row);
             }
 
-        }
+            var races = ["", "200 Medley Relay", "200 Freestyle", "200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
 
-        fetch('/api/meets')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (meet) {
-                for (var i = 0; i < meet.length; i++) {
-                    meets[i] = meet[i].location
-                }
-                var a = 0;
-                for (var j = 0; j < meets.length; j++) {
-                        row = document.createElement("tr");
-                        var column = document.createElement("td");
-                        cell = row.insertCell();
-                        cell.setAttribute("id", j);
-                        cell.setAttribute("style", "width: 20%");
-                        text = document.createTextNode(column.innerHTML = meets[j]);
-                        cell.appendChild(text);
-                        if (tableData["gender"] == "F") {
-                            var to = 12
-                            var from = 1
-                        }
-                        else {
-                            var from = 12
-                            var to = 22
-                        }
-                        for (var k = from; k < to; k++) {
-                            var at = meet[a].meet_id;
-                            relays = [1, 8, 11, 12, 19, 22]
-                            if (!relays.includes(k)) {
-                                cell = row.insertCell();
-                                cell.setAttribute("id", at + "_" + k)
-                                timesPull(tableData.swimmer_id, column, cell, row, body)
-                            }
-                        }
-                        body.appendChild(row);
-                        a++;
-
-                }
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
-
-        //     var check = ['0:24.33','0:24.00'];
-        // if(check[0]<check[1]){
-        //     console.log(check[0]+" is less than "+ check[1]);
-        // }
-        // else{
-        //     console.log(check[0]+" is not less than "+ check[1]);
-        // }
-    }
-
-    function tableLoad() {
-        var pullperson = location.search.substring(1);
-        pullperson = pullperson.split("=");
-        pullperson = Number(pullperson[1]);
-        fetch("/api/swim/" + pullperson)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                getSwimData(myJson[0])
-                fr200(myJson[0])
-                im200(myJson[0])
-                fr50(myJson[0])
-                fl100(myJson[0])
-                fr100(myJson[0])
-                fr500(myJson[0])
-                bk100(myJson[0])
-                br100(myJson[0])
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
-    }
-
-    function makeChart(race_id, pushDate, testChartData, schoolRecord, stateRecord, maxValue, title) {
-        var minValue = minPull(stateRecord[0].y);
-        var ctx = document.getElementById(race_id);
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: pushDate,
-                datasets: [{
-                    label: title + " Times",
-                    data: testChartData,
-                    fill: false,
-                    pointBorderColor: 'rgba(0, 0, 0, 0.9)',
-                    pointBackgroundColor: 'rgba(0, 0, 0, 0.5)',
-                    borderColor: "rgba(0, 0, 0, 0.9)"
-                },
-                {
-                    label: "School Record",
-                    data: schoolRecord,
-                    fill: true,
-                    pointBorderColor: 'rgba(0, 0, 255, 0.9)',
-                    pointBackgroundColor: 'rgba(0, 0, 255, 0.5)',
-                    borderColor: "rgba(0, 0, 255, 0.9)"
-                },
-                {
-                    label: "State Record",
-                    data: stateRecord,
-                    fill: true,
-                    pointBorderColor: 'rgba(255, 0, 0, 0.9)',
-                    pointBackgroundColor: 'rgba(255, 0, 0, 0.5)',
-                    borderColor: "rgba(255, 0, 0, 0.9)"
-                }
-                ],
-
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        type: 'time',
-                        time: {
-                            parser: 'm:ss.SS',
-                            unit: 'seconds',
-                            unitStepSize: 10,
-                            min: minValue,
-                            max: maxValue,
-                            displayFormats: {
-                                'seconds': 'm:ss.SS'
-                            }
-                        },
-                        ticks: { reverse: true }
-                    }]
-                },
+            for (var i = 1; i < 12; i++) {
+                var body = document.getElementById("races");
+                var row = document.createElement('tr');
+                var column = document.createElement("td");
+                var cell = row.insertCell();
+                cell.innerHTML = races[i]
+                row.appendChild(cell);
+                body.appendChild(row);
             }
-        });
-        myChart.render();
-    }
-
-    var stuff = 0;
-    async function lookForRace(id, event, race_id, school_id) {
-        var race = ["200 Free", "200 IM", "50 Free", "100 Fly", "100 Free", "500 Free", "100 Backstroke", "100 Breaststroke"]
-        var title = race[stuff]
-        const meetInfo = await fetch("/api/meets").then(data => data.json())
-        const schoolRecord = await fetch("/api/schoolRecord/" + event + "&" + school_id).then(school => school.json())
-        const stateRecord = await fetch("/api/races/" + event).then(state => state.json())
-        // const individualRecord = await fetch("/api/individualRecords/" + id + "&" + event).then(state => state.json())
-        // console.table(individualRecord)
-        fetch("/api/chartFill/" + id + "&" + event)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (events) {
-                var hide = document.getElementById(race_id);
-                // console.log(events)
-                if (events.length != 0) {
-                    var maxValue = maxPull(events[0].time)
-                    var str = []
-                    var scr = []
-                    var j = 1
-                    var newChartData = []
-                    var testChartData = []
-                    var dates = []
-
-                    for (var i = 0; i < events.length; i++) {
-                        newChartData[j] = events[i].time;
-                        for (var k = 0; k < meetInfo.length; k++) {
-                            if (events[i].meet == meetInfo[k].meet_id) {
-                                dates.push(meetInfo[k].date);
-                                str[i] = { y: stateRecord[0].sr_time, x: dates, indexLabel: stateRecord[0].sr_time }
-                                scr[i] = { y: schoolRecord[0].time, x: dates, indexLabel: schoolRecord[0].time }
-                            }
-                        }
-                        testChartData[j - 1] = { y: newChartData[j], x: dates[j - 1], indexLabel: newChartData[j] };
-                        j++;
-                    }
-                    makeChart(race_id, dates, testChartData, scr, str, maxValue, title);
-                }
-                else {
-                    hide.setAttribute("style", "display:none");
-                }
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
-    }
-
-    function fr200(chartData) {
-        var races = chartData.gender == "F" ? 2 : 13;
-        var race_id = "200fr";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    function im200(chartData) {
-        var races = chartData.gender == "F" ? 3 : 14;
-        var race_id = "200IM";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    function fr50(chartData) {
-        var races = chartData.gender == "F" ? 4 : 15;
-        var race_id = "50fr";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    function fl100(chartData) {
-        var races = chartData.gender == "F" ? 5 : 16;
-        var race_id = "100fl";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    function fr100(chartData) {
-        var races = chartData.gender == "F" ? 6 : 17;
-        var race_id = "100fr";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    function fr500(chartData) {
-        var races = chartData.gender == "F" ? 7 : 18;
-        var race_id = "500fr";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    function bk100(chartData) {
-        var races = chartData.gender == "F" ? 9 : 20;
-        var race_id = "100bk";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    function br100(chartData) {
-        var races = chartData.gender == "F" ? 10 : 21;
-        var race_id = "100br";
-        lookForRace(chartData.swimmer_id, races, race_id, chartData.school)
-        stuff++;
-    }
-
-    const races = ["200fr", "200IM", "50fr", "100fl", "100fr", "500fr", "100bk", "100br"];
-    var a = ""
-
-
-    function printImage() {
-        var table = document.getElementById("swimmer_data");
-        table.setAttribute("style", "font-size:12px");
-        var windowContent = '<!DOCTYPE html>';
-        windowContent += '<html>';
-        windowContent += '<head><style> table {text-align: center; border: solid black 3px}tr,td {border: solid black 1px; text-align: center}th {text-align: center;}</style></head>';
-        windowContent += '<body">';
-        windowContent += table.outerHTML;
-        windowContent += '<br>'
-        for (var i = 0; i < races.length; i++) {
-            var dataUrl = document.getElementById(races[i]).toDataURL('image', 1.0);
-            a = document.getElementById(races[i]).getAttribute('style')
-            if (a != 'display:none') {
-                windowContent += '<img src="' + dataUrl + '" style="width:50%">';
+            for (var i = 1; i < 12; i++) {
+                var body = document.getElementById("boyRecords");
+                var row = document.createElement('tr');
+                var name = row.insertCell();
+                var time = row.insertCell();
+                var year = row.insertCell();
+                name.setAttribute('id', 'rb' + i);
+                time.setAttribute('id', 'rbt' + i);
+                year.setAttribute('id', 'rby' + i);
+                namePull(i, name, time, year, school);
+                body.appendChild(row);
             }
         }
-        windowContent += '</body>';
-        windowContent += '</html>';
-        const printWin = window.open('', '_blank');
+    </script>
+</head>
+<header id="header"></header>
 
-        printWin.document.open();
-        printWin.document.write(windowContent);
-        printWin.document.addEventListener('load', function () {
-            printWin.focus();
-            printWin.print();
-            printWin.document.close();
-            printWin.close();
-        }, true);
-        table.removeAttribute("style");
-        //self.opener.location.reload();
-        document.location.reload(true);
-    }
+<body onload="pullSchool()">
 
-</script>
+    <main class="swim_info">
+        <div class="container1" id="container1">
+            <table class="swimmer_data1" id="girlRecords">
+                <tr class="top">
+                    <td></td>
+                </tr>
+
+                <tr class="head">
+                    <td>RECORDS WOMEN:</td>
+                    <td>TIME</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+            <table class="swimmer_data2" id="races">
+                <tr class="top">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>RACE</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+            <table class="swimmer_data3" id="boyRecords">
+                <tr class="top">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>RECORDS MEN:</td>
+                    <td>TIME</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+</body>
+<footer id="footer"></footer>
 
 </html>

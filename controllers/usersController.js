@@ -690,6 +690,26 @@ console.log(id,time)
         }).catch(err => (res.sendStatus(500)))
     },
 
+    getTotal: (req,res) => {
+        var {id}=req.params;
+        const db = req.app.get("db");
+        id = Number(id);
+        db.get_total(id).then(times => {
+            return res.status(200).send(times[0].count)
+        }).catch(err => (res.sendStatus(500)))
+    },
+
+    getTotalinRaces: (req,res) => {
+        var {id}=req.params;
+        var idSplit = id.split("&");
+        const db = req.app.get("db");
+        id = Number(idSplit[0]);
+        id2 = Number(idSplit[1])
+        db.get_total_in_races(id,id2).then(times => {
+            return res.status(200).send(times[0].count)
+        }).catch(err => (res.sendStatus(500)))
+    },
+
     //REMOVE SECTION
     removeSwimmer:(req,res) => {
         var {id}=req.params;

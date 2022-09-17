@@ -9,6 +9,9 @@
         "start": "node server.js"
     },
     "dependencies": {
+        "chart.js": "^3.9.1",
+        "chart.piecelabel.js": "^0.15.0",
+        "chartjs-plugin-datalabels": "^2.1.0",
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",

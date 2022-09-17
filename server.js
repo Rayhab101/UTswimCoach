@@ -123,6 +123,8 @@ app.get('/api/previousYear/:id', userctrl.previousYear)
 app.get('/api/countYears/:id', userctrl.countYears)
 
 app.get('/api/ano', userctrl.getYear)
+app.get('/api/getTotal/:id', userctrl.getTotal)
+app.get('/api/getTotalinRaces/:id', userctrl.getTotalinRaces)
 
 app.post('/api/setMeet/:id',userctrl.setMeet)
 app.post('/api/setSwimmer/:id',userctrl.setSwimmer)
@@ -153,6 +155,7 @@ app.post('/api/updateState/:id', userctrl.updateState)
 app.post('/api/updateStateRecords/:id', userctrl.updateStateRecords)
 app.post('/api/updateSchoolRecord/:id', userctrl.updateSchoolRecord)
 app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
+
 
 
 app.set('port', process.env.PORT || 8080)
