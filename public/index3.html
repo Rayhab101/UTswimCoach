@@ -23,132 +23,146 @@
         });
     </script>
     <style>
-        .container{
-            display: grid;
-            margin-left:auto;
-            margin-right:auto;
-        }
-        #swimmers{
-            margin-left:auto;
-            margin-right:auto;
-            background-color: white;
-            border-radius: 5px;
-            height: 90%;
-            width: 90%;
-            grid-row: 1;
-            grid-column: 1;
-        }
+/* Bottom right text */
+* {
+  box-sizing: border-box;
+}
 
-        #charts{
-            margin-left:auto;
-            margin-right:auto;
-            background-color: white;
-            border-radius: 5px;
-            height: 90%;
-            width: 90%;
-            grid-row: 1;
-            grid-column: 2;
-        }
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+  justify-content: center;
+}
 
-        #meets{
-            margin-left:auto;
-            margin-right:auto;
-            background-color: white;
-            border-radius: 5px;
-            height: 90%;
-            width: 90%;
-            grid-row: 1;
-            grid-column: 3;
-        }
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-        #most_improved{
-            margin-left:auto;
-            margin-right:auto;
-            background-color: white;
-            border-radius: 5px;
-            height: 90%;
-            width: 90%;
-            grid-row: 2;
-            grid-column: 1;
-        }
-
-        #state_qualifier{
-            margin-left:auto;
-            margin-right:auto;
-            background-color: white;
-            border-radius: 5px;
-            height: 90%;
-            width: 90%;
-            grid-row: 2;
-            grid-column: 2;
-        }
-
-        #coaches{
-            margin-left:auto;
-            margin-right:auto;
-            background-color: white;
-            border-radius: 5px;
-            height: 90%;
-            width: 90%;
-            grid-row: 2;
-            grid-column: 3;
-        }
-
-        h1{
-            text-align: center;
-        }
-
-        .swim_years{
-            margin-left: 30px;
-        }
-
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
     </style>
     <script>
-        function loadContent(){
-            var swimmers = document.getElementById("swimmers");
+        function createCards(dataArray) {
+            var count = 0;
+            var body = document.getElementById("swimmers"); 
+            var row;           
+            dataArray.forEach(element => {
+                if (count % 4 == 0) {
+                    row = document.createElement("div");
+                    row.setAttribute("class", "row");
+                }
+                var col = document.createElement("div");
+                col.setAttribute("class", "column");
+                var a = document.createElement("a");
+                a.setAttribute("href", "./swimmers.html?swimmerid=" + element.swimmer_id);
+                a.setAttribute("style", "text-decoration: none; color: black;");
+                var carred = document.createElement("div");
+                carred.setAttribute("class", "card");
+                carred.setAttribute('id', element.swimmer_id);
+                var cardName = document.createElement("h3");
+                cardName.innerHTML = element.name[0] + ". " + element.name.split(" ")[1];;
+                cardName.setAttribute("font-weight", "bold");
+                var cardGrade = document.createElement("h3");
+                cardGrade.innerHTML = element.status_grade;
+                carred.appendChild(cardName);
+                carred.appendChild(cardGrade);
+                a.appendChild(carred);
+                col.appendChild(a);
+                row.appendChild(col);
+                body.appendChild(row);
+                count = count+1;
+            });
+        }
+
+        async function recordsLoad(){
+            var pullSwimmers = location.search.substring(1);
+            pullSwimmers = Number(pullSwimmers.split("=")[1]);
+            fetch("/api/swims/"+pullSwimmers)
+                .then(function (response) {
+                return response.json();
+                })
+                .then(function (myJson) {
+                    //console.log(myJson);
+                createCards(myJson);
+                })
+                .catch(function (error) {
+                //cardLoad();
+                //location.reload();
+                console.log("Error: " + error);
+            });
         }
     </script>
 </head>
 
-<body>
+<!-- <body onload="recordsLoad()">
     <header id="header"></header>
     <main class="swim_info">
-        <div class="container" style="padding-top:120px">
-            <div id="swimmers">
-                <h1>Swimmers</h1>
-                <div class="swim_years"><a href="?swimmers=1">2020-2021 Season</a></div>
-                <div class="swim_years"><a href="?swimmers=2">2021-2022 Season</a></div>
-            </div>
-            <div id="charts">
-                <h1>Charts</h1>
-                <div class="swim_years"><a href="?swimmer=1">2020-2021 Season</a></div>
-                <div class="swim_years"><a href="?swimmer=2">2021-2022 Season</a></div>
-            </div>
-            <div id="coaches">
-                <h1>Coaches</h1>
-                <div class="swim_years"><a href="?coaches=1">2020-2021 Season</a></div>
-                <div class="swim_years"><a href="?coaches=2">2021-2022 Season</a></div>
-            </div>
-            <div id="meets">
-                <h1>Meets</h1>
-                <div class="swim_years"><a href="?meets=1">2020-2021 Season</a></div>
-                <div class="swim_years"><a href="?meets=2">2021-2022 Season</a></div>
-            </div>
-            <div id="state_qualifier">
-                <h1>State Qualify</h1>
-                <div class="swim_years"><a href="?state=1">2019-2020 Season</a></div>
-                <div class="swim_years"><a href="?state=2">2020-2021 Season</a></div>
-            </div>
-            <div id="most_improved">
-                <h1>Most Improved</h1>
-                <div class="swim_years"><a href="?improved=1">2020-2021 Season</a></div>
-                <div class="swim_years"><a href="?improved=2">2021-2022 Season</a></div>
-            </div>
-        </div>
+        <div class="container" id="swimmers" style="width: 100%;" > -->
+            <!-- <div class="row"><center>
+                <div class="column">
+                  <h1 style="color:red; background-color: white;"><center>Women's Records</center></h1>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                  <div><img src="images/ScottishRoyalArmsUse.png" style="width: 22%"></div>
+                </div>
+                <div class="column">
+                    <h1 style="color:red; background-color: white;"><center>Men's Records</center></h1>
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                    <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                  <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                  <img src="images/ScottishRoyalArmsUse.png" style="width: 22%">
+                </div></center>
+              </div> -->
+            <!-- <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">&nbsp;&nbsp;&nbsp;
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <br>
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">&nbsp;&nbsp;&nbsp;
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%">
+            <img src="images/ScottishRoyalArmsUse.png" style="width: 12%"> -->
+        <!-- </div>
+
     </main>
     <footer id="footer"></footer>
 </body>
 <script>
-    
+
 </script>
-</html>
+
+</html> -->
