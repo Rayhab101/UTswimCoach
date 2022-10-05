@@ -606,7 +606,7 @@ module.exports = {
         // console.log(req)
         var {id}=req.params;
         var idSplit = id.split("_");
-        // console.log(idSplit);
+        //console.log(idSplit);
         var location=idSplit[0];
         var date=idSplit[1];
         date = date.split('-');
@@ -619,10 +619,10 @@ module.exports = {
         var bus=idSplit[4];
         var home=idSplit[5];
         var school1=Number(idSplit[6]);
-        var school2=Number(idSplit[7]);
+        var school2= isNaN(Number(idSplit[7])) ? null : Number(idSplit[7]);
         var meetId=Number(idSplit[8]);
         const db = req.app.get("db");
-        // console.log(location,date,time,out,bus,home,school1,school2,meetId);
+        console.log(location,date,time,out,bus,home,school1,school2,meetId);
         db.update_meet(location,date,time,out,bus,home,school1,school2,meetId).then(times => {
             // console.log(times);
             return res.status(200).send(times)
