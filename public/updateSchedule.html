@@ -346,6 +346,9 @@
                     if (bus == "null" || bus == "") { bus = null }
                     if (home == "null" || home == "") { home = null }
                     // console.log(location,date,time,out,bus,home,school1_id,school2_id);
+                    if(isNaN(school1_id)) {
+                        school1_id = -1;
+                    }
                     var submit = location + "_" + date + "_" + time + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id + "_" + id;
                     // console.log(submit)
                     fetch("/api/updateMeet/" + submit, {

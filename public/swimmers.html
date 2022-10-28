@@ -137,11 +137,11 @@
     async function pastTimesPull(id, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
-        //console.log(pull)
         const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
-        //console.log(individualRecord[0].min,cell.id)
+        console.log(individualRecord[0].min,cell.id)
         if(individualRecord[0].min != null){
             document.getElementById(cell.id).innerHTML =individualRecord[0].min;
+
         }
     }
 
@@ -219,6 +219,7 @@
                         cell = row.insertCell();
                         cell.setAttribute("id", year + "_" + k)
                         pastTimesPull(tableData.swimmer_id, cell, row, body)
+
                     }
                 }
                 body.appendChild(row);
