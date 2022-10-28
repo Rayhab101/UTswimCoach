@@ -137,11 +137,11 @@
     async function pastTimesPull(id, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
+        // console.log(pull,meet)
         const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
-        console.log(individualRecord[0].min,cell.id)
+        console.log(individualRecord[0].min)
         if(individualRecord[0].min != null){
-            document.getElementById(cell.id).innerHTML =individualRecord[0].min;
-
+            document.getElementById(cell.id).innerHTML = individualRecord[0].min;
         }
     }
 
@@ -194,9 +194,9 @@
         var meet = await fetch('/api/meets').then(data => data.json());
         var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
         var count = await fetch('/api/countYears/'+tableData.swimmer_id).then(data => data.json());
-
+        //console.log(current_year)
         if(count[0].count > 0){
-            for(var t=Number(count[0].count) ; t>0; t--){
+            for(var t=Number(count[0].count)-1 ; t>0; t--){
                 var year = new Date().getFullYear()-(t);
                 row = document.createElement("tr");
                 cell = row.insertCell();
@@ -204,6 +204,7 @@
                 cell.setAttribute("style", "width: 20%");
                 var otherYear = Number(year)+1;
                 cell.innerHTML = year +"-"+ otherYear;
+
                 
                 if (tableData["gender"] == "F") {
                     var to = 12
