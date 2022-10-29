@@ -324,7 +324,7 @@
                 // console.log(relay+"-"+names+"-"+time+"-"+school+"-"+year+"-"+meet+"-"+2)
                     if (time.includes(':')) {
                         
-                        var submitRaces = relay+"-"+names+"-"+time+"-"+school+"-"+year+"-"+meet+"-"+3;
+                        var submitRaces = relay+"-"+names+"-"+time+"-"+school+"-"+3+"-"+meet;
                         if (meet != undefined && names != "" && time != "" && relay!= undefined && school!=undefined) {
                             fetch("/api/setRelayTimes/" + submitRaces, {
                                 headers: { 'Content-Type': 'application/json' },
@@ -342,7 +342,7 @@
                     else{
                         alert("Your time doesn't fit basic time format");
                     }
-                window.location.reload();
+                //window.location.reload();
             }
             else {
                 var proceed = confirm("You dont have permission to add times into database");

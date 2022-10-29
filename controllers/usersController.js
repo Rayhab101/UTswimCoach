@@ -392,7 +392,8 @@ module.exports = {
         var meet = idSplit[5];
         var swim_year = idSplit[6];
         const db = req.app.get("db");
-        db.set_relay_times(relay,names,time,school,year,meet,swim_year).then(times => {
+        //console.log("Hello");
+        db.set_relay_times(relay,names,time,school,year,meet).then(times => {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
