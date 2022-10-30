@@ -482,7 +482,7 @@
                     var body = document.getElementById(relay[0].title);
                     var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
                     body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
-                    await fetch("/api/relayTimes5/" + i-1)
+                    await fetch("/api/relayTimes5/" + i)
                         .then(async function (responseRace) {
                             return responseRace.json();
                         })
@@ -490,19 +490,22 @@
                             var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
                             var newLength = race.length>50 ? 50 : race.length;
                             for (var j = 0; j < newLength; j++) {
+                                //console.log(state)
                                 if(race[j].time <= state[i-1].race_time){
                                 var row = document.createElement("tr");
+                                
                                 var cell = row.insertCell();
                                 cell.innerHTML = status;
                                 var cell = row.insertCell();
                                 cell.innerHTML = race[j].swimmers;
+                                var column = document.createElement("td");
                                 var cell = row.insertCell();
                                 pullSchool(race[j].school, column, cell)
                                 var cell = row.insertCell();
                                 cell.innerHTML = race[j].time;
                                 body.appendChild(row);
                                 status++;
-                            }
+                                }
                             }
                         }).catch(function (error) {
                             console.log("Error: " + error);

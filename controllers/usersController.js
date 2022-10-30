@@ -392,7 +392,6 @@ module.exports = {
         var meet = idSplit[5];
         var swim_year = idSplit[6];
         const db = req.app.get("db");
-        //console.log("Hello");
         db.set_relay_times(relay,names,time,school,year,meet).then(times => {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
@@ -597,7 +596,7 @@ module.exports = {
         var race = Number(idSplit[4]);
         const db = req.app.get("db");
         //console.log(swimmer,time,year,school,race)
-        // console.log(typeof swimmer,typeof time,typeof year,typeof school,typeof race);
+        //console.log(typeof swimmer,typeof time,typeof year,typeof school,typeof race);
         db.update_school_relay_records(swimmer,time,year,school,race).then(times => {
             console.log(times);
             return res.status(200).send(times)
