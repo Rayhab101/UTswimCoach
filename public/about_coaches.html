@@ -74,45 +74,35 @@
         }
     </style>
     <script>
-        function open() {
-            fetch('/api/coaches/')
-                .then(function (response) {
-                    if (response.status == 200) {
-                        return response.json();
-                    }
-                }).then(function (coaches) {
-                    var body = document.getElementById("container")
-                    for (var i = 0; i < coaches.length; i++) {
-                        var div1 = document.createElement('div');
-                        div1.setAttribute('class', 'picSize');
-                        var picture = document.createElement('img');
-                        picture.setAttribute('class', 'picture');
-                        var about = document.createElement('div');
-                        about.setAttribute('class', 'about');
-                        var name = document.createElement('h3');
-                        var lastName = coaches[i].name.split(' ');
-                        picture.setAttribute('src', 'coaches/' + lastName[0] + '.jpeg');
-                        lastName = lastName[1];
-                        name.textContent = 'About Coach ' + lastName;
-                        var facts = document.createElement('p');
-                        facts.innerHTML = '&emsp;&emsp;' + coaches[i].about;
-                        div1.appendChild(picture)
-                        body.appendChild(div1)
-                        about.appendChild(name)
-                        about.appendChild(facts)
-                        body.appendChild(about)
-
-                    }
-
-                }).catch(function (error) {
-                    console.log("Error: " + error);
-                });
+        async function open() {
+            var coaches = await fetch('/api/coaches/').then(data => data.json())
+            var body = document.getElementById("container")
+            coaches.forEach(element => {
+                var div1 = document.createElement('div');
+                div1.setAttribute('class', 'picSize');
+                var picture = document.createElement('img');
+                picture.setAttribute('class', 'picture');
+                var about = document.createElement('div');
+                about.setAttribute('class', 'about');
+                var name = document.createElement('h3');
+                var lastName = element.name.split(' ');
+                picture.setAttribute('src', 'coaches/' + lastName[0] + '.jpeg');
+                lastName = lastName[1];
+                name.textContent = 'About Coach ' + lastName;
+                var facts = document.createElement('p');
+                facts.innerHTML = '&emsp;&emsp;' + element.about;
+                div1.appendChild(picture)
+                body.appendChild(div1)
+                about.appendChild(name)
+                about.appendChild(facts)
+                body.appendChild(about)
+            });
         }
     </script>
 </head>
-<header id="header"></header>
-<body onload="open()">
-    <div class="container" id="container"></div>
-</body>
-<footer id="footer"></footer>
+    <header id="header"></header>
+        <body onload="open()">
+            <div class="container" id="container"></div>
+        </body>
+    <footer id="footer"></footer>
 </html>

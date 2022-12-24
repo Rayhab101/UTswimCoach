@@ -157,11 +157,12 @@
                 var checkRace = id.split("_");
                 if (proceed && flag) {
                     if (r.includes(Number(checkRace[1]))) {
-                        // swimmers = swimmers.replace(/ /g, "-")
+                        swimmers = swimmers.replace(/ /g, '-')
                         // swimmers = swimmers.replace(/,/g, "&")
-                        //swimmers = swimmers.replace(/./g, "!")
+                        // swimmers = swimmers.replace(/./g, "!")
+                        //console.log(typeof(swimmers),typeof(time),typeof(year),typeof(id))
                         var submit = swimmers + "_" + time + "_" + year  + "_" + id;
-                        console.log(submit)
+                        //console.log(submit)
 
                         fetch("/api/updateSchoolRelayRecord/" + submit, {
                             headers: { 'Content-Type': 'application/json' },
@@ -200,7 +201,7 @@
                     //     .then(json => console.log(json))
                     //     .catch(err => console.log(err));
 
-                    //window.location.reload();
+                    window.location.reload();
                 }
                 else {
                     alert("You don't have access to save changes")

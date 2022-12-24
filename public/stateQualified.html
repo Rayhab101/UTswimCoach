@@ -433,137 +433,57 @@
     <footer id="footer"></footer>
 </body>
 <script>
-    async function pullSwimmer(name, column, cell) {
-        // var newName = await fetch("/api/swim/" + name)
-        // var text = await newName.json();
+    async function pullSwimmer(name, cell) {
+        var newName = await fetch("/api/swim/" + name).then(data => data.json());
+        cell.innerHTML = newName[0].name;
+    }
+    async function pullSchool(school, cell) {
+        var newSchool = await fetch("/api/schools/" + school).then(data => data.json());
+        cell.innerHTML = newSchool[0].name;
+    }
 
-        // cell.innerHTML = text.name;
-        await fetch("/api/swim/" + name)
-            .then(function (responseRelay) {
-                return responseRelay.json();
-            })
-            .then(function (swimmer) {
-                // console.log(swimmer[0]);
-                text = document.createTextNode(column.innerHTML = swimmer[0].name);
-                cell.appendChild(text);
-            })
-            .catch(function (error) {
-                console.log("Error: " + error)
-            });
-    }
-    async function pullSchool(school, column, cell) {
-        // var newSchool = await fetch("/api/schools/" + school)
-        // var data = await newSchool.json();
-        // cell.innerHTML = data.name;
-        await fetch("/api/schools/" + school)
-            .then(function (responseRelay) {
-                return responseRelay.json();
-            })
-            .then(function (school) {
-                //console.log(school[0].name);
-                text = document.createTextNode(column.innerHTML = school[0].name);
-                cell.appendChild(text);
-            })
-            .catch(function (error) {
-                console.log("Error: " + error)
-            });
-    }
     async function t50(i) {
         var r = [1, 8, 11, 12, 19, 22]
         var status = 1;
         var id=0;
+        var checkers = await fetch("/api/races/"+i).then(data => data.json());
+        var qualified = await fetch("/api/relayTimes5/" + i).then(data=> data.json());
+        var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
+        var body = document.getElementById(checkers[0].title);
+        body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
+        var individuals = await fetch("/api/state5/" + i).then(data => data.json());
         if (r.includes(i)) {
-            await fetch("/api/races/" + i)
-                .then(function (responseRelay) {
-                    return responseRelay.json();
-                })
-                .then(async function (relay) {
-                    //console.log(i)
-                    var body = document.getElementById(relay[0].title);
-                    var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
-                    body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
-                    await fetch("/api/relayTimes5/" + i)
-                        .then(async function (responseRace) {
-                            return responseRace.json();
-                        })
-                        .then(async function (race ) {
-                            var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
-                            var newLength = race.length>50 ? 50 : race.length;
-                            for (var j = 0; j < newLength; j++) {
-                                //console.log(state)
-                                if(race[j].time <= state[i-1].race_time){
-                                var row = document.createElement("tr");
-                                
-                                var cell = row.insertCell();
-                                cell.innerHTML = status;
-                                var cell = row.insertCell();
-                                cell.innerHTML = race[j].swimmers;
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                pullSchool(race[j].school, column, cell)
-                                var cell = row.insertCell();
-                                cell.innerHTML = race[j].time;
-                                body.appendChild(row);
-                                status++;
-                                }
-                            }
-                        }).catch(function (error) {
-                            console.log("Error: " + error);
-                        });
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+            qualified.forEach(element => {
+                if(element.time <= state[i-1].race_time){
+                    var row = document.createElement("tr");
+                    var cell = row.insertCell();
+                    cell.innerHTML = status;
+                    cell = row.insertCell();
+                    cell.innerHTML = element.swimmers;
+                    cell = row.insertCell();
+                    pullSchool(element.school, cell)
+                    cell = row.insertCell();
+                    cell.innerHTML = element.time;
+                    body.appendChild(row);
+                    status++;
+                    }
+            });
         }
         else {
-            await fetch("/api/races/" + i)
-                .then(function (responseRaces) {
-                    return responseRaces.json();
-                })
-                .then(async function (race) {
-                    
-                    var body = document.getElementById(race[0].title);
-                    var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
-                    body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
-                    //console.log(i)
-                    await fetch("/api/state5/" + i)
-                        .then(function (responseChart) {
-                            return responseChart.json();
-                        }) 
-                        .then(async function (chart) {
-                            var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
-                            // console.log(i, chart[i])
-                            var t50 = chart.length;
-                            t50 = t50 > 5 ? t50 = 5 : t50 = chart.length;
-                            for (var j = 0; j < t50; j++) {
-                                if(chart[j].time <= state[i-1].race_time){
-                                var row = document.createElement("tr");
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = j + 1);
-                                var active = cell.appendChild(text);
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                // console.log(chart[j].swimmer)
-                                pullSwimmer(chart[j].swimmer, column, cell)
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                pullSchool(chart[j].school, column, cell)
-                                var column = document.createElement("td");
-                                var cell = row.insertCell();
-                                text = document.createTextNode(column.innerHTML = chart[j].time);
-                                cell.appendChild(text);
-                                body.appendChild(row);
-                                }
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log("Error: " + error);
-                        });
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+            individuals.forEach(element => {
+                if(element.time <= state[i-1].race_time){
+                var row = document.createElement("tr");
+                var cell = row.insertCell();
+                cell.innerHTML = status;
+                var cell = row.insertCell();
+                pullSwimmer(element.swimmer, cell)
+                var cell = row.insertCell();
+                pullSchool(element.school, cell)
+                var cell = row.insertCell();
+                cell.innerHTML = element.time;
+                body.appendChild(row);
+                status++;
+            }});
         }
 
     }

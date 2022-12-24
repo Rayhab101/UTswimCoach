@@ -1,1 +1,1 @@
-UPDATE relay_record_school SET swimmers=$0, time=$1, year=$2 WHERE school=$3 and race=$4;
+UPDATE relay_record_school SET swimmers=$1, time=$2, year=$3 WHERE school=$4 and race=$5;

@@ -585,11 +585,11 @@ module.exports = {
     updateSchoolRelayRecord:(req,res) => {
         var {id}=req.params;
         var idSplit = id.split("_");
-        // console.log(idSplit);
+        //console.log(idSplit);
         var swimmer = idSplit[0];
-        // swimmer = swimmer.replace(/-/g, " ")
+        swimmer = swimmer.replace(/-/g, ' ')
         // swimmer = swimmer.replace(/&/g, ",")
-        //swimmer = swimmer.replace(/!/g, ".")
+        // swimmer = swimmer.replace(/!/g, ".")
         var time = idSplit[1];
         var year = idSplit[2];
         var school = Number(idSplit[3]);
@@ -598,7 +598,7 @@ module.exports = {
         //console.log(swimmer,time,year,school,race)
         //console.log(typeof swimmer,typeof time,typeof year,typeof school,typeof race);
         db.update_school_relay_records(swimmer,time,year,school,race).then(times => {
-            console.log(times);
+            //console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
@@ -662,7 +662,7 @@ module.exports = {
         var idSplit = id.split("_");
         var id = Number(idSplit[0]);
         var time = idSplit[1];
-console.log(id,time)
+        //console.log(id,time);
         const db = req.app.get("db");
         // console.log(location,date,time,out,bus,home,school1,school2,meetId);
         db.update_state_times(time,id).then(times => {
