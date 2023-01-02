@@ -123,7 +123,7 @@
 <script type="text/javascript">
     const events = ["", "200 Freestyle", "200 IM", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "100 Backstroke", "100 Breaststroke"];
 
-    async function timesPull(id, column, cell, row, body) {
+    async function timesPull(id, cell, row, body) {
         var meet = cell.id.split("_")
         var pull = id + "&" + meet[1] + "&" + meet[0];
         var raceFetch = await fetch('/api/timeFill/' + pull);
@@ -139,7 +139,7 @@
         var pull = id + "&" + meet[1] + "&" + (meet[0]-2019);
         // console.log(pull,meet)
         const individualRecord = await fetch("/api/pastIndividualRecords/"+ pull).then(state => state.json());
-        console.log(individualRecord[0].min)
+        //console.log(individualRecord[0].min)
         if(individualRecord[0].min != null){
             document.getElementById(cell.id).innerHTML = individualRecord[0].min;
         }
@@ -193,10 +193,12 @@
         var current_year = await fetch("/api/ano").then(year => year.json());
         var meet = await fetch('/api/meets').then(data => data.json());
         var previous = await fetch('/api/previousYear/'+tableData.swimmer_id).then(data => data.json());
+        console.log(previous)
         var count = await fetch('/api/countYears/'+tableData.swimmer_id).then(data => data.json());
         //console.log(current_year)
+        console.log(count)
         if(count[0].count > 0){
-            for(var t=Number(count[0].count)-1 ; t>0; t--){
+            for(var t=Number(count[0].count); t>0; t--){
                 var year = new Date().getFullYear()-(t);
                 row = document.createElement("tr");
                 cell = row.insertCell();
@@ -227,6 +229,11 @@
             }
         }
 
+        var test = await fetch("/api/meets").then(data => data.json());
+        test.forEach(element => {
+            meets[i] = element.location
+        });
+
         await fetch('/api/meets')
             .then(function (response) {
                 return response.json();
@@ -238,12 +245,10 @@
                 var a = 0;
                 for (var j = 0; j < meets.length; j++) {
                         row = document.createElement("tr");
-                        var column = document.createElement("td");
                         cell = row.insertCell();
                         cell.setAttribute("id", j);
                         cell.setAttribute("style", "width: 20%");
-                        text = document.createTextNode(column.innerHTML = meets[j]);
-                        cell.appendChild(text);
+                        cell.innerHTML = meets[j];
                         if (tableData["gender"] == "F") {
                             var to = 12
                             var from = 1
@@ -258,7 +263,7 @@
                             if (!relays.includes(k)) {
                                 cell = row.insertCell();
                                 cell.setAttribute("id", at + "_" + k)
-                                timesPull(tableData.swimmer_id, column, cell, row, body)
+                                timesPull(tableData.swimmer_id, cell, row, body)
                             }
                         }
                         body.appendChild(row);
