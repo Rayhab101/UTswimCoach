@@ -243,16 +243,26 @@
     </div>
     <script>
         var slideIndex = 0;
+        // var test = Folder("./Gallery/").getFiles();
+        //     console.log(test);
         carousel();
 
         function carousel() {
             var imgArray = [];
-            for (i = 0; i < 7; i++) {
+
+            for (i = 0; i < 14; i++) {
                 imgArray[i] = new Image();
                 imgArray[i] = './Gallery/Quote' + i + '.png';
             }
             var x = document.getElementById("mySlides");
-            if (slideIndex === imgArray.length) { slideIndex = 0 }
+            console.log(slideIndex)
+            if (slideIndex <= imgArray.length) { 
+                slideIndex = Math.round(Math.random() * 100) 
+                if(slideIndex > 13){
+                    slideIndex = Math.round(Math.random() * 10)
+                }
+            }
+            console.log(slideIndex)
             x.style.display = "block";
             x.src = imgArray[slideIndex].toString();
             slideIndex++;
@@ -340,7 +350,7 @@
                     img.setAttribute("src", "./images/BLHS.png");
                     img.setAttribute("alt", "Ben Lomond Logo");
                     body.appendChild(img);
-                    console.log(school1[0])
+                    //console.log(school1[0])
                     img2.setAttribute("src", "./images/" + school1[0].name+".png");
                     img2.setAttribute("alt", school1[0].name + " Logo");
                     body.appendChild(img2);

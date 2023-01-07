@@ -59,20 +59,12 @@
 
         }
 
-        function buildPage() {
-            fetch("/api/activeSwimmers")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    buildDropdown(myJson);
-                    relayDropdown();
-                    eventDropdown();
-                    nameDropdown(myJson);
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+        async function buildPage() {
+            var activeSwimmers = await fetch("/api/activeSwimmers").then(data=>data.json());
+            buildDropdown(activeSwimmers);
+            relayDropdown();
+            eventDropdown();
+            nameDropdown(activeSwimmers);
         }
 
         function buildDropdown(people) {
@@ -103,26 +95,19 @@
             }
         }
 
-        function meetDropdown() {
-            fetch("/api/meets")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (meets) {
-                    var ddlMeets = document.getElementById("ddlMeets");
-                    var head = document.createElement("OPTION");
-                    head.innerHTML = "Select Meet";
-                    ddlMeets.options.add(head);
-                    for (var i = 0; i < meets.length; i++) {
-                        var option = document.createElement("OPTION");
-                        option.setAttribute("id", meets[i].meet_id);
-                        option.innerHTML = meets[i].location;
-                        ddlMeets.options.add(option);
-                    }
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+        async function meetDropdown() {
+
+            var meet = await fetch("/api/meets").then(data=>data.json());
+            var ddlMeets = document.getElementById("ddlMeets");
+            var head = document.createElement("OPTION");
+            head.innerHTML = "Select Meet";
+            ddlMeets.options.add(head);
+            meet.forEach(meets => {
+                var option = document.createElement("OPTION");
+                option.setAttribute("id", meets.meet_id);
+                option.innerHTML = meets.location;
+                ddlMeets.options.add(option);
+            });
         }
 
         function relayDropdown() {
@@ -174,8 +159,8 @@
                 });
         }
 
-        function tableFill(id) {
-            fetch("/api/activeSwimmers")
+        async function tableFill(id) {
+            await fetch("/api/activeSwimmers")
                 .then(function (response) {
                     return response.json();
                 })
@@ -268,7 +253,7 @@
                 for (var j = 3; j < 11; j++) {
                     var time = document.getElementById("insert").children[j].children[0].value;
                     //console.log(time);
-                    if (time.includes(':')) {
+                    time = time.includes(':') ? time : "0:"+time;
                         var race = document.getElementById("insert").children[j].children[0].id;
                         race = race.split("_");
                         race = race[1];
@@ -286,7 +271,6 @@
                             alert("A needed component was not selected/added");
                             break;
                         }
-                    }
                     // else{
                     //     alert("Your time doesn't fit basic time format");
                     //     //break;
