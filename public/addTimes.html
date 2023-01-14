@@ -252,7 +252,7 @@
                 var year = new Date().getFullYear();
                 for (var j = 3; j < 11; j++) {
                     var time = document.getElementById("insert").children[j].children[0].value;
-                    //console.log(time);
+                    console.log(time);
                     //time = time.includes(':') ? time : "0:"+time;
                         var race = document.getElementById("insert").children[j].children[0].id;
                         race = race.split("_");
@@ -267,10 +267,10 @@
                                 .then(json => console.log(json))
                                 .catch(err => console.log(err));
                         }
-                        else {
-                            alert("A needed component was not selected/added");
-                            break;
-                        }
+                        // else {
+                        //     alert("A needed component was not selected/added");
+                        //     break;
+                        // }
                     // else{
                     //     alert("Your time doesn't fit basic time format");
                     //     //break;
