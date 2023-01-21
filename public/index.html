@@ -255,14 +255,14 @@
                 imgArray[i] = './Gallery/Quote' + i + '.png';
             }
             var x = document.getElementById("mySlides");
-            console.log(slideIndex)
+            //console.log(slideIndex)
             if (slideIndex <= imgArray.length) { 
                 slideIndex = Math.round(Math.random() * 100) 
                 if(slideIndex > 13){
                     slideIndex = Math.round(Math.random() * 10)
                 }
             }
-            console.log(slideIndex)
+            //console.log(slideIndex)
             x.style.display = "block";
             x.src = imgArray[slideIndex].toString();
             slideIndex++;
@@ -303,6 +303,7 @@
                     if (nextMeet - today > 0) {
                         //console.log(meets[j].school1)
                         if (meets[j].school1 != -1) {
+                            //console.log("HI")
                             var school1 = await fetch('/api/schools/' + meets[j].school1).then(function (responseRelay) {
                                 return responseRelay.json();
                             }).catch(function (error) {
@@ -310,6 +311,7 @@
                             });
                             var school2;
                             if (meets[j].school2 != null) {
+                                //console.log("THERE")
                                 school2 = await fetch('/api/schools/' + meets[j].school2).then(function (responseRelay) {
                                     return responseRelay.json();
                                 }).catch(function (error) {
@@ -320,12 +322,13 @@
                         }
                         else {
                         //console.log("Hello")
-                            var school1 = [{ school_id: '-1', name: meets[j].location, photo: './Utah_test.png' }];
-                            console.log(school1)
+                            var school1 = [{ school_id: '-1', name: meets[j].location, photo: './swimCoach.png' }];
+                            //console.log(school1)
                             break;
                         }
                     }
                 }
+                
                 if(!school1){
                     
                     img.setAttribute("src", "./images/BLHS.png");
@@ -347,10 +350,15 @@
                     // break;
                 }
                 else {
+                    
                     img.setAttribute("src", "./images/BLHS.png");
                     img.setAttribute("alt", "Ben Lomond Logo");
                     body.appendChild(img);
-                    //console.log(school1[0])
+                    console.log(school1[0].name)
+                    if(school1[0].name ===  "Region 13 Meet"){
+                        school1[0].name = "swimCoach"
+                    }
+                    console.log(school1[0].name)
                     img2.setAttribute("src", "./images/" + school1[0].name+".png");
                     img2.setAttribute("alt", school1[0].name + " Logo");
                     body.appendChild(img2);
@@ -360,6 +368,7 @@
                     // img3.setAttribute("style","transform: scaleX(-1)")
                     body.appendChild(img3);
                     if (school2 != undefined) {
+                        //console.log("hello")
                         img4.setAttribute("src", "./images/" + school2[0].name+".png");
                         img4.setAttribute("alt", school2[0].name);
                         body.appendChild(img4);
