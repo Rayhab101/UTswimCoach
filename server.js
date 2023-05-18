@@ -156,7 +156,7 @@ app.post('/api/updateStateRecords/:id', userctrl.updateStateRecords)
 app.post('/api/updateSchoolRecord/:id', userctrl.updateSchoolRecord)
 app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
-
+app.get('/api/testpull/:id',userctrl.testPull)
 
 app.set('port', process.env.PORT || 8080)
 massive({

@@ -721,7 +721,7 @@ module.exports = {
     removeMeet:(req,res) => {
         var {id}=req.params;
         const db = req.app.get("db");
-        console.log(id);
+        //console.log(id);
         db.remove_meet(id).then(times => {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
@@ -732,5 +732,16 @@ module.exports = {
         db.remove_coach(id).then(times => {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
+    },
+    //Test Section
+    testPull:(req,res) =>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+        //console.log(id)
+        var items = id.split("_");
+        db.test(items[0],String(items[1])).then(times => {
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
     }
+
 }

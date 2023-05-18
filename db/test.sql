@@ -1,0 +1,1 @@
+SELECT swimmer,MIN(Distinct time),race,swim_year FROM records WHERE swimmer=$1 and swim_year=$2 GROUP By swimmer,race,swim_year;
