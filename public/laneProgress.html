@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Home</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <style>
+        @media only screen and (min-width: 700px) {
+            .container2 {
+                width: 100vw;
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+            td{
+                text-align: center;
+            }
+        }
+
+        @media only screen and (max-width: 700px) {
+
+            .container2 {
+                height: 85vh;
+                width: 100vw;
+
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+            td{
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<header id="header"></header>
+
+<body onload="against()"><center>
+    <div class="container2">
+            <table id="schedule">
+                <tr>
+                    <th colspan="17"><u>2023-2024 Lane Time Requirements</u></th>
+                </tr>
+                <tr><strong>
+                        <td>Lane #</td>
+                        <td colspan="2">200 Freestyle</td>
+                        <td colspan="2">200 Individual Medley</td>
+                        <td colspan="2">50 Freestyle</td>
+                        <td colspan="2">100 Butterfly</td>
+                        <td colspan="2">100 Freestyle</td>
+                        <td colspan="2">500 Freestyle</td>
+                        <td colspan="2">100 Backstroke</td>
+                        <td colspan="2">100 Breaststroke</td>
+                    </strong></tr>
+                    <tr><strong>
+                        <td></td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>1</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>2</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>0:50.00</td>
+                        <td>0:45.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>1:50.00</td>
+                        <td>1:40.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>2:00.00</td>
+                        <td>2:00.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>3</td>
+                        <td>3:30.00</td>
+                        <td>3:30.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>0:45.00</td>
+                        <td>0:40.00</td>
+                        <td>2:00.00</td>
+                        <td>2:00.00</td>
+                        <td>1:40.00</td>
+                        <td>1:30.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>1:40.00</td>
+                        <td>1:30.00</td>
+                        <td>2:10.00</td>
+                        <td>2:00.00</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>4</td>
+                        <td>3:00.00</td>
+                        <td>3:00.00</td>
+                        <td>4:00.00</td>
+                        <td>3:45.00</td>
+                        <td>0:42.00</td>
+                        <td>0:36.00</td>
+                        <td>1:50.00</td>
+                        <td>1:45.00</td>
+                        <td>1:35.00</td>
+                        <td>1:25.00</td>
+                        <td>8:00.00</td>
+                        <td>7:20.00</td>
+                        <td>1:35.00</td>
+                        <td>1:25.00</td>
+                        <td>1:50.00</td>
+                        <td>1:45.00</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>5</td>
+                        <td>2:50.00</td>
+                        <td>2:45.00</td>
+                        <td>3:30.00</td>
+                        <td>3:00.00</td>
+                        <td>0:38.00</td>
+                        <td>0:31.00</td>
+                        <td>1:40.00</td>
+                        <td>1:30.00</td>
+                        <td>1:25.00</td>
+                        <td>1:15.00</td>
+                        <td>7:45.00</td>
+                        <td>7:00.00</td>
+                        <td>1:30.00</td>
+                        <td>1:20.00</td>
+                        <td>1:45.00</td>
+                        <td>1:40.00</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>6</td>
+                        <td>2:40.00</td>
+                        <td>2:25.00</td>
+                        <td>2:55.00</td>
+                        <td>2:45.00</td>
+                        <td>0:32.00</td>
+                        <td>0:28.00</td>
+                        <td>1:25.00</td>
+                        <td>1:15.00</td>
+                        <td>1:15.00</td>
+                        <td>1:05.00</td>
+                        <td>7:30.00</td>
+                        <td>6:45.00</td>
+                        <td>1:25.00</td>
+                        <td>1:15.00</td>
+                        <td>1:40.00</td>
+                        <td>1:35.00</td>
+                    </strong></tr>
+
+            </table>
+            <table>
+                <tr>
+                    <td colspan="8">Current Lane Assignments</td>
+                </tr>
+                <tr>
+                    <td>Lane #</td>
+                    <td colspan="7">Names</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Jalinda Okara</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Michelle Ponce</td>
+                    <td>Brooklyn Redden</td>
+                    <td>Sophia Brown</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Emily Owens</td>
+                    <td>Dalene Hayden</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Celeste Carrillo</td>
+                    <td>Michael Martinez</td>
+                    <td>Hayden McBride</td>
+                    <td>Kaden Miller</td>
+                    <td>Mikki Hoffman</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Jonah Sager</td>
+                    <td>Griffin Lindquist</td>
+                    <td>Zander Owens</td>
+                    <td>Macie Lane</td>
+                    <td>Addisen Willardsen</td>
+                    <td>Anij Davis</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Gabe Jones</td>
+                    <td>Daniil Kulyncych</td>
+                    <td>Cole Flink</td>
+                    <td>Shay Draper</td>
+                    <td>Lola Beneke</td>
+                    <td>Savannah Smith</td>
+                    <td>Mady Yates</td>
+                    
+                </tr>
+            </table>
+        </div>
+    </center></body>
+<footer id="footer"></footer>
+
+</html>
+<!-- 443 -->

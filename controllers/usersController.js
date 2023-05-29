@@ -738,8 +738,7 @@ module.exports = {
         var {id}=req.params;
         const db = req.app.get("db");
         //console.log(id)
-        var items = id.split("_");
-        db.test(items[0],String(items[1])).then(times => {
+        db.test(id).then(times => {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     }

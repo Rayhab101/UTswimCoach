@@ -47,7 +47,7 @@ const date = new Date(2023, 7, 10, 0, 9, 0);
 var j = schedule.scheduleJob(date, function () {
     updateGrade();
 });
-
+//console.log(j.schedule)
 // app.set('view-engine','ejs')
 
 app.use(cors())
