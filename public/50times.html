@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Updates</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <style>
+        .swim_info {
+            height: 85vh;
+            padding-top: 35px;
+            overflow: scroll;
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 100vw;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        td {
+            width: 7.7%;
+        }
+
+        input {
+            width: 60px;
+        }
+
+        .label {
+            color: white;
+            background-color: rgba(0, 0, 0, .6);
+            text-align: center;
+        }
+
+        body {
+            height: 85vh;
+            width: 100vw;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+        async function buildPage() {
+            var activeSwimmers = await fetch("/api/activeSwimmers").then(data => data.json());
+            buildDropdown(activeSwimmers);
+            setSwimmerTable();
+        }
+
+        async function setSwimmerTable() {
+            var swimmerData = await fetch("/api/get50times").then(data => data.json());
+            var body = document.getElementById("swimmers")
+            swimmerData.forEach(element => {
+                //console.log(element);
+                var row = document.createElement("tr");
+                row.setAttribute("id",element.user_id);
+                var cell = row.insertCell();
+                cell.innerHTML = element.swimmer_name;
+                var cell1 = row.insertCell();
+                cell1.innerHTML = element.free;
+                var cell2 = row.insertCell();
+                cell2.innerHTML = element.back;
+                var cell3 = row.insertCell();
+                cell3.innerHTML = element.fly;
+                var cell4 = row.insertCell();
+                cell4.innerHTML = element.breast;
+                var cell5 = row.insertCell();
+                text = document.createElement("button");
+                text.textContent = "Save";
+                text.setAttribute("style", "background-color: lime");
+                text.setAttribute("onclick", "save($(this).closest('tr').attr('id'));");
+                cell5.appendChild(text);
+                body.appendChild(row);
+
+                var table = document.getElementById("swimmers");
+                    table.addEventListener('click', function (e) {
+
+                        var target = e.target;
+                        //test if clicked element is TD.
+                        if (target && target.tagName && target.tagName.toLowerCase() == "td") {
+                            //make cell editable
+                            target.setAttribute('contenteditable', 'true');
+                            //on blur close the editable field and return to normal cell.
+                            target.onblur = function () { this.removeAttribute('contenteditable'); }
+                        }
+
+                    });
+            });
+        }
+
+        function buildDropdown(people) {
+            var ddlSwimmers = document.getElementById("ddlSwimmers");
+            var head = document.createElement("OPTION");
+            head.innerHTML = "Select Swimmer";
+            ddlSwimmers.options.add(head);
+            for (var i = 0; i < people.length; i++) {
+                var option = document.createElement("OPTION");
+                option.setAttribute("id", people[i].swimmer_id);
+                option.innerHTML = people[i].name;
+                ddlSwimmers.options.add(option);
+            }
+        }
+
+        async function tableFill(id) {
+            await fetch("/api/activeSwimmers")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    for (var i = 0; i < myJson.length; i++) {
+                        if (myJson[i].swimmer_id == parseInt(id)) {
+                            var body = document.getElementById("individualTable");
+                            var row = document.createElement("tr");
+                            row.setAttribute("id", 'insert')
+                            var column = document.createElement("td");
+                            var cell = row.insertCell();
+                            text = document.createTextNode(column.innerHTML = myJson[i].name);
+                            cell.appendChild(text);
+                            var column = document.createElement("td");
+                            var cell = row.insertCell();
+                            text = document.createTextNode(column.innerHTML = myJson[i].status_grade);
+                            cell.appendChild(text);
+
+                            for (var j = 0; j < 4; j++) {
+                                //if (!r.includes(j)) {
+                                var column = document.createElement("td");
+                                var cell = row.insertCell();
+                                var input = document.createElement("input");
+                                input.setAttribute("id", myJson[i].swimmer_id + "_" + j);
+                                cell.appendChild(input);
+                            }
+
+                            body.appendChild(row);
+                        }
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+        function nameFill() {
+            var row = document.getElementById("insert");
+            // console.log(row)
+            if (row != null) {
+                document.getElementById("individualTable").deleteRow(1);
+            }
+            var checkOption = document.getElementById("ddlSwimmers");
+            var name = checkOption.value;
+            var number = document.getElementById("ddlSwimmers").options[checkOption.selectedIndex].id;
+            if (name != "Select Swimmer") {
+                tableFill(number);
+            }
+            else {
+                window.location.reload();
+            }
+        }
+
+        async function submitTimes(id) {
+            var password = prompt("Please Enter your Password", "")
+            var check = await fetch('/api/coaches/').then(data => data.json())
+            var flag = false;
+            console.log(id)
+            var name = await fetch('/api/swim/' + id).then(data => data.json())
+            console.log(name[0].name)
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].password == password) {
+                    flag = true;
+                }
+            }
+            if (flag) {
+                var submit = new Array();
+                for (var j = 2; j < 6; j++) {
+                    var time = document.getElementById("insert").children[j].children[0].value;
+                    time = time.includes(':') ? time : "0:" + time;
+                    time = time.includes('.') ? time : time + ".00";
+                    if (time == "") {
+                        time == "0:00.00";
+                    }
+                    //console.log(race);
+                    submit.push(time);
+
+                }
+                var submitRaces = name[0].name + "_" + submit.join("_");
+                //console.log(submitRaces);
+
+                if (name != "") {
+                    fetch("/api/set50times/" + submitRaces, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                }
+                window.location.reload();
+            }
+            else {
+                var proceed = confirm("You dont have permission to add times into database");
+                window.location.reload();
+            }
+        }
+        async function save(number){
+            var password = prompt("Please Enter your Password", "")
+            var check = await fetch('/api/coaches/').then(data => data.json())
+            var flag = false;
+
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].password == password) {
+                    flag = true;
+                }
+            }
+            if (flag) {
+            var row = document.getElementById(number);
+            var submit = number +"_"+row.childNodes[1].innerHTML +"_"+row.childNodes[2].innerHTML +"_"+row.childNodes[3].innerHTML +"_"+row.childNodes[4].innerHTML;
+            //console.log(submit);
+            await fetch("/api/update50times/" + submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                        // body: JSON.stringify(submitRaces)
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+            }
+            window.location.reload();
+        }
+        
+    </script>
+
+</head>
+<header id="header"></header>
+
+<body onload="buildPage()">
+    <div class="swim_info">
+        <h4 class="label">50 Times</h4>
+        <table id="individualTable">
+            <tr>
+                <td><select id="ddlSwimmers" class="ddlSwimmers" onchange="nameFill()"></select></td>
+                <td>Grade</td>
+                <td>50 Freestyle</td>
+                <td>50 Backstoke</td>
+                <td>50 Butterfly</td>
+                <td>50 Breaststroke</td>
+                <td rowspan="2"><button
+                        onclick="submitTimes(document.getElementById('ddlSwimmers').options[document.getElementById('ddlSwimmers').selectedIndex].id)">Submit
+                        Changes</button></td>
+            </tr>
+        </table>
+        <br><br><br><br><br><br>
+        <table id="swimmers">
+            <tr><td colspan="6">Swimmers with 50 Times</td></tr>
+            <tr><td>Swimmer</td>
+            <td>Free</td>
+            <td>Back</td>
+            <td>Fly</td>
+            <td>Breast</td>
+            <td>Edit/Save</td></tr>
+        </table>
+    </div>
+
+</body>
+<footer id="footer"></footer>
+
+</html>

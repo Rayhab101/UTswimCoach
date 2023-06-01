@@ -1,0 +1,1 @@
+SELECT * FROM times50 ORDER BY swimmer_name ASC;

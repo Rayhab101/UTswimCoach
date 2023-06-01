@@ -741,6 +741,45 @@ module.exports = {
         db.test(id).then(times => {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
+    },
+    get50times:(req,res) =>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+        //console.log("hit")
+        db.get_50times().then(times => {
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    set50times:(req,res) =>{
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        var swimmer = idSplit[0];
+        var free = idSplit[1];
+        var back = idSplit[2];
+        var fly = idSplit[3];
+        var breast = idSplit[4];
+        // console.log(meet);
+        const db = req.app.get("db");
+        // console.log(swimmer,race,time,school,meet,year,swim_year);
+        db.set_50times(swimmer,free,back,fly,breast).then(times => {
+            // console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    update50Times:(req,res) =>{
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        var swimmer = Number(idSplit[0]);
+        var free = idSplit[1];
+        var back = idSplit[2];
+        var fly = idSplit[3];
+        var breast = idSplit[4];
+        //console.log(typeof swimmer,typeof free,typeof back,typeof fly, typeof breast);
+        const db = req.app.get("db");
+        // console.log(swimmer,race,time,school,meet,year,swim_year);
+        db.update_50times(free,back,fly,breast,swimmer).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
     }
-
 }
