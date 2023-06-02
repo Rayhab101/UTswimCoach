@@ -1,1 +1,1 @@
-SELECT * FROM relay_times WHERE year ='3' AND time<>'' ORDER BY meet,race,time;
+SELECT * FROM relay_times WHERE year ='4' AND time<>'' ORDER BY meet,race,time;

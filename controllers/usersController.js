@@ -781,5 +781,12 @@ module.exports = {
             //console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
+    },
+    getBests:(req,res) =>{
+        const db = req.app.get("db");
+        db.get_bests().then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
     }
 }

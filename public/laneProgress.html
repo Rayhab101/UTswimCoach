@@ -15,6 +15,193 @@
             $("#footer").load("footing.html");
         });
     </script>
+    <script>
+        async function against() {
+            var data = await fetch('/api/getBests').then(data => data.json());
+            var swimmers = await fetch('/api/getAllSwimmers').then(data => data.json());
+            //console.log(swimmers)
+            var elements = []
+            //var races = [];
+            var six = [];
+            var five = [];
+            var four = [];
+            var three = [];
+            var two = [];
+            var one = [];
+            swimmers.forEach(element => {
+                var number = element.swimmer_id
+
+                data.forEach(data => {
+                    var that = 0;
+                    var other = 0;
+                    if (data.race == 4 && data.swimmer == number && element.gender == "F") {
+
+                        var alpha = ["a", "b", "c", "d", "e", "f"]
+
+                        alpha.forEach(element1 => {
+                            if (document.getElementById(element1).children[5].innerHTML == "-") {
+                                that += 1;
+                            }
+                            else {
+                                var [minutesA, secondsA] = data.min.split(":");
+                                var [minutesB, secondsB] = document.getElementById(element1).children[5].innerHTML.split(":");
+
+                                if (secondsA < secondsB) {
+                                    that += 1;
+                                } else {
+                                    other += 1;
+                                }
+                            }
+                        });
+                        switch (that) {
+                            case 1:
+                                //console.log("Hit")
+                                one.push(element.name)
+                                break;
+                            case 2:
+                                two.push(element.name)
+
+                                break;
+                            case 3:
+                                three.push(element.name)
+
+                                break;
+                            case 4:
+                                four.push(element.name)
+
+                                break;
+                            case 5:
+                                five.push(element.name)
+
+                                break;
+                            case 6:
+                                six.push(element.name)
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                            // console.log(three)
+                        else if(data.race == 15 && data.swimmer == number && element.gender == "M"){
+                            var alpha = ["a", "b", "c", "d", "e", "f"]
+
+                            alpha.forEach(element1 => {
+                                if (document.getElementById(element1).children[6].innerHTML == "-") {
+                                    that += 1;
+                                }
+                                else {
+                                    var [minutesA, secondsA] = data.min.split(":");
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[6].innerHTML.split(":");
+
+                                    if (secondsA < secondsB) {
+                                        that += 1;
+                                    } else {
+                                        other += 1;
+                                    }
+                                }
+                            });
+                            switch (that) {
+                                case 1:
+                                    //console.log("Hit")
+                                    one.push(element.name)
+                                    break;
+                                case 2:
+                                    two.push(element.name)
+
+                                    break;
+                                case 3:
+                                    three.push(element.name)
+
+                                    break;
+                                case 4:
+                                    four.push(element.name)
+
+                                    break;
+                                case 5:
+                                    five.push(element.name)
+
+                                    break;
+                                case 6:
+                                    six.push(element.name)
+
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                });
+                //console.log(races)
+            });
+            var row = document.getElementById("1");
+            one.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("2");
+            two.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("3");
+            three.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("4");
+            four.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("5");
+            five.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("6");
+            six.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            //console.log(three)
+        }
+    </script>
     <style>
         @media only screen and (min-width: 700px) {
             .container2 {
@@ -30,7 +217,8 @@
                 height: 85vh;
                 width: 100vw;
             }
-            td{
+
+            td {
                 text-align: center;
             }
         }
@@ -52,7 +240,8 @@
                 height: 85vh;
                 width: 100vw;
             }
-            td{
+
+            td {
                 text-align: center;
             }
         }
@@ -60,8 +249,9 @@
 </head>
 <header id="header"></header>
 
-<body onload="against()"><center>
-    <div class="container2">
+<body onload="against()">
+    <center>
+        <div class="container2">
             <table id="schedule">
                 <tr>
                     <th colspan="17"><u>2023-2024 Lane Time Requirements</u></th>
@@ -77,7 +267,7 @@
                         <td colspan="2">100 Backstroke</td>
                         <td colspan="2">100 Breaststroke</td>
                     </strong></tr>
-                    <tr><strong>
+                <tr><strong>
                         <td></td>
                         <td>F</td>
                         <td>M</td>
@@ -96,7 +286,7 @@
                         <td>F</td>
                         <td>M</td>
                     </strong></tr>
-                <tr><strong>
+                <tr id="a"><strong>
                         <td>1</td>
                         <td>-</td>
                         <td>-</td>
@@ -115,7 +305,7 @@
                         <td>-</td>
                         <td>-</td>
                     </strong></tr>
-                <tr><strong>
+                <tr id="b"><strong>
                         <td>2</td>
                         <td>-</td>
                         <td>-</td>
@@ -134,7 +324,7 @@
                         <td>-</td>
                         <td>-</td>
                     </strong></tr>
-                <tr><strong>
+                <tr id="c"><strong>
                         <td>3</td>
                         <td>3:30.00</td>
                         <td>3:30.00</td>
@@ -153,7 +343,7 @@
                         <td>2:10.00</td>
                         <td>2:00.00</td>
                     </strong></tr>
-                <tr><strong>
+                <tr id="d"><strong>
                         <td>4</td>
                         <td>3:00.00</td>
                         <td>3:00.00</td>
@@ -172,7 +362,7 @@
                         <td>1:50.00</td>
                         <td>1:45.00</td>
                     </strong></tr>
-                <tr><strong>
+                <tr id="e"><strong>
                         <td>5</td>
                         <td>2:50.00</td>
                         <td>2:45.00</td>
@@ -191,7 +381,7 @@
                         <td>1:45.00</td>
                         <td>1:40.00</td>
                     </strong></tr>
-                <tr><strong>
+                <tr id="f"><strong>
                         <td>6</td>
                         <td>2:40.00</td>
                         <td>2:25.00</td>
@@ -214,71 +404,35 @@
             </table>
             <table>
                 <tr>
-                    <td colspan="8">Current Lane Assignments</td>
+                    <td colspan="14">Current Lane Assignments</td>
                 </tr>
                 <tr>
                     <td>Lane #</td>
-                    <td colspan="7">Names</td>
+                    <td colspan="13">Names</td>
                 </tr>
-                <tr>
+                <tr id="1">
                     <td>1</td>
-                    <td>Jalinda Okara</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
-                <tr>
+                <tr id="2">
                     <td>2</td>
-                    <td>Michelle Ponce</td>
-                    <td>Brooklyn Redden</td>
-                    <td>Sophia Brown</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
-                <tr>
+                <tr id="3">
                     <td>3</td>
-                    <td>Emily Owens</td>
-                    <td>Dalene Hayden</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
-                <tr>
+                <tr id="4">
                     <td>4</td>
-                    <td>Celeste Carrillo</td>
-                    <td>Michael Martinez</td>
-                    <td>Hayden McBride</td>
-                    <td>Kaden Miller</td>
-                    <td>Mikki Hoffman</td>
-                    <td></td>
                 </tr>
-                <tr>
+                <tr id="5">
                     <td>5</td>
-                    <td>Jonah Sager</td>
-                    <td>Griffin Lindquist</td>
-                    <td>Zander Owens</td>
-                    <td>Macie Lane</td>
-                    <td>Addisen Willardsen</td>
-                    <td>Anij Davis</td>
                 </tr>
-                <tr>
+                <tr id="6">
                     <td>6</td>
-                    <td>Gabe Jones</td>
-                    <td>Daniil Kulyncych</td>
-                    <td>Cole Flink</td>
-                    <td>Shay Draper</td>
-                    <td>Lola Beneke</td>
-                    <td>Savannah Smith</td>
-                    <td>Mady Yates</td>
-                    
                 </tr>
             </table>
         </div>
-    </center></body>
+    </center>
+</body>
+
 <footer id="footer"></footer>
 
 </html>

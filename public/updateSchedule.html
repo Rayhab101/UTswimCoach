@@ -171,6 +171,8 @@
             var password = prompt("Please Enter your Password", "")
             var check = await fetch('/api/coaches/').then(data => data.json())
             var flag = false;
+            var ano = await fetch('/api/ano/').then(data => data.json())
+
             for (var i = 0; i < check.length; i++) {
                 if (check[i].password == password) {
                     var coach = check[i].coach_id;
@@ -204,7 +206,7 @@
                         }
                     }
                 }
-                var submit = location + "_" + date + "_" + time + "_" + 3 + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id;
+                var submit = location + "_" + date + "_" + time + "_" + ano[0].current_year + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id;
                 console.log(submit)
                 fetch("/api/updateMeet/" + submit, {
                     headers: { 'Content-Type': 'application/json' },
