@@ -32,6 +32,8 @@
 <header id="header"></header>
 <script>
   async function getCountofRaces(swimmer) {
+    console.log(swimmer)
+
     var totalJson = await fetch("/api/getTotal/"+swimmer);
     var total = await totalJson.json();
     return total;
@@ -46,11 +48,17 @@
   window.onload = async function () {
     var pullSwimmers = location.search.substring(1);
     pullSwimmers = Number(pullSwimmers.split("=")[1]);
+    //pullSwimmers = Number(pullSwimmers.split("?")[1])
+    //console.log(pullSwimmers)
+    //var pullSwimmers =  55;
     var jsonData = await fetch("/api/swim/" + pullSwimmers);
     var swimmer = await jsonData.json();
+    console.log(swimmer)
+
     var newData = [];
     var j = 0;
     var relays = [1, 8, 11, 12, 19, 22]
+
     if (swimmer[0].gender == 'F') {
       
       var total = await getCountofRaces(swimmer[0].swimmer_id);
@@ -70,8 +78,8 @@
         }
       }
     }
-    // console.log(total[0])
-    // console.log(newData);
+    console.log(total[0])
+    console.log(newData);
     //---------------------------------
 
     new Chart('myChart', {

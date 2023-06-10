@@ -17,7 +17,7 @@
     school = location.href;
     school = school.split("_");
     //console.log(county)
-    if (county == '') {
+    if (county[0] == '' || county == 'swimChart') {
         document.getElementById("headingPhoto").src = '/images/BLHS.png'
         document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
     }
@@ -29,7 +29,7 @@
                     return response.json();
                 })
                 .then(function (schools) {
-                    //console.log(schools[0].name)
+                    console.log(schools[0].school_code)
                     document.getElementById("headingPhoto").src = "/images/" + schools[0].school_code + ".png";
                     document.getElementById("headerName").innerHTML = schools[0].name + " Swim Team";
                 })
