@@ -1,0 +1,2 @@
+INSERT INTO goals(swimmer_name,swimmer_id,swimming_experience,focus_strokes,free50,free100,free200,free500,back,fly,breast,im,end_goal_swim,school_goal,life_goal) 
+VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15);

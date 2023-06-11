@@ -788,5 +788,25 @@ module.exports = {
             //console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
-    }
+    },
+
+    getGoals:(req,res) =>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+        db.get_goals(id).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    setGoals:(req,res) =>{
+        var {id}=req.params;
+        var idSplit = id.split("+");
+
+        console.log(idSplit);
+        const db = req.app.get("db");
+        // console.log(swimmer,race,time,school,meet,year,swim_year);
+        db.set_goals().then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
 }

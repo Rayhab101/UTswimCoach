@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BL/SJ Swim Team- Goals</title>
+    <!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+
+</head>
+
+<style>
+    #outside {
+        width: 50%;
+        margin: 0 auto;
+        background-color: white;
+    }
+</style>
+
+<body onload="buildPage()">
+    <!-- head - Googlefonts link -->
+    <div id="outside">
+        <h1 id="title">Swimming Goals</h1>
+
+        <!-- ------------------Personal Details---------------------------- -->
+        <fieldset>
+            <!-- formally describes the purpose of the fieldset it is included inside. -->
+            <div>
+                <label id="name-label" for="name">Name:</label>
+                <select id="compare" onchange="nameFill()"></select>
+            </div>
+            <div>
+                <label for="date-label">Date of Goal Setting:</label>
+                <input type="date" name="bday" id="bday">
+            </div>
+        </fieldset>
+        <fieldset>
+            <!-- groups of widgets that share the same purpose, for styling and semantic purposes -->
+            <legend>Swim Details</legend>
+            <!-- ------------------Radio Buttons-------------------------------- -->
+            <fieldset>
+                <div>
+                    <label for="Experience">Swim Experience</label>
+                    &emsp;&emsp;<p>
+                        <select id="experience">
+                            <option id="1">None</option>
+                            <option id="2">Some Swim Experience</option>
+                        </select>
+                    </p>
+                </div>
+
+                <label for="Gender">Focused Strokes (Select upto 3)</label>
+                <p>
+                    &emsp;&emsp;<input type="checkbox" name="race" value="back"> Backstroke<br>
+                    &emsp;&emsp;<input type="checkbox" name="race" value="breast"> Breaststroke<br>
+                    &emsp;&emsp;<input type="checkbox" name="race" value="fly"> Butterfly<br>
+                    &emsp;&emsp;<input type="checkbox" name="race" value="im"> Individual Medley<br>
+                    &emsp;&emsp;<input type="checkbox" name="race" value="distance"> Long Distance Freestyle<br>
+                    &emsp;&emsp;<input type="checkbox" name="race" value="mid"> Mid Distance Freestyle<br>
+                </p>
+
+            </fieldset>
+            <fieldset>
+                <legend>Goal Times</legend>
+                <div>
+                    <label for="Experience">50 Freestyle</label>
+                    <input type="text" id="free50" required>
+                </div>
+                <div>
+                    <label for="Experience">100 Freestyle</label>
+                    <input type="text" id="free100" required>
+                </div>
+                <div>
+                    <label for="Experience">200 Freestyle</label>
+                    <input type="text" id="free200" required>
+                </div>
+                <div>
+                    <label for="Experience">500 Freestyle</label>
+                    <input type="text" id="free500" required>
+                </div>
+                <div>
+                    <label for="Experience">100 Backstroke</label>
+                    <input type="text" id="back" required>
+                </div>
+                <div>
+                    <label for="Experience">100 Breaststroke</label>
+                    <input type="text" id="breast" required>
+                </div>
+                <div>
+                    <label for="Experience">100 Butterfly</label>
+                    <input type="text" id="fly" required>
+                </div>
+                <div>
+                    <label for="Experience">200 Individual Medley</label>
+                    <input type="text" id="im" required>
+                </div>
+            </fieldset>
+        </fieldset>
+
+        <!-- --------------------Text Areas------------------------------ -->
+
+        <fieldset>
+            <legend>Main Goals</legend>
+            <div>
+                <label for="msg"></label>
+                <p> What do you ulitimatly want to achieve during this swim season?</p>
+                <textarea id="msg" name="user_message" rows="4" cols="50" placeholder="Enter Text Here"></textarea>
+                 
+            </div>
+            <div>
+                <label for="msg">What do you ulitimatly want to achieve during this school year?</label><br>
+                <textarea id="msg2" name="user_message" rows="4" cols="50" placeholder="Enter Text Here"></textarea>
+                 
+            </div>
+            <div>
+                <label for="msg">What do you ulitimatly want to do/achieve after graduation?</label><br>
+                <textarea id="msg3" name="user_message" rows="4" cols="50" placeholder="Enter Text Here"></textarea>
+                 
+            </div>
+        </fieldset>
+
+        <div id="submitbutton">
+            <button onclick="submitGoals()">Submit Goals</button>   </div>
+
+    </div>
+</body>
+<script>
+    var swimmer_name;
+    var swimmer_id;
+    var experience;
+    var focus_strokes;
+    var free50;
+    var free100;
+    var free200;
+    var free500;
+    var back;
+    var breast;
+    var fly;
+    var im;
+    var swim_goal;
+    var school_goal;
+    var life_goal;
+    var date;
+
+    async function buildPage() {
+        var ddl = await fetch("/api/activeSwimmers").then(data => data.json())
+        var ddlSwimmers = document.getElementById("compare");
+        var head = document.createElement("OPTION");
+        head.innerHTML = "Select Swimmer";
+        ddlSwimmers.options.add(head);
+        var count = 0;
+        ddl.forEach(element => {
+            var option = document.createElement("OPTION");
+            option.setAttribute("id", element.swimmer_id);
+            option.innerHTML = element.name;
+            ddlSwimmers.options.add(option);
+            count++;
+        });
+    }
+
+    async function nameFill() {
+        //document.getElementsById("btn").disabled = false;
+        var checkOption = document.getElementById("compare");
+        var name = checkOption.value;
+        var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
+        if (name != "Select Swimmer") {
+            //console.log(name, number)
+            swimmer_name = name;
+            swimmer_id = number;
+            var goal = await fetch("/api/goals/" + number).then(data => data.json());
+            if (goal.length > 0) {
+                console.log("HI")
+            }
+        }
+    }
+    async function submitGoals() {
+        if (swimmer_name != null) {
+            date = document.getElementById("bday").value
+            experience = document.getElementById("experience").id;
+            var strokes = document.getElementsByName("race");
+            free50 = document.getElementById("free50").value;
+            free100 = document.getElementById("free100").value;
+            free200 = document.getElementById("free200").value;
+            free500 = document.getElementById("free500").value;
+            back = document.getElementById("back").value;
+            breast = document.getElementById("breast").value;
+            fly = document.getElementById("fly").value;
+            im = document.getElementById("im").value;
+            swim_goal = document.getElementById("msg").value;
+            school_goal = document.getElementById("msg2").value;
+            life_goal = document.getElementById("msg3").value;
+
+            var races = [];
+            var count = 0
+            strokes.forEach(element => {
+                if (element.checked && count <= 2) {
+                    races.push(element.value)
+                    count++;
+                }
+            });
+            focus_strokes = races.join('&');
+            switch (experience) {
+                case 1:
+                    experience = false;
+                    break;
+                default:
+                    experience = true;
+                    break;
+            }
+            swimmer_name = swimmer_name.replace(" ","_");
+            swim_goal = swim_goal.replace(" ","_");
+            school_goal = school_goal.replace(" ","_");
+            life_goal = life_goal.replace(" ","_");
+            console.log(swimmer_name+"+"+swimmer_id+"+"+experience+"+"+focus_strokes+"+"+free50+"+"+free100+"+"+free200+"+"+free500+"+"+back+"+"+breast+"+"+fly+"+"+im+"+"+swim_goal+"+"+school_goal+"+"+life_goal+"+"+date)
+
+            fetch("/api/setGoals/" + submit, {
+                            headers: { 'Content-Type': 'application/json' },
+                            method: "POST",
+                        }).then(response => response.json())
+                            .then(json => console.log(json))
+                            .catch(err => console.log(err));
+        }
+    }
+</script>
+</html>
+<!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation -->

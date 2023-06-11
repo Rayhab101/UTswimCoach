@@ -164,6 +164,10 @@ app.post('/api/update50Times/:id',userctrl.update50Times)
 
 app.get('/api/getBests',userctrl.getBests)
 
+app.get('/api/goals/:id',userctrl.getGoals)
+app.post('/api/setGoals/:id',userctrl.setGoals)
+
+
 app.set('port', process.env.PORT || 8080)
 massive({
     connectionString: DATABASE_URL,

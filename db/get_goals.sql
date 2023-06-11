@@ -1,0 +1,1 @@
+SELECT * FROM goals WHERE swimmer_id=$1;
