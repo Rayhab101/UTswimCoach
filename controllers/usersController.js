@@ -820,7 +820,34 @@ module.exports = {
         var goal_life = idSplit[14].replaceAll("+"," ");
         var date = idSplit[15];
         const db = req.app.get("db");
-        db.set_goals(swimmer_name,swimmer_id,swimmer_experience,focused,free50,free100,free200,free500,back,breast,fly,im,goal_swim,goal_school,goal_life,date).then(times => {
+        db.set_goals(swimmer_name,swimmer_id,swimmer_experience,focused,free50,free100,free200,free500,back,fly,breast,im,goal_swim,goal_school,goal_life,date).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => {(res.sendStatus(500));console.log(err)})
+    },
+    updateGoals:(req,res) =>{
+        var {id}=req.params;
+        var idSplit = id.split("_");
+        //console.log(idSplit)
+
+        var swimmer_name = idSplit[0].replaceAll("+"," ");
+        var swimmer_id = Number(idSplit[1]);
+        var swimmer_experience = Boolean(idSplit[2]);
+        var focused = idSplit[3].replaceAll("+"," ");
+        var free50 = idSplit[4];
+        var free100 = idSplit[5];
+        var free200 = idSplit[6];
+        var free500 = idSplit[7];
+        var back = idSplit[8];
+        var fly = idSplit[9];
+        var breast = idSplit[10];
+        var im = idSplit[11];
+        var goal_swim = idSplit[12].replaceAll("+"," ");
+        var goal_school = idSplit[13].replaceAll("+"," ");
+        var goal_life = idSplit[14].replaceAll("+"," ");
+        var date = idSplit[15];
+        const db = req.app.get("db");
+        db.update_goals(swimmer_experience,focused,free50,free100,free200,free500,back,fly,breast,im,goal_swim,goal_school,goal_life,date,swimmer_name,swimmer_id).then(times => {
             //console.log(times);
             return res.status(200).send(times)
         }).catch(err => {(res.sendStatus(500));console.log(err)})

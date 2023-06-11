@@ -166,6 +166,8 @@ app.get('/api/getBests',userctrl.getBests)
 
 app.get('/api/goals/:id',userctrl.getGoals)
 app.post('/api/setGoals/:id',userctrl.setGoals)
+app.post('/api/updateGoals/:id',userctrl.updateGoals)
+
 
 
 app.set('port', process.env.PORT || 8080)

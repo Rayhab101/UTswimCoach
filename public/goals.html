@@ -6,6 +6,7 @@
     <title>BL/SJ Swim Team- Goals</title>
     <!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> -->
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="swim.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -38,8 +39,14 @@
         margin: 0 auto;
         background-color: white;
     }
-</style>
+    body{
+        overflow: scroll;
+        padding-top: 50px;
+        margin: 0 auto;
+    }
 
+</style>
+<header id="header"></header>
 <body onload="buildPage()">
     <!-- head - Googlefonts link -->
     <div id="outside">
@@ -218,9 +225,9 @@
             if (goal.length > 0) {
                 document.getElementById("editbutton").style.visibility = "visible"
                 document.getElementById("submitbutton").style.visibility = "hidden"
-                console.log(goal)
+                //console.log(goal)
                 var focus = goal[0].focus_strokes.split(" ");
-                console.log(focus)
+                //console.log(focus)
                 const dateControl = document.querySelector('input[type="date"]');
                 dateControl.value = goal[0].goals_set.split("T")[0];
                 document.getElementById("experience").selectedIndex = goal[0].swimming_experience == true ? 2 : 1;
@@ -299,9 +306,67 @@
                 .then(json => console.log(json))
                 .catch(err => console.log(err));
             //}
+            window.location.reload();
+        }
+    }
+    async function updateGoals() {
+        if (swimmer_name != null) {
+            date = document.getElementById("bday").value
+            experience = document.getElementById("experience").selectedIndex;
+            var strokes = document.getElementsByName("race");
+            free50 = document.getElementById("free50").value;
+            free100 = document.getElementById("free100").value;
+            free200 = document.getElementById("free200").value;
+            free500 = document.getElementById("free500").value;
+            back = document.getElementById("back").value;
+            breast = document.getElementById("breast").value;
+            fly = document.getElementById("fly").value;
+            im = document.getElementById("im").value;
+            swim_goal = document.getElementById("msg").value;
+            school_goal = document.getElementById("msg2").value;
+            life_goal = document.getElementById("msg3").value;
+
+            var races = [];
+            var count = 0
+            strokes.forEach(element => {
+                if (element.checked && count <= 2) {
+                    races.push(element.value)
+                    count++;
+                }
+            });
+            focus_strokes = races.join('+');
+            switch (experience) {
+                case 0:
+                case 1:
+                    experience = false;
+                    break;
+                default:
+                    experience = true;
+                    break;
+            }
+            swimmer_name = swimmer_name.replaceAll(" ", "+");
+            swim_goal = swim_goal.replaceAll(" ", "+");
+            swim_goal = swim_goal.replaceAll("'", "''");
+
+            school_goal = school_goal.replaceAll(" ", "+");
+            school_goal = school_goal.replaceAll("'", "''");
+
+            life_goal = life_goal.replaceAll(" ", "+");
+            life_goal = life_goal.replaceAll("'", "''");
+
+            // if(experience!=0 && focus_strokes!="" && free50!=""&& free100!=""&& free100!=""&& free500!=""&& back!=""&& breast!=""&& fly!=""&& im!=""&& swim_goal!=""&& school_goal!=""&& life_goal!=""&& date!=""){
+            var submit = swimmer_name + "_" + swimmer_id + "_" + experience + "_" + focus_strokes + "_" + free50 + "_" + free100 + "_" + free200 + "_" + free500 + "_" + back + "_" + fly + "_" + breast + "_" + im + "_" + swim_goal + "_" + school_goal + "_" + life_goal + "_" + date;
+            fetch("/api/updateGoals/" + submit, {
+                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+            }).then(response => response.json())
+                .then(json => console.log(json))
+                .catch(err => console.log(err));
+            //}
+            window.location.reload();
         }
     }
 </script>
-
+<footer id="footer"></footer>
 </html>
 <!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation -->

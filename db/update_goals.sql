@@ -1,0 +1,2 @@
+UPDATE goals SET swimming_experience=$1,focus_strokes=$2,free50=$3,free100=$4,free200=$5,free500=$6,back=$7,fly=$8,breast=$9,im=$10,end_goal_swim=$11,school_goal=$12,life_goal=$13,goals_set=$14
+WHERE swimmer_name=$15 AND swimmer_id=$16;
