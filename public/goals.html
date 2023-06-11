@@ -54,7 +54,7 @@
             </div>
             <div>
                 <label for="date-label">Date of Goal Setting:</label>
-                <input type="date" name="bday" id="bday">
+                <input type="date" name="bday" id="bday" value="">
             </div>
         </fieldset>
         <fieldset>
@@ -66,6 +66,7 @@
                     <label for="Experience">Swim Experience</label>
                     &emsp;&emsp;<p>
                         <select id="experience">
+                            <option id="0">Select Experience</option>
                             <option id="1">None</option>
                             <option id="2">Some Swim Experience</option>
                         </select>
@@ -142,9 +143,11 @@
             </div>
         </fieldset>
 
-        <div id="submitbutton">
-            <button onclick="submitGoals()">Submit Goals</button>   </div>
-
+        <div>
+            <button id="submitbutton" onclick="submitGoals()">Submit Goals</button> <button id="editbutton"
+                style="visibility: hidden" onclick="updateGoals()">Update Goals</button>   </div>
+        <!-- <div id="editbutton" style="visibility:hidden">
+                <button onclick="updateGoals()">Update Goals</button>   </div> -->
     </div>
 </body>
 <script>
@@ -171,6 +174,7 @@
         var head = document.createElement("OPTION");
         head.innerHTML = "Select Swimmer";
         ddlSwimmers.options.add(head);
+
         var count = 0;
         ddl.forEach(element => {
             var option = document.createElement("OPTION");
@@ -182,9 +186,29 @@
     }
 
     async function nameFill() {
+        document.getElementById("editbutton").style.visibility = "hidden"
+        document.getElementById("submitbutton").style.visibility = "visible"
+        document.getElementById("bday").value = ""
+        document.getElementById("free50").value = "";
+        document.getElementById("free100").value = ""
+        document.getElementById("free200").value = ""
+        document.getElementById("free500").value = ""
+        document.getElementById("back").value = ""
+        document.getElementById("breast").value = ""
+        document.getElementById("fly").value = ""
+        document.getElementById("im").value = ""
+        document.getElementById("msg").value = ""
+        document.getElementById("msg2").value = ""
+        document.getElementById("msg3").value = ""
+        document.getElementById("experience").selectedIndex = 0;
+        var reset = document.getElementsByName("race")
+        reset.forEach(element => {
+            element.checked = false;
+        });
         //document.getElementsById("btn").disabled = false;
         var checkOption = document.getElementById("compare");
         var name = checkOption.value;
+
         var number = document.getElementById("compare").options[checkOption.selectedIndex].id;
         if (name != "Select Swimmer") {
             //console.log(name, number)
@@ -192,14 +216,39 @@
             swimmer_id = number;
             var goal = await fetch("/api/goals/" + number).then(data => data.json());
             if (goal.length > 0) {
-                console.log("HI")
+                document.getElementById("editbutton").style.visibility = "visible"
+                document.getElementById("submitbutton").style.visibility = "hidden"
+                console.log(goal)
+                var focus = goal[0].focus_strokes.split(" ");
+                console.log(focus)
+                const dateControl = document.querySelector('input[type="date"]');
+                dateControl.value = goal[0].goals_set.split("T")[0];
+                document.getElementById("experience").selectedIndex = goal[0].swimming_experience == true ? 2 : 1;
+                var checkboxes = document.getElementsByName("race")
+                checkboxes.forEach(element => {
+                    element.checked = focus.includes(element.value) ? true : false;
+
+                });
+
+                document.getElementById("free50").value = goal[0].free50;
+                document.getElementById("free100").value = goal[0].free100;
+                document.getElementById("free200").value = goal[0].free200;
+                document.getElementById("free500").value = goal[0].free500;
+                document.getElementById("back").value = goal[0].back;
+                document.getElementById("breast").value = goal[0].breast;
+                document.getElementById("fly").value = goal[0].fly;
+                document.getElementById("im").value = goal[0].im;
+                document.getElementById("msg").value = goal[0].end_goal_swim;
+                document.getElementById("msg2").value = goal[0].school_goal;
+                document.getElementById("msg3").value = goal[0].life_goal;
             }
         }
     }
+
     async function submitGoals() {
         if (swimmer_name != null) {
             date = document.getElementById("bday").value
-            experience = document.getElementById("experience").id;
+            experience = document.getElementById("experience").selectedIndex;
             var strokes = document.getElementsByName("race");
             free50 = document.getElementById("free50").value;
             free100 = document.getElementById("free100").value;
@@ -221,8 +270,9 @@
                     count++;
                 }
             });
-            focus_strokes = races.join('&');
+            focus_strokes = races.join('+');
             switch (experience) {
+                case 0:
                 case 1:
                     experience = false;
                     break;
@@ -230,20 +280,28 @@
                     experience = true;
                     break;
             }
-            swimmer_name = swimmer_name.replace(" ","_");
-            swim_goal = swim_goal.replace(" ","_");
-            school_goal = school_goal.replace(" ","_");
-            life_goal = life_goal.replace(" ","_");
-            console.log(swimmer_name+"+"+swimmer_id+"+"+experience+"+"+focus_strokes+"+"+free50+"+"+free100+"+"+free200+"+"+free500+"+"+back+"+"+breast+"+"+fly+"+"+im+"+"+swim_goal+"+"+school_goal+"+"+life_goal+"+"+date)
+            swimmer_name = swimmer_name.replaceAll(" ", "+");
+            swim_goal = swim_goal.replaceAll(" ", "+");
+            swim_goal = swim_goal.replaceAll("'", "''");
 
+            school_goal = school_goal.replaceAll(" ", "+");
+            school_goal = school_goal.replaceAll("'", "''");
+
+            life_goal = life_goal.replaceAll(" ", "+");
+            life_goal = life_goal.replaceAll("'", "''");
+
+            // if(experience!=0 && focus_strokes!="" && free50!=""&& free100!=""&& free100!=""&& free500!=""&& back!=""&& breast!=""&& fly!=""&& im!=""&& swim_goal!=""&& school_goal!=""&& life_goal!=""&& date!=""){
+            var submit = swimmer_name + "_" + swimmer_id + "_" + experience + "_" + focus_strokes + "_" + free50 + "_" + free100 + "_" + free200 + "_" + free500 + "_" + back + "_" + fly + "_" + breast + "_" + im + "_" + swim_goal + "_" + school_goal + "_" + life_goal + "_" + date;
             fetch("/api/setGoals/" + submit, {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                        }).then(response => response.json())
-                            .then(json => console.log(json))
-                            .catch(err => console.log(err));
+                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+            }).then(response => response.json())
+                .then(json => console.log(json))
+                .catch(err => console.log(err));
+            //}
         }
     }
 </script>
+
 </html>
 <!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation -->
