@@ -809,4 +809,5 @@ module.exports = {
             //console.log(times);
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
+    }
 }
