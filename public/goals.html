@@ -35,14 +35,17 @@
 
 <style>
     #outside {
-        width: 50%;
+        width: 75%;
         margin: 0 auto;
         background-color: white;
+        overflow-x:scroll; 
+        height: 100%;
     }
     body{
         overflow: scroll;
         padding-top: 50px;
         margin: 0 auto;
+        height:75%;
     }
 
 </style>
@@ -80,7 +83,7 @@
                     </p>
                 </div>
 
-                <label for="Gender">Focused Strokes (Select upto 3)</label>
+                <label for="Gender">Focused Strokes (Select up to 3)</label>
                 <p>
                     &emsp;&emsp;<input type="checkbox" name="race" value="back"> Backstroke<br>
                     &emsp;&emsp;<input type="checkbox" name="race" value="breast"> Breaststroke<br>
@@ -177,11 +180,12 @@
 
     async function buildPage() {
         var ddl = await fetch("/api/activeSwimmers").then(data => data.json())
+
         var ddlSwimmers = document.getElementById("compare");
         var head = document.createElement("OPTION");
+        
         head.innerHTML = "Select Swimmer";
         ddlSwimmers.options.add(head);
-
         var count = 0;
         ddl.forEach(element => {
             var option = document.createElement("OPTION");
@@ -190,6 +194,7 @@
             ddlSwimmers.options.add(option);
             count++;
         });
+
     }
 
     async function nameFill() {

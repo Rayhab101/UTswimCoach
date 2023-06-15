@@ -134,7 +134,7 @@ module.exports = {
         //console.log(req.params)
         const db = req.app.get("db");
         db.get_active_swimmers().then(swimmers => {
-            // console.log(swimmers);
+            //console.log(swimmers);
             return res.status(200).send(swimmers)
         })
     },
