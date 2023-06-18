@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Home</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <style>
+        @media only screen and (min-width: 700px) {
+            .galleryPic {
+                width: 30vw;
+                height: 50vh;
+            }
+
+            .container2 {
+                width: 100vw;
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                /* overflow: hidden; */
+                /* padding-left: 50px;
+            padding-right: 90px; */
+            }
+
+            .welcome {
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 100vw;
+            }
+
+            .schedule {
+                /* background-color: whitesmoke; */
+                text-align: center;
+                font-size: small;
+                width: 30vw;
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            .nextmeet {
+                background-image: url(BenLomond-2.jpg);
+                display: flex;
+                width: 30vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .nextmeet img {
+                width: 35%;
+                height: 35%;
+            }
+
+            #blog {
+                height: 90%;
+                width: 30vw;
+                font-size: 17px;
+                text-align: center;
+                resize: none;
+
+            }
+
+            .state {
+                display: flex;
+                text-align: center;
+                width: 29.5vw;
+                ;
+                height: 10vh;
+                object-fit: cover;
+                position: relative;
+                top: -105px;
+            }
+        }
+
+        @media only screen and (max-width: 700px) {
+            .galleryPic {
+                width: 90vw;
+            }
+
+            .container2 {
+                height: 85vh;
+                width: 100vw;
+                /* padding-left: auto; */
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                overflow: auto;
+
+            }
+
+            .welcome {
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 90vw;
+                margin-top: 100px;
+            }
+
+            .schedule {
+                /* background-color: whitesmoke; */
+                text-align: center;
+                font-size: small;
+                width: 90vw;
+
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            .nextmeet {
+                background-image: url(BenLomond-2.jpg);
+                display: flex;
+                width: 90vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .nextmeet img {
+                width: 35%;
+                height: 35%;
+            }
+
+            #blog {
+                height: 100%;
+                width: 90vw;
+                font-size: 14px;
+                resize: none;
+            }
+
+            .state {
+                display: flex;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<header id="header"></header>
+
+<body onload="against()">
+    <div class="container2">
+        <div class="schedule">
+            <table id="schedule">
+                <tr>
+                    <th colspan="6"><u>2021-2022 Swim Schedule</u></th>
+                </tr>
+                <tr><strong>
+                        <td>Date/Day</td>
+                        <td>Event</td>
+                        <td>Time</td>
+                        <td>Out</td>
+                        <td>Bus</td>
+                        <td>Home</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/12/2022</td>
+                        <td>Swim Meeting Gym #311</td>
+                        <td>5:00pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/19/2022</td>
+                        <td>Parents Meeting Gym #311</td>
+                        <td>6:00pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/26/2022</td>
+                        <td>First Day of Practice</td>
+                        <td>2:45pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>10/20/2022</td>
+                        <td>Time Trials</td>
+                        <td>2:45pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr>
+                    <th colspan="6"><u>Season Meets:</u></th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="w3-content w3-section">
+            <img id="mySlides" class="galleryPic">
+            <div class="state">
+                <a href="./stateQualified.html"> <img src="./images/Utah_test.png" style="width:40%;"></a>
+            </div>
+        </div>
+        <div style="background-color: rgba(0, 0, 0, 0.6)">
+            <h3 style="color:white; text-align: center; ">Next Meet</h3>
+            <div id="nextmeet" class="nextmeet">
+            </div>
+            <h3 id="meetname" style="color:white; text-align: center;"></h3>
+
+            <div style="background-color:white" id="blog"></div>
+
+        </div>
+    </div>
+    <script>
+        var slideIndex = 0;
+        carousel();
+        function carousel() {
+            var imgArray = [];
+            for (i = 0; i < 6; i++) {
+                imgArray[i] = new Image();
+                imgArray[i] = './Gallery/Quote' + i + '.png';
+            }
+            var x = document.getElementById("mySlides");
+            if (slideIndex === imgArray.length) { slideIndex = 0 }
+            x.style.display = "block";
+            x.src = imgArray[slideIndex].toString();
+            slideIndex++;
+            setTimeout(carousel, 10000); // Change image every 10 seconds
+        }
+    </script>
+</body>
+<footer id="footer"></footer>
+<script>
+
+    async function blog() {
+        var blog = document.getElementById("blog");
+        var hello = await fetch('/api/blog').then(data => data.json())
+        blog.innerHTML = hello[0].blog_text;
+    }
+
+    async function against() {
+        var today = new Date();
+        fetch("/api/meets").then(function (resMeets) {
+            return resMeets.json();
+        })
+            .then(async function (meets) {
+                var body = document.getElementById("nextmeet");
+                var text = document.getElementById("meetname")
+                var img = document.createElement("img");
+                var img2 = document.createElement("img");
+                var img3 = document.createElement("img");
+                var img4 = document.createElement("img");
+                for (var j = 0; j < meets.length; j++) {
+                    var date = meets[j].date;
+                    var splice = date.split("/");
+                    var year = Number(splice[2]);
+                    var month = Number(splice[0]) - 1;
+                    var day = Number(splice[1]) + 1;
+                    var nextMeet = new Date(year, month, day);
+                    var who;
+                    if (nextMeet - today > 0) {
+                        if (meets[j].school1 != -1) {
+                            var school1 = await fetch('/api/schools/' + meets[j].school1).then(function (responseRelay) {
+                                return responseRelay.json();
+                            }).catch(function (error) {
+                                console.log("Error: " + error)
+                            });
+                            var school2;
+                            if (meets[j].school2 != null) {
+                                school2 = await fetch('/api/schools/' + meets[j].school2).then(function (responseRelay) {
+                                    return responseRelay.json();
+                                }).catch(function (error) {
+                                    console.log("Error: " + error)
+                                });
+                            }
+                            break;
+                        }
+                        else {
+                            var school1 = [{ school_id: '-1', name: meets[j].location, photo: './Utah_test.png' }];
+                            break;
+                        }
+                    }
+                }
+                if (!school1) {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("alt", "Jayhawks Logo");
+                    body.appendChild(img2);
+                    text.innerHTML = "Red and Blue Meet"
+                }
+                if (school1[0].school_id == 6) {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    img2.setAttribute("src", "./images/JayHawk.png");
+                    img2.setAttribute("alt", "Jayhawks Logo");
+                    body.appendChild(img2);
+                    text.innerHTML = "Red and Blue Meet"
+                    // break;
+                }
+                else {
+                    img.setAttribute("src", "./images/BLHS-logo-good.png");
+                    img.setAttribute("alt", "Ben Lomond Logo");
+                    body.appendChild(img);
+                    // console.log(school1[0].photo)
+                    img2.setAttribute("src", "./images/" + school1[0].photo);
+                    img2.setAttribute("alt", school1[0].name + " Logo");
+                    body.appendChild(img2);
+                    who = "VS " + school1[0].name;
+                    img3.setAttribute("src", "./images/JayHawk.png");
+                    img3.setAttribute("alt", "Jayhawks Logo");
+                    // img3.setAttribute("style","transform: scaleX(-1)")
+                    body.appendChild(img3);
+                    if (school2 != undefined) {
+                        img4.setAttribute("src", "./images/" + school2[0].photo);
+                        img4.setAttribute("alt", school2[0].name);
+                        body.appendChild(img4);
+                        who = who + " & " + school2[0].name;
+                        text.innerHTML = who;
+                    }
+                    else {
+                        text.innerHTML = who;
+                    }
+                }
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            });
+        meets();
+    }
+
+    async function meets() {
+        var today = new Date();
+        var response = await fetch("/api/meets");
+        var data = await response.json();
+        var body = document.getElementById("schedule");
+        data.forEach(meet => {
+            console.log(meet)
+            var date = meet.date;
+            var splice = date.split("/");
+            var year = Number(splice[2]);
+            var month = Number(splice[0]) - 1;
+            var day = Number(splice[1]) + 1;
+            var nextMeet = new Date(year, month, day);
+            var row = document.createElement("tr");
+            var cell = row.insertCell();
+            cell.innerHTML = meet.date;
+            var cell = row.insertCell();
+            if (nextMeet - today > 0) {
+                cell.innerHTML = meet.location;
+            }
+            else {
+                cell.innerHTML = meet.location;
+                cell.setAttribute("style", "text-decoration: line-through")
+            }
+            var cell = row.insertCell();
+            cell.innerHTML = meet.time;
+            var cell = row.insertCell();
+            if (meet.out == null || meet.out == "null") {
+                cell.innerHTML = "";
+            }
+            else {
+                cell.innerHTML = meet.out;
+            }
+            var cell = row.insertCell();
+            if (meet.bus == null || meet.bus == "null") {
+                cell.innerHTML = "";
+            }
+            else {
+                cell.innerHTML = meet.bus;
+            }
+            var cell = row.insertCell();
+            if (meet.home == null || meet.home == "null") {
+                cell.innerHTML = "";
+            }
+            else {
+                cell.innerHTML = meet.home;
+            }
+            body.appendChild(row);
+        });
+        blog();
+    }
+</script>
+</html>
+<!-- 443 -->

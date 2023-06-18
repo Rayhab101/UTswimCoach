@@ -23,7 +23,7 @@
     }
     else {
         //console.log(county[0])
-        if (county[0] != "swimmerid") {
+        if (county[0] != "swimmerid" && county[0] !="swimChart") {
             fetch("/api/schools/" + Number(county[1]))
                 .then(function (response) {
                     return response.json();
@@ -133,6 +133,7 @@
                             <a href="https://utswimcoach.com/" target="_blank">UT Swim Coach</a>
                             <a href="about_coaches.html">About the Coaches</a>
                             <a href="contact.html">Contact</a>
+                            <a href="archive.html">Archive</a>
                         </div>
                     </div>
                     <a href="calendar.html">Calendar</a>

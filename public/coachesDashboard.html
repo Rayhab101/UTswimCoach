@@ -163,6 +163,12 @@
             height: 20vh;
             width: 18vw;
         }
+        #laneProgress{
+            background-color: white;
+            border-radius: 5px;
+            height: 20vh;
+            width: 18vw;
+        }
     }
 
     @media screen and (max-width:750px){
@@ -304,6 +310,12 @@
             height: 13vh;
             width: 36vw;
         }
+        #laneProgress{
+            background-color: white;
+            border-radius: 5px;
+            height: 13vh;
+            width: 36vw;
+        }
     }
 
 
@@ -390,6 +402,10 @@
                     <h1 sytle="margin-bottom:0">Swimmer Goals</h1>
                     <i class="fas fa-list" style="font-size: 2em; padding-top:0"></i>
                 </button>
+                <button id="laneProgress">
+                    <h1 sytle="margin-bottom:0">Lane Assignments</h1>
+                    <i class="fas fa-list" style="font-size: 2em; padding-top:0"></i>
+                </button>
             </div>
     </main>
 </body>
@@ -454,6 +470,9 @@
                 break;
             case 'setGoals':
             window.location.href = "goals.html";
+                break;
+            case 'laneProgress':
+            window.location.href = "laneProgress.html";
                 break;
         }
     });
