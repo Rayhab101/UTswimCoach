@@ -30,107 +30,152 @@
             var one = [];
             swimmers.forEach(element => {
                 var number = element.swimmer_id
+                var swimmerCount = 0;
 
                 data.forEach(data => {
                     var that = 0;
                     var other = 0;
-                    if (data.race == 4 && data.swimmer == number && element.gender == "F") {
+                    var alpha = ["a", "b", "c", "d", "e", "f"]
+                    var [minutesA, secondsA] = data.min.split(":");
 
-                        var alpha = ["a", "b", "c", "d", "e", "f"]
-
+                    if (data.swimmer == number && element.gender == "F") {
+                        //console.log(element.name)
                         alpha.forEach(element1 => {
-                            if (document.getElementById(element1).children[5].innerHTML == "-") {
-                                that += 1;
-                            }
-                            else {
-                                var [minutesA, secondsA] = data.min.split(":");
-                                var [minutesB, secondsB] = document.getElementById(element1).children[5].innerHTML.split(":");
-
-                                if (secondsA < secondsB) {
-                                    that += 1;
-                                } else {
-                                    other += 1;
-                                }
-                            }
-                        });
-                        switch (that) {
-                            case 1:
-                                //console.log("Hit")
-                                one.push(element.name)
-                                break;
-                            case 2:
-                                two.push(element.name)
-
-                                break;
-                            case 3:
-                                three.push(element.name)
-
-                                break;
-                            case 4:
-                                four.push(element.name)
-
-                                break;
-                            case 5:
-                                five.push(element.name)
-
-                                break;
-                            case 6:
-                                six.push(element.name)
-
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                            // console.log(three)
-                        else if(data.race == 15 && data.swimmer == number && element.gender == "M"){
-                            var alpha = ["a", "b", "c", "d", "e", "f"]
-
-                            alpha.forEach(element1 => {
-                                if (document.getElementById(element1).children[6].innerHTML == "-") {
-                                    that += 1;
-                                }
-                                else {
-                                    var [minutesA, secondsA] = data.min.split(":");
-                                    var [minutesB, secondsB] = document.getElementById(element1).children[6].innerHTML.split(":");
-
-                                    if (secondsA < secondsB) {
-                                        that += 1;
-                                    } else {
-                                        other += 1;
-                                    }
-                                }
-                            });
-                            switch (that) {
-                                case 1:
-                                    //console.log("Hit")
-                                    one.push(element.name)
-                                    break;
+                            switch (data.race) {
                                 case 2:
-                                    two.push(element.name)
-
+                                    //console.log(element1)
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[1].innerHTML.split(":");
                                     break;
                                 case 3:
-                                    three.push(element.name)
+                                    // console.log("3")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[3].innerHTML.split(":");
 
                                     break;
                                 case 4:
-                                    four.push(element.name)
+                                    // console.log("4")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[5].innerHTML.split(":");
 
                                     break;
                                 case 5:
-                                    five.push(element.name)
+                                    // console.log("5")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[7].innerHTML.split(":");
 
                                     break;
                                 case 6:
-                                    six.push(element.name)
+                                    // console.log("6")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[9].innerHTML.split(":");
 
                                     break;
-                                default:
+                                case 7:
+                                    // console.log("7")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[11].innerHTML.split(":");
+
+                                    break;
+                                case 9:
+                                    // console.log("9")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[13].innerHTML.split(":");
+
+                                    break;
+                                case 10:
+                                    // console.log("10")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[15].innerHTML.split(":");
+
                                     break;
                             }
-                        }
+                            var min1 = Number(minutesA*60)+Number(secondsA);
+                            var min2 = Number(minutesB*60)+Number(secondsB);
+                            if (min1 <= min2) {
+                                swimmerCount += 1;
+                            }
+                        });
+                    }
+                    // console.log(three)
+                    else if (data.swimmer == number && element.gender == "M") {
+                        alpha.forEach(element1 => {
+                            switch (data.race) {
+                                case 13:
+                                    //console.log(element1)
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[2].innerHTML.split(":");
+                                    break;
+                                case 14:
+                                    // console.log("3")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[4].innerHTML.split(":");
+
+                                    break;
+                                case 15:
+                                    // console.log("4")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[6].innerHTML.split(":");
+
+                                    break;
+                                case 16:
+                                    // console.log("5")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[8].innerHTML.split(":");
+
+                                    break;
+                                case 17:
+                                    // console.log("6")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[10].innerHTML.split(":");
+
+                                    break;
+                                case 18:
+                                    // console.log("7")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[12].innerHTML.split(":");
+
+                                    break;
+                                case 20:
+                                    // console.log("9")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[14].innerHTML.split(":");
+
+                                    break;
+                                case 21:
+                                    // console.log("10")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[16].innerHTML.split(":");
+
+                                    break;
+                            }
+                            var min1 = Number(minutesA*60)+Number(secondsA);
+                            var min2 = Number(minutesB*60)+Number(secondsB);
+                            if (min1 <=min2) {
+                                swimmerCount += 1;
+                            }
+                        });
+                    }
                 });
+                console.log(element.name, swimmerCount);
+                switch (true) {
+                    case 1:
+                        //console.log("Hit")
+                        one.push(element.name)
+                        break;
+                    case (swimmerCount <= 2 && swimmerCount != 0):
+                        two.push(element.name)
+
+                        break;
+                    case (swimmerCount > 2 && swimmerCount <= 5):
+                        if (!three.includes(element.name)) {
+                            three.push(element.name)
+                        }
+                        break;
+                    case (swimmerCount > 5 && swimmerCount <= 10):
+                        if (!four.includes(element.name)) {
+                            four.push(element.name)
+                        }
+
+                        break;
+                    case (swimmerCount > 10 && swimmerCount <= 20):
+                        if (!five.includes(element.name)) {
+                            five.push(element.name)
+                        }
+                        break;
+                    case (swimmerCount > 20):
+                        //console.log("HI")
+                        if (!six.includes(element.name)) {
+                            six.push(element.name)
+                        }
+                        break;
+                    default:
+                        break;
+                }
                 //console.log(races)
             });
             var row = document.getElementById("1");

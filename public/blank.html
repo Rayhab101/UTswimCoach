@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Home</title>
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <script>
+        async function against() {
+            var data = await fetch('/api/getBests').then(data => data.json());
+            var swimmers = await fetch('/api/getAllSwimmers').then(data => data.json());
+            //console.log(swimmers)
+            var elements = []
+            //var races = [];
+            var six = [];
+            var five = [];
+            var four = [];
+            var three = [];
+            var two = [];
+            var one = [];
+            swimmers.forEach(element => {
+                var number = element.swimmer_id
+                var swimmerCount = 0;
+
+                data.forEach(data => {
+                    var that = 0;
+                    var other = 0;
+                    var alpha = ["a", "b", "c", "d", "e", "f"]
+                    var [minutesA, secondsA] = data.min.split(":");
+
+                    if (data.swimmer == number && element.gender == "F") {
+                        //console.log(element.name)
+                        alpha.forEach(element1 => {
+                            switch (data.race) {
+                                case 2:
+                                    //console.log(element1)
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[1].innerHTML.split(":");
+                                    break;
+                                case 3:
+                                    // console.log("3")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[3].innerHTML.split(":");
+
+                                    break;
+                                case 4:
+                                    // console.log("4")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[5].innerHTML.split(":");
+
+                                    break;
+                                case 5:
+                                    // console.log("5")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[7].innerHTML.split(":");
+
+                                    break;
+                                case 6:
+                                    // console.log("6")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[9].innerHTML.split(":");
+
+                                    break;
+                                case 7:
+                                    // console.log("7")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[11].innerHTML.split(":");
+
+                                    break;
+                                case 9:
+                                    // console.log("9")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[13].innerHTML.split(":");
+
+                                    break;
+                                case 10:
+                                    // console.log("10")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[15].innerHTML.split(":");
+
+                                    break;
+                            }
+                            var min1 = Number(minutesA*60)+Number(secondsA);
+                            var min2 = Number(minutesB*60)+Number(secondsB);
+                            if (min1 <= min2) {
+                                swimmerCount += 1;
+                            }
+                        });
+                    }
+                    // console.log(three)
+                    else if (data.swimmer == number && element.gender == "M") {
+                        alpha.forEach(element1 => {
+                            switch (data.race) {
+                                case 13:
+                                    //console.log(element1)
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[2].innerHTML.split(":");
+                                    break;
+                                case 14:
+                                    // console.log("3")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[4].innerHTML.split(":");
+
+                                    break;
+                                case 15:
+                                    // console.log("4")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[6].innerHTML.split(":");
+
+                                    break;
+                                case 16:
+                                    // console.log("5")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[8].innerHTML.split(":");
+
+                                    break;
+                                case 17:
+                                    // console.log("6")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[10].innerHTML.split(":");
+
+                                    break;
+                                case 18:
+                                    // console.log("7")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[12].innerHTML.split(":");
+
+                                    break;
+                                case 20:
+                                    // console.log("9")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[14].innerHTML.split(":");
+
+                                    break;
+                                case 21:
+                                    // console.log("10")
+                                    var [minutesB, secondsB] = document.getElementById(element1).children[16].innerHTML.split(":");
+
+                                    break;
+                            }
+                            var min1 = Number(minutesA*60)+Number(secondsA);
+                            var min2 = Number(minutesB*60)+Number(secondsB);
+                            if (min1 <=min2) {
+                                swimmerCount += 1;
+                            }
+                        });
+                    }
+                });
+                console.log(element.name, swimmerCount);
+                switch (true) {
+                    case 1:
+                        //console.log("Hit")
+                        one.push(element.name)
+                        break;
+                    case (swimmerCount <= 2 && swimmerCount != 0):
+                        two.push(element.name)
+
+                        break;
+                    case (swimmerCount > 2 && swimmerCount <= 5):
+                        if (!three.includes(element.name)) {
+                            three.push(element.name)
+                        }
+                        break;
+                    case (swimmerCount > 5 && swimmerCount <= 10):
+                        if (!four.includes(element.name)) {
+                            four.push(element.name)
+                        }
+
+                        break;
+                    case (swimmerCount > 10 && swimmerCount <= 20):
+                        if (!five.includes(element.name)) {
+                            five.push(element.name)
+                        }
+                        break;
+                    case (swimmerCount > 20):
+                        //console.log("HI")
+                        if (!six.includes(element.name)) {
+                            six.push(element.name)
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                //console.log(races)
+            });
+            var row = document.getElementById("1");
+            one.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("2");
+            two.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("3");
+            three.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("4");
+            four.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("5");
+            five.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            var row = document.getElementById("6");
+            six.forEach(item => {
+                // Create a table cell for each item
+                var newCell = document.createElement("td");
+
+                // Set the text content of the table cell
+                newCell.textContent = item;
+
+                // Append the table cell to the table row
+                row.appendChild(newCell);
+            });
+            //console.log(three)
+        }
+    </script>
+    <style>
+        @media only screen and (min-width: 700px) {
+            .container2 {
+                width: 100vw;
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            td {
+                text-align: center;
+            }
+        }
+
+        @media only screen and (max-width: 700px) {
+
+            .container2 {
+                height: 85vh;
+                width: 100vw;
+
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            td {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<header id="header"></header>
+
+<body onload="against()">
+    <center>
+        <div class="container2">
+            <table id="schedule">
+                <tr>
+                    <th colspan="17"><u>2023-2024 Lane Time Requirements</u></th>
+                </tr>
+                <tr><strong>
+                        <td>Lane #</td>
+                        <td colspan="2">200 Freestyle</td>
+                        <td colspan="2">200 Individual Medley</td>
+                        <td colspan="2">50 Freestyle</td>
+                        <td colspan="2">100 Butterfly</td>
+                        <td colspan="2">100 Freestyle</td>
+                        <td colspan="2">500 Freestyle</td>
+                        <td colspan="2">100 Backstroke</td>
+                        <td colspan="2">100 Breaststroke</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td></td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                        <td>F</td>
+                        <td>M</td>
+                    </strong></tr>
+                <tr id="a"><strong>
+                        <td>1</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </strong></tr>
+                <tr id="b"><strong>
+                        <td>2</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>0:55.00</td>
+                        <td>0:46.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>1:50.00</td>
+                        <td>1:40.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>2:00.00</td>
+                        <td>2:00.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </strong></tr>
+                <tr id="c"><strong>
+                        <td>3</td>
+                        <td>3:30.00</td>
+                        <td>3:30.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>0:48.00</td>
+                        <td>0:41.00</td>
+                        <td>2:00.00</td>
+                        <td>2:00.00</td>
+                        <td>1:40.00</td>
+                        <td>1:30.00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>1:40.00</td>
+                        <td>1:30.00</td>
+                        <td>2:10.00</td>
+                        <td>2:00.00</td>
+                    </strong></tr>
+                <tr id="d"><strong>
+                        <td>4</td>
+                        <td>3:00.00</td>
+                        <td>3:00.00</td>
+                        <td>4:00.00</td>
+                        <td>3:45.00</td>
+                        <td>0:42.00</td>
+                        <td>0:36.00</td>
+                        <td>1:50.00</td>
+                        <td>1:45.00</td>
+                        <td>1:35.00</td>
+                        <td>1:25.00</td>
+                        <td>8:00.00</td>
+                        <td>7:20.00</td>
+                        <td>1:35.00</td>
+                        <td>1:25.00</td>
+                        <td>1:50.00</td>
+                        <td>1:45.00</td>
+                    </strong></tr>
+                <tr id="e"><strong>
+                        <td>5</td>
+                        <td>2:50.00</td>
+                        <td>2:45.00</td>
+                        <td>3:30.00</td>
+                        <td>3:00.00</td>
+                        <td>0:38.00</td>
+                        <td>0:31.00</td>
+                        <td>1:40.00</td>
+                        <td>1:30.00</td>
+                        <td>1:25.00</td>
+                        <td>1:15.00</td>
+                        <td>7:45.00</td>
+                        <td>7:00.00</td>
+                        <td>1:30.00</td>
+                        <td>1:20.00</td>
+                        <td>1:45.00</td>
+                        <td>1:40.00</td>
+                    </strong></tr>
+                <tr id="f"><strong>
+                        <td>6</td>
+                        <td>2:40.00</td>
+                        <td>2:25.00</td>
+                        <td>2:55.00</td>
+                        <td>2:45.00</td>
+                        <td>0:32.00</td>
+                        <td>0:28.00</td>
+                        <td>1:25.00</td>
+                        <td>1:15.00</td>
+                        <td>1:15.00</td>
+                        <td>1:05.00</td>
+                        <td>7:30.00</td>
+                        <td>6:45.00</td>
+                        <td>1:25.00</td>
+                        <td>1:15.00</td>
+                        <td>1:40.00</td>
+                        <td>1:35.00</td>
+                    </strong></tr>
+
+            </table>
+            <table>
+                <tr>
+                    <td colspan="14">Current Lane Assignments</td>
+                </tr>
+                <tr>
+                    <td>Lane #</td>
+                    <td colspan="13">Names</td>
+                </tr>
+                <tr id="1">
+                    <td>1</td>
+                </tr>
+                <tr id="2">
+                    <td>2</td>
+                </tr>
+                <tr id="3">
+                    <td>3</td>
+                </tr>
+                <tr id="4">
+                    <td>4</td>
+                </tr>
+                <tr id="5">
+                    <td>5</td>
+                </tr>
+                <tr id="6">
+                    <td>6</td>
+                </tr>
+            </table>
+        </div>
+    </center>
+</body>
+
+<footer id="footer"></footer>
+
+</html>
+<!-- 443 -->
