@@ -42,8 +42,9 @@ function updateGrade() {
         }
     })
 }
-const date = new Date(2023, 5, 18, 8, 30, 0);
-//console.log(date)
+const date = new Date(2023, 5, 18, 20, 45, 0);
+console.log(date)
+console.log(new Date())
 var j = schedule.scheduleJob(date, function () {
     updateGrade();
 });
