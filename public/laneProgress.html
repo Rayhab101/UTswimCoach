@@ -143,7 +143,7 @@
                 });
                 console.log(element.name, swimmerCount);
                 switch (true) {
-                    case 1:
+                    case swimmerCount==0:
                         //console.log("Hit")
                         one.push(element.name)
                         break;
@@ -156,13 +156,13 @@
                             three.push(element.name)
                         }
                         break;
-                    case (swimmerCount > 5 && swimmerCount <= 10):
+                    case (swimmerCount > 5 && swimmerCount <= 12):
                         if (!four.includes(element.name)) {
                             four.push(element.name)
                         }
 
                         break;
-                    case (swimmerCount > 10 && swimmerCount <= 20):
+                    case (swimmerCount > 12 && swimmerCount <= 20):
                         if (!five.includes(element.name)) {
                             five.push(element.name)
                         }
