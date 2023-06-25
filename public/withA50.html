@@ -247,12 +247,18 @@
         document.getElementById("fly200").innerHTML = "";
 
         var free = document.getElementById("free50").value;
+        free = free.includes(":") ? free : "0:"+free;
         free = extend(free, 0);
         var back = document.getElementById("back50").value;
+        back = back.includes(":") ? back : "0:"+back;
         back = extend(back, 1);
         var breast = document.getElementById("breast50").value;
+        breast = breast.includes(":") ? breast : "0:"+breast;
+
         breast = extend(breast, 2);
         var fly = document.getElementById("fly50").value;
+        fly = fly.includes(":") ? fly : "0:"+fly;
+
         fly = extend(fly, 3);
     }
 
