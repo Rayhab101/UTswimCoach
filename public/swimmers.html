@@ -84,7 +84,7 @@
         <button onclick="window.history.go(-1)">Go Back</button>
         <button class="printPage" id="printPage"
             style="font-size: 12px; border-radius: 10%; background-color: white; font-weight: bold;"
-            onclick="printImage()">Print Swimmer
+            onclick='printImage(document.getElementById("swimmer_name").innerHTML)'>Print Swimmer
             Data</button>
         <div class="container" id="container">
             <div id="testTable" printable>
@@ -509,7 +509,8 @@
     var a = ""
 
 
-    function printImage() {
+    function printImage(name) {
+        console.log(name)
         var table = document.getElementById("swimmer_data");
         table.setAttribute("style", "font-size:12px");
         var windowContent = '<!DOCTYPE html>';
@@ -527,7 +528,7 @@
         }
         windowContent += '</body>';
         windowContent += '</html>';
-        const printWin = window.open('', '_blank');
+        const printWin = window.open('','_blank');
 
         printWin.document.open();
         printWin.document.write(windowContent);

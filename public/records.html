@@ -149,7 +149,8 @@
     <script>
         async function namePull(race, cell,time,year, school) {
             var relays = [1, 8, 11, 12, 19, 22]
-            race = cell.id[1] == "g" ? race : race + 11;
+            //race = cell.id[1] == "g" ? race : race + 11;
+            console.log(race)
             if (!relays.includes(race)) {
                 var record = await fetch('/api/schoolRecord/' + race + "&" + school);
                 var data = await record.json();
@@ -172,40 +173,41 @@
             var school = location.search.substring(1);
             school = school.split("=");
             school = Number(school[1]);
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("girlRecords");
+
+            for (var i =1; i<23;i++){
+                if(i<12){
+                    var body = document.getElementById("girlRecords");
+                    // var row = document.createElement('tr');
+                    // var name = row.insertCell();
+                    // var time = row.insertCell();
+                    // var year = row.insertCell();
+                    // name.setAttribute('id', 'n' + i);
+                    // time.setAttribute('id', 't' + i);
+                    // year.setAttribute('id', 'y' + i);
+                    // namePull(i, name,time,year,school);
+                    // body.appendChild(row);
+                }
+                else{
+                    var body = document.getElementById("boyRecords");
+                    // var row = document.createElement('tr');
+                    // var name = row.insertCell();
+                    // var time = row.insertCell();
+                    // var year = row.insertCell();
+                    // name.setAttribute('id', 'n' + i);
+                    // time.setAttribute('id', 't' + i);
+                    // year.setAttribute('id', 'y' + i);
+                    // namePull(i, name,time, year, school);
+                    // body.appendChild(row);
+                }
                 var row = document.createElement('tr');
-                var name = row.insertCell();
-                var time = row.insertCell();
-                var year = row.insertCell();
-                name.setAttribute('id', 'rg' + i);
-                time.setAttribute('id', 'rgt' + i);
-                year.setAttribute('id', 'rgy' + i);
-                namePull(i, name,time,year,school);
-                body.appendChild(row);
-                
-            }
-            var races = ["", "200 Medley Relay", "200 Freestyle", "200 I.M.", "50 Freestyle", "100 Butterfly", "100 Freestyle", "500 Freestyle", "200 Freestyle Relay", "100 Backstroke", "100 Breaststroke", "400 Freestyle Relay"]
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("races");
-                var row = document.createElement('tr');
-                var column = document.createElement("td");
-                var cell = row.insertCell();
-                cell.innerHTML = races[i]
-                row.appendChild(cell);
-                body.appendChild(row);
-            }
-            for (var i = 1; i < 12; i++) {
-                var body = document.getElementById("boyRecords");
-                var row = document.createElement('tr');
-                var name = row.insertCell();
-                var time = row.insertCell();
-                var year = row.insertCell();
-                name.setAttribute('id', 'rb' + i);
-                time.setAttribute('id', 'rbt' + i);
-                year.setAttribute('id', 'rby' + i);
-                namePull(i, name,time, year, school);
-                body.appendChild(row);
+                    var name = row.insertCell();
+                    var time = row.insertCell();
+                    var year = row.insertCell();
+                    name.setAttribute('id', 'n' + i);
+                    time.setAttribute('id', 't' + i);
+                    year.setAttribute('id', 'y' + i);
+                    namePull(i, name,time,year,school);
+                    body.appendChild(row);
             }
         }
     </script>
@@ -236,6 +238,42 @@
                 </tr>
                 <tr class="head">
                     <td>RACE</td>
+                </tr>
+                <tr class="head">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>200 Medley Relay</td>
+                </tr>
+                <tr class="head">
+                    <td>200 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>200 I.M.</td>
+                </tr>
+                <tr class="head">
+                    <td>50 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Butterfly</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>500 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>200 Freestyle Relay</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Backstroke</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Breaststroke</td>
+                </tr>
+                <tr class="head">
+                    <td>400 Freestyle Relay</td>
                 </tr>
                 <tr class="top">
                     <td></td>
