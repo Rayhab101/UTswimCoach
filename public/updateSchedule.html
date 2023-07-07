@@ -208,7 +208,7 @@
                 }
                 var submit = location + "_" + date + "_" + time + "_" + ano[0].current_year + "_" + out + "_" + bus + "_" + home + "_" + school1_id + "_" + school2_id;
                 console.log(submit)
-                fetch("/api/updateMeet/" + submit, {
+                fetch("/api/setMeet/" + submit, {
                     headers: { 'Content-Type': 'application/json' },
                     method: "POST",
                     // body: JSON.stringify(submitRaces)
@@ -231,7 +231,7 @@
                 // }).then(response => response.json())
                 //     .then(json => console.log(json))
                 //     .catch(err => console.log(err));
-                window.location.reload();
+                //window.location.reload();
             }
             else {
                 alert("You don't have access to add people")
@@ -276,7 +276,7 @@
                     }).then(response => response.json())
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
-                    window.location.reload();
+                    //window.location.reload();
                 }
                 else {
                     alert("You don't have access to remove this Meet")
@@ -378,7 +378,7 @@
                     //     .then(json => console.log(json))
                     //     .catch(err => console.log(err));
                     
-                    window.location.reload();
+                    //window.location.reload();
                 }
                 else {
                     alert("You don't have access to save changes")

@@ -446,7 +446,7 @@ module.exports = {
         if(Number.isNaN(school2)){
             school2=null;
         }
-        // console.log(location,date,time,year,out,bus,home,school1,school2);
+        console.log(location,date,time,year,out,bus,home,school1,school2);
         const db = req.app.get("db");
         db.set_meet(location,date,time,year,out,bus,home,school1,school2).then(times => {
             // console.log(times);
@@ -622,7 +622,7 @@ module.exports = {
         var school2= isNaN(Number(idSplit[7])) ? null : Number(idSplit[7]);
         var meetId=Number(idSplit[8]);
         const db = req.app.get("db");
-        ///console.log(location,date,time,out,bus,home,school1,school2,meetId);
+        //console.log(location,date,time,out,bus,home,school1,school2,meetId);
         db.update_meet(location,date,time,out,bus,home,school1,school2,meetId).then(times => {
             // console.log(times);
             return res.status(200).send(times)
