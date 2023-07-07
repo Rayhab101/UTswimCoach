@@ -446,7 +446,7 @@ module.exports = {
         if(Number.isNaN(school2)){
             school2=null;
         }
-        console.log(location,date,time,year,out,bus,home,school1,school2);
+        //console.log(location,date,time,year,out,bus,home,school1,school2);
         const db = req.app.get("db");
         db.set_meet(location,date,time,year,out,bus,home,school1,school2).then(times => {
             // console.log(times);
