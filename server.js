@@ -165,6 +165,7 @@ app.post('/api/set50times/:id',userctrl.set50times)
 app.post('/api/update50Times/:id',userctrl.update50Times)
 
 app.get('/api/getBests',userctrl.getBests)
+app.get('/api/getRankBests/:id',userctrl.getRankBests)
 
 app.get('/api/goals/:id',userctrl.getGoals)
 app.post('/api/setGoals/:id',userctrl.setGoals)

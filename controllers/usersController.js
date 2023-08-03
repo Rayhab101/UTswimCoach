@@ -789,6 +789,15 @@ module.exports = {
             return res.status(200).send(times)
         }).catch(err => (res.sendStatus(500)))
     },
+    getRankBests:(req,res) =>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+        //console.log(id)
+        db.get_rank_times(id).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => (res.sendStatus(500)))
+    },
 
     getGoals:(req,res) =>{
         var {id}=req.params;

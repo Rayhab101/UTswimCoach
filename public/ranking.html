@@ -8,136 +8,140 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
     <link rel="stylesheet" href="swim.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
     </script>
-<script>
-    $(function () {
-        $("#header").load("heading.html");
-        $("#footer").load("footing.html");
-    });
-</script>
     <style>
-        @media screen and (min-width:750px){
-        .swim_info {
-            padding-top: 90px;
+        @media screen and (min-width:750px) {
+            .swim_info {
+                padding-top: 90px;
+            }
+
+            table,
+            tr {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid black 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            td {
+                font-size: small;
+            }
+
+            th {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .contain {
+                display: grid;
+            }
+
+            .even {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .odd {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            .scrollable {
+                overflow:
+                    auto;
+            }
+
+            .container {
+                width: 1250px;
+                height: 85vh;
+                overflow: auto;
+            }
         }
 
-        table,
-        tr {
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid black 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
-            width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+        @media screen and (max-width:750px) {
+            .swim_info {
+                padding-top: 90px;
+            }
 
-        }
-        td {
-            font-size: small;
-        }
-        th {
-            text-align: center;
-            font-size: 24px;
-        }
+            table,
+            tr {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid black 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
 
-        button {
-            margin-left: auto;
-            margin-right: auto;
-        }
+            }
 
-        .contain {
-            display: grid;
-        }
+            th {
+                text-align: center;
+                font-size: 16px;
+            }
 
-        .even {
-            grid-row: 1;
-            grid-column: 1;
-        }
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-        .odd {
-            grid-row: 1;
-            grid-column: 2;
-        }
+            .contain {
+                display: grid;
+                font-size: xx-small;
+            }
 
-        .scrollable {
-            overflow:
-                auto;
-        }
+            .even {
+                grid-row: 1;
+                grid-column: 1;
+            }
 
-        .container {
-            width: 1250px;
-            height: 85vh;
-            overflow: auto;
-        }
-    }
+            .odd {
+                padding-top: 5px;
+                grid-row: 2;
+                grid-column: 1;
+            }
 
-    @media screen and (max-width:750px){
-        .swim_info {
-            padding-top: 90px;
-        }
+            .scrollable {
+                overflow: auto;
+            }
 
-        table,
-        tr {
-            background-color: rgba(255, 255, 255, .95);
-            border-collapse: separate;
-            border: solid black 1px;
-            border-radius: 6px;
-            -moz-border-radius: 6px;
-            text-align: center;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
+            .container {
+                width: auto;
+                height: 85vh;
+                overflow: auto;
+            }
 
+            #topHeader {
+                padding-top: 50px;
+                background-color: transparent;
+                border: none;
+            }
         }
-
-        th {
-            text-align: center;
-            font-size: 16px;
-        }
-
-        button {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contain {
-            display: grid;
-            font-size: xx-small;
-        }
-
-        .even {
-            grid-row: 1;
-            grid-column: 1;
-        }
-
-        .odd {
-            padding-top: 5px;
-            grid-row: 2;
-            grid-column: 1;
-        }
-
-        .scrollable {
-            overflow: auto;
-        }
-
-        .container {
-            width: auto;
-            height: 85vh;
-            overflow: auto;
-        }
-        #topHeader{
-            padding-top:50px;
-            background-color: transparent;
-            border: none;
-        }
-    }
     </style>
 </head>
 <header id="header"></header>
+
 <body class="swim_info" onload="tops()">
     <div class="container">
         <table id="topHeader">
@@ -146,23 +150,19 @@
         <br>
         <div class="contain">
             <div class="even">
-                <table id="Womens 200 free">
-                    <td colspan="4">Womens 200 Free</td>
+                <table id="Womens 6">
+                    <td colspan="4">Ben Lomond Girls</td>
                     <tr>
-                        <td>#</td>
                         <td>Name</td>
-                        <td>School</td>
                         <td>Score</td>
                     </tr>
                 </table>
             </div>
             <div class="odd">
-                <table id="Mens 200 free">
-                    <td colspan="4">Mens 200 Free</td>
+                <table id="Mens 6">
+                    <td colspan="4">Ben Lomond Boys</td>
                     <tr>
-                        <td>#</td>
                         <td>Name</td>
-                        <td>School</td>
                         <td>Score</td>
                     </tr>
                 </table>
@@ -171,264 +171,189 @@
         <br>
         <div class="contain">
             <div class="even">
-                <table id="Womens 200 IM">
-                    <td colspan="4">Womens 200 IM</td>
+                <table id="Womens 78">
+                    <td colspan="4">Saint Joseph's Girls</td>
                     <tr>
-                        <td>#</td>
                         <td>Name</td>
-                        <td>School</td>
                         <td>Score</td>
                     </tr>
                 </table>
             </div>
             <div class="odd">
-                <table id="Mens 200 IM">
-                    <td colspan="4">Mens 200 IM</td>
+                <table id="Mens 78">
+                    <td colspan="4">Saint Joseph's Boys</td>
                     <tr>
-                        <td>#</td>
                         <td>Name</td>
-                        <td>School</td>
                         <td>Score</td>
                     </tr>
                 </table>
             </div>
         </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 50 free">
-                    <td colspan="4">Womens 50 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 50 free">
-                    <td colspan="4">Mens 50 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 fly">
-                    <td colspan="4">Womens 100 Fly</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 fly">
-                    <td colspan="4">Mens 100 Fly</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 free">
-                    <td colspan="4">Womens 100 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 free">
-                    <td colspan="4">Mens 100 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 500 free">
-                    <td colspan="4">Womens 500 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 500 free">
-                    <td colspan="4">Mens 500 Free</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 back">
-                    <td colspan="4">Womens 100 Back</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 back">
-                    <td colspan="4">Mens 100 Back</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="contain">
-            <div class="even">
-                <table id="Womens 100 breast">
-                    <td colspan="4">Womens 100 Breast</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="odd">
-                <table id="Mens 100 breast">
-                    <td colspan="4">Mens 100 Breast</td>
-                    <tr>
-                        <td>#</td>
-                        <td>Name</td>
-                        <td>School</td>
-                        <td>Score</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <br>
         <br>
         <br>
     </div>
 </body>
 <footer id="footer"></footer>
 <script>
+    const swimmerName = [];
+    const calculateData = [];
+    var blRecords
+    var sjRecords
+    async function t50(cell, swimmer, dataBests, swimData) {
+        //var r = [1, 8, 11, 12, 19, 22]
+        var distance = [, , 0.00368, 0.00331, 0.01745, 0.00741, 0.00799, 0.00138, , 0.00739, 0.00647, , , 0.00404, 0.00365, 0.01949, 0.00824, 0.00889, 0.00148, , 0.00820, 0.00722,]
+        var best = ['', '', '1:45.39', '1:56.99', '0:22.19', '0:52.29', '0:48.49', '04:40.38', '', '0:52.49', '0:59.89', '', '', '1:35.91', '1:46.36', '0:19.88', '0:47.09', '0:43.63', '04:21.56', '', '0:47.29', '0:53.68', '']
+        //var status = 1;
 
-    async function pullSwimmer(name, cell) {
-        var response = await fetch("/api/swim/" + name);
-        var data = await response.json();
-        cell.innerHTML = data[0].name;
-    }
-
-    async function t50(i) {
-        var r = [1, 8, 11, 12, 19, 22]
-        var distance = [,,0.00368,0.00331,0.01745,0.00741,0.00799,0.00138,,0.00739,0.00647,,,0.00404,0.00365,0.01949,0.00824,0.00889,0.00148,,0.00820,0.00722,]
-        var best = ['','','1:45.39','1:56.99','0:22.19','0:52.29','0:48.49','04:40.38','','0:52.49','0:59.89','','','1:35.91','1:46.36','0:19.88','0:47.09','0:43.63','04:21.56','','0:47.29','0:53.68','']
-        var status = 1;
-        var response = await fetch("/api/races/"+i);
+        var response = await fetch("/api/getRankBests/" + swimmer.swimmer_id);
         var data = await response.json();
 
-
-        
-        if (!r.includes(i)) {
-            var body = document.getElementById(data[0].title);
-            var newResponse = await fetch("/api/top50/"+i);
-            var raceData = await newResponse.json();
-
-            var blRecord = await fetch('/api/schoolRecord/' + i + "&" + 6);
-            var blTime = await blRecord.json();
-            var sjRecord = await fetch('/api/schoolRecord/' + i + "&" + 78);
-            var sjTime = await sjRecord.json();
+        if (data.length != 0) {
 
 
-            //console.log(blTime[0].time,sjTime[0].time)
-
-            var [blMin,blSec] = blTime[0].time.split(":")
-            var [sjMin,sjSec] = sjTime[0].time.split(":")
-
-            blTime = (Number(blMin*60)+Number(blSec));
-            sjTime = (Number(sjMin*60)+Number(sjSec));
-
-            //console.log(i+":",blTime < sjTime)
-            raceData.forEach(swimmer => {
-                //console.log(swimmer)
-                var row = document.createElement("tr");
-                var cell = row.insertCell();
-                cell.innerHTML = status;
-                cell = row.insertCell();
-                pullSwimmer(swimmer.swimmer,cell)
-                cell = row.insertCell();
-                cell.innerHTML = (swimmer.school == 6) ? "Ben Lomond" : "Saint Joseph";
-                cell = row.insertCell();
+            data.forEach(races => {
+                //console.log(races.race)
                 
                 if(swimmer.school == 6){
-                    var time1 = blTime
+                    const dictionary = blRecords.find((item) => item.race_id === races.race);
+                    var time1 = dictionary.time
+                    var id = dictionary.race_id
                 }
                 else{
-                    var time1 = sjTime;
+                    const dictionary = sjRecords.find((item) => item.race_id === races.race);
+                    var time1 = dictionary.time
+                    var id = dictionary.race_id
                 }
-                var min1 = best[i].split(':')[0];
-                var min2 = swimmer.time.split(':')[0];
-                var sec1 = best[i].split(':')[1];
-                var sec2 = swimmer.time.split(':')[1];
-                // var time1 = (Number(min1)*60) + Number(sec1);
-                var time2 = (Number(min2)*60) + Number(sec2);
-                // console.log(time2-time1)
-                // console.log(distance[i])
-                var calculate = 1000*((time2-time1)*distance[i])
+                
+                var min1 = time1.split(':')[0];
+                var min2 = races.min.split(':')[0];
+                var sec1 = time1.split(':')[1];
+                var sec2 = races.min.split(':')[1];
+                var time1 = (Number(min1)*60) + Number(sec1);
+                var time2 = (Number(min2) * 60) + Number(sec2);
+                //console.log(time2+"-"+time1)
+                //  console.log(distance[id])
+                //console.log(swimmer.name)
+                var calculate = 1000 * ((time2 - time1) * distance[id])
                 calculate = calculate > 100 ? 100 : calculate;
-                calculate = calculate == 0 ? 1 : calculate;
-                cell.innerHTML = calculate.toFixed(2);
-                if(calculate != 100){
-                    body.appendChild(row);
+                calculate = calculate <= 0 ? 1 : calculate;
+                //console.log(calculate)
+                const directory = swimData.find((item) => item.swimmer_id === swimmer.swimmer_id)
+                // console.log(test)
+                if(directory){
+                    console.log(directory)
+                    directory.rank += Number(calculate);
+                    directory.count +=1;
+                    //console.log(directory)
+                    if((directory.rank/directory.count).toFixed(2)!=100){
+                        cell.innerHTML = (directory.rank/directory.count).toFixed(2)
+                    }
+                    else{
+                        cell.innerHTML = 100
 
+                    }
                 }
-                status++;
-            });
+            })
+        }
+        else {
+            cell.innerHTML = 100
         }
     }
-    function tops() {
-        for (var i = 1; i <= 22; i++) {
-            t50(i)
-        }
+
+    async function tops() {
+        var swimmers = await fetch("/api/getAllSwimmers");
+        var swimData = await swimmers.json();
+        //console.log(swimData);
+        var status = 1;
+
+        var bests = await fetch("/api/getBests");
+        var dataBests = await bests.json();
+        //console.log(dataBests)
+        //console.log()
+        var blRecord = await fetch('/api/schoolRecords/' +  6);
+        var blTime = await blRecord.json();
+        blRecords = blTime;
+        // blTime.forEach(bl => {
+        //     blRecords.push(bl.time)
+        // })
+        var sjRecord = await fetch('/api/schoolRecords/' + 78);
+        var sjTime = await sjRecord.json();
+        //console.log(sjTime)
+        sjRecords = sjTime;
+        // sjTime.forEach(sj => {
+        //     sjRecords.push(sj.race)
+        // })
+
+        var count = 0;
+        var swimName = [];
+
+        swimData.forEach(swimmer => {
+            if (!swimName.some(e => e.name == swimmer.name)) {
+                var personalData = {}
+                //personalData.number = count;
+                personalData.name = swimmer.name;
+                personalData.id = swimmer.swimmer_id;
+                personalData.school = swimmer.school;
+                personalData.gender = swimmer.gender;
+                personalData.rank = 0;
+
+                swimName.push(personalData)
+                // console.log(personalData)
+                // console.log(swimName.length)
+                count++;
+            }
+            swimmer.rank = 0;
+            swimmer.count = 0;
+
+            //console.log(swimmer)
+            if (swimmer.gender == "F") {
+                if (swimmer.school == 6) {
+                    var body = document.getElementById("Womens " + swimmer.school);
+                    var row = document.createElement("tr");
+                    var cell = row.insertCell();
+                    cell.innerHTML = swimmer.name;
+                    cell = row.insertCell();
+                    // cell.innerHTML = 100;
+                }
+                else {
+                    var body = document.getElementById("Womens " + swimmer.school);
+                    var row = document.createElement("tr");
+                    var cell = row.insertCell();
+                    cell.innerHTML = swimmer.name;
+                    cell = row.insertCell();
+                    // cell.innerHTML = 100;
+                }
+            }
+            else {
+                if (swimmer.school == 6) {
+                    var body = document.getElementById("Mens " + swimmer.school);
+                    var row = document.createElement("tr");
+                    var cell = row.insertCell();
+                    cell.innerHTML = swimmer.name;
+                    cell = row.insertCell();
+                    // cell.innerHTML = 100;
+                }
+                else {
+                    var body = document.getElementById("Mens " + swimmer.school);
+                    var row = document.createElement("tr");
+                    var cell = row.insertCell();
+                    cell.innerHTML = swimmer.name;
+                    cell = row.insertCell();
+                    // cell.innerHTML = 100;
+                }
+            }
+
+
+
+            // for (var i = 1; i <= 22; i++) {
+            t50(cell, swimmer, dataBests, swimData)
+            // }
+            
+            body.appendChild(row);
+
+        });
+        //console.log(swimName)
+
     }
 </script>
 
