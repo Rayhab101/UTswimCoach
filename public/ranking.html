@@ -242,8 +242,9 @@
                 // console.log(test)
                 if(directory){
                     console.log(directory)
-                    directory.rank += Number(calculate);
                     directory.count +=1;
+                    directory.rank += Number(calculate);
+                    
                     //console.log(directory)
                     if((directory.rank/directory.count).toFixed(2)!=100){
                         cell.innerHTML = (directory.rank/directory.count).toFixed(2)
