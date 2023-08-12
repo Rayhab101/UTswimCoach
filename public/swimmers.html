@@ -164,6 +164,8 @@
         var headGrade = tableData["status_grade"];
         var body = document.getElementById("swimmer_data");
         var head = document.createElement("th");
+        var grade = tableData["status_grade"]
+        console.log(grade)
         head.setAttribute("id", "swimmer_name")
         // var head = document.getElementById("swimmer_name");
         head.innerHTML = (name + " - " + headGrade);
@@ -255,8 +257,8 @@
         test.forEach(element => {
             meets[i] = element.location
         });
-
-        await fetch('/api/meets')
+        if(grade != "Graduated"){
+            await fetch('/api/meets')
             .then(function (response) {
                 return response.json();
             })
@@ -296,6 +298,8 @@
             .catch(function (error) {
                 console.log("Error: " + error);
             });
+        }
+
 
         //     var check = ['0:24.33','0:24.00'];
         // if(check[0]<check[1]){
