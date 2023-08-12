@@ -59,6 +59,9 @@ app.get('/',(req,res) =>
     res.render("index")
     //res.status(200).send(swimmers)
 )
+app.get('/coachesDashboard.html',(req,res)=>
+    res.render("coachesDashboard")
+)
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)
