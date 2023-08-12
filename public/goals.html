@@ -37,7 +37,7 @@
 
 <style>
     #outside {
-        width: 75%;
+        width: 35%;
         margin: 0 auto;
         background-color: white;
         overflow-x:scroll; 
@@ -96,38 +96,53 @@
                 </p>
 
             </fieldset>
-            <fieldset>
+            <fieldset style="justify-content: space-between">
                 <legend style="text-align:center">Goal Times</legend>
                 <div>
-                    <label for="Experience">50 Freestyle</label>
+                    <label for="Experience">50 Freestyle:</label>
+                    &nbsp;
+
                     <input type="text" id="free50" required>
                 </div>
                 <div>
-                    <label for="Experience">100 Freestyle</label>
+                    <label for="Experience">100 Freestyle:</label>
+                    &nbsp;
+
                     <input type="text" id="free100" required>
                 </div>
                 <div>
-                    <label for="Experience">200 Freestyle</label>
+                    <label for="Experience">200 Freestyle:</label>
+                    &nbsp;
+
                     <input type="text" id="free200" required>
                 </div>
                 <div>
-                    <label for="Experience">500 Freestyle</label>
+                    <label for="Experience">500 Freestyle:</label>
+                    &nbsp;
+
                     <input type="text" id="free500" required>
                 </div>
                 <div>
-                    <label for="Experience">100 Backstroke</label>
+                    <label for="Experience">100 Backstroke:</label>
+                    &nbsp;
+
                     <input type="text" id="back" required>
                 </div>
                 <div>
-                    <label for="Experience">100 Breaststroke</label>
+                    <label for="Experience">100 Breaststroke:</label>
+                    &nbsp;
+
                     <input type="text" id="breast" required>
                 </div>
                 <div>
-                    <label for="Experience">100 Butterfly</label>
+                    <label for="Experience">100 Butterfly:</label>
+                    &nbsp;
                     <input type="text" id="fly" required>
                 </div>
                 <div>
-                    <label for="Experience">200 Individual Medley</label>
+                    <label for="Experience">200 Individual Medley:</label>
+                    &nbsp;
+
                     <input type="text" id="im" required>
                 </div>
             </fieldset>
@@ -135,22 +150,21 @@
 
         <!-- --------------------Text Areas------------------------------ -->
 
-        <fieldset>
+        <fieldset style="text-align:center">
             <legend style="text-align:center">Main Goals</legend>
             <div>
-                <label for="msg"></label>
-                <p> What do you ulitimatly want to achieve during this swim season?</p>
-                <textarea id="msg" name="user_message" rows="4" cols="50" placeholder="Enter Text Here"></textarea>
+                <label for="msg" style="text-align:center">What do you ulitimatly want to achieve<br/> during this swim season?</label><br>
+                <textarea id="msg" name="user_message" rows="4" cols="30" placeholder="Enter Text Here"></textarea>
                  
             </div>
             <div>
-                <label for="msg">What do you ulitimatly want to achieve during this school year?</label><br>
-                <textarea id="msg2" name="user_message" rows="4" cols="50" placeholder="Enter Text Here"></textarea>
+                <label for="msg" style="text-align:center">What do you ulitimatly want to achieve<br/> during this school year?</label><br>
+                <textarea id="msg2" name="user_message" rows="4" cols="30" placeholder="Enter Text Here"></textarea>
                  
             </div>
             <div>
-                <label for="msg">What do you ulitimatly want to do/achieve after graduation?</label><br>
-                <textarea id="msg3" name="user_message" rows="4" cols="50" placeholder="Enter Text Here"></textarea>
+                <label for="msg" style="text-align:center">What do you ulitimatly want to<br/> do/achieve after graduation?</label><br>
+                <textarea id="msg3" name="user_message" rows="4" cols="30" placeholder="Enter Text Here"></textarea>
                  
             </div>
         </fieldset>
