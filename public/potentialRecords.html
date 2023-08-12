@@ -163,7 +163,7 @@
             })
             var count = 0;
             dataArray.forEach(element => {
-                if (count % 1 == 0) {
+                if (count % 3 == 0) {
                     row = document.createElement("div");
                     row.setAttribute("class", "row");
                 }
@@ -217,20 +217,31 @@
                             if (!relays.includes(i)) {
                                 var race = records[i];
                                 if (person.race == race.race_id) {
+
                                     swimmertime = person.min;
                                     recordtime = race.time;
                                     swimmermin = swimmertime.split(":")[0];
                                     swimmersec = swimmertime.split(":")[1];
                                     recordmin = recordtime.split(":")[0];
                                     recordsec = recordtime.split(":")[1];
+
                                     if (swimmermin == recordmin) {
+                                        if (Number(recordmin) != 0) {
+                                            
+                                            recordsec = Number(recordsec) + (Number(swimmermin) * 60);
+                                            swimmersec = Number(swimmersec) + (Number(swimmermin) * 60);
+                                        }
+                                        // if (person.race == 5) {
+
+                                        //     console.log(element.name, recordsec/swimmersec)
+                                        // }
                                         if (recordsec / swimmersec > .92) {
                                             // console.log(race.race_id,swimmermin,swimmersec)
                                             // console.log(element.name)
-                                            if (!people.includes(element.name)) {
-                                                people.push(element.name)
-                                                number.push(race.race_id)
-                                            }
+                                            // if (!people.includes(element.name)) {
+                                            people.push(element.name)
+                                            number.push(race.race_id)
+                                            // }
                                             // if(race.time/person.min > .90){
                                             //     //console.log(element)
                                             // }
@@ -239,13 +250,13 @@
                                     else {
                                         swimmersec = Number(swimmermin) * 60 + Number(swimmersec);
                                         recordsec = Number(recordmin) * 60 + Number(recordsec);
-
                                         if (recordsec / swimmersec > .92) {
                                             // console.log(element.name,recordsec/swimmersec,race.race_id)
-                                            if (!people.includes(element.name)) {
-                                                people.push(element.name)
-                                                number.push(race.race_id)
-                                            }
+                                            // if (!people.includes(element.name)) {
+                                            people.push(element.name)
+                                            number.push(race.race_id)
+                                            // }
+
                                         }
                                     }
                                 }
