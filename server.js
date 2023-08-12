@@ -62,6 +62,9 @@ app.get('/',(req,res) =>
 app.get('/coachesDashboard.html',(req,res)=>
     res.render("coachesDashboard")
 )
+app.get('/potentialRecords.html',(req,res)=>
+    res.render("potentialRecords")
+)
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)

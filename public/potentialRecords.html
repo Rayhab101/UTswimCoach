@@ -237,9 +237,9 @@
                                         // }
                                         if (recordsec / swimmersec > .92 && recordsec /swimmersec != 1) {
                                             // console.log(race.race_id,swimmermin,swimmersec)
-                                            // console.log(element.name)
+                                            //console.log(element.name+" ("+Number((1-(recordsec / swimmersec))*100).toFixed(1)+"%)")
                                             // if (!people.includes(element.name)) {
-                                            people.push(element.name)
+                                            people.push(element.name+" ("+Number((1-(recordsec / swimmersec))*100).toFixed(1)+"%)")
                                             number.push(race.race_id)
                                             // }
                                             // if(race.time/person.min > .90){
@@ -253,7 +253,7 @@
                                         if (recordsec / swimmersec > .92 && recordsec / swimmersec !=1) {
                                             // console.log(element.name,recordsec/swimmersec,race.race_id)
                                             // if (!people.includes(element.name)) {
-                                            people.push(element.name)
+                                            people.push(element.name+" ("+Number((1-(recordsec / swimmersec))*100).toFixed(1)+"%)")
                                             number.push(race.race_id)
                                             // }
 
