@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BL/SJ Swim Team- With a 50</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+    <style>
+        @media screen and (min-width:750px) {
+            .container {
+                display: flex;
+                align-items: start;
+
+            }
+
+
+            table {
+                background-color: white;
+                width: 15vw;
+            }
+
+            td {
+                text-align: center;
+                height: 20px;
+            }
+
+            .swim_style {
+                padding-top: 75px;
+            }
+
+            h3 {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+            }
+
+        }
+
+        @media screen and (max-width:750px) {
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: start;
+                justify-items: center;
+
+            }
+
+            .swim_style {
+                padding-top: 125px;
+            }
+
+            table {
+                background-color: white;
+                /* width: 100%; */
+                font-size: xx-small;
+            }
+
+            #compare {
+                font-size: xx-small;
+            }
+
+            td {
+                text-align: center;
+                height: 20px;
+            }
+
+            .t0 {
+                display: none;
+            }
+
+            h3 {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+            }
+        }
+    </style>
+
+</head>
+<header id="header"></header>
+
+<body>
+    <main class="swim_style">
+        <center>
+            <h3>Where can I improve</h3>
+        </center>
+        <div class="container">
+            <table id="individual">
+                <tr>
+                    <td id="t11"><button onclick="calculate()">Calculate</button>
+                    </td>
+                </tr>
+            </table>
+            <table id="fifty">
+                <tr>
+                    <th>Isolate What is Missing</th>
+                </tr>
+                <tr>
+                    <td>Swim Time</td>
+                </tr>
+                <tr>
+                    <td><input id="swimtime" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Start Time</td>
+                </tr>
+                <tr>
+                    <td><input id="start" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Under Water Time</td>
+                </tr>
+                <tr>
+                    <td><input id="under" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Turn Time</td>
+                </tr>
+                <tr>
+                    <td><input id="turn" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Cycle Count</td>
+                </tr>
+                <tr>
+                    <td><input id="cycle" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Stroke Rate</td>
+                </tr>
+                <tr>
+                    <td><input id="stroke" type="text"></td>
+                </tr>
+            </table>
+            <table id="one-hundred">
+                <tr>
+                    <th>What's Needed</th>
+                </tr>
+                <tr>
+                    <td>Swim Time</td>
+                </tr>
+                <tr>
+                    <td id="time"></td>
+                </tr>
+                <tr>
+                    <td>Start Time</td>
+                </tr>
+                <tr>
+                    <td id="reaction"></td>
+                </tr>
+                <tr>
+                    <td>Under Water Time</td>
+                </tr>
+                <tr>
+                    <td id="breath"></td>
+                </tr>
+                <tr>
+                    <td>Turn Time</td>
+                </tr>
+                <tr>
+                    <td id="wall"></td>
+                </tr>
+                <tr>
+                    <td>Cycle Count</td>
+                </tr>
+                <tr>
+                    <td id="total"></td>
+                </tr>
+                <tr>
+                    <td>Stroke Rate</td>
+                </tr>
+                <tr>
+                    <td id="rate"></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+<footer id="footer"></footer>
+<script>
+    function calculate() {
+        document.getElementById("time").innerHTML = "";
+        document.getElementById("reaction").innerHTML = "";
+        document.getElementById("breath").innerHTML = "";
+        document.getElementById("wall").innerHTML = "";
+        document.getElementById("total").innerHTML = "";
+        document.getElementById("rate").innerHTML = "";
+
+        var inputs = document.querySelectorAll('input[type="text"]');
+        var blankInputs = [];
+
+        inputs.forEach(function (input) {
+            if (input.value === '') {
+                blankInputs.push(input.id);
+            }
+        });
+        var ST = Number(document.getElementById("swimtime").value);
+        var S = Number(document.getElementById("start").value);
+        var UT = Number(document.getElementById("under").value);
+        var TT = Number(document.getElementById("turn").value);
+        var CC = Number(document.getElementById("cycle").value);
+        var SR = Number(document.getElementById("stroke").value);
+        if (blankInputs.length == 1) {
+            switch (blankInputs[0]) {
+                case "swimtime":
+                document.getElementById("time").innerHTML = (S + (UT + TT) + (CC * SR)).toFixed(2)
+                    break;
+                case "start":
+                document.getElementById("reaction").innerHTML = (ST - ((UT + TT) + (CC * SR))).toFixed(2)
+                    break;
+                case "under":
+                document.getElementById("breath").innerHTML = (ST - S - TT - (CC * SR)).toFixed(2)
+                    break;
+                case "turn":
+                document.getElementById("wall").innerHTML = (ST - S - UT - (CC * SR)).toFixed(2)
+                    break;
+                case "cycle":
+                document.getElementById("total").innerHTML = ((ST - S - UT - TT) / SR).toFixed(2)
+                    break;
+                case "stroke":
+                document.getElementById("rate").innerHTML = ((ST - S - UT - TT) / CC).toFixed(2)
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            alert("Can't have zero or more than one field blank");
+        }
+    }
+
+</script>
+
+</html>
