@@ -21,6 +21,7 @@
         async function against() {
             var data = await fetch('/api/getBests').then(data => data.json());
             var swimmers = await fetch('/api/getAllSwimmers').then(data => data.json());
+            var data50 = await fetch('/api/get50times').then(data => data.json());
             //console.log(swimmers)
             var elements = []
             //var races = [];
@@ -30,9 +31,24 @@
             var three = [];
             var two = [];
             var one = [];
+            var fifty = 0;
+
+
             swimmers.forEach(element => {
                 var number = element.swimmer_id
                 var swimmerCount = 0;
+                //console.log(element.name)
+                // console.log(data50)
+                data50.forEach(swimmer =>{
+                    if(element.name == swimmer.swimmer_name){
+                        if(Number(swimmer.free.split(':')[0] <1)){
+                            fifty = Number(swimmer.free.split(':')[1]);
+                        }
+                    }
+                    else{
+                        fifty = 0;
+                    }
+                })
 
                 data.forEach(data => {
                     var that = 0;
@@ -56,7 +72,6 @@
                                 case 4:
                                     // console.log("4")
                                     var [minutesB, secondsB] = document.getElementById(element1).children[5].innerHTML.split(":");
-
                                     break;
                                 case 5:
                                     // console.log("5")
@@ -86,7 +101,13 @@
                             }
                             var min1 = Number(minutesA*60)+Number(secondsA);
                             var min2 = Number(minutesB*60)+Number(secondsB);
+                            //console.log(min1<60,min2<60)
                             if (min1 <= min2) {
+                                // console.log(min1,Number(fifty))
+                                // if(Number(fifty) <=min1 && Number(min1<40)){
+                                //     console.log(Number(fifty) <=min1 && Number(min1<40))
+                                //     swimmerCount += 1;
+                                // }
                                 swimmerCount += 1;
                             }
                         });
@@ -137,13 +158,18 @@
                             }
                             var min1 = Number(minutesA*60)+Number(secondsA);
                             var min2 = Number(minutesB*60)+Number(secondsB);
+                            //console.log(min1<60,min2<60)
+
                             if (min1 <=min2) {
+                                // if(Number(fifty) <= min1 && Number(min1<40)){
+                                //     swimmerCount += 1;
+                                // }
                                 swimmerCount += 1;
                             }
                         });
                     }
                 });
-                console.log(element.name, swimmerCount);
+                 console.log(element.name, swimmerCount);
                 switch (true) {
                     case swimmerCount==0:
                         //console.log("Hit")

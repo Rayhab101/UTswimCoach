@@ -65,6 +65,12 @@ app.get('/coachesDashboard.html',(req,res)=>
 app.get('/potentialRecords.html',(req,res)=>
     res.render("potentialRecords")
 )
+app.get('/swimmers.html',(req,res)=>
+    res.render("swimmers")
+)
+app.get('/topTimes.html',(req,res)=>
+    res.render("topTimes")
+)
 
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)

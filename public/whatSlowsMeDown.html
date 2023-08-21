@@ -196,6 +196,13 @@
         document.getElementById("wall").innerHTML = "";
         document.getElementById("total").innerHTML = "";
         document.getElementById("rate").innerHTML = "";
+        var table = document.getElementById("one-hundred");
+        var rows = table.getElementsByTagName("tr");
+        var cells = table.getElementsByTagName("td");
+
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].style.backgroundColor = ""; // Reset background color to default
+        }
 
         var inputs = document.querySelectorAll('input[type="text"]');
         var blankInputs = [];
@@ -211,30 +218,78 @@
         var TT = Number(document.getElementById("turn").value);
         var CC = Number(document.getElementById("cycle").value);
         var SR = Number(document.getElementById("stroke").value);
+        var underwaterCheck = 0;
+        var starttime = 0;
+        var turntime = 0;
+        var cyclecount = 0;
+        var strokerate = 0;
         if (blankInputs.length == 1) {
             switch (blankInputs[0]) {
                 case "swimtime":
-                document.getElementById("time").innerHTML = (S + (UT + TT) + (CC * SR)).toFixed(2)
+                    document.getElementById("time").innerHTML = (S + (UT + TT) + (CC * SR)).toFixed(2)
                     break;
                 case "start":
-                document.getElementById("reaction").innerHTML = (ST - ((UT + TT) + (CC * SR))).toFixed(2)
+                    document.getElementById("reaction").innerHTML = (ST - ((UT + TT) + (CC * SR))).toFixed(2)
+                    starttime = (ST - ((UT + TT) + (CC * SR))).toFixed(2)
                     break;
                 case "under":
-                document.getElementById("breath").innerHTML = (ST - S - TT - (CC * SR)).toFixed(2)
+                    document.getElementById("breath").innerHTML = (ST - S - TT - (CC * SR)).toFixed(2)
+                    underwaterCheck = (ST - S - TT - (CC * SR)).toFixed(2)
                     break;
                 case "turn":
-                document.getElementById("wall").innerHTML = (ST - S - UT - (CC * SR)).toFixed(2)
+                    document.getElementById("wall").innerHTML = (ST - S - UT - (CC * SR)).toFixed(2)
+                    turntime = (ST - S - UT - (CC * SR)).toFixed(2)
                     break;
                 case "cycle":
-                document.getElementById("total").innerHTML = ((ST - S - UT - TT) / SR).toFixed(2)
+                    document.getElementById("total").innerHTML = ((ST - S - UT - TT) / SR).toFixed(2)
+                    cyclecount = ((ST - S - UT - TT) / SR).toFixed(2)
                     break;
                 case "stroke":
-                document.getElementById("rate").innerHTML = ((ST - S - UT - TT) / CC).toFixed(2)
+                    document.getElementById("rate").innerHTML = ((ST - S - UT - TT) / CC).toFixed(2)
+                    strokerate = ((ST - S - UT - TT) / CC).toFixed(2)
                     break;
                 default:
                     break;
             }
-        } else {
+        }
+        else if (blankInputs.length == 0) {
+            var table = document.getElementById("one-hundred");
+            var rows = table.getElementsByTagName("tr");
+            var cells = table.getElementsByTagName("td");
+
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].style.backgroundColor = ""; // Reset background color to default
+            }
+
+            if (S > starttime && starttime >= 0.63) {
+                var cells = rows[3].getElementsByTagName("td");
+                cells[0].style.backgroundColor = "yellow";
+            }
+            else if (UT > underwaterCheck && underwaterCheck > 0) {
+                var cells = rows[5].getElementsByTagName("td");
+                cells[0].style.backgroundColor = "yellow";
+            }
+            else if (TT > turntime && turntime >=0.5 && turntime <=1.5) {
+                var cells = rows[7].getElementsByTagName("td");
+                cells[0].style.backgroundColor = "yellow";
+            }
+            else if (CC > cyclecount) {
+                var cells = rows[9].getElementsByTagName("td");
+                cells[0].style.backgroundColor = "yellow";
+            }
+            else if (SR > strokerate && strokerate >=0.8 && strokerate <= 1.5) {
+                var cells = rows[11].getElementsByTagName("td");
+                cells[0].style.backgroundColor = "yellow";
+            }
+            else {
+                var cells = table.getElementsByTagName("td");
+                for (var i = 0; i < rows.length; i++) {
+                    cells[i].style.backgroundColor = ""; // Reset background color to default
+                }
+
+            }
+        }
+        else {
             alert("Can't have zero or more than one field blank");
         }
     }
