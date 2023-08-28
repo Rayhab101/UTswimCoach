@@ -860,5 +860,21 @@ module.exports = {
             //console.log(times);
             return res.status(200).send(times)
         }).catch(err => {(res.sendStatus(500));console.log(err)})
+    },
+    getMin50:(req,res) =>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+        db.get_max50s(id).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => {(res.sendStatus(500));console.log(err)})
+    },
+    getMax50:(req,res) =>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+        db.get_min50s(id).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => {(res.sendStatus(500));console.log(err)})
     }
 }

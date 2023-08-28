@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BL/SJ Swim Team - Archive</title>
+  <link rel="stylesheet" href="swim.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+
+  <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js" integrity="sha512-Tfw6etYMUhL4RTki37niav99C6OHwMDB2iBT5S5piyHO+ltK2YX8Hjy9TXxhE1Gm/TmAV0uaykSpnHKFIAif/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $(function () {
+      $("#header").load("heading.html");
+      $("#footer").load("footing.html");
+    });
+  </script>
+  <style>
+      body {
+        overflow-x:scroll; 
+      }
+      table{
+          background-color: white;
+      }
+  </style>
+</head>
+<header id="header"></header>
+<script>
+    var checks;
+    var checking;
+    async function minTime(id,row){
+            var minT = await fetch("/api/getMin50/"+id).then(data => data.json());
+            var min = minT[0].max
+            if(min==null){
+                min = ""
+            }
+            var cell = row.insertCell();
+            cell.innerHTML = min;
+
+            var maxT = await fetch("/api/getMax50/"+id).then(data => data.json());
+            var max = maxT[0].min
+            if(max == null){
+                max = ""
+            }
+            var cell = row.insertCell();
+            cell.innerHTML = max;
+            minT = Number(min.split(":")[1]);
+            if(min.split(":")[0]=="1"){
+                minT +=60
+            }
+            maxT = Number(max.split(":")[1]);
+            if(max.split(":")[0]=="1"){
+                maxT +=60
+            }
+
+            var diff = (minT-maxT).toFixed(2);
+            if(diff == "NaN" || diff==0){
+                diff = ""
+            }
+            var cell = row.insertCell();
+            cell.innerHTML = diff;
+            var percent = (((minT-maxT)/maxT)*100).toFixed(2)
+            if(percent == 0 || percent== "NaN" || diff==""){
+                percent = "";
+
+            }
+            else{
+                percent = percent+"%"
+            }
+            var cell = row.insertCell();
+            cell.innerHTML = percent;
+    }
+    async function difference(){
+        //console.log(min,max)
+        // var min = min.split(":")[1];
+        // var max = max.split(":")[1];
+        //console.log(max-min)
+        //return max-min;
+    }
+    async function load(){
+        var swimmers = await fetch("/api/getAllSwimmers/").then(data => data.json());
+        // console.log(swimmers)
+        var body = document.getElementById("table");
+        swimmers.forEach(person => {
+            var row = body.insertRow();
+            var cell = row.insertCell();
+            cell.innerHTML = person.name;
+            minTime(person.swimmer_id,row);
+        });
+    }
+</script>
+<body onload="load()">
+<center>
+    <table id="table" style="text-align:center">
+        <tr>
+            <td>Name:</td>
+            <td>Slowest Time</td>
+            <td>Fastest Time</td>
+            <td>Time Difference</td>
+            <td>Percent Improvement</td>
+        </tr>
+    </table>
+</center>
+  </body>
+  <footer id="footer"></footer>
+  
+  </html>

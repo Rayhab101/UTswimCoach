@@ -172,6 +172,10 @@ app.post('/api/updateSchoolRelayRecord/:id', userctrl.updateSchoolRelayRecord)
 
 app.get('/api/testpull/:id',userctrl.testPull)
 
+app.get('/api/getMin50/:id',userctrl.getMin50)
+app.get('/api/getMax50/:id',userctrl.getMax50)
+
+
 app.get('/api/get50times',userctrl.get50times)
 app.post('/api/set50times/:id',userctrl.set50times)
 app.post('/api/update50Times/:id',userctrl.update50Times)
