@@ -876,5 +876,25 @@ module.exports = {
             //console.log(times);
             return res.status(200).send(times)
         }).catch(err => {(res.sendStatus(500));console.log(err)})
+    },
+    test:(req,res)=>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+
+        var [school,race] = id.split("&");
+        db.new_test(Number(school),Number(race)).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => {(res.sendStatus(500));console.log(err)})
+    },
+    testRelays:(req,res)=>{
+        var {id}=req.params;
+        const db = req.app.get("db");
+
+        var [school,race] = id.split("&");
+        db.test_relays(Number(school),Number(race)).then(times => {
+            //console.log(times);
+            return res.status(200).send(times)
+        }).catch(err => {(res.sendStatus(500));console.log(err)})
     }
 }

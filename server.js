@@ -187,7 +187,8 @@ app.get('/api/goals/:id',userctrl.getGoals)
 app.post('/api/setGoals/:id',userctrl.setGoals)
 app.post('/api/updateGoals/:id',userctrl.updateGoals)
 
-
+app.get('/api/test/:id',userctrl.test)
+app.get('/api/testRelays/:id',userctrl.testRelays)
 
 app.set('port', process.env.PORT || 8080)
 massive({

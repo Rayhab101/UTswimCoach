@@ -1,0 +1,1 @@
+SELECT * FROM relay_results WHERE school=$1 AND race=$2 ORDER BY race;

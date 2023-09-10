@@ -2,235 +2,284 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BL/SJ Swim Team - Archive</title>
-  <link rel="stylesheet" href="swim.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Records</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("footer").load("footing.html");
+        });
     </script>
+    <style>
+        @media screen and (min-width:750px) {
 
-  <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
-  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-  <script>
-    $(function () {
-      $("#header").load("heading.html");
-      $("#footer").load("footing.html");
-    });
-  </script>
-  <style>
-    /* Bottom right text */
-    * {
-      box-sizing: border-box;
-    }
+            .container1 {
+                display: grid;
+                height: 75vh;
+                background-color: white;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
 
-    /* Create two equal columns that floats next to each other */
-    .column {
-      float: left;
-      width: 50%;
-      padding: 10px;
-      height: 300px;
-      /* Should be removed. Only for demonstration */
-      justify-content: center;
-    }
+            table {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
 
-    /* Clear floats after the columns */
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
+            }
 
-    .image-container {
-      display: inline-block;
-      position: relative;
-      text-align: center;
-      width: 32%;
-      z-index: -1;
-    }
+            td {
+                /* height: 25px; */
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
 
-    .image-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      /* background-color: rgba(255, 255, 255, 0.7); */
-      /* padding: 10px; */
-      border-radius: 5px;
-      z-index: 0;
-    }
+            th {
+                text-align: center;
+                font-size: 24px;
+            }
 
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-    @media screen and (max-width: 600px) {
-      .column {
-        width: 100%;
-      }
-    }
-  </style>
-  <script>
-    async function recordsLoad() {
-      var school = location.search.substring(1);
-      school = Number(school.split("=")[1]);
-      var relays = [1, 8, 11, 12, 19, 22]
-      var races =["","[200 Medley]","[200 Free]","[200 IM]","[50 Free]","[100 Fly]","[100 Free]","[500 Free]","[200 Relay]","[100 Back]","[100 Breast]","[400 Relay]","[200 Medley]","[200 Free]","[200 IM]","[50 Free]","[100 Fly]","[100 Free]","[500 Free]","[200 Relay]","[100 Back]","[100 Breast]","[400 Relay]"]
-      for(var i =1;i<23;i++){
-        if(!relays.includes(i)){
-          var record = await fetch('/api/schoolRecord/' + i + "&" + school).then(data => data.json());
-          var name = await fetch('/api/swim/' + record[0].swimmer_id).then(data=>data.json());
-          if(i <12){
-            document.getElementById('g'+i).innerHTML = races[i]+"<br><br>" + name[0].name +"<br>"  +record[0].time +"<br> (" +record[0].year+")";
-          }
-          else{
-            document.getElementById('b'+i).innerHTML = races[i]+"<br><br>" + name[0].name +"<br>"  +record[0].time +"<br> (" +record[0].year+")";
-          }
+            .swimmer_data1 {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .swimmer_data2 {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            .swimmer_data3 {
+                grid-row: 1;
+                grid-column: 3;
+            }
+
+            .head {
+                border-top: solid black 1px;
+                border-bottom: solid black 1px;
+            }
         }
-        else{
-          var data = await fetch("/api/relayRecord/" + i + "&" + school).then(data=>data.json());
-          if(i <12){
-            document.getElementById('g'+i).innerHTML = races[i]+"<br><br>" + data[0].swimmers +"<br>" +data[0].time +"<br> (" +data[0].year+")";
-          }
-          else{
-            document.getElementById('b'+i).innerHTML = races[i]+ "<br><br>" +data[0].swimmers +"<br>" +data[0].time +"<br> (" +data[0].year+")";
-          }
+
+        @media screen and (max-width:750px) {
+
+            .container1 {
+                display: grid;
+                height: 500px;
+                background-color: white;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                font-size: 7px;
+                padding-top: 65px;
+            }
+
+            table {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            td {
+                /* height: 25px; */
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
+
+            th {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .swimmer_data1 {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .swimmer_data2 {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            .swimmer_data3 {
+                grid-row: 1;
+                grid-column: 3;
+            }
+
+            .head {
+                border-top: solid black 1px;
+                border-bottom: solid black 1px;
+            }
+
+            .top {
+                display: none;
+            }
         }
-      }
-    }
-  </script>
+    </style>
+    <script>
+        async function namePull(race, cell,time,year, school) {
+            var relays = [1, 8, 11, 12, 19, 22]
+            //race = cell.id[1] == "g" ? race : race + 11;
+            console.log(race)
+            if (!relays.includes(race)) {
+                var record = await fetch('/api/schoolRecord/' + race + "&" + school);
+                var data = await record.json();
+                var name = await fetch('/api/swim/' + data[0].swimmer_id);
+                var swimmer = await name.json();
+                document.getElementById(cell.id).innerHTML = swimmer[0].name;
+                document.getElementById(time.id).innerHTML = data[0].time;
+                document.getElementById(year.id).innerHTML = data[0].year;
+            }
+            else {
+                var data = await fetch("/api/relayRecord/" + race + "&" + school)
+                var relay = await data.json();
+                document.getElementById(cell.id).innerHTML = relay[0].swimmers;
+                document.getElementById(time.id).innerHTML = relay[0].time;
+                document.getElementById(year.id).innerHTML = relay[0].year;
+            }
+        }
+
+        async function pullSchool() {
+            var school = location.search.substring(1);
+            school = school.split("=");
+            school = Number(school[1]);
+
+            for (var i =1; i<23;i++){
+                if(i<12){
+                    var body = document.getElementById("girlRecords");
+                }
+                else{
+                    var body = document.getElementById("boyRecords");
+                }
+                var row = document.createElement('tr');
+                    var name = row.insertCell();
+                    var time = row.insertCell();
+                    var year = row.insertCell();
+                    name.setAttribute('id', 'n' + i);
+                    time.setAttribute('id', 't' + i);
+                    year.setAttribute('id', 'y' + i);
+                    namePull(i, name,time,year,school);
+                    body.appendChild(row);
+            }
+        }
+    </script>
 </head>
+<header id="header"></header>
 
-<body onload="recordsLoad()">
-  <header id="header"></header>
-  <main class="swim_info">
-    <div class="container" id="swimmers" style="width: 100%;">
-      <div class="row">
-        <center>
-          <div class="column">
-            <h1 style="color:red; background-color: white;">
-              <center>Women's Records</center>
-            </h1>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g1"></div>
-            </div>
+<body onload="pullSchool()">
 
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g2"></div>
-            </div>
+    <main class="swim_info">
+        <div class="container1" id="container1">
+            <table class="swimmer_data1" id="girlRecords">
+                <tr class="top">
+                    <td></td>
+                </tr>
 
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g3"></div>
-            </div>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g4"></div>
-            </div>
+                <tr class="head">
+                    <td>RECORDS WOMEN:</td>
+                    <td>TIME</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+            <table class="swimmer_data2" id="races">
+                <tr class="top">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>RACE</td>
+                </tr>
+                <tr class="head">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>200 Medley Relay</td>
+                </tr>
+                <tr class="head">
+                    <td>200 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>200 I.M.</td>
+                </tr>
+                <tr class="head">
+                    <td>50 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Butterfly</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>500 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>200 Freestyle Relay</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Backstroke</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Breaststroke</td>
+                </tr>
+                <tr class="head">
+                    <td>400 Freestyle Relay</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+            <table class="swimmer_data3" id="boyRecords">
+                <tr class="top">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>RECORDS MEN:</td>
+                    <td>TIME</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </main>
 
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g5"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g6"></div>
-            </div>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g7"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g8"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g9"></div>
-            </div>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g10"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="g11"></div>
-            </div>
-          </div>
-          <div class="column">
-            <h1 style="color:red; background-color: white;">
-              <center>Men's Records</center>
-            </h1>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b12"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b13"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b14"></div>
-            </div>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b15"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b16"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b17"></div>
-            </div>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b18"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b19"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b20"></div>
-            </div>
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b21"></div>
-            </div>
-
-            <div class="image-container">
-              <img src="images/ScottishRoyalArmsUse.png" style="width: 100%">
-              <div class="image-text" id="b22"></div>
-            </div>
-          </div>
-        </center>
-      </div>
-
-    </div>
-
-  </main>
-  <footer id="footer"></footer>
 </body>
-<script>
-
-</script>
+<footer id="footer"></footer>
 
 </html>
