@@ -18,31 +18,28 @@
             $("#footer").load("footing.html");
         });
 
-        function buildPage() {
-            fetch("/api/getAllSwimmers/")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    nameDropdown(myJson);
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
+        async function buildPage() {
+            var names = await fetch("/api/getAllSwimmers/").then(data => data.json())
+            nameDropdown(names)
         }
 
         function nameDropdown(people) {
             for (var j = 1; j < 5; j++) {
                 var ddlSwimmers = document.getElementById("t" + j);
-                var head = document.createElement("OPTION");
+                var fragment = document.createDocumentFragment();
+
+                var head = document.createElement("option");
                 head.innerHTML = "Select Swimmer";
-                ddlSwimmers.options.add(head);
+                fragment.appendChild(head);
+
                 for (var i = 0; i < people.length; i++) {
-                    var option = document.createElement("OPTION");
+                    var option = document.createElement("option");
                     option.setAttribute("id", people[i].swimmer_id);
                     option.innerHTML = people[i].name;
-                    ddlSwimmers.options.add(option);
+                    fragment.appendChild(option);
                 }
+
+                ddlSwimmers.appendChild(fragment);
             }
         }
 
@@ -234,74 +231,43 @@
 <footer id="footer"></footer>
 <script>
 
-    function pullPerson(id, race, body, row, cell) {
-        fetch('/api/individualRecords/' + id + "&" + race)
-            .then(function (response) {
-                if (response.status == 200) {
-                    return response.json();
-                }
-            }).then(function (records) {
-                var r = [5, 9, 10, 16, 20, 21]
-                if (records[0].min === null) {
-                    var text = "";
-                }
-                else {
-                    if (!r.includes(race)) {
-                        text = (records[0].min);
-                    }
-                    else {
-                        var record = records[0].min.split(":");
-                        record2 = Number(record[1])
-                        record = Number(record[0]) * 60
-                        record = (record + record2)
-                        switch(race){
-                            case 5:
-                            text = (record * 0.4611).toFixed(2);
-                                break;
-                            case 9:
-                            text = (record * .4747).toFixed(2);
-                                break;
-                            case 10:
-                            text = (record * .4754).toFixed(2);
-                                break;
-                            case 16:
-                            text = (record * .4709).toFixed(2);
-                                break;
-                            case 20:
-                            text = (record * .494).toFixed(2);
-                                break;
-                            case 21:
-                            text = (record * .4658).toFixed(2);
-                                break;  
-                            default:
-                            text = (record * .472).toFixed(2);
-                                break;
-                        }
-                        // text = (record * .486).toFixed(2);
-                        var min = 0
-                        while(text >= 60){
-                            min += 1;
-                            text = text-60;
-                            text.toFixed(2);
-                        }
-                        if(Number(text) <10.00){
-                            text = text.toFixed(2)
-                            text = "0"+text;
-                        }
-                        else{
-                            text = Number(text).toFixed(2)
-                        }
-                        text = min+":" + text;
-                    }
+    async function pullPerson(id, race, body, row, cell) {
+        const check = await fetch(`/api/individualRecords/${id}&${race}`).then(data => data.json());
 
-                }
-                document.getElementById(cell.id).innerHTML = text;
-                total(race);
-            }).catch(function (error) {
-                console.log("Error: " + error);
-            });
+        if (check[0].min === null) {
+            document.getElementById(cell.id).innerHTML = "";
+            return;
+        }
 
+        const r = new Set([5, 9, 10, 16, 20, 21]);
+        let text;
+
+        if (!r.has(race)) {
+            text = check[0].min;
+        } else {
+            const [recordMin, recordSec] = check[0].min.split(":");
+            const record = Number(recordMin) * 60 + Number(recordSec);
+            const raceFactors = {
+                5: 0.4611, 9: 0.4747, 10: 0.4754,
+                16: 0.4709, 20: 0.494, 21: 0.4658
+            };
+
+            const factor = raceFactors[race] || 0.472;
+            text = (record * factor).toFixed(2);
+
+            const min = Math.floor(text / 60);
+            const sec = (text % 60).toFixed(2).padStart(5, "0");
+
+            text = `${min}:${sec}`;
+            if (!text.includes(":")) {
+                text = `0:${text}`;
+            }
+        }
+
+        document.getElementById(cell.id).innerHTML = text;
+        total(race);
     }
+
 
     function total(race) {
         //This is for the Boys
@@ -333,22 +299,22 @@
                 var times = t1 + t2 + t3 + t4;
                 var minutes = 0;
                 // times = rTimes.toFixed(2);
-                while(times >= 60){
+                while (times >= 60) {
                     minutes += 1;
                     times -= 60;
                 }
-                
+
                 if (times < 10.00) {
-                    if(times>1.00){
+                    if (times > 1.00) {
                         times = Number(times).toFixed(2);
                         times = "0" + times;
                     }
-                    else{
-                        console.log("Under 1")
+                    else {
+                        //console.log("Under 1")
                         times = "0" + times.toFixed(2);
                     }
                 }
-                else{
+                else {
                     times = times.toFixed(2);
                 }
                 var times = "0" + minutes + ":" + times;
@@ -360,22 +326,22 @@
             var tM1 = Number(t150back[1]);
             t250breast = t250breast.split(":");
             var tM2 = Number(t250breast[1]);
-            if(Number(t250breast[0]) > 0){
+            if (Number(t250breast[0]) > 0) {
                 tM2 += 60;
             }
             t350fly = t350fly.split(":");
             var tM3 = Number(t350fly[1]);
-            if(Number(t350fly[0]) > 0){
+            if (Number(t350fly[0]) > 0) {
                 tM3 += 60;
             }
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
                 var time = tM1 + tM2 + tM3 + t4;
-                var minutes =0;
-                while(time >=60){
-                    minutes+= 1;
+                var minutes = 0;
+                while (time >= 60) {
+                    minutes += 1;
                     time = (time - 60);
                 }
-                time=time.toFixed(2)
+                time = time.toFixed(2)
                 if (time < 10.00) {
                     time = "0" + time;
                 }
@@ -383,7 +349,7 @@
                 var timeM = "0" + minutes + ":" + time;
                 document.getElementById('tot200Medley').innerHTML = timeM;
             }
-            
+
             t1100free = t1100free.split(":");
             t2100free = t2100free.split(":");
             t3100free = t3100free.split(":");
@@ -391,7 +357,7 @@
             if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
                 var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
                 var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
-                while(newSeconds >= 60){
+                while (newSeconds >= 60) {
                     newMinutes += 1;
                     newSeconds = newSeconds - 60;
                 }
@@ -404,7 +370,7 @@
             }
         }
         //This is for the girls
-        else{
+        else {
             //These are for the 200 Free Relay
             var t150free = $("#t1u4").text()
             var t250free = $("#t2u4").text()
@@ -419,7 +385,7 @@
             var t2100free = $("#t2u6").text()
             var t3100free = $("#t3u6").text()
             var t4100free = $("#t4u6").text()
-//#region 200 Free Relay Times
+            //#region 200 Free Relay Times
             t150free = t150free.split(":");
             var t1 = Number(t150free[1]);
             t250free = t250free.split(":");
@@ -431,29 +397,28 @@
             if (!isNaN(t1) && !isNaN(t2) && !isNaN(t3) && !isNaN(t4)) {
                 var times = t1 + t2 + t3 + t4;
                 var minutes = 0;
-                while(times >=60)
-                {
+                while (times >= 60) {
                     minutes += 1;
                     times = (times - 60).toFixed(2);
                 }
                 if (times < 10.00) {
-                    
-                    if(times>1.00){
+
+                    if (times > 1.00) {
                         times = Number(times).toFixed(2);
                         times = "0" + times;
                     }
-                    else{
+                    else {
                         times = "0" + times;
                     }
 
                 }
-                else{
+                else {
                     times = Number(times).toFixed(2)
 
                 }
                 // console.log("1:"+times)
                 //     times = times.toFixed(2);
-                
+
 
 
                 var times = "0" + minutes + ":" + times;
@@ -464,27 +429,30 @@
             //#region 200 Medley Relay Times
             t150back = t150back.split(":");
             var tM1 = Number(t150back[1]);
-            if(Number(t150back[0]>0)){tM1=tM1+60}
+            if (Number(t150back[0] > 0)) { tM1 = tM1 + 60 }
             t250breast = t250breast.split(":");
             var tM2 = Number(t250breast[1]);
-            if(Number(t250breast[0]>0)){tM2=tM2+60}
+            if (Number(t250breast[0] > 0)) { tM2 = tM2 + 60 }
             t350fly = t350fly.split(":");
             var tM3 = Number(t350fly[1]);
-            if(Number(t350fly[0]>0)){tM3=tM3+60}
+            if (Number(t350fly[0] > 0)) { tM3 = tM3 + 60 }
             if (!isNaN(tM1) && !isNaN(tM2) && !isNaN(tM3) && !isNaN(t4)) {
                 var time = tM1 + tM2 + tM3 + t4;
-                var minutes =0;
-                while(time >= 60){
-                    minutes+=1;
+                var minutes = 0;
+                while (time >= 60) {
+                    minutes += 1;
                     time = time - 60;
                 }
-                time=time.toFixed(2)
+                time = time.toFixed(2)
 
                 if (time < 10.00) {
                     time = "0" + time;
                 }
                 var timeM = "0" + minutes + ":" + time;
                 document.getElementById('tot200Medley').innerHTML = timeM;
+            }
+            else {
+                document.getElementById('tot200Medley').innerHTML = "";
             }
 
             t1100free = t1100free.split(":");
@@ -494,12 +462,12 @@
             if (!isNaN(Number(t1100free[1])) && !isNaN(Number(t2100free[1])) && !isNaN(Number(t3100free[1])) && !isNaN(Number(t4100free[1]))) {
                 var newMinutes = Number(t1100free[0]) + Number(t2100free[0]) + Number(t3100free[0]) + Number(t4100free[0]);
                 var newSeconds = Number(t1100free[1]) + Number(t2100free[1]) + Number(t3100free[1]) + Number(t4100free[1]);
-                while(newSeconds >= 60){
+                while (newSeconds >= 60) {
                     newMinutes += 1;
                     newSeconds = newSeconds - 60;
                 }
                 newSeconds = newSeconds.toFixed(2)
-                
+
                 if (newSeconds < 10.00) {
                     newSeconds = "0" + newSeconds;
                 }
@@ -509,52 +477,35 @@
     }
 
     function recordPull(person, gender, id) {
-        newId = id[1];
-        if ($("#individual" + newId).children().length > 1) {
-            for (var d = 6; d > 1; d--) {
-                document.getElementById("individual" + newId).deleteRow(d);
-            }
-        }
-        var body = document.getElementById("individual" + newId);
-        if (gender == "M") {
-            for (var j = 12; j < 22; j++) {
-                var forRelays = [15, 16, 17, 20, 21];
-                if (forRelays.includes(j)) {
-                    var row = document.createElement('tr');
-                    var cell = row.insertCell();
-                    cell.setAttribute('id', id + "u" + j)
-                    row.appendChild(cell);
-                    body.appendChild(row);
-                    pullPerson(person, j, body, row, cell);
+        const newId = id[1];
+        const body = document.getElementById("individual" + newId);
+        const relayIndexes = (gender === "M") ? [15, 16, 17, 20, 21] : [4, 5, 6, 9, 10];
+
+        if (body.children.length > 1) {
+            for (const row of body.querySelectorAll('tr')) {
+                if (row.rowIndex > 1) {
+                    row.remove();
                 }
             }
         }
-        else {
-            for (var j = 1; j < 12; j++) {
-                var forRelays = [4, 5, 6, 9, 10];
-                if (forRelays.includes(j)) {
-                    var row = document.createElement('tr');
-                    var cell = row.insertCell();
-                    cell.setAttribute('id', id + "u" + j)
-                    row.appendChild(cell);
-                    body.appendChild(row);
-                    pullPerson(person, j, body, row, cell);
-                }
-            }
+
+        const fragment = document.createDocumentFragment();
+
+        for (const j of relayIndexes) {
+            const row = document.createElement('tr');
+            const cell = row.insertCell();
+            cell.id = id + "u" + j;
+            row.appendChild(cell);
+            fragment.appendChild(row);
+            pullPerson(person, j, body, row, cell);
         }
+
+        body.appendChild(fragment);
     }
 
-    function tableFill(id, name) {
-        fetch("/api/swimmerName/" + name)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                recordPull(myJson[0].swimmer_id, myJson[0].gender, id)
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
+    async function tableFill(id, name) {
+        var person = await fetch("/api/swimmerName/" + name).then(data => data.json());
+        recordPull(person[0].swimmer_id, person[0].gender, id);
     }
 
 

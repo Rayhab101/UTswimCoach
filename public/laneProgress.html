@@ -22,7 +22,6 @@
             var data = await fetch('/api/getBests').then(data => data.json());
             var swimmers = await fetch('/api/getAllSwimmers').then(data => data.json());
             var data50 = await fetch('/api/get50times').then(data => data.json());
-            //console.log(swimmers)
             var elements = []
             //var races = [];
             var six = [];
@@ -33,12 +32,9 @@
             var one = [];
             var fifty = 0;
 
-
             swimmers.forEach(element => {
                 var number = element.swimmer_id
                 var swimmerCount = 0;
-                //console.log(element.name)
-                // console.log(data50)
                 data50.forEach(swimmer =>{
                     if(element.name == swimmer.swimmer_name){
                         if(Number(swimmer.free.split(':')[0] <1)){

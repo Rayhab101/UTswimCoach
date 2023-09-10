@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Records</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("footer").load("footing.html");
+        });
+    </script>
+    <style>
+        @media screen and (min-width:750px) {
+
+            .container1 {
+                display: grid;
+                height: 75vh;
+                background-color: white;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
+
+            table {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            td {
+                /* height: 25px; */
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
+
+            th {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .swimmer_data1 {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .swimmer_data2 {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            .swimmer_data3 {
+                grid-row: 1;
+                grid-column: 3;
+            }
+
+            .head {
+                border-top: solid black 1px;
+                border-bottom: solid black 1px;
+            }
+        }
+
+        @media screen and (max-width:750px) {
+
+            .container1 {
+                display: grid;
+                height: 500px;
+                background-color: white;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                font-size: 7px;
+                padding-top: 65px;
+            }
+
+            table {
+                background-color: rgba(255, 255, 255, .95);
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+                text-align: center;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            td {
+                /* height: 25px; */
+                border-collapse: separate;
+                border: solid white 1px;
+                border-radius: 6px;
+                -moz-border-radius: 6px;
+            }
+
+            th {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            button {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .swimmer_data1 {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            .swimmer_data2 {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            .swimmer_data3 {
+                grid-row: 1;
+                grid-column: 3;
+            }
+
+            .head {
+                border-top: solid black 1px;
+                border-bottom: solid black 1px;
+            }
+
+            .top {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        async function namePull(race, cell,time,year, school) {
+            var relays = [1, 8, 11, 12, 19, 22]
+            //race = cell.id[1] == "g" ? race : race + 11;
+            console.log(race)
+            if (!relays.includes(race)) {
+                var record = await fetch('/api/schoolRecord/' + race + "&" + school);
+                var data = await record.json();
+                var name = await fetch('/api/swim/' + data[0].swimmer_id);
+                var swimmer = await name.json();
+                document.getElementById(cell.id).innerHTML = swimmer[0].name;
+                document.getElementById(time.id).innerHTML = data[0].time;
+                document.getElementById(year.id).innerHTML = data[0].year;
+            }
+            else {
+                var data = await fetch("/api/relayRecord/" + race + "&" + school)
+                var relay = await data.json();
+                document.getElementById(cell.id).innerHTML = relay[0].swimmers;
+                document.getElementById(time.id).innerHTML = relay[0].time;
+                document.getElementById(year.id).innerHTML = relay[0].year;
+            }
+        }
+
+        async function pullSchool() {
+            var school = location.search.substring(1);
+            school = school.split("=");
+            school = Number(school[1]);
+
+            for (var i =1; i<23;i++){
+                if(i<12){
+                    var body = document.getElementById("girlRecords");
+                }
+                else{
+                    var body = document.getElementById("boyRecords");
+                }
+                var row = document.createElement('tr');
+                    var name = row.insertCell();
+                    var time = row.insertCell();
+                    var year = row.insertCell();
+                    name.setAttribute('id', 'n' + i);
+                    time.setAttribute('id', 't' + i);
+                    year.setAttribute('id', 'y' + i);
+                    namePull(i, name,time,year,school);
+                    body.appendChild(row);
+            }
+        }
+    </script>
+</head>
+<header id="header"></header>
+
+<body onload="pullSchool()">
+
+    <main class="swim_info">
+        <div class="container1" id="container1">
+            <table class="swimmer_data1" id="girlRecords">
+                <tr class="top">
+                    <td></td>
+                </tr>
+
+                <tr class="head">
+                    <td>RECORDS WOMEN:</td>
+                    <td>TIME</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+            <table class="swimmer_data2" id="races">
+                <tr class="top">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>RACE</td>
+                </tr>
+                <tr class="head">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>200 Medley Relay</td>
+                </tr>
+                <tr class="head">
+                    <td>200 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>200 I.M.</td>
+                </tr>
+                <tr class="head">
+                    <td>50 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Butterfly</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>500 Freestyle</td>
+                </tr>
+                <tr class="head">
+                    <td>200 Freestyle Relay</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Backstroke</td>
+                </tr>
+                <tr class="head">
+                    <td>100 Breaststroke</td>
+                </tr>
+                <tr class="head">
+                    <td>400 Freestyle Relay</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+            <table class="swimmer_data3" id="boyRecords">
+                <tr class="top">
+                    <td></td>
+                </tr>
+                <tr class="head">
+                    <td>RECORDS MEN:</td>
+                    <td>TIME</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr class="top">
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+</body>
+<footer id="footer"></footer>
+
+</html>

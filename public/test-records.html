@@ -197,59 +197,59 @@
         }
     </style>
     <script>
-        async function cardCreate() {
-            var count = 0;
-            var body = document.getElementById("swimmers");
-            var row;
-            dataArray.forEach(element => {
-                if (count % 3 == 0) {
-                    row = document.createElement("div");
-                    row.setAttribute("class", "row");
-                }
-                var col = document.createElement("div");
-                col.setAttribute("class", "column");
-                var a = document.createElement("a");
-                a.setAttribute("href", "./swimmers.html?swimmerid=" + element.swimmer_id);
-                a.setAttribute("style", "text-decoration: none; color: black;");
-                var carred = document.createElement("div");
-                carred.setAttribute("class", "shield");
-                carred.setAttribute('id', element.swimmer_id);
-                var cardName = document.createElement("h3");
-                cardName.innerHTML = element.name[0] + ". " + element.name.split(" ")[1];;
-                cardName.setAttribute("font-weight", "bold");
-                var cardGrade = document.createElement("h3");
-                cardGrade.innerHTML = element.status_grade;
-                carred.appendChild(cardName);
-                carred.appendChild(cardGrade);
-                a.appendChild(carred);
-                col.appendChild(a);
-                row.appendChild(col);
-                body.appendChild(row);
-                count = count + 1;
-            });
-        }
+        // async function cardCreate() {
+        //     var count = 0;
+        //     var body = document.getElementById("swimmers");
+        //     var row;
+        //     dataArray.forEach(element => {
+        //         if (count % 3 == 0) {
+        //             row = document.createElement("div");
+        //             row.setAttribute("class", "row");
+        //         }
+        //         var col = document.createElement("div");
+        //         col.setAttribute("class", "column");
+        //         var a = document.createElement("a");
+        //         a.setAttribute("href", "./swimmers.html?swimmerid=" + element.swimmer_id);
+        //         a.setAttribute("style", "text-decoration: none; color: black;");
+        //         var carred = document.createElement("div");
+        //         carred.setAttribute("class", "shield");
+        //         carred.setAttribute('id', element.swimmer_id);
+        //         var cardName = document.createElement("h3");
+        //         cardName.innerHTML = element.name[0] + ". " + element.name.split(" ")[1];;
+        //         cardName.setAttribute("font-weight", "bold");
+        //         var cardGrade = document.createElement("h3");
+        //         cardGrade.innerHTML = element.status_grade;
+        //         carred.appendChild(cardName);
+        //         carred.appendChild(cardGrade);
+        //         a.appendChild(carred);
+        //         col.appendChild(a);
+        //         row.appendChild(col);
+        //         body.appendChild(row);
+        //         count = count + 1;
+        //     });
+        // }
 
-        async function namePull(race, cell, time, year, school) {
-            var relays = [1, 8, 11, 12, 19, 22]
-            race = cell.id[1] == "g" ? race : race + 11;
-            if (!relays.includes(race)) {
-                var record = await fetch('/api/schoolRecord/' + race + "&" + school);
-                var data = await record.json();
-                var name = await fetch('/api/swim/' + data[0].swimmer_id);
-                var swimmer = await name.json();
-                document.getElementById(cell.id).innerHTML = swimmer[0].name;
-                document.getElementById(time.id).innerHTML = data[0].time;
-                document.getElementById(year.id).innerHTML = data[0].year;
-                cardCreate();
-            }
-            else {
-                var data = await fetch("/api/relayRecord/" + race + "&" + school)
-                var relay = await data.json();
-                document.getElementById(cell.id).innerHTML = relay[0].swimmers;
-                document.getElementById(time.id).innerHTML = relay[0].time;
-                document.getElementById(year.id).innerHTML = relay[0].year;
-            }
-        }
+        // async function namePull(race, cell, time, year, school) {
+        //     var relays = [1, 8, 11, 12, 19, 22]
+        //     race = cell.id[1] == "g" ? race : race + 11;
+        //     if (!relays.includes(race)) {
+        //         var record = await fetch('/api/schoolRecord/' + race + "&" + school);
+        //         var data = await record.json();
+        //         var name = await fetch('/api/swim/' + data[0].swimmer_id);
+        //         var swimmer = await name.json();
+        //         document.getElementById(cell.id).innerHTML = swimmer[0].name;
+        //         document.getElementById(time.id).innerHTML = data[0].time;
+        //         document.getElementById(year.id).innerHTML = data[0].year;
+        //         cardCreate();
+        //     }
+        //     else {
+        //         var data = await fetch("/api/relayRecord/" + race + "&" + school)
+        //         var relay = await data.json();
+        //         document.getElementById(cell.id).innerHTML = relay[0].swimmers;
+        //         document.getElementById(time.id).innerHTML = relay[0].time;
+        //         document.getElementById(year.id).innerHTML = relay[0].year;
+        //     }
+        // }
 
         async function pullSchool() {
             var school = location.search.substring(1);
@@ -299,6 +299,12 @@
 <body onload="pullSchool()">
 
     <main class="swim_info">
+        <div>
+            Hello
+        </div>
+        <div>
+            Goodbye
+        </div>
         <!-- <div class="container1" id="container1">
             <table class="swimmer_data1" id="girlRecords">
                 <tr class="top">
@@ -338,7 +344,7 @@
                     <td></td>
                 </tr>
             </table>
-        </div>-->
+        </div> -->
     </main> 
 
 </body>
