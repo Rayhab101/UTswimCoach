@@ -261,7 +261,6 @@
         breast = extend(breast, 2);
         var fly = document.getElementById("fly50").value;
         fly = fly.includes(":") ? fly : "0:"+fly;
-
         fly = extend(fly, 3);
     }
 
@@ -366,6 +365,7 @@
                 minute = 0;
                 break;
             case 3:
+                //console.log(time)
                 if (!time) {
                     break;
                 }
@@ -379,7 +379,7 @@
                     im1 = (im1.toFixed(2) < 10) ? "0" + im1.toFixed(2) : im1.toFixed(2);
                     im1 = thisMinute + ":" + im1;
                     document.getElementById("im100").innerHTML = im1;
-                    break;
+                    //break;
                 }
                 else{
                     var im1 = (time / 2);
