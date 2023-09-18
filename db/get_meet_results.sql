@@ -1,0 +1,1 @@
+SELECT * FROM records WHERE meet=$1 and ano=$2;

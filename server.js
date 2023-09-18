@@ -189,6 +189,9 @@ app.post('/api/updateGoals/:id',userctrl.updateGoals)
 
 app.get('/api/test/:id',userctrl.test)
 app.get('/api/testRelays/:id',userctrl.testRelays)
+app.get('/api/testTop50/:id',userctrl.testTop50)
+
+app.get('/api/getMeetResults/:id',userctrl.pullMeetResults)
 
 app.set('port', process.env.PORT || 8080)
 massive({

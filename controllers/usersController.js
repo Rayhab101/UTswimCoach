@@ -896,5 +896,23 @@ module.exports = {
             //console.log(times);
             return res.status(200).send(times)
         }).catch(err => {(res.sendStatus(500));console.log(err)})
+    },
+    testTop50: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        //console.log(id)
+        db.test_top50(id).then(top50 => {
+            //console.log(top50);
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    pullMeetResults: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        //console.log(id)
+        db.get_meet_results(id).then(top50 => {
+            //console.log(top50);
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
     }
 }
