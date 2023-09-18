@@ -143,6 +143,7 @@
 <header id="header"></header>
 
 <body class="swim_info" onload="results()">
+    <div style="color:red; background-color:white" id="warning"><center>NO EVENTS HAVE BEEN SWAM YET THIS YEAR</center></div>
     <div class="container" id="container"></div>
 </body>
 <footer id="footer"></footer>
@@ -171,7 +172,7 @@
         console.log(data.length)
         if (data.length != 0) {
             table.removeAttribute("hidden");
-
+            document.getElementById("warning").setAttribute("hidden","hidden")
             data.forEach(rows => {
 
                 var row = table.insertRow()
