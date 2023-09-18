@@ -909,8 +909,9 @@ module.exports = {
     pullMeetResults: (req,res) => {
         const {id}=req.params;
         const db = req.app.get("db");
-        //console.log(id)
-        db.get_meet_results(id).then(top50 => {
+        var [meet,year] = id.split("&")
+        //console.log(meet,year)
+        db.get_meet_results(meet,year).then(top50 => {
             //console.log(top50);
             return res.status(200).send(top50)
         }).catch(err => (res.sendStatus(500)))
