@@ -147,42 +147,48 @@
 </body>
 <footer id="footer"></footer>
 <script>
-    async function results(){
+    async function results() {
         var year = await fetch('/api/ano').then(data => data.json());
         year = year[0].current_year;
         var meets = await fetch('/api/meets').then(data => data.json());
         var body = document.getElementById("container");
-        meets.forEach(meet=>{
+        meets.forEach(meet => {
             //console.log(meet)
             var table = document.createElement("table")
+            table.setAttribute("hidden", "hidden")
             var header = document.createElement("thead")
-            header.setAttribute("style","colspan:3")
-            header.setAttribute("style","text-align:center")
-            header.innerHTML =meet.location;
+            header.setAttribute("style", "colspan:3")
+            header.setAttribute("style", "text-align:center")
+            header.innerHTML = meet.location;
             table.appendChild(header)
-            pullResults(table,meet.meet_id, year)
+            pullResults(table, meet.meet_id, year)
             body.appendChild(table)
         })
     }
 
-    async function pullResults(table, meet, year){
-        var data = await fetch('/api/getMeetResults/'+ meet +"&"+ year).then(data=>data.json())
-        //console.log(data)
-        data.forEach(rows =>{
-            var row = table.insertRow()
-            var column = row.insertCell()
-            pullRaces(column,rows.race)
-            row.insertCell().innerHTML = rows.time;
-            column1 = row.insertCell()
-            pullSwimmer(column1,rows.swimmer);
-        })
+    async function pullResults(table, meet, year) {
+        var data = await fetch('/api/getMeetResults/' + meet + "&" + year).then(data => data.json())
+        console.log(data.length)
+        if (data.length != 0) {
+            table.removeAttribute("hidden");
+
+            data.forEach(rows => {
+
+                var row = table.insertRow()
+                var column = row.insertCell()
+                pullRaces(column, rows.race)
+                row.insertCell().innerHTML = rows.time;
+                column1 = row.insertCell()
+                pullSwimmer(column1, rows.swimmer);
+            })
+        }
     }
-    async function pullSwimmer(row,id){
-        var swimmer = await fetch('/api/swimmers/'+id).then(data => data.json())
+    async function pullSwimmer(row, id) {
+        var swimmer = await fetch('/api/swimmers/' + id).then(data => data.json())
         row.innerHTML = swimmer[0].name
     }
-    async function pullRaces(row,id){
-        var races = await fetch('/api/races/'+id).then(data =>data.json())
+    async function pullRaces(row, id) {
+        var races = await fetch('/api/races/' + id).then(data => data.json())
         row.innerHTML = races[0].title;
     }
 </script>
