@@ -78,11 +78,11 @@
         <fieldset>
             <!-- formally describes the purpose of the fieldset it is included inside. -->
             <div>
-                <p id="name-label">Name:</p>
+                <label id="name-label">Name:</label>
                 <select id="compare" onchange="nameFill()"></select>
             </div>
             <div>
-                <p id="date-label" for="date-label">Date of Goal Setting:</p>
+                <label id="date-label">Date of Goal Setting:</label>
                 <input type="date" name="bday" id="bday" value="">
             </div>
         </fieldset>
@@ -92,7 +92,7 @@
             <!-- ------------------Radio Buttons-------------------------------- -->
             <fieldset>
                 <div>
-                    <p id="Experience">Swim Experience</p>
+                    <label id="Experience">Swim Experience</label>
                     &emsp;&emsp;<p>
                         <select id="experience">
                             <option id="0">Select Experience</option>
@@ -116,48 +116,48 @@
             <fieldset style="justify-content: space-between">
                 <legend style="text-align:center">Goal Times</legend>
                 <div>
-                    <p>50 Freestyle:</p>
+                    <label>50 Freestyle:</label>
                     &nbsp;
 
                     <input type="text" id="free50" required>
                 </div>
                 <div>
-                    <p>100 Freestyle:</p>
+                    <label>100 Freestyle:</label>
                     &nbsp;
 
                     <input type="text" id="free100" required>
                 </div>
                 <div>
-                    <p>200 Freestyle:</p>
+                    <label>200 Freestyle:</label>
                     &nbsp;
 
                     <input type="text" id="free200" required>
                 </div>
                 <div>
-                    <p>500 Freestyle:</p>
+                    <label>500 Freestyle:</label>
                     &nbsp;
 
                     <input type="text" id="free500" required>
                 </div>
                 <div>
-                    <p>100 Backstroke:</p>
+                    <label>100 Backstroke:</label>
                     &nbsp;
 
                     <input type="text" id="back" required>
                 </div>
                 <div>
-                    <p>100 Breaststroke:</p>
+                    <label>100 Breaststroke:</label>
                     &nbsp;
 
                     <input type="text" id="breast" required>
                 </div>
                 <div>
-                    <p>100 Butterfly:</p>
+                    <label>100 Butterfly:</label>
                     &nbsp;
                     <input type="text" id="fly" required>
                 </div>
                 <div>
-                    <p>200 Individual Medley:</p>
+                    <label>200 Individual Medley:</label>
                     &nbsp;
 
                     <input type="text" id="im" required>
@@ -170,25 +170,26 @@
         <fieldset style="text-align:center">
             <legend style="text-align:center">Main Goals</legend>
             <div>
-                <p style="text-align:center">What do you ulitimatly want to achieve<br/> during this swim season?</p><br>
+                <label style="text-align:center">What do you ulitimatly want to achieve<br/> during this swim season?</label><br>
                 <textarea id="msg" name="user_message" rows="4" cols="30" placeholder="Enter Text Here"></textarea>
                  
             </div>
             <div>
-                <p style="text-align:center">What do you ulitimatly want to achieve<br/> during this school year?</p><br>
+                <label style="text-align:center">What do you ulitimatly want to achieve<br/> during this school year?</label><br>
                 <textarea id="msg2" name="user_message" rows="4" cols="30" placeholder="Enter Text Here"></textarea>
                  
             </div>
             <div>
-                <p style="text-align:center">What do you ulitimatly want to<br/> do/achieve after graduation?</p><br>
+                <label style="text-align:center">What do you ulitimatly want to<br/> do/achieve after graduation?</label><br>
                 <textarea id="msg3" name="user_message" rows="4" cols="30" placeholder="Enter Text Here"></textarea>
                  
             </div>
         </fieldset>
 
         <div>
-            <button id="submitbutton" onclick="submitGoals()">Submit Goals</button> <button id="editbutton"
-                style="visibility: hidden" onclick="updateGoals()">Update Goals</button>   </div>
+            <button id="submitbutton" onclick="submitGoals()">Submit Goals</button> 
+            <button id="editbutton" style="visibility: hidden" onclick="updateGoals()">Update Goals</button>   
+        </div>
         <!-- <div id="editbutton" style="visibility:hidden">
                 <button onclick="updateGoals()">Update Goals</button>   </div> -->
     </div>
@@ -337,17 +338,20 @@
 
             // if(experience!=0 && focus_strokes!="" && free50!=""&& free100!=""&& free100!=""&& free500!=""&& back!=""&& breast!=""&& fly!=""&& im!=""&& swim_goal!=""&& school_goal!=""&& life_goal!=""&& date!=""){
             var submit = swimmer_name + "_" + swimmer_id + "_" + experience + "_" + focus_strokes + "_" + free50 + "_" + free100 + "_" + free200 + "_" + free500 + "_" + back + "_" + fly + "_" + breast + "_" + im + "_" + swim_goal + "_" + school_goal + "_" + life_goal + "_" + date;
-            var confirm = prompt("Do you want to submit this goal?"+submit, "")
 
-if(confirm == "Yes"){ 
             fetch("/api/setGoals/" + submit, {
                 headers: { 'Content-Type': 'application/json' },
                 method: "POST",
             }).then(response => response.json())
                 .then(json => console.log(json))
                 .catch(err => console.log(err));
-                window.location.reload();
-        }
+
+                var confirm = prompt("Submit Other Goal?", "")
+
+                if(confirm == "Yes"){ 
+                    window.location.reload();
+                }
+
             //}
         }
 
@@ -399,9 +403,7 @@ if(confirm == "Yes"){
 
             // if(experience!=0 && focus_strokes!="" && free50!=""&& free100!=""&& free100!=""&& free500!=""&& back!=""&& breast!=""&& fly!=""&& im!=""&& swim_goal!=""&& school_goal!=""&& life_goal!=""&& date!=""){
             var submit = swimmer_name + "_" + swimmer_id + "_" + experience + "_" + focus_strokes + "_" + free50 + "_" + free100 + "_" + free200 + "_" + free500 + "_" + back + "_" + fly + "_" + breast + "_" + im + "_" + swim_goal + "_" + school_goal + "_" + life_goal + "_" + date;
-            var confirm = prompt("Do you want to submit this goal?", "")
-
-            if(confirm == "Yes"){       
+      
                 fetch("/api/updateGoals/" + submit, {
                     headers: { 'Content-Type': 'application/json' },
                     method: "POST",
@@ -411,7 +413,6 @@ if(confirm == "Yes"){
                 //}
 
                 window.location.reload();
-            }
 
         }
     }
