@@ -830,7 +830,7 @@ module.exports = {
         var date = idSplit[15];
         const db = req.app.get("db");
         db.set_goals(swimmer_name,swimmer_id,swimmer_experience,focused,free50,free100,free200,free500,back,fly,breast,im,goal_swim,goal_school,goal_life,date).then(times => {
-            //console.log(times);
+            prompt(times,"");
             return res.status(200).send(times)
         }).catch(err => {(res.sendStatus(500));console.log(err)})
     },
