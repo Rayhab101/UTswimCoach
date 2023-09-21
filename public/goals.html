@@ -337,7 +337,7 @@
 
             // if(experience!=0 && focus_strokes!="" && free50!=""&& free100!=""&& free100!=""&& free500!=""&& back!=""&& breast!=""&& fly!=""&& im!=""&& swim_goal!=""&& school_goal!=""&& life_goal!=""&& date!=""){
             var submit = swimmer_name + "_" + swimmer_id + "_" + experience + "_" + focus_strokes + "_" + free50 + "_" + free100 + "_" + free200 + "_" + free500 + "_" + back + "_" + fly + "_" + breast + "_" + im + "_" + swim_goal + "_" + school_goal + "_" + life_goal + "_" + date;
-            var confirm = prompt("Do you want to submit this goal?", "")
+            var confirm = prompt("Do you want to submit this goal?"+submit, "")
 
 if(confirm == "Yes"){ 
             fetch("/api/setGoals/" + submit, {
