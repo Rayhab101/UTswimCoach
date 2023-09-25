@@ -412,8 +412,11 @@
                     .catch(err => console.log(err));
                 //}
 
-                window.location.reload();
+                var confirm = prompt("Submit Other Goal?", "")
 
+                if(confirm == "Yes"){ 
+                    window.location.reload();
+                }
         }
     }
 </script>
