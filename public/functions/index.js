@@ -80,7 +80,7 @@ async function against() {
                 img.setAttribute("alt", "Ben Lomond Logo");
                 body.appendChild(img);
                 console.log(school1[0].name)
-                if(school1[0].name ===  "Region 13 Meet" || school1[0].name === "State Meet"){
+                if(school1[0].name ===  "Region 13 Meet" || school1[0].name === "State Meet"|| school1[0].name ===  "Region Invite"){
                     school1[0].name = "swimCoach"
                 }
                 console.log(school1[0].name)

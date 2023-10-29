@@ -21,7 +21,7 @@
   -webkit-user-select: none;
 }    */
 
-/* @keyframes run {
+        /* @keyframes run {
   0% { margin-left: -98%;}
   100%{ margin-left: 110%;}
 }
@@ -77,6 +77,7 @@
             background-color: rgba(0, 0, 0, .6);
             text-align: center;
         }
+
         tr {
             display: table;
         }
@@ -88,20 +89,22 @@
         });
 
         async function buildPage() {
-            //document.getElementById("record").style.display = "none";
+            // document.getElementById("record").style.display = "none";
             //document.getElementById("FlyLoad").style.display = "block";
             var body = document.getElementById("record");
+            var rows = [];
 
             await fetch("/api/records")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(async function (records) {
-                    var rows = [];
+                    console.log(records.length)
                     for (var i = 0; i < records.length; i++) {
-                        var person = await fetch('/api/swim/'+records[i].swimmer).then(data => data.json());
-                        var meet = await fetch('/api/meets/'+records[i].meet).then(data => data.json());
-                        var race = await fetch('/api/races/'+records[i].race).then(data => data.json());
+                        var person = await fetch('/api/swim/' + records[i].swimmer).then(data => data.json());
+                        var meet = await fetch('/api/meets/' + records[i].meet).then(data => data.json());
+                        var race = await fetch('/api/races/' + records[i].race).then(data => data.json());
+                        var newRow = document.createElement('tr').setAttribute("id",records[i].swimmer+"_"+records[i].meet+"_"+records[i].race)
                         var row = `<tr id="${records[i].swimmer}_${records[i].meet}_${records[i].race}">
                     <td>${person[0].name}</td>
                     <td>${meet[0].location}</td>
@@ -109,7 +112,8 @@
                     <td>${records[i].time}</td>
                     <td><button style="background-color: lime" onclick="save($(this).closest('tr').attr('id'));">Save</button></td>
                 </tr>`;
-                rows.push(row);
+                        rows.push(row);
+                        console.log(rows)
                         var table = document.getElementById("record");
                         table.addEventListener('click', function (e) {
 
@@ -121,20 +125,22 @@
                                 //on blur close the editable field and return to normal cell.
                                 target.onblur = function () { this.removeAttribute('contenteditable'); }
                             }
-
                         });
                         //console.log(i)
                     }
 
-                    if(rows.length >0){
-                        body.innerHTML = rows.join('');
-                    }
+                    // if (rows.length > 0) {
+                    //     body.innerHTML = rows.join('');
+                    // }
                     //document.getElementById("FlyLoad").style.display = "none";
                     //document.getElementById("record").style.display = "table";
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
+                if (rows.length > 0) {
+                        body.innerHTML = rows.join('');
+                    }
         }
 
         function addNewResults() {
@@ -147,37 +153,37 @@
             var meet = document.getElementById(id).children[1].innerHTML;
             var race = document.getElementById(id).children[2].innerHTML;
             var time = document.getElementById(id).children[3].innerHTML;
-            var isName = await fetch('/api/swimmerName/'+name).then(data => data.json());
-            console.log(isName=="");
-            if(isName!=""){
-                isName=name;
+            var isName = await fetch('/api/swimmerName/' + name).then(data => data.json());
+            console.log(isName == "");
+            if (isName != "") {
+                isName = name;
             }
-                var proceed = confirm("Does all of this look correct? name:" + isName + " meet:" + meet + " race:" + race + " Time:" + time);
-                if (proceed) {
-                    var password = prompt("Please Enter your Password", "")
-                    var check = await fetch('/api/coaches/').then(data => data.json())
-                    var flag = false;
-                    for (var i = 0; i < check.length; i++) {
-                        if (check[i].password == password) {
-                            var coach = check[i].coach_id
-                            flag = true;
-                        }
-                    }
-
-                    if (proceed && flag) {
-                        var submit = name + "_" + meet + "_" + race + "_" + time + "_" + id;
-                        fetch("/api/updateRecords/" + submit, {
-                            headers: { 'Content-Type': 'application/json' },
-                            method: "POST",
-                        }).then(response => response.json())
-                            .then(json => console.log(json))
-                            .catch(err => console.log(err));
-                        window.location.reload();
-                    }
-                    else {
-                        alert("You don't have access to save changes")
+            var proceed = confirm("Does all of this look correct? name:" + isName + " meet:" + meet + " race:" + race + " Time:" + time);
+            if (proceed) {
+                var password = prompt("Please Enter your Password", "")
+                var check = await fetch('/api/coaches/').then(data => data.json())
+                var flag = false;
+                for (var i = 0; i < check.length; i++) {
+                    if (check[i].password == password) {
+                        var coach = check[i].coach_id
+                        flag = true;
                     }
                 }
+
+                if (proceed && flag) {
+                    var submit = name + "_" + meet + "_" + race + "_" + time + "_" + id;
+                    fetch("/api/updateRecords/" + submit, {
+                        headers: { 'Content-Type': 'application/json' },
+                        method: "POST",
+                    }).then(response => response.json())
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err));
+                    window.location.reload();
+                }
+                else {
+                    alert("You don't have access to save changes")
+                }
+            }
         }
 
     </script>
@@ -190,14 +196,17 @@
     <div class="swim_info">
         <h4 class="label">Current Year Results - Individual</h4>
         <!-- <image src="/images/LoadButterfly.gif" id="FlyLoad"></image> -->
-        <table id="record" style="display: table">
-            <tr >
-                <td>Name</td>
-                <td>Meet</td>
-                <td>Race</td>
-                <td>Time</td>
-                <td><button onclick="addNewResults()">Insert Meet Results</button></td>
-            </tr>
+        <table id="record">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Meet</td>
+                    <td>Race</td>
+                    <td>Time</td>
+                    <td><button onclick="addNewResults()">Insert Meet Results</button></td>
+                </tr>
+            </thead>
+
         </table>
     </div>
 
