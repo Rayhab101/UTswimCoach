@@ -20,7 +20,7 @@
     <style>
         @media screen and (min-width:750px) {
             .swim_info {
-                padding-top: 90px;
+                padding-top: 65px;
             }
 
             table,
@@ -79,7 +79,7 @@
 
         @media screen and (max-width:750px) {
             .swim_info {
-                padding-top: 90px;
+                padding-top: 65px;
             }
 
             table,
@@ -157,11 +157,13 @@
             //console.log(meet)
             var table = document.createElement("table")
             table.setAttribute("hidden", "hidden")
+            var center = document.createElement("center");
             var header = document.createElement("thead")
             header.setAttribute("style", "colspan:3")
             header.setAttribute("style", "text-align:center")
             header.innerHTML = meet.location;
-            table.appendChild(header)
+            center.appendChild(header)
+            table.appendChild(center)
             pullResults(table, meet.meet_id, year)
             body.appendChild(table)
         })
