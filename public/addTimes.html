@@ -313,7 +313,7 @@ var ano = 0;
                 // console.log(relay+"-"+names+"-"+time+"-"+school+"-"+year+"-"+meet+"-"+2)
                     if (time.includes(':')) {
                         
-                        var submitRaces = relay+"-"+names+"-"+time+"-"+school+"-"+3+"-"+meet;
+                        var submitRaces = relay+"-"+names+"-"+time+"-"+school+"-"+4+"-"+meet;
                         if (meet != undefined && names != "" && time != "" && relay!= undefined && school!=undefined) {
                             fetch("/api/setRelayTimes/" + submitRaces, {
                                 headers: { 'Content-Type': 'application/json' },
