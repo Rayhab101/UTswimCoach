@@ -93,7 +93,13 @@
             //document.getElementById("FlyLoad").style.display = "block";
             var body = document.getElementById("record");
             var rows = [];
-
+            rows.push(`<tr">
+                    <td>Name</td>
+                    <td>Meet</td>
+                    <td>Race</td>
+                    <td>Time</td>
+                    <td><button onclick="addNewResults()">Insert Meet Results</button></td>
+                </tr>`)
             await fetch("/api/records")
                 .then(function (response) {
                     return response.json();
@@ -128,12 +134,7 @@
                         });
                         //console.log(i)
                     }
-
-                    // if (rows.length > 0) {
-                    //     body.innerHTML = rows.join('');
-                    // }
-                    //document.getElementById("FlyLoad").style.display = "none";
-                    //document.getElementById("record").style.display = "table";
+                    
                 })
                 .catch(function (error) {
                     console.log("Error: " + error);
@@ -197,7 +198,6 @@
         <h4 class="label">Current Year Results - Individual</h4>
         <!-- <image src="/images/LoadButterfly.gif" id="FlyLoad"></image> -->
         <table id="record">
-            <thead>
                 <tr>
                     <td>Name</td>
                     <td>Meet</td>
@@ -205,7 +205,6 @@
                     <td>Time</td>
                     <td><button onclick="addNewResults()">Insert Meet Results</button></td>
                 </tr>
-            </thead>
 
         </table>
     </div>

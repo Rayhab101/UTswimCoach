@@ -180,18 +180,18 @@
                             three.push(element.name)
                         }
                         break;
-                    case (swimmerCount > 6 && swimmerCount < 14):
+                    case (swimmerCount > 6 && swimmerCount <= 10):
                         if (!four.includes(element.name)) {
                             four.push(element.name)
                         }
 
                         break;
-                    case (swimmerCount >= 14 && swimmerCount <= 25):
+                    case (swimmerCount > 10 && swimmerCount <= 24):
                         if (!five.includes(element.name)) {
                             five.push(element.name)
                         }
                         break;
-                    case (swimmerCount > 25):
+                    case (swimmerCount > 24):
                         //console.log("HI")
                         if (!six.includes(element.name)) {
                             six.push(element.name)

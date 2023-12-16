@@ -72,6 +72,10 @@ app.get('/topTimes.html',(req,res)=>
     res.render("topTimes")
 )
 
+app.get('/updateIndividualResults.html',(req,res)=>
+    res.render("updateIndividualResults")
+)
+
 app.get('/api/swims/:id', userctrl.getSwimmers)
 app.get('/api/swim/:id', userctrl.getSwimmer)
 app.get('/api/getAllSwimmers',userctrl.getAllSwimmers)
