@@ -75,7 +75,7 @@ async function against() {
                 // break;
             }
             else {
-                
+                console.log("hi")
                 img.setAttribute("src", "./images/BLHS.png");
                 img.setAttribute("alt", "Ben Lomond Logo");
                 body.appendChild(img);
@@ -84,9 +84,12 @@ async function against() {
                     school1[0].name = "swimCoach"
                 }
                 console.log(school1[0].name)
-                img2.setAttribute("src", "./images/" + school1[0].name+".png");
-                img2.setAttribute("alt", school1[0].name + " Logo");
-                body.appendChild(img2);
+                if(school1[0].name !="Saint Joseph"){
+                    img2.setAttribute("src", "./images/" + school1[0].name+".png");
+                    img2.setAttribute("alt", school1[0].name + " Logo");
+                    body.appendChild(img2);
+                }
+
                 who = "VS " + school1[0].name;
                 img3.setAttribute("src", "./images/SJCHS.png");
                 img3.setAttribute("alt", "Jayhawks Logo");
