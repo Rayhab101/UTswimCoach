@@ -171,27 +171,27 @@
                         //console.log("Hit")
                         one.push(element.name)
                         break;
-                    case (swimmerCount <= 3 && swimmerCount != 0):
+                    case (swimmerCount <= 5 && swimmerCount != 0):
                         two.push(element.name)
 
                         break;
-                    case (swimmerCount > 3 && swimmerCount <= 7):
+                    case (swimmerCount > 5 && swimmerCount <= 10):
                         if (!three.includes(element.name)) {
                             three.push(element.name)
                         }
                         break;
-                    case (swimmerCount > 7 && swimmerCount <= 12):
+                    case (swimmerCount > 10 && swimmerCount <= 20):
                         if (!four.includes(element.name)) {
                             four.push(element.name)
                         }
 
                         break;
-                    case (swimmerCount > 12 && swimmerCount <= 27):
+                    case (swimmerCount > 20 && swimmerCount <= 30):
                         if (!five.includes(element.name)) {
                             five.push(element.name)
                         }
                         break;
-                    case (swimmerCount > 27):
+                    case (swimmerCount > 30):
                         //console.log("HI")
                         if (!six.includes(element.name)) {
                             six.push(element.name)
