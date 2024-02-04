@@ -374,7 +374,7 @@ module.exports = {
     },
     setRelayTimes: (req,res) => {
         var {id}=req.params;
-        var idSplit = id.split("-");
+        var idSplit = id.split("~");
         var relay = idSplit[0];
         var names = idSplit[1].split('&');
         var name1 = names[0].split('_');
