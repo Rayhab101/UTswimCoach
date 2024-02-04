@@ -17,7 +17,7 @@
         });
     </script>
     <style>
-        @media only screen and (min-width: 700px) {
+        /* @media only screen and (min-width: 700px) {
             .galleryPic {
                 width: 30vw;
                 height: 50vh;
@@ -28,13 +28,9 @@
                 display: flex;
                 justify-content: space-evenly;
                 flex-wrap: wrap;
-                /* overflow: hidden; */
-                /* padding-left: 50px;
-            padding-right: 90px; */
             }
 
             .welcome {
-                /* padding-top: 100px; */
                 color: white;
                 font-size: larger;
                 background-color: rgba(0, 0, 0, 0.6);
@@ -43,7 +39,6 @@
             }
 
             .schedule {
-                /* background-color: whitesmoke; */
                 text-align: center;
                 font-size: small;
                 width: 30vw;
@@ -106,19 +101,14 @@
                 padding-top:62px;
                 padding-left:5px;
                 padding-bottom:50px;
-                /* padding-right:auto; */
                 height: 85vh;
                 width: 100vw;
-                /* padding-left: auto; */
                 display: block;
-                /* justify-content: space-evenly;
-                flex-wrap: wrap; */
                 overflow: auto;
 
             }
 
             .welcome {
-                /* padding-top: 100px; */
                 color: white;
                 font-size: larger;
                 background-color: rgba(0, 0, 0, 0.6);
@@ -128,7 +118,6 @@
             }
 
             .schedule {
-                /* background-color: whitesmoke; */
                 text-align: center;
                 align-items: center;
                 font-size: small;
@@ -174,126 +163,42 @@
                 display: flex;
                 text-align: center;
             }
+        } */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10;
+        }
+
+        .button-container {
+            text-align: center;
+            display: flex;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            width: 31%;
+            
         }
     </style>
+    </style>
 </head>
-<header id="header"></header>
-
-<body onload="against()">
-    <div class="container2">
-        <div class="schedule">
-            <table id="schedule">
-                <tr>
-                    <th colspan="6"><u>2023-2024 Swim Schedule</u></th>
-                </tr>
-                <tr><strong>
-                        <td>Date/Day</td>
-                        <td>Event</td>
-                        <td>Time</td>
-                        <td>Out</td>
-                        <td>Bus</td>
-                        <td>Home</td>
-                    </strong></tr>
-                <!-- <tr><strong>
-                        <td>09/18/2023</td>
-                        <td>Swim Meeting @Pool</td>
-                        <td>3:30pm</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </strong></tr>
-                    <tr><strong>
-                        <td>09/25/2023</td>
-                        <td>Parents Meeting Gym #311</td>
-                        <td>6:30pm</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </strong></tr>
-                <tr><strong>
-                        <td>10/02/2023</td>
-                        <td>First Day of Practice</td>
-                        <td>2:45pm</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </strong></tr>
-                    <tr><strong>
-                        <td>10/19/2023</td>
-                        <td>Time Trials</td>
-                        <td>2:45pm</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </strong></tr>
-                    <tr><strong>
-                        <td>11/16/2023</td>
-                        <td>Last Day to Join</td>
-                        <td>11:59pm</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </strong></tr> -->
-                <tr>
-                    <th colspan="6"><u>Season Meets:</u></th>
-                </tr>
-            </table>
+<!-- <header id="header"></header> -->
+    <body>
+        <div class="button-container">
+            <button class="button" onclick="navigateTo('schoolDashboard.html?school=6')"><img style="width:50%" src="../images/BLHS.png" alt="Ben Lomond Site">&nbsp; Ben Lomond Site</button>
+            <button class="button" onclick="navigateTo('schoolDashboard.html?school=78')"><img style="width:50%" src="../images/SJCHS.png" alt="Saint Joseph Site">Saint Joseph Site</button>
+            <button class="button" onclick="navigateTo('coachLogin.html')"><img style="width:50%" src="../images/state.png" alt="Coach Login Page">Coach Login</button>
         </div>
-
-        <div class="w3-content w3-section">
-            <img id="mySlides" class="galleryPic" alt="Swimming Quote">
-            <!-- <textarea>
-                What is a True Scot
-                
-                To be a true Scot you have to live like one.
-                Wake up everyday and work hard so you can sleep easy at night.
-
-                When you train you train your hardest, 200% in everything you set your mind to.
-                But keeping time to serve and protect the ones you hold close, because you never know when it will all come to an end.
-
-                But never forget your lows because you will never be that low again, if you only wake up and promise yourself that you’ll only give at least 100%.
-            </textarea> -->
-            <div class="state">
-                <a href="./stateQualified.html"> <img src="./images/Utah_test.png" alt="Swimming State Photo" style="width:40%;"></a>
-            </div>
-        </div>
-        <div style="background-color: rgba(0, 0, 0, 0.6);height:60%">
-            <h3 style="color:white; text-align: center; ">Next Meet</h3>
-            <div id="nextmeet" class="nextmeet">
-            </div>
-            <h3 id="meetname" style="color:white; text-align: center;"></h3>
-            <br>
-            <div style="background-color:white" id="blog"></div>
-        
-        </div>
-    </div>
-    <script>
-        var slideIndex = 0;
-        carousel();
-
-        function carousel() {
-            var imgArray = [];
-
-            for (i = 0; i < 14; i++) {
-                imgArray[i] = new Image();
-                imgArray[i] = './Gallery/Quote' + i + '.png';
-            }
-            var x = document.getElementById("mySlides");
-            //console.log(slideIndex)
-            if (slideIndex <= imgArray.length) { 
-                slideIndex = Math.round(Math.random() * 100) 
-                if(slideIndex > 13){
-                    slideIndex = Math.round(Math.random() * 10)
-                }
-            }
-            //console.log(slideIndex)
-            x.style.display = "block";
-            x.src = imgArray[slideIndex].toString();
-            slideIndex++;
-            setTimeout(carousel, 10000); // Change image every 10 seconds
-        }
-    </script>
-</body>
+    </body>
 <footer id="footer"></footer>
 <script src="./functions/index.js"></script>
+<script>
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+</script>
 </html>
