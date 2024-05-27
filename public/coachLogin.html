@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <title>Swim Team Login</title>
+    
+    <!-- Add any additional CSS stylesheets or external links here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            background-color: darkgray;
+            max-height: 400px
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#header").load("heading.html");
+            $("#footer").load("footing.html");
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Coaches Login</h2>
+        <!-- Login Form -->
+        <form id="loginForm">
+            <input type="text" name="username" placeholder="Username or Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="button" value="Login" onclick="redirectPage()">
+            <input type="button" value="Cancel" onclick="window.history.go(-1)">
+        </form>
+        <!-- Forgot Password -->
+        <p><a href="#">Forgot Password?</a></p>
+        <!-- Sign Up -->
+        <p>New to the Team? <a href="#">Sign Up Here!</a></p>
+    </div>
+</body>
+<footer id="footer"></footer>
+    <!-- JavaScript for redirecting after form submission -->
+    <script>
+        async function redirectPage() {
+            // Add your logic here to handle form submission
+            var username = document.forms["loginForm"]["username"].value;
+            var password = document.forms["loginForm"]["password"].value;
+            var flag = false;
+            var check = await fetch('/api/coaches/').then(data => data.json())
+                    var flag = false;
+            for (var i = 0; i < check.length; i++) {
+                console.log(check[i].password == password && check[i].username == username)
+                if (check[i].password == password && (check[i].username == username ||check[i].email == username)) {
+                    if(check[i].school == 6){
+                        window.location.href = "./BenLomond/coachesDashboard.html"; // Replace "redirect-page.html" with the desired URL
+                    }
+                    else{
+                        window.location.href = "./SaintJoseph/coachesDashboard.html"; // Replace "redirect-page.html" with the desired URL
+                    }
+                    flag=true;
+                }
+            }
+            if(!flag){
+                alert("Your Username or Password is not correct..... Please try again or contact the Website admin.")
+            }
+        }
+    </script>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- State Qualified</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="../swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+    <script>
+        $(function () {
+            $("#header").load("./../static/headers.html");
+            $("#footer").load("./../footing.html");
+        });
+    </script>
+    <style>
+        @media screen and (min-width:750px){
+        .swim_info {
+            padding-top: 90px;
+        }
+
+        table,
+        tr {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        td {
+            font-size: small;
+        }
+        th {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        button {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contain {
+            display: grid;
+        }
+
+        .even {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .odd {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .scrollable {
+            overflow:
+                auto;
+        }
+
+        .container {
+            width: 1250px;
+            height: 85vh;
+            overflow: auto;
+        }
+    }
+
+    @media screen and (max-width:750px){
+        .swim_info {
+            padding-top: 90px;
+        }
+
+        table,
+        tr {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        th {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        button {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contain {
+            display: grid;
+            font-size: xx-small;
+        }
+
+        .even {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .odd {
+            padding-top: 5px;
+            grid-row: 2;
+            grid-column: 1;
+        }
+
+        .scrollable {
+            overflow: auto;
+        }
+
+        .container {
+            width: auto;
+            height: 85vh;
+            overflow: auto;
+        }
+        #topHeader{
+            padding-top:50px;
+            background-color: transparent;
+            border: none;
+        }
+    }
+    </style>
+</head>
+
+<body class="swim_info" onload="tops()">
+    <header id="header"></header>
+    <div class="container">
+        <table id="topHeader">
+            <th>State Qualified</th>
+        </table>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 200 Medley Relay">
+                    <td colspan="4">Womens 200 Medley Relay</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 200 Medley Relay">
+                    <td colspan="4">Mens 200 Medley Relay</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 200 free">
+                    <td colspan="4">Womens 200 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 200 free">
+                    <td colspan="4">Mens 200 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 200 IM">
+                    <td colspan="4">Womens 200 IM</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 200 IM">
+                    <td colspan="4">Mens 200 IM</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 50 free">
+                    <td colspan="4">Womens 50 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 50 free">
+                    <td colspan="4">Mens 50 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 100 fly">
+                    <td colspan="4">Womens 100 Fly</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 100 fly">
+                    <td colspan="4">Mens 100 Fly</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 100 free">
+                    <td colspan="4">Womens 100 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 100 free">
+                    <td colspan="4">Mens 100 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 500 free">
+                    <td colspan="4">Womens 500 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 500 free">
+                    <td colspan="4">Mens 500 Free</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 200 Free Relay">
+                    <td colspan="4">Womens 200 Free Relay</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 200 Free Relay">
+                    <td colspan="4">Mens 200 Free Relay</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 100 back">
+                    <td colspan="4">Womens 100 Back</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 100 back">
+                    <td colspan="4">Mens 100 Back</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 100 breast">
+                    <td colspan="4">Womens 100 Breast</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 100 breast">
+                    <td colspan="4">Mens 100 Breast</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="contain">
+            <div class="even">
+                <table id="Womens 400 Free Relay">
+                    <td colspan="4">Womens 400 Free Relay</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="odd">
+                <table id="Mens 400 Free Relay">
+                    <td colspan="4">Mens 400 Free Relay</td>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>School</td>
+                        <td>Time</td>
+                    </tr>
+                </table>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    
+    <footer id="footer"></footer>
+</body>
+<script>
+    async function pullSwimmer(name, cell) {
+        var newName = await fetch("/api/swim/" + name).then(data => data.json());
+        cell.innerHTML = newName[0].name;
+    }
+    async function pullSchool(school, cell) {
+        var newSchool = await fetch("/api/schools/" + school).then(data => data.json());
+        cell.innerHTML = newSchool[0].name;
+    }
+
+    async function t50(i) {
+        var r = [1, 8, 11, 12, 19, 22]
+        var status = 1;
+        var id=0;
+        var checkers = await fetch("/api/races/"+i).then(data => data.json());
+        var qualified = await fetch("/api/relayTimes5/" + i).then(data=> data.json());
+        var state = await fetch("/api/stateQualifiedRelays").then(data => data.json());
+        var body = document.getElementById(checkers[0].title);
+        body.querySelector("tbody").children[0].children[0].innerHTML += " - " + state[i-1].race_time;
+        var individuals = await fetch("/api/state5/" + i).then(data => data.json());
+        if (r.includes(i)) {
+            qualified.forEach(element => {
+                if(element.time <= state[i-1].race_time){
+                    var row = document.createElement("tr");
+                    var cell = row.insertCell();
+                    cell.innerHTML = status;
+                    cell = row.insertCell();
+                    cell.innerHTML = element.swimmers;
+                    cell = row.insertCell();
+                    pullSchool(element.school, cell)
+                    cell = row.insertCell();
+                    cell.innerHTML = element.time;
+                    body.appendChild(row);
+                    status++;
+                    }
+            });
+        }
+        else {
+            individuals.forEach(element => {
+                if(element.time <= state[i-1].race_time){
+                var row = document.createElement("tr");
+                var cell = row.insertCell();
+                cell.innerHTML = status;
+                var cell = row.insertCell();
+                pullSwimmer(element.swimmer, cell)
+                var cell = row.insertCell();
+                pullSchool(element.school, cell)
+                var cell = row.insertCell();
+                cell.innerHTML = element.time;
+                body.appendChild(row);
+                status++;
+            }});
+        }
+
+    }
+    function tops() {
+        for (var i = 1; i <= 22; i++) {
+            t50(i)
+        }
+    }
+</script>
+
+</html>

@@ -914,5 +914,35 @@ module.exports = {
             //console.log(top50);
             return res.status(200).send(top50)
         }).catch(err => (res.sendStatus(500)))
+    },
+    poloUsers: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        //var [meet,year] = id.split("&")
+        //console.log(meet,year)
+        db.get_polo_users().then(top50 => {
+            //console.log(top50);
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    poloPlayers: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        //var [meet,year] = id.split("&")
+        //console.log(meet,year)
+        db.get_polo_player_stats().then(top50 => {
+            //console.log(top50);
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    poloTeams: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        //var [meet,year] = id.split("&")
+        //console.log(meet,year)
+        db.get_polo_team_stats().then(top50 => {
+            //console.log(top50);
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
     }
 }

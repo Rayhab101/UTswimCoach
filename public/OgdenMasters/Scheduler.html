@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ogden Masters Water Polo- Home</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+        <link rel="stylesheet" href="swim.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+
+    <style>
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10;
+        }
+
+        .button-container {
+            text-align: center;
+            display: flex-wrap;
+            
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            width: 500px;
+            
+        }
+        @media screen and (max-width:750px) {
+        h4 {
+            font-size: 12px
+        }
+
+        a:link {
+            color: white;
+            font-size: 11px
+        }
+
+        a:visited {
+            color: white;
+            font-size: 6px
+        }
+
+        footer a {
+            visibility: hidden;
+        }
+
+        footer i {
+            visibility: visible;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+    }
+
+    @media screen and (min-width:750px) {
+        h4 {
+            font-size: 28px
+        }
+
+        a:link {
+            color: white;
+        }
+
+        a:visited {
+            color: white;
+
+        }
+    }
+    </style>
+</head>
+<header id="header"></header>
+    <body>
+        <h1>THIS PAGE WILL BE THE SCHEDULER PAGE FOR OMWP</h1>
+    </body>
+<footer id="footer"></footer>
+
+<script src="../../functions/index.js"></script>
+<script>
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+    // function autoRefresh() {
+    //     window.location = window.location.href;
+    // }
+    // setInterval('autoRefresh()', 60000);
+</script>
+<script>
+    $(function () {
+        $("#header").load("heading.html");
+        $("#footer").load("footing.html");
+    });
+</script>
+</html>

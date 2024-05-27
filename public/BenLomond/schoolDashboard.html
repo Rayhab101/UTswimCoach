@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL/SJ Swim Team- Home</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="./../swim.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("./../static/headers.html");
+            $("#footer").load("./../footing.html");
+        });
+    </script>
+    <style>
+        @media only screen and (min-width: 700px) {
+            .galleryPic {
+                width: 30vw;
+                height: 50vh;
+            }
+
+            .container2 {
+                width: 100vw;
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                /* overflow: hidden; */
+                /* padding-left: 50px;
+            padding-right: 90px; */
+            }
+
+            .welcome {
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 100vw;
+            }
+
+            .schedule {
+                /* background-color: whitesmoke; */
+                text-align: center;
+                font-size: small;
+                width: 30vw;
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            .nextmeet {
+                background-image: url(../BenLomond-2.jpg);
+                display: flex;
+                width: 30vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .nextmeet img {
+                width: 33%;
+                height: 34%;
+            }
+
+            #blog {
+                height: 50%;
+                width: 30vw;
+                font-size: 17px;
+                text-align: center;
+                resize: none;
+
+            }
+
+            .state {
+                display: flex;
+                text-align: center;
+                width: 29.5vw;
+                ;
+                height: 10vh;
+                object-fit: cover;
+                position: relative;
+                top: -105px;
+            }
+        }
+
+        @media only screen and (max-width: 700px) {
+            .galleryPic {
+                width: 90vw;
+            }
+
+            .container2 {
+                padding-top:62px;
+                padding-left:5px;
+                padding-bottom:50px;
+                /* padding-right:auto; */
+                height: 85vh;
+                width: 100vw;
+                /* padding-left: auto; */
+                display: block;
+                /* justify-content: space-evenly;
+                flex-wrap: wrap; */
+                overflow: auto;
+
+            }
+
+            .welcome {
+                /* padding-top: 100px; */
+                color: white;
+                font-size: larger;
+                background-color: rgba(0, 0, 0, 0.6);
+                text-align: center;
+                width: 90vw;
+                margin-top: 100px;
+            }
+
+            .schedule {
+                /* background-color: whitesmoke; */
+                text-align: center;
+                align-items: center;
+                font-size: small;
+                width: 90vw;
+
+            }
+
+            table {
+                background-color: whitesmoke;
+                visibility: visible;
+            }
+
+            body {
+                height: 85vh;
+                width: 100vw;
+            }
+
+            .nextmeet {
+                background-image: url(BenLomond-2.jpg);
+                display: flex;
+                width: 90vw;
+                object-fit: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .nextmeet img {
+                width: 33%;
+                height: 34%;
+            }
+
+            #blog {
+                height: 100%;
+                width: 90vw;
+                font-size: 14px;
+                resize: none;
+            }
+
+            .state {
+                display: flex;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<header id="header"></header>
+
+<body onload="against()">
+    <div class="container2">
+        <div class="schedule">
+            <table id="schedule">
+                <tr>
+                    <th colspan="6" id="scheduleHeader"><u>2023-2024 Swim Schedule</u></th>
+                </tr>
+                <tr><strong>
+                        <td>Date/Day</td>
+                        <td>Event</td>
+                        <td>Time</td>
+                        <td>Out</td>
+                        <td>Bus</td>
+                        <td>Home</td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>09/18/2023</td>
+                        <td>Swim Meeting @Pool</td>
+                        <td>3:30pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                    <tr><strong>
+                        <td>09/25/2023</td>
+                        <td>Parents Meeting Gym #311</td>
+                        <td>6:30pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr><strong>
+                        <td>10/02/2023</td>
+                        <td>First Day of Practice</td>
+                        <td>2:45pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                    <tr><strong>
+                        <td>10/19/2023</td>
+                        <td>Time Trials</td>
+                        <td>2:45pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                    <tr><strong>
+                        <td>11/16/2023</td>
+                        <td>Last Day to Join</td>
+                        <td>11:59pm</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </strong></tr>
+                <tr>
+                    <th colspan="6"><u>Season Meets:</u></th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="w3-content w3-section">
+            <img id="mySlides" class="galleryPic" alt="Swimming Quote">
+            <!-- <textarea>
+                What is a True Scot
+                
+                To be a true Scot you have to live like one.
+                Wake up everyday and work hard so you can sleep easy at night.
+
+                When you train you train your hardest, 200% in everything you set your mind to.
+                But keeping time to serve and protect the ones you hold close, because you never know when it will all come to an end.
+
+                But never forget your lows because you will never be that low again, if you only wake up and promise yourself that you’ll only give at least 100%.
+            </textarea> -->
+            <div class="state">
+                <a href="./stateQualified.html"> <img src="../images/Utah_test.png" alt="Swimming State Photo" style="width:40%;"></a>
+            </div>
+        </div>
+        <div style="background-color: rgba(0, 0, 0, 0.6);height:60%">
+            <h3 style="color:white; text-align: center; ">Next Meet</h3>
+            <div id="nextmeet" class="nextmeet">
+            </div>
+            <h3 id="meetname" style="color:white; text-align: center;"></h3>
+            <br>
+            <div style="background-color:white" id="blog"></div>
+        
+        </div>
+    </div>
+    <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var imgArray = [];
+
+            for (i = 0; i < 14; i++) {
+                imgArray[i] = new Image();
+                imgArray[i] = '../Gallery/Quote' + i + '.png';
+            }
+            var x = document.getElementById("mySlides");
+            //console.log(slideIndex)
+            if (slideIndex <= imgArray.length) { 
+                slideIndex = Math.round(Math.random() * 100) 
+                if(slideIndex > 13){
+                    slideIndex = Math.round(Math.random() * 10)
+                }
+            }
+            //console.log(slideIndex)
+            x.style.display = "block";
+            x.src = imgArray[slideIndex].toString();
+            slideIndex++;
+            setTimeout(carousel, 10000); // Change image every 10 seconds
+        }
+        var head = document.getElementById("scheduleHeader");
+        var today = new Date(); 
+        today = today.getFullYear();
+        head.innerHTML = today + "-"+(today+1) +" Swim Schedule"
+    </script>
+</body>
+<footer id="footer"></footer>
+<script src="../../functions/index.js"></script>
+</html>

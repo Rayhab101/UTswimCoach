@@ -1,0 +1,262 @@
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+
+@media screen and (min-width:750px){
+    html {
+        height: 100%;
+        background-color: whitesmoke;
+        /* background-image: url(BenLomond-2.jpg); */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        position: relative;
+        min-width: 1024px;
+        min-height: 768px;
+    }
+    
+    .container {
+        width: 80vw;
+        height: 82vh;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: auto;
+    }
+    
+    footer {
+        position: fixed;
+        margin-left: auto;
+        /* background-color: rgb(7, 37, 168,0.7); */
+        background-color: rgb(63, 183, 7);
+
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 5vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        grid-auto-rows: 50px;
+        color: white;
+
+      }
+      
+      .footer a:link {
+        color: white;
+        padding: 0.45rem;
+        margin: 0 0.25rem;
+        list-style: none;
+      }
+      
+      .footer h4 {
+        margin-left: 0;
+        font-size: 38px;
+        justify-content: center;
+        font-family: "Caveat", cursive;
+        font-style: oblique;
+      }
+    
+    .state{
+        grid-row: 1;
+        grid-column: 1;
+        margin-top: 110px;
+        width: 600px;
+        height: 1100px;
+    }
+    
+    .state path{
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        stroke: #0033ff;
+        stroke-opacity: 0.5;
+        stroke-width: 5px;
+    }
+    
+    .state a {
+        fill: white;
+        fill-opacity: 0.9;
+        transition: fill 0.3s
+    }
+    
+    .state a:hover{
+        fill:  rgb(243, 104, 53) ;
+    }
+    
+    .swimmers{
+        display: grid;
+    }
+    
+    .district_table {
+        grid-row: 1;
+        grid-column: 2;
+        margin-top: 110px;
+        /* background-color: lavenderblush; */
+        margin-left: auto;
+        margin-right: auto; 
+        height: fit-content;
+        overflow: auto;
+    }
+    
+    table, th, td {
+        border: 1px solid black;
+      }
+    
+    h3, h4, h5 {
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+    }
+
+    .welcome {
+        /* padding-top: 100px; */
+        color: white;
+        font-size: larger;
+        background-color: rgba(0, 0, 0, 0.6);
+        text-align: center;
+    }
+
+    .jayhawk {
+        padding-top: 20px;
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+        grid-row: 2;
+        grid-column: 1;
+    }
+
+    .pic {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .container1 {
+        /* height: 100%;
+        width: 100%; */
+        display: grid;
+        padding-left: 50px;
+        padding-right: 90px;
+    }
+
+    .team-picture {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    /* .schedule {
+        background-color: transparent;
+        grid-row: 1;
+        grid-column: 1;
+    } */
+    body {
+        padding-top:10vh;
+        height:80vh;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:500px){
+    html {
+        height: 100%;
+        background-color: #2F3035;
+        /* background-image: url(BenLomond-2.jpg); */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        position: relative;
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    footer {
+        position: fixed;
+        margin-left: auto;
+        background-color: rgb(7, 37, 168,0.7);
+
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 5vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        grid-auto-rows: 50px;
+        color: white;
+      }
+      
+      
+      .footer a:link {
+        color: #fff;
+        padding: 0.45rem;
+        margin: 0 0.25rem;
+        list-style: none;
+      }
+      
+      .footer h4 {
+        margin-left: 0;
+        font-size: 38px;
+        justify-content: center;
+        font-family: "Caveat", cursive;
+        font-style: oblique;
+        display:hidden;
+      }
+
+    .welcome {
+        /* padding-top: 130px; */
+        color: white;
+        background-color: rgba(0, 0, 0, 0.6);
+        text-align: left;
+        margin-left: 15px;
+        width: 100%
+    }
+
+    .container {
+        width: 90%;
+        height: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: auto;
+    }
+    .team-picture {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    /* .schedule {
+        background-color: transparent;
+        grid-row: 2;
+        grid-column: 1;
+        display:none;
+    } */
+    .jayhawk {
+        
+        padding-top: 20px;
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+        grid-row: 4;
+        grid-column: 1;
+        align-content: center;
+        display:none;
+    }
+
+    .pic {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        grid-row: 3;
+        grid-column: 1;
+    }
+
+    .container1 {
+        /* height: 100%;
+        width: 100%; */
+        display: grid;
+        padding-left: auto;
+        padding-right: auto;
+    }
+}
+.internal_image{
+    border-radius: 50%;
+}

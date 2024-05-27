@@ -197,6 +197,10 @@ app.get('/api/testTop50/:id',userctrl.testTop50)
 
 app.get('/api/getMeetResults/:id',userctrl.pullMeetResults)
 
+app.get('/api/poloUsers',userctrl.poloUsers)
+app.get('/api/poloPlayers',userctrl.poloPlayers)
+app.get('/api/poloTeams',userctrl.poloTeams)
+
 app.set('port', process.env.PORT || 8080)
 massive({
     connectionString: DATABASE_URL,

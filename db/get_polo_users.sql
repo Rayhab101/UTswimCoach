@@ -1,0 +1,1 @@
+SELECT access, username, password, email FROM polo_players;

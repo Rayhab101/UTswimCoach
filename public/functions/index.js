@@ -25,8 +25,10 @@ async function against() {
                 var day = Number(splice[1])+1;
                 var nextMeet = new Date(year, month, day);
                 var who;
+
                 if (nextMeet - today > 0) {
                     //console.log(meets[j].school1)
+
                     if (meets[j].school1 != -1) {
                         //console.log("HI")
                         var school1 = await fetch('/api/schools/' + meets[j].school1).then(function (responseRelay) {
@@ -46,37 +48,38 @@ async function against() {
                         break;
                     }
                     else {
-                    console.log("Hello")
+                    console.log("Hello2")
                         var school1 = [{ school_id: '-1', name: meets[j].location, photo: './swimCoach.png' }];
                         //console.log(school1)
                         break;
                     }
                 }
             }
-            
             if(!school1){
                 
-                img.setAttribute("src", "./images/BLHS.png");
+                img.setAttribute("src", "../../images/BLHS.png");
                 img.setAttribute("alt", "Ben Lomond Logo");
                 body.appendChild(img);
-                img2.setAttribute("src", "./images/SJCHS.png");
+                img2.setAttribute("src", "../../images/SJCHS.png");
                 img2.setAttribute("alt", "Jayhawks Logo");
                 body.appendChild(img2);
                 text.innerHTML = "Red and Blue Meet"
+                return;
             }
             if (school1[0].school_id == 6) {
-                img.setAttribute("src", "./images/BLHS.png");
+                img.setAttribute("src", "../../images/BLHS.png");
                 img.setAttribute("alt", "Ben Lomond Logo");
                 body.appendChild(img);
-                img2.setAttribute("src", "./images/SJCHS.png");
+                img2.setAttribute("src", "../../images/SJCHS.png");
                 img2.setAttribute("alt", "Jayhawks Logo");
                 body.appendChild(img2);
                 text.innerHTML = "Red and Blue Meet"
                 // break;
+
             }
             else {
                 console.log("hi")
-                img.setAttribute("src", "./images/BLHS.png");
+                img.setAttribute("src", "../../images/BLHS.png");
                 img.setAttribute("alt", "Ben Lomond Logo");
                 body.appendChild(img);
                 console.log(school1[0].name)
@@ -85,19 +88,19 @@ async function against() {
                 }
                 console.log(school1[0].name)
                 if(school1[0].name !="Saint Joseph"){
-                    img2.setAttribute("src", "./images/" + school1[0].name+".png");
+                    img2.setAttribute("src", "../../images/" + school1[0].name+".png");
                     img2.setAttribute("alt", school1[0].name + " Logo");
                     body.appendChild(img2);
                 }
 
                 who = "VS " + school1[0].name;
-                img3.setAttribute("src", "./images/SJCHS.png");
+                img3.setAttribute("src", "../../images/SJCHS.png");
                 img3.setAttribute("alt", "Jayhawks Logo");
                 // img3.setAttribute("style","transform: scaleX(-1)")
                 body.appendChild(img3);
                 if (school2 != undefined) {
                     //console.log("hello")
-                    img4.setAttribute("src", "./images/" + school2[0].name+".png");
+                    img4.setAttribute("src", "../images/" + school2[0].name+".png");
                     img4.setAttribute("alt", school2[0].name);
                     body.appendChild(img4);
                     who = who + " & " + school2[0].name;
@@ -111,6 +114,7 @@ async function against() {
         })
         .catch(function (error) {
             console.log("Error: " + error);
+            console.log(error)
         });
     meets();
 }

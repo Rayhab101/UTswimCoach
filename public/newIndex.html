@@ -17,153 +17,7 @@
         });
     </script>
     <style>
-        /* @media only screen and (min-width: 700px) {
-            .galleryPic {
-                width: 30vw;
-                height: 50vh;
-            }
 
-            .container2 {
-                width: 100vw;
-                display: flex;
-                justify-content: space-evenly;
-                flex-wrap: wrap;
-            }
-
-            .welcome {
-                color: white;
-                font-size: larger;
-                background-color: rgba(0, 0, 0, 0.6);
-                text-align: center;
-                width: 100vw;
-            }
-
-            .schedule {
-                text-align: center;
-                font-size: small;
-                width: 30vw;
-            }
-
-            table {
-                background-color: whitesmoke;
-                visibility: visible;
-            }
-
-            body {
-                height: 85vh;
-                width: 100vw;
-            }
-
-            .nextmeet {
-                background-image: url(BenLomond-2.jpg);
-                display: flex;
-                width: 30vw;
-                object-fit: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-
-            .nextmeet img {
-                width: 30%;
-                height: 30%;
-            }
-
-            #blog {
-                height: 50%;
-                width: 30vw;
-                font-size: 17px;
-                text-align: center;
-                resize: none;
-
-            }
-
-            .state {
-                display: flex;
-                text-align: center;
-                width: 29.5vw;
-                ;
-                height: 10vh;
-                object-fit: cover;
-                position: relative;
-                top: -105px;
-            }
-        }
-
-        @media only screen and (max-width: 700px) {
-            .galleryPic {
-                width: 90vw;
-            }
-
-            .container2 {
-                padding-top:62px;
-                padding-left:5px;
-                padding-bottom:50px;
-                height: 85vh;
-                width: 100vw;
-                display: block;
-                overflow: auto;
-
-            }
-
-            .welcome {
-                color: white;
-                font-size: larger;
-                background-color: rgba(0, 0, 0, 0.6);
-                text-align: center;
-                width: 90vw;
-                margin-top: 100px;
-            }
-
-            .schedule {
-                text-align: center;
-                align-items: center;
-                font-size: small;
-                width: 90vw;
-
-            }
-
-            table {
-                background-color: whitesmoke;
-                visibility: visible;
-            }
-
-            body {
-                height: 85vh;
-                width: 100vw;
-            }
-
-            .nextmeet {
-                background-image: url(BenLomond-2.jpg);
-                display: flex;
-                width: 90vw;
-                object-fit: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-
-            .nextmeet img {
-                width: 30%;
-                height: 30%;
-            }
-
-            #blog {
-                height: 100%;
-                width: 90vw;
-                font-size: 14px;
-                resize: none;
-            }
-
-            .state {
-                display: flex;
-                text-align: center;
-            }
-        } */
         body {
             display: flex;
             align-items: center;
@@ -173,25 +27,26 @@
 
         .button-container {
             text-align: center;
-            display: flex;
+            display: flex-wrap;
+            
         }
 
         .button {
             padding: 10px 20px;
             font-size: 16px;
             margin: 10px;
-            width: 31%;
+            width: 500px;
             
         }
-    </style>
     </style>
 </head>
 <!-- <header id="header"></header> -->
     <body>
         <div class="button-container">
-            <button class="button" onclick="navigateTo('schoolDashboard.html?school=6')"><img style="width:50%" src="../images/BLHS.png" alt="Ben Lomond Site">&nbsp; Ben Lomond Site</button>
-            <button class="button" onclick="navigateTo('schoolDashboard.html?school=78')"><img style="width:50%" src="../images/SJCHS.png" alt="Saint Joseph Site">Saint Joseph Site</button>
+            <button class="button" onclick="navigateTo('../BenLomond/schoolDashboard.html')"><img style="width:50%" src="../images/BLHS.png" alt="Ben Lomond Site">&nbsp; Ben Lomond Site</button>
+            <button class="button" onclick="navigateTo('../SaintJoseph/schoolDashboard.html')"><img style="width:50%" src="../images/SJCHS.png" alt="Saint Joseph Site">Saint Joseph Site</button>
             <button class="button" onclick="navigateTo('coachLogin.html')"><img style="width:50%" src="../images/State.png" alt="Coach Login Page">Coach Login</button>
+            <button class="button" onclick="navigateTo('../OgdenMasters/Home.html')"><img style="width:50%" src="../images/underground1.png" alt="Ogden Masters Water Polo Page">Ogden Masters Water Polo</button>
         </div>
     </body>
 <footer id="footer"></footer>

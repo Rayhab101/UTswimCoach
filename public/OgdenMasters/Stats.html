@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ogden Masters Water Polo- Home</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+        <link rel="stylesheet" href="swim.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+
+    <style>
+
+        /* body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10;
+        } */
+
+        .button-container {
+            text-align: center;
+            display: flex-wrap;
+            
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            width: 500px;
+            
+        }
+        .swim_info {
+            height: 85vh;
+            padding-top: 35px;
+            overflow: scroll;
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, .95);
+            border-collapse: separate;
+            border: solid black 1px;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            text-align: center;
+            width: 95vw;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        td {
+            width: 7.7%;
+        }
+
+        input {
+            width: 60px;
+        }
+
+        .label {
+            color: white;
+            background-color: rgba(0, 0, 0, .6);
+            text-align: center;
+            width: 99vw;
+        }
+
+        body {
+            height: 85vh;
+            width: 100vw;
+            overflow: auto;
+        }
+        @media screen and (max-width:750px) {
+        h4 {
+            font-size: 12px
+        }
+
+        a:link {
+            color: white;
+            font-size: 11px
+        }
+
+        a:visited {
+            color: white;
+            font-size: 6px
+        }
+
+        footer a {
+            visibility: hidden;
+        }
+
+        footer i {
+            visibility: visible;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+    }
+
+    @media screen and (min-width:750px) {
+        h4 {
+            font-size: 28px
+        }
+
+        a:link {
+            color: white;
+        }
+
+        a:visited {
+            color: white;
+
+        }
+    }
+    </style>
+</head>
+<header id="header"></header>
+    <body onload="pullPlayers()">
+        <!-- <h1>THIS PAGE WILL BE THE STATS PAGE FOR OMWP</h1> -->
+        <div class="swim_info">
+            <h4 class="label">ALL PLAYER STATS</h4>
+            <table id="individualTable">
+                <tr>
+                    <td>Name</td>
+                    <td>Team Name</td>
+                    <td>Cap Number</td>
+                    <td>Games Played</td>
+                    <td>Goals</td>
+                    <td>Shots Attempted</td>
+                    <td>Assists</td>
+                    <td>Ejections</td>
+                    <td>Exclusions</td>
+                    <td>Steals</td>
+                </tr>
+            </table>
+            </div>
+    </body>
+<footer id="footer"></footer>
+
+<script>
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+    async function pullPlayers(){
+        var players = await fetch('/api/poloPlayers').then(data => data.json())
+        console.log(players)
+        var body = document.getElementById("individualTable")
+        players.forEach(player =>{
+                var row = document.createElement("tr")
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_name;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_team;
+                var cell = row.insertCell();
+                cell.innerHTML = (player.player_alternate_goalie=true) ? player.player_cap_number + " & A1": player_cap_number;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_games_played;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_goals;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_shots_attempted;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_assists;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_ejections;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_exclusions;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_steals;
+
+                body.appendChild(row);
+            })
+    }
+    // function autoRefresh() {
+    //     window.location = window.location.href;
+    // }
+    // setInterval('autoRefresh()', 60000);
+</script>
+<script>
+    $(function () {
+        $("#header").load("heading.html");
+        $("#footer").load("footing.html");
+    });
+</script>
+</html>

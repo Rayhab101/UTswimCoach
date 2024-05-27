@@ -173,22 +173,6 @@
                     }).then(response => response.json())
                         .then(json => console.log(json))
                         .catch(err => console.log(err));
-
-                    // var today = new Date();
-                    // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-                    // var location = window.location.pathname;
-                    // location = location.split('/');
-                    // location = location[1];
-                    // location = location.split('.html')
-                    // location = location[0]
-                    // var changes = date + "_" + coach + "_" + location + "_" + "added" + "_" + submit;
-                    // // console.log(changes)
-                    // fetch("/api/logChanges/" + changes, {
-                    //     headers: { 'Content-Type': 'application/json' },
-                    //     method: "POST",
-                    // }).then(response => response.json())
-                    //     .then(json => console.log(json))
-                    //     .catch(err => console.log(err));
                     window.location.reload();
                 }
                 else {

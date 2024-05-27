@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../header_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>.</title>
+</head>
+<script>
+    // Get the query string from the URL
+    if(window.location.pathname.includes("BenLomond")){
+        document.getElementById("headingPhoto").src = '../../images/BLHS.png'
+        document.getElementById("headerName").innerHTML = "Ben Lomond Swim Team";
+        }
+    else if(window.location.pathname.includes("SaintJoseph")){
+        document.getElementById("headingPhoto").src = '../../images/SJCHS.png'
+        document.getElementById("headerName").innerHTML = "Saint Joseph's Swim Team";
+    }
+    else{
+        document.getElementById("headingPhoto").src = '../../images/Ogden Underground Image.png'
+        document.getElementById("headerName").innerHTML = "Ogden Masters Waterpolo";
+    }
+
+    // Function To Display Popup
+    function div_show() {
+        document.getElementById('abc').style.display = "block";
+    }
+
+    //Function to Hide Popup
+    function div_hide() {
+        document.getElementById('abc').style.display = "none";
+    }
+
+    function myFunction() {
+        var x = document.getElementById("smNav");
+        if (x.style.display === "flex") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "flex";
+            x.style.backgroundColor = "rgba(0,0,255,0.5)";
+        }
+    }
+
+</script>
+
+<body>
+    <div class="header-container">
+        <header id="header">
+            <a href="/" id="headerPhoto"><img id="headingPhoto" alt="School Icon"></a>
+            <!-- <h1>Utah Swim Coaches Association</h1> -->
+            <h1 id="headerName">Ben Lomond Swim Team</h1>
+            <nav>
+                <div class="navbar">
+                    <a href="">Home</a>
+                    <div class="dropdown">
+                        <button class="dropbtn">BL Swimmers
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="swim.html?school=6">Swimmers</a>
+                            <a href="records.html?school=6">Records</a>
+                            <a href="compare.html?school=6">Compare</a>
+                            <a href="about_team.html?school=6">Ben Lomond's Program</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">SJ Swimmers
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="swim.html?school=78">Swimmers</a>
+                            <a href="records.html?school=78">Records</a>
+                            <a href="compare.html?school=78">Compare</a>
+                            <a href="about_team.html?school=78">St Joseph's Program</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">More
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- <a href="video.html">Live Feed</a> -->
+                            <a href="topTimes.html">Top Times</a><a href="https://new.berecruited.com/login"
+                                target="_blank">Be Recruited</a>
+                            <a href="https://www.registermyathlete.com/login" target="_blank">Register My Athlete</a>
+                            <a href="https://www.yourswimlog.com/dryland-workouts-for-swimmers/" target="_blank">Dry
+                                Land Workouts</a>
+                            <a href="https://www.swimoutlet.com/" target="_blank">Shop Swim Gear</a>
+                            <a href="https://utswimcoach.com/" target="_blank">UT Swim Coach</a>
+                            <a href="meetResults.html">Meet Results</a>
+                            <a href="about_coaches.html">About the Coaches</a>
+                            <a href="contact.html">Contact</a>
+                            <a href="archive.html">Archive</a>
+                            <a href="video.html">Coaches Vs Seniors Video</a>
+                        </div>
+                    </div>
+                    <a href="calendar.html">Calendar</a>
+                </div>
+            </nav>
+            <div class="navbar1">
+                <a style="color:white" href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i id="water" class="fas fa-water" style="font-size: 2em;"></i>
+                </a>
+            </div>
+        </header>
+        <div class="smNav" id="smNav">
+            <div class="dropdown">
+                <button class="dropbtn">BL Swimmers
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="swim.html?school=6">Swimmers</a>
+                    <a href="records.html?school=6">Records</a>
+                    <a href="compare.html?school=6">Compare</a>
+                    <a href="about_team.html?school=6">Ben Lomond's Program</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">SJ Swimmers
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="swim.html?school=78">Swimmers</a>
+                    <a href="records.html?school=78">Records</a>
+                    <a href="compare.html?school=78">Compare</a>
+                    <a href="about_team.html?school=78">St Joseph's Program</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">More
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <!-- <a href="video.html">Live Feed</a> -->
+                    <a href="topTimes.html">Top Times</a><a href="https://new.berecruited.com/login" target="_blank">Be
+                        Recruited</a>
+                    <a href="https://www.registermyathlete.com/login" target="_blank">Register My Athlete</a>
+                    <a href="https://www.yourswimlog.com/dryland-workouts-for-swimmers/" target="_blank">Dry Land
+                        Workouts</a>
+                    <a href="https://www.swimoutlet.com/" target="_blank">Shop Swim Gear</a>
+                    <a href="https://utswimcoach.com/" target="_blank">UT Swim Coach</a>
+                    <a href="meetResults.html">Meet Results</a>
+                    <a href="about_coaches.html">About the Coaches</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="calendar.html">Calendar</a>
+                    <a href="archive.html">Archive</a>
+                    <a href="video.html">Coaches Vs Seniors Video</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

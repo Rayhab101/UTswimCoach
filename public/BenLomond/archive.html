@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BL/SJ Swim Team- Archive</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+  <link rel="stylesheet" href="swim.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+
+  <script>
+    $(function () {
+      $("#header").load("heading.html");
+      $("#footer").load("footing.html");
+    });
+  </script>
+  <style>
+    @media screen and (min-width:750px) {
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Float four columns side by side */
+      .column {
+        float: left;
+        width: 25%;
+        padding: 0 10px;
+      }
+
+      /* Remove extra left and right margins, due to padding */
+      .row {
+        margin: 0 -5px;
+        margin-top: 20px
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* Style the counter cards */
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        text-align: center;
+        background-color: #f1f1f1;
+        border-radius: 10%;
+        width: 100%;
+      }
+
+      #swimmers {
+        padding-top: 20px;
+        overflow: visible;
+        /* margin-left:auto; */
+        width: 100vw;
+        /* display: flex;
+      justify-content: space-evenly; */
+        overflow-x: hidden;
+      }
+
+    }
+
+    @media screen and (max-width:750px) {
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Float four columns side by side */
+      .column {
+        float: left;
+        width: 25%;
+        padding: 0 5px;
+      }
+
+      /* Remove extra left and right margins, due to padding */
+      .row {
+        margin: 0 -5px;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* Style the counter cards */
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        text-align: center;
+        background-color: #f1f1f1;
+        border-radius: 10%;
+        width: 100%;
+        font-size: xx-small;
+      }
+
+
+      .card h3 {
+        font-size: 0.01em;
+        margin-bottom: 0;
+      }
+
+      .card h4 {
+        margin-top: 0;
+      }
+
+      #swimmers {
+        padding-top: 70px;
+        overflow: visible;
+        /* margin-left:auto; */
+        width: 100vw;
+        /* display: flex;
+      justify-content: space-evenly; */
+        overflow-x: hidden;
+      }
+    }
+  </style>
+  <script type="text/javascript">
+    function createCards(dataArray) {
+      console.log(dataArray)
+      var body = document.getElementById("swimmers");
+      var sizeData = dataArray.length;
+      for (var i = 0; i < sizeData; i++) {
+        var r = dataArray[i].name;
+        r = r.split(" ");
+        r = r[0][0] + ". " + r[1];
+        var g = dataArray[i].status_grade;
+        var year = dataArray[i]["year"];
+        if (i % 4 == 0) {
+          var row = document.createElement("div");
+          row.setAttribute("class", "row");
+        }
+        var col = document.createElement("div");
+        col.setAttribute("class", "column");
+        var a = document.createElement("a");
+        a.setAttribute("href", "./swimmers.html?swimmerid=" + dataArray[i].swimmer_id);
+        a.setAttribute("style", "text-decoration: none; color: black;");
+        var carred = document.createElement("div");
+        carred.setAttribute("class", "card");
+        carred.setAttribute('id', dataArray[i].swimmer_id);
+        var cardName = document.createElement("h3");
+        cardName.innerHTML = r;
+        cardName.setAttribute("font-weight", "bold");
+        var cardGrade = document.createElement("h3");
+        cardGrade.innerHTML = g;
+        //var fastestFifty = document.createElement("h5");
+        //console.log(minValue);
+        //var fitty = "Year Swimming: " + year;
+        //fastestFifty.innerHTML = fitty;
+        carred.appendChild(cardName);
+        carred.appendChild(cardGrade);
+        //carred.appendChild(fastestFifty);
+        a.appendChild(carred);
+        col.appendChild(a);
+        row.appendChild(col);
+        body.appendChild(row);
+      }
+    }
+
+    function GetSortOrder(prop) {
+      return function (a, b) {
+        if (a[prop] > b[prop]) {
+          return 1;
+        } else if (a[prop] < b[prop]) {
+          return -1;
+        }
+        return 0;
+      }
+    }
+
+    function sortByKey(sorting) {
+      var stuff = sorting.sort(GetSortOrder("name"));
+      return stuff;
+    }
+
+    function cardLoad() {
+      var pullSwimmers = location.search.substring(1);
+      pullSwimmers = pullSwimmers.split("=");
+
+      pullSwimmers = Number(pullSwimmers[1]);
+      fetch("/api/swimmersArchive")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (myJson) {
+          createCards(myJson);
+        })
+        .catch(function (error) {
+          cardLoad();
+          location.reload();
+          console.log("Error: " + error);
+        });
+    }
+
+  </script>
+</head>
+<header id="header"></header>
+
+<body onload="cardLoad()">
+
+  <main class="swim_info">
+    <div class="container" id="swimmers"></div>
+  </main>
+
+</body>
+<footer id="footer"></footer>
+
+</html>
