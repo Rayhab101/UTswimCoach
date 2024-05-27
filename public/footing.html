@@ -16,9 +16,9 @@
             font-size: 6px
         }
 
-        footer a {
+        /* footer a {
             visibility: hidden;
-        }
+        } */
 
         footer i {
             visibility: visible;
@@ -50,7 +50,7 @@
     var str = window.location.href
     if (!str.includes('BenLomond') && !str.includes("SaintJoseph")) {
         document.querySelectorAll('.loaded').forEach(function (el) {
-            el.style.display = 'none';
+            el.style.display = 'initial';
         });
         document.querySelectorAll('.link').forEach(function (el) {
             el.href = '';
