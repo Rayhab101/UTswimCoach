@@ -200,6 +200,10 @@ app.get('/api/getMeetResults/:id',userctrl.pullMeetResults)
 app.get('/api/poloUsers',userctrl.poloUsers)
 app.get('/api/poloPlayers',userctrl.poloPlayers)
 app.get('/api/poloTeams',userctrl.poloTeams)
+app.post('/api/setPlayers/:id',userctrl.setPlayers)
+app.post('/api/updatePassword/:id',userctrl.updatePassword)
+
+
 
 app.set('port', process.env.PORT || 8080)
 massive({

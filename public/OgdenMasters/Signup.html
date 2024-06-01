@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ogden Masters Water Polo- Home</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+        <link rel="stylesheet" href="swim.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin-top: 100px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<header id="header"></header>
+    <body class="container">
+        <form action="/submit" method="post" id="signupForm">
+            <h3><center><u>Sign Up</u></center></h3>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="team">Team:</label>
+                <input type="text" id="team" name="team" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="capNumber">Cap Number:</label>
+                <input type="text" id="capNumber" name="capNumber" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" name="role">
+                    <option value="coach">Coach</option>
+                    <option value="player">Player</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="usaRegistered">Are you USA Registered?</label>
+                <select id="usaRegistered" name="usaRegistered">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="official">Are you an Official?</label>
+                <select id="official" name="official">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+    
+            <div class="form-group full-width">
+                <input type="submit" value="Sign Up">
+            </div>
+        </form></body>
+<footer id="footer"></footer>
+
+<script src="mastersWP.js"></script>
+<script>
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            var formData = {
+                name: document.getElementById('name').value,
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                team: document.getElementById('team').value,
+                capNumber: document.getElementById('capNumber').value,
+                role: document.getElementById('role').value,
+                usaRegistered: document.getElementById('usaRegistered').value,
+                official: document.getElementById('official').value
+            };
+            //console.log(formData);
+            var check = await alreadyRegistered(formData.email,formData.username);
+            formData.name = formData.name.replace(" ","_")
+            formData.team = formData.team.replace(" ","_")
+            if(!check){
+                var submit = formData.name + "," + formData.username + "," + formData.email + ","+ formData.password+","+formData.team +","+ formData.capNumber+","+formData.role+","+ formData.usaRegistered+","+formData.official;
+            fetch("/api/setPlayers/" + submit, {
+                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+                // body: JSON.stringify(submitRaces)
+            }).then(response => response.json())
+                .then(window.location.href = "Login.html")
+                .catch(err => console.log(err));
+            }
+            else{
+                if(confirm("Username or Email has already been added to Roster")){
+                    window.location.href = "Login.html";
+                }
+            }
+        })
+    // function autoRefresh() {
+    //     window.location = window.location.href;
+    // }
+    // setInterval('autoRefresh()', 60000);
+</script>
+<script>
+    $(function () {
+        $("#header").load("heading.html");
+        $("#footer").load("footing.html");
+    });
+</script>
+</html>

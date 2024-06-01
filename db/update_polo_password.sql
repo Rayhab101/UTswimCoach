@@ -1,0 +1,1 @@
+UPDATE polo_players SET password=$1 WHERE username=$2;

@@ -14,10 +14,11 @@
     <style>
 
         body {
-            display: flex;
-            align-items: center;
+            display: block;
+            /* align-items: center; */
             justify-content: center;
-            margin: 10;
+            margin: 10px;
+            margin-right: 10px;
         }
 
         .button-container {
@@ -29,10 +30,11 @@
         .button {
             padding: 10px 20px;
             font-size: 16px;
-            margin: 10px;
+            margin: 1%;
             width: 500px;
             
         }
+
         @media screen and (max-width:750px) {
         h4 {
             font-size: 12px
@@ -64,6 +66,13 @@
     }
 
     @media screen and (min-width:750px) {
+        body{
+            width: 50%;
+            justify-content: center;
+            background-color: #f4f4f4;
+            margin: auto;
+            border-color: black;
+        }
         h4 {
             font-size: 28px
         }
@@ -76,20 +85,44 @@
             color: white;
 
         }
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .section input[type="text"],
+        .section input[type="password"],
+        .section input[type="email"],
+        .section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
     }
     </style>
+    
 </head>
 <header id="header"></header>
-    <body>
-        <h1>THIS PAGE WILL BE THE ADMIN PAGE FOR OMWP</h1>
+    <body onload="pageSetup();">
+        <div id="content"></div>
     </body>
 <footer id="footer"></footer>
-
-<script src="../../functions/index.js"></script>
+<script src="mastersWP.js"></script>
 <script>
     function navigateTo(url) {
         window.location.href = url;
     }
+    var url = location.href;
+
     // function autoRefresh() {
     //     window.location = window.location.href;
     // }

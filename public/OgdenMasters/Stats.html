@@ -140,41 +140,14 @@
             </div>
     </body>
 <footer id="footer"></footer>
+<script src="mastersWP.js"></script>
 
 <script>
     function navigateTo(url) {
         window.location.href = url;
     }
-    async function pullPlayers(){
-        var players = await fetch('/api/poloPlayers').then(data => data.json())
-        console.log(players)
-        var body = document.getElementById("individualTable")
-        players.forEach(player =>{
-                var row = document.createElement("tr")
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_name;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_team;
-                var cell = row.insertCell();
-                cell.innerHTML = (player.player_alternate_goalie=true) ? player.player_cap_number + " & A1": player_cap_number;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_games_played;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_goals;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_shots_attempted;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_assists;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_ejections;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_exclusions;
-                var cell = row.insertCell();
-                cell.innerHTML = player.player_steals;
+    //pullPlayers();
 
-                body.appendChild(row);
-            })
-    }
     // function autoRefresh() {
     //     window.location = window.location.href;
     // }

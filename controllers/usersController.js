@@ -944,5 +944,40 @@ module.exports = {
             //console.log(top50);
             return res.status(200).send(top50)
         }).catch(err => (res.sendStatus(500)))
+    },
+    setPlayers: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        // console.log(id.split(','))
+        var [name,username,email,password,team,cap,access,usa_player,official] = id.split(",")
+
+        cap = parseInt(cap)
+        access = access=="player"? 3 : 2;
+        usa_player = usa_player=="yes"? true : false
+        official = official=="yes"? true : false
+        const encoder = new TextEncoder();
+
+        // Encode the string "Hello" into a Uint8Array
+        const byteArray = encoder.encode(username);
+  
+        // Convert each byte to a two-character hexadecimal string
+        const hexArray = Array.from(byteArray, (byte) =>
+          byte.toString(16).padStart(2, "0")
+        );
+  
+        // Join the hex values into a single string
+        var hexString = hexArray.join("");
+
+        db.set_polo_player(name,cap,team,true,false,0,0,0,0,0,0,0,usa_player,official,access,username,password,email,hexString).then(top50 => {
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
+    },
+    updatePassword: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        var [username,password] = id.split("_")
+        db.update_polo_password(password,username).then(top50 => {
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
     }
 }

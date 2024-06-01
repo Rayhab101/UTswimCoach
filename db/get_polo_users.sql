@@ -1,1 +1,1 @@
-SELECT access, username, password, email FROM polo_players;
+SELECT player_name,access, username, password, email, hex FROM polo_players;
