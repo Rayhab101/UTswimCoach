@@ -146,7 +146,7 @@
     }
     async function pullPlayers(){
         var players = await fetch('/api/poloTeams').then(data => data.json())
-        console.log(players)
+        // console.log(players)
         var body = document.getElementById("individualTable")
         players.forEach(player =>{
                 var row = document.createElement("tr")

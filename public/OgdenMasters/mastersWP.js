@@ -40,9 +40,10 @@ async function pageSetup() {
   var newUser = urlParams.get("token");
   var check = await fetch("/api/poloUsers").then((data) => data.json());
   const contentDict = {
-    '1': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Coaches</a><a onclick="updateContainer(event)">Teams</a><a onclick="updateContainer(event)">Players</a></div></div><div class="dropdown"><button class="dropbtn">Create <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">User</a><a onclick="updateContainer(event)">Tournament</a><a onclick="updateContainer(event)">Matchup</a></div></div><a onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
-    '2': '<h2>Welcome to the Coaches Home Page '+check[0].player_name+'</h2><p>This is the coaches page content.</p>',
+    '1': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Coaches</a><a onclick="updateContainer(event)">Teams</a><a onclick="updateContainer(event)">Players</a></div></div><div class="dropdown"><button class="dropbtn">Create <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">User</a><a onclick="updateContainer(event)">Tournament</a><a onclick="updateContainer(event)">Game</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
+    '2': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">Stats</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
     '3': '<h2>Welcome to the Players Home Page '+check[0].player_name+'</h2><p>This is the players page content.</p>',
+    '4':'<h2>Welcome to the Game Entry Page</p>',
     'default': '<h2>Page Not Found</h2><p>Sorry, the page you are looking for does not exist.</p>'
 };
   check.forEach((element) => {
@@ -69,7 +70,9 @@ async function pageSetup() {
       }
     }
   });
+  $("#Settings").click()
 }
+
 
 async function alreadyRegistered(email,username){
     var check = await fetch("/api/poloUsers").then((data) => data.json());
@@ -127,39 +130,64 @@ async function passwordReset(password1){
 }
 async function pullPlayers(){
     var players = await fetch('/api/poloPlayers').then(data => data.json())
-    console.log(players)
     var body = document.getElementById("individualTable")
     players.forEach(player =>{
-            var row = document.createElement("tr")
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_name;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_team;
-            var cell = row.insertCell();
-            cell.innerHTML = (player.player_alternate_goalie=true) ? player.player_cap_number + " & A1": player_cap_number;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_games_played;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_goals;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_shots_attempted;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_assists;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_ejections;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_exclusions;
-            var cell = row.insertCell();
-            cell.innerHTML = player.player_steals;
-
-            body.appendChild(row);
+            if(player.access < 4){
+                var row = document.createElement("tr")
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_name;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_team;
+                var cell = row.insertCell();
+                cell.innerHTML = (player.player_alternate_goalie=true) ? player.player_cap_number + " & A1": player_cap_number;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_games_played;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_goals;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_shots_attempted;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_assists;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_ejections;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_exclusions;
+                var cell = row.insertCell();
+                cell.innerHTML = player.player_steals;
+    
+                body.appendChild(row);
+            }
         })
 }
 
-function updateContainer(event){
+async function updateContainer(event){
     event.preventDefault();
     const text = event.target.innerText;
-    
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var newUser = urlParams.get("token");
+    var check = await fetch("/api/poloUsers").then((data) => data.json());
+    var name;
+    var username;
+    var password;
+    var email;
+    var registered;
+    var official;
+    var team;
+    var cap;
+    //console.log(check)
+    check.forEach((element) => {
+        if (element.hex == newUser) {
+            name=element.player_name;
+            team=element.player_team;
+            cap=element.player_cap_number;
+            username=element.username;
+            password=element.password;
+            email=element.email;
+            registered = element.usa_player==true?"Yes":"No";
+            official = element.official==true?"Yes":"No";
+        }
+      });
     switch (text) {
             case "Games":
                 document.getElementById("container").innerHTML = text
@@ -189,33 +217,76 @@ function updateContainer(event){
                 document.getElementById("container").innerHTML = text
 
             break;
-            case "Matchup":
+            case "Game":
                 document.getElementById("container").innerHTML = text
 
             break;
             case "Settings":
-                document.getElementById("container").innerHTML = `<h1>Account Settings for Ryan Lund</h1>
-                <h2>(<a onclick="Edit();"><u>Edit</u></a>)</h2>
+                document.getElementById("container").innerHTML = `<h1>Account Settings for `+name+`</h1>
                 <div class="section">
-                    
-                    <label>Username: rlund1 </label>
-                    <label>Email: lund64311@gmail.com</label>
-                    <label>Password: Password1!</label>
-                    <label>USA Registered: Yes</label>
-                    <label>USA Official: Yes</label>
+                <table class="setting_table">
+                <tr><td>Username:</td><td>-</td><td>`+username+`</td></tr>
+                <tr><td>Password:</td><td>-</td><td>`+password+`</td></tr>
+                <tr><td>Email:</td><td>-</td><td>`+email+`</td></tr>
+                <tr><td>Team:</td><td>-</td><td>`+team+`</td></tr>
+                <tr><td>Cap Number:</td><td>-</td><td>`+cap+`</td></tr>
+                <tr><td>USA Registered:</td><td>-</td><td>`+registered+`</td></tr>
+                <tr><td>USA Official:</td><td>-</td><td>`+official+`</td></tr>
+                </table>
+                <button id="save" onclick="save(this)">Save</button>
                 </div>
-        
                 <div class="section">
                     <h3>Support</h3>
                     <label><button onclick="javascript:alert('clicked')">Contact Support</button></label>
                 </div>`;
-
             break;
         default:
             break;
     }
 }
 
-function Edit(){
-    console.log("HI")
+async function save(){
+    var formData = [];
+    $('table tr').each(function() {
+      var cell = $(this).find('td:eq(2)'); // Select the third column (index 2)
+      if (cell.length) {
+        formData.push(cell.text());
+      }
+    });
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var newUser = urlParams.get("token");
+    // console.log(formData);
+    var submit = formData[0] + ","+ formData[1]+"," + formData[2] + ","+formData[3] +","+ formData[4]+","+ formData[5]+","+formData[6]+","+newUser;
+    // console.log(submit);
+
+    await fetch("/api/update_individual_settings/" + submit, {
+        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        // body: JSON.stringify(submitRaces)
+    }).then(response => response.json())
+        .then(window.location.reload())
+        .catch(err => console.log(err));
 }
+
+$('body').click(function(e) {
+    var element = $(e.target);
+    if (element.prop('tagName') === 'TD') {
+      var currentText = element.text();
+      var input = $('<input>', {
+        type: 'text',
+        value: currentText,
+        blur: function() {
+          var newText = $(this).val();
+          element.text(newText);
+        },
+        keyup: function(e) {
+          if (e.key === 'Enter' || e.key === 'Escape') {
+            $(this).blur();
+          }
+        }
+      });
+      element.empty().append(input);
+      input.focus().select();
+    }
+  });

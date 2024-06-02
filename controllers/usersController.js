@@ -979,5 +979,16 @@ module.exports = {
         db.update_polo_password(password,username).then(top50 => {
             return res.status(200).send(top50)
         }).catch(err => (res.sendStatus(500)))
+    },
+    updatePlayerIndividual: (req,res) => {
+        const {id}=req.params;
+        const db = req.app.get("db");
+        // var check = id.split("_")
+        var [username,password,email,team,cap,registered,official,hex] = id.split(",")
+        registered = registered=="Yes"?true:false;
+        official = official=="Yes"?true:false
+        db.update_polo_player_individual(username,password,email,team,parseInt(cap),registered,official,hex).then(top50 => {
+            return res.status(200).send(top50)
+        }).catch(err => (res.sendStatus(500)))
     }
 }

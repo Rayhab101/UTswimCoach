@@ -202,7 +202,7 @@ app.get('/api/poloPlayers',userctrl.poloPlayers)
 app.get('/api/poloTeams',userctrl.poloTeams)
 app.post('/api/setPlayers/:id',userctrl.setPlayers)
 app.post('/api/updatePassword/:id',userctrl.updatePassword)
-
+app.post('/api/update_individual_settings/:id',userctrl.updatePlayerIndividual)
 
 
 app.set('port', process.env.PORT || 8080)

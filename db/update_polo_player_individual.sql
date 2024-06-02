@@ -1,0 +1,1 @@
+UPDATE polo_players SET username=$1, password=$2, email=$3, player_team=$4, player_cap_number=$5, usa_player=$6, official=$7 WHERE hex=$8;
