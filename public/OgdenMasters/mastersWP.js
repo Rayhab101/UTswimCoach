@@ -41,8 +41,8 @@ async function pageSetup() {
   var check = await fetch("/api/poloUsers").then((data) => data.json());
   const contentDict = {
     '1': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Coaches</a><a onclick="updateContainer(event)">Teams</a><a onclick="updateContainer(event)">Players</a></div></div><div class="dropdown"><button class="dropbtn">Create <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">User</a><a onclick="updateContainer(event)">Tournament</a><a onclick="updateContainer(event)">Game</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
-    '2': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">Stats</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
-    '3': '<h2>Welcome to the Players Home Page '+check[0].player_name+'</h2><p>This is the players page content.</p>',
+    '2': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">Stats</a></div></div><div class="dropdown"><button class="dropbtn">Edit <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Roster</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
+    '3': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">Stats</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
     '4':'<h2>Welcome to the Game Entry Page</p>',
     'default': '<h2>Page Not Found</h2><p>Sorry, the page you are looking for does not exist.</p>'
 };
@@ -193,6 +193,7 @@ async function updateContainer(event){
                 document.getElementById("container").innerHTML = text
 
             break;
+
             case "Coaches":
                 document.getElementById("container").innerHTML = text
 
@@ -202,6 +203,10 @@ async function updateContainer(event){
 
             break;
             case "Players":
+                document.getElementById("container").innerHTML = text
+
+            break;
+            case "Roster":
                 document.getElementById("container").innerHTML = text
 
             break;
@@ -218,6 +223,10 @@ async function updateContainer(event){
 
             break;
             case "Game":
+                document.getElementById("container").innerHTML = text
+
+            break;
+            case "Stats":
                 document.getElementById("container").innerHTML = text
 
             break;
