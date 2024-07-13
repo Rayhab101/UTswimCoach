@@ -40,7 +40,7 @@ async function pageSetup() {
   var newUser = urlParams.get("token");
   var check = await fetch("/api/poloUsers").then((data) => data.json());
   const contentDict = {
-    '1': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Coaches</a><a onclick="updateContainer(event)">Teams</a><a onclick="updateContainer(event)">Players</a></div></div><div class="dropdown"><button class="dropbtn">Create <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">User</a><a onclick="updateContainer(event)">Tournament</a><a onclick="updateContainer(event)">Game</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
+    '1': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Coaches</a><a onclick="updateContainer(event)">Teams</a><a onclick="updateContainer(event)">Players</a></div></div><div class="dropdown"><button class="dropbtn">Create <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">User</a><a onclick="updateContainer(event)">Tournament</a><a onclick="updateContainer(event)">Game</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
     '2': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">Stats</a></div></div><div class="dropdown"><button class="dropbtn">Edit <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Roster</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
     '3': '<nav style="background-color:grey"><div class="navbar"><div class="dropdown"><button class="dropbtn">View <i class="fa fa-caret-down"></i></button><div class="dropdown-content"><a onclick="updateContainer(event)">Games</a><a onclick="updateContainer(event)">Team</a><a onclick="updateContainer(event)">Stats</a></div></div><a id="Settings" onclick="updateContainer(event)">Settings</a></div></nav><div id="container"></div>',
     '4':'<h2>Welcome to the Game Entry Page</p>',
@@ -210,12 +210,67 @@ async function updateContainer(event){
                 document.getElementById("container").innerHTML = text
 
             break;
-            case "Team":
-                document.getElementById("container").innerHTML = text
-
-            break;
             case "User":
-                document.getElementById("container").innerHTML = text
+                document.getElementById("container").innerHTML = `<form style="justify-content:center" action="/submit" method="post" id="signupForm">
+                <h3><center><u>New User</u></center></h3>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="username">Email:</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="team">Team:</label>
+                    <input type="text" id="team" name="team" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="capNumber">Cap Number:</label>
+                    <input type="text" id="capNumber" name="capNumber" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select id="role" name="role">
+                        <option value="coach">Coach</option>
+                        <option value="player">Player</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="usaRegistered">Are you USA Registered?</label>
+                    <select id="usaRegistered" name="usaRegistered">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="official">Are you an Official?</label>
+                    <select id="official" name="official">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+        
+                <div class="form-group full-width">
+                    <input type="submit" value="Sign Up">
+                </div>
+            </form>`
 
             break;
             case "Tournament":

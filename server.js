@@ -43,7 +43,7 @@ function updateGrade() {
     })
 }
 //Year, Month(0-11, Day, 8pm=20,minutes,seconds)
-const date = new Date(2024, 6, 24, 0, 0, 0);
+const date = new Date(2025, 6, 7, 0, 0, 0);
 // console.log(date)
 // console.log(new Date())
 var j = schedule.scheduleJob(date, function () {

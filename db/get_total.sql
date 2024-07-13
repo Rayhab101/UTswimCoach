@@ -1,1 +1,1 @@
-SELECT COUNT(*) FROM records WHERE swimmer=$1 AND swim_year='4';
+SELECT COUNT(*) FROM records WHERE swimmer=$1 AND swim_year='5';
