@@ -34,6 +34,7 @@ function updateGrade() {
                     db.update_school_grade('Junior', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
                     break;
                 case "Freshman":
+                case "Freshmen":
                     db.update_school_grade('Sophomore', swimmers[i].swimmer_id, swimmers[i].year + 1, true)
                     break;
                 default:

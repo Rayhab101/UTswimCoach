@@ -27,7 +27,7 @@ async function against() {
                 var who;
 
                 if (nextMeet - today > 0) {
-                    //console.log(meets[j].school1)
+                    console.log(meets[j].school1)
 
                     if (meets[j].school1 != -1) {
                         //console.log("HI")
@@ -73,7 +73,7 @@ async function against() {
                 img2.setAttribute("src", "../../images/SJCHS.png");
                 img2.setAttribute("alt", "Jayhawks Logo");
                 body.appendChild(img2);
-                text.innerHTML = "Red and Blue Meet"
+                text.innerHTML = meets[j].location +"<br>"+ school1[0].address;
                 // break;
 
             }
