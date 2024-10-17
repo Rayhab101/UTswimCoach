@@ -27,7 +27,7 @@ async function against() {
                 var who;
 
                 if (nextMeet - today > 0) {
-                    console.log(meets[j].school1)
+                    //console.log(meets[j].school1)
 
                     if (meets[j].school1 != -1) {
                         //console.log("HI")
@@ -48,8 +48,8 @@ async function against() {
                         break;
                     }
                     else {
-                    console.log("Hello2")
-                        var school1 = [{ school_id: '-1', name: meets[j].location, photo: './swimCoach.png' }];
+                    //console.log("Hello2")
+                        var school1 = [{ school_id: '-1', name: meets[j].location, photo: '../../images/swimCoach.png' }];
                         //console.log(school1)
                         break;
                     }
@@ -78,18 +78,25 @@ async function against() {
 
             }
             else {
-                console.log("hi")
+                //console.log("hi")
                 img.setAttribute("src", "../../images/BLHS.png");
                 img.setAttribute("alt", "Ben Lomond Logo");
                 body.appendChild(img);
-                console.log(school1[0].name)
-                if(school1[0].name ===  "Region 13 Meet" || school1[0].name === "State Meet"){
-                    school1[0].name = "swimCoach"
-                }
-                console.log(school1[0].name)
+                //console.log(school1[0].name)
+                // if(school1[0].name ===  "Region 13 Meet" || school1[0].name === "State Meet"){
+                //     school1[0].name = "swimCoach"
+                // }
+                //console.log(school1[0].name)
                 if(school1[0].name !="Saint Joseph"){
-                    img2.setAttribute("src", "../../images/" + school1[0].name+".png");
-                    img2.setAttribute("alt", school1[0].name + " Logo");
+                    //console.log(school1[0].school_id)
+                    if(school1[0].school_id === "-1"){
+                        img2.setAttribute("src", "../../images/swimCoach.png");
+                        img2.setAttribute("alt", school1[0].name + " Logo");
+                    }
+                    else{
+                        img2.setAttribute("src", "../../images/" + school1[0].name+".png");
+                        img2.setAttribute("alt", school1[0].name + " Logo");
+                    }
                     body.appendChild(img2);
                 }
 

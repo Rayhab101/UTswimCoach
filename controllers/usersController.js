@@ -629,19 +629,19 @@ module.exports = {
         }).catch(err => (res.sendStatus(500)))
     },
     updateBlog:(req,res) => {
+        console.log("hit")
         // console.log(req)
         var {id}=req.params;
         var idSplit = id.split("_").join(" ");
         idSplit = idSplit.replace(/~/g,",")
         idSplit = idSplit.replace("'","`")
-        // console.log(idSplit);
+        console.log(idSplit);
 
-        const db = req.app.get("db");
-        // console.log(location,date,time,out,bus,home,school1,school2,meetId);
-        db.update_blog(idSplit).then(times => {
-            // console.log(times);
-            return res.status(200).send(times)
-        }).catch(err => (res.sendStatus(500)))
+        // const db = req.app.get("db");
+        // db.update_blog(idSplit).then(times => {
+        //     // console.log(times);
+        //     return res.status(200).send(times)
+        // }).catch(err => (res.sendStatus(500)))
     },
     getState:(req,res) => {
         // console.log(req)

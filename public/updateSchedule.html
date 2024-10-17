@@ -301,14 +301,15 @@
             var home = document.getElementById(id).children[6].innerHTML;
             var schools = document.getElementById(id).children[7].innerHTML;
             var school_id = await fetch('/api/schools/').then(data => data.json())
+            var hasComma = schools.includes(",");
             schools = schools.split(',');
             // console.log(location,date,time,out,bus,home,schools[0],schools[1])
-            var hasComma = schools.includes(',');
+            
             //console.log(hasComma);
             school1 = schools[0];
             if (hasComma) {
-                school2 = schools[1].split(" ");
-                school2 = school2[1] + " " + school2[2];
+                school2 = schools[1].trim();
+                //school2 = school2[1] + " " + school2[2];
             }
             else {
                 school2 = "";

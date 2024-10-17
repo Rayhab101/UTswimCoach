@@ -86,11 +86,12 @@
         }
 
         async function updateBlog() {
-            var blog = document.getElementById("blog_text").children[0].innerHTML;
+            var blog = document.getElementById("blog_text").children[0].textContent;
+
             blog = blog.replace(/ /g, "_")
             blog = blog.replace(/,/g, "~")
             blog = blog.replace("'","''")
-            // console.log(blog)
+            console.log(blog)
             var password = prompt("Please Enter your Password", "")
             var check = await fetch('/api/coaches/').then(data => data.json())
             var flag = false;
@@ -100,31 +101,30 @@
                     flag = true;
                 }
             }
-            console.log(blog)
             if (flag) {
                 await fetch("/api/updateBlog/" + blog, {
                     headers: { 'Content-Type': 'application/json' },
                     method: "POST",
                 }).then(response => response.json())
                     .then(json => console.log(json))
-                    .catch(err => alert(err));//console.log(err));
+                    .catch(err => console.log(err))//alert(err));//console.log(err));
 
-                // blog = blog.replace(/_/g, "&")
-                // var today = new Date();
-                // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-                // var location = window.location.pathname;
-                // location = location.split('/');
-                // location = location[1];
-                // location = location.split('.html')
-                // location = location[0]
-                // var changes = date + "_" + coach + "_" + location + "_" + "Blog" + "_" + blog;
-                // console.log(changes)
-                // fetch("/api/logChanges/" + changes, {
-                //     headers: { 'Content-Type': 'application/json' },
-                //     method: "POST",
-                // }).then(response => response.json())
-                //     .then(json => console.log(json))
-                //     .catch(err => console.log(err));
+            //     // blog = blog.replace(/_/g, "&")
+            //     // var today = new Date();
+            //     // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            //     // var location = window.location.pathname;
+            //     // location = location.split('/');
+            //     // location = location[1];
+            //     // location = location.split('.html')
+            //     // location = location[0]
+            //     // var changes = date + "_" + coach + "_" + location + "_" + "Blog" + "_" + blog;
+            //     // console.log(changes)
+            //     // fetch("/api/logChanges/" + changes, {
+            //     //     headers: { 'Content-Type': 'application/json' },
+            //     //     method: "POST",
+            //     // }).then(response => response.json())
+            //     //     .then(json => console.log(json))
+            //     //     .catch(err => console.log(err));
                 window.location.reload();
             }
             else {
