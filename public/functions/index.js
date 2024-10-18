@@ -48,7 +48,6 @@ async function against() {
                         break;
                     }
                     else {
-                    //console.log("Hello2")
                         var school1 = [{ school_id: '-1', name: meets[j].location, photo: '../../images/swimCoach.png' }];
                         //console.log(school1)
                         break;
