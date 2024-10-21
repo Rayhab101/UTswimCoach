@@ -74,7 +74,15 @@
                     // body.appendChild(head);
                     for (var i = 0; i < myJson.length; i++) {
                         // console.log(myJson[i])
-                        createTable(myJson[i].name, myJson[i].swimmer_id, myJson[i].school, body);
+                        if(myJson[i].school == 78){
+                            createTable(myJson[i].name, myJson[i].swimmer_id, myJson[i].school, body);
+
+                        }
+                        else{
+                            //createTable(myJson[i].name, myJson[i].swimmer_id, myJson[i].school, body);
+
+                        }
+                        //createTable(myJson[i].name, myJson[i].swimmer_id, myJson[i].school, body);
                     }
                 })
                 .catch(function (error) {
